@@ -483,7 +483,7 @@
       "status": "scheduled",
       "weight": 1.0,
       "leaderVotes": null,
-      "supremeVotes": null,
+      "supremeVotes": null
     },
     {
       "id": "daegu",
