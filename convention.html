@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026 전당대회 | 분당민주크루</title>
+  <meta name="description" content="2026 더불어민주당 전당대회 일정과 지역별 경선 결과를 한눈에 확인합니다.">
+  <meta name="theme-color" content="#172a88">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="2026 전당대회 | 분당민주크루">
+  <meta property="og:description" content="남은 일정, 당대표·최고위원 누계, 지역별 득표 결과와 가중치 계산을 확인하세요.">
+  <meta property="og:image" content="./assets/images/profile.png">
+  <link rel="icon" href="./assets/images/favicon.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="./assets/images/apple-touch-icon.png" sizes="180x180">
+  <link href="https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT.css" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/main.css">
+  <link rel="stylesheet" href="./assets/css/convention.css">
+  <script defer src="./assets/js/convention.js"></script>
+</head>
+<body class="document-page convention-page">
+  <header class="document-header">
+    <div class="document-header-inner">
+      <a class="back-link" href="./index.html" id="back-link" aria-label="메인 페이지로 돌아가기">
+        <span aria-hidden="true">←</span>
+        <span>돌아가기</span>
+      </a>
+      <p class="eyebrow">Bundang Minjoo Crew</p>
+      <h1 id="document-title">2026 전당대회</h1>
+      <p class="document-meta" id="document-meta" aria-live="polite">데이터를 준비하고 있습니다.</p>
+    </div>
+  </header>
+
+  <main class="document-shell convention-shell">
+    <article class="document-card convention-card" aria-labelledby="document-title">
+      <div class="viewer-status" id="convention-status" role="status" aria-live="polite">
+        전당대회 데이터를 불러오는 중입니다.
+      </div>
+
+      <div id="convention-app" hidden>
+        <section class="convention-hero" aria-labelledby="event-name">
+          <div class="hero-topline">
+            <span class="dday-badge" id="dday-badge">D-</span>
+            <span class="hero-updated" id="hero-updated"></span>
+          </div>
+          <h2 id="event-name"></h2>
+          <p id="event-description"></p>
+          <div class="hero-stats" id="hero-stats"></div>
+        </section>
+
+        <nav class="section-jump" aria-label="전당대회 페이지 바로가기">
+          <a href="#schedule-section">일정</a>
+          <a href="#leader-section">당대표</a>
+          <a href="#supreme-section">최고위원</a>
+          <a href="#region-section">지역별 결과</a>
+        </nav>
+
+        <section class="dashboard-section" id="schedule-section">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Schedule</p>
+              <h2>남은 전당대회 일정</h2>
+            </div>
+            <p class="section-note">2주 보기</p>
+          </div>
+          <div class="calendar" id="calendar" aria-label="전당대회 2주 일정"></div>
+          <div class="schedule-detail" id="schedule-detail" hidden></div>
+        </section>
+
+        <section class="dashboard-section" id="leader-section">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Party Leader</p>
+              <h2>당대표 1순위 득표 현황</h2>
+            </div>
+          </div>
+
+          <div class="metric-tabs" id="leader-metric-tabs" role="tablist" aria-label="당대표 집계 기준">
+            <button type="button" class="metric-tab active" data-mode="published" role="tab" aria-selected="true">발표 누계</button>
+            <button type="button" class="metric-tab" data-mode="raw" role="tab" aria-selected="false">원득표 자동계산</button>
+            <button type="button" class="metric-tab" data-mode="weighted" role="tab" aria-selected="false">가중치 자동계산</button>
+          </div>
+
+          <p class="calculation-caption" id="leader-caption"></p>
+          <div class="candidate-summary-grid leader-grid" id="leader-summary"></div>
+          <div class="result-bars" id="leader-bars"></div>
+        </section>
+
+        <section class="dashboard-section" id="supreme-section">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Supreme Council</p>
+              <h2>최고위원 누적 득표 현황</h2>
+            </div>
+            <span class="cutline-badge">5위까지 당선권</span>
+          </div>
+          <div class="metric-tabs" id="supreme-metric-tabs" role="tablist" aria-label="최고위원 집계 기준">
+            <button type="button" class="metric-tab active" data-supreme-mode="published" role="tab" aria-selected="true">발표 누계</button>
+            <button type="button" class="metric-tab" data-supreme-mode="raw" role="tab" aria-selected="false">원득표 자동계산</button>
+            <button type="button" class="metric-tab" data-supreme-mode="weighted" role="tab" aria-selected="false">가중치 자동계산</button>
+          </div>
+          <p class="calculation-caption" id="supreme-caption"></p>
+          <div class="supreme-ranking" id="supreme-ranking"></div>
+        </section>
+
+        <section class="dashboard-section" id="region-section">
+          <div class="section-heading region-heading">
+            <div>
+              <p class="section-kicker">Regional Results</p>
+              <h2>지역별 결과</h2>
+            </div>
+            <div class="contest-switch" role="group" aria-label="지역별 결과 선거 선택">
+              <button type="button" class="contest-button active" data-contest="leader">당대표</button>
+              <button type="button" class="contest-button" data-contest="supreme">최고위원</button>
+            </div>
+          </div>
+          <div class="region-list" id="region-list"></div>
+        </section>
+
+        <section class="dashboard-section calculation-section" id="calculation-section">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Method</p>
+              <h2>계산 방식</h2>
+            </div>
+          </div>
+          <div class="method-grid" id="method-grid"></div>
+          <p class="method-note" id="method-note"></p>
+        </section>
+
+        <section class="dashboard-section source-section" id="source-section">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Sources</p>
+              <h2>출처</h2>
+            </div>
+          </div>
+          <div class="source-list" id="source-list"></div>
+        </section>
+      </div>
+    </article>
+
+    <a class="document-home-link" href="./index.html">메인으로 돌아가기</a>
+  </main>
+
+  <button class="top-button" id="top-button" type="button" aria-label="맨 위로 이동">↑</button>
+</body>
+</html>

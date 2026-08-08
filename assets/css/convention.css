@@ -1,0 +1,2111 @@
+.convention-page {
+  --candidate-1: #172a88;
+  --candidate-2: #2c57b8;
+  --candidate-3: #1f9aa5;
+  --candidate-4: #4f7df3;
+  --candidate-5: #6875a6;
+  --candidate-6: #49546d;
+  --candidate-7: #1a7f65;
+  --candidate-8: #7b6ca8;
+}
+
+.convention-card {
+  overflow: hidden;
+}
+
+#convention-app {
+  display: grid;
+}
+
+.convention-hero {
+  padding: 26px 22px 24px;
+  background:
+    linear-gradient(145deg, rgba(23, 42, 136, 0.98), rgba(36, 70, 184, 0.94)),
+    var(--color-primary);
+  color: #fff;
+}
+
+.hero-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.dday-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 6px 12px;
+  border: 1px solid rgba(255,255,255,0.28);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.14);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 850;
+  letter-spacing: 0.02em;
+}
+
+.hero-updated {
+  color: rgba(255,255,255,0.72);
+  font-size: 0.78rem;
+  font-weight: 650;
+  text-align: right;
+}
+
+.convention-hero h2 {
+  margin: 0;
+  font-size: clamp(1.7rem, 7vw, 2.55rem);
+  line-height: 1.2;
+  font-weight: 850;
+  letter-spacing: -0.02em;
+}
+
+.convention-hero > p {
+  max-width: 650px;
+  margin: 12px 0 0;
+  color: rgba(255,255,255,0.78);
+  font-size: 0.96rem;
+  line-height: 1.7;
+}
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 22px;
+}
+
+.hero-stat {
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 12px;
+  background: rgba(255,255,255,0.1);
+}
+
+.hero-stat span {
+  display: block;
+  color: rgba(255,255,255,0.67);
+  font-size: 0.73rem;
+  font-weight: 650;
+}
+
+.hero-stat strong {
+  display: block;
+  margin-top: 3px;
+  color: #fff;
+  font-size: 1rem;
+  line-height: 1.3;
+  font-weight: 850;
+  overflow-wrap: normal;
+}
+
+.section-jump {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--color-border);
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(10px);
+  scrollbar-width: none;
+}
+
+.section-jump::-webkit-scrollbar {
+  display: none;
+}
+
+.section-jump a {
+  flex: 0 0 auto;
+  padding: 7px 11px;
+  border-radius: 999px;
+  color: var(--color-text-muted);
+  font-size: 0.82rem;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.section-jump a:hover,
+.section-jump a:focus-visible {
+  background: var(--color-accent-soft);
+  color: var(--color-primary);
+}
+
+.dashboard-section {
+  padding: 28px 20px;
+  border-top: 1px solid rgba(23,42,136,0.1);
+  scroll-margin-top: 62px;
+}
+
+.section-jump + .dashboard-section {
+  border-top: 0;
+}
+
+.section-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.section-kicker {
+  margin: 0 0 3px;
+  color: var(--color-primary);
+  font-size: 0.72rem;
+  font-weight: 850;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.section-heading h2 {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 1.28rem;
+  line-height: 1.35;
+  font-weight: 850;
+}
+
+.section-note {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.calendar {
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 15px;
+  background: #fff;
+}
+
+.calendar-weekdays,
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.calendar-weekdays {
+  border-bottom: 1px solid var(--color-border);
+  background: #f7f8fc;
+}
+
+.calendar-weekday {
+  padding: 8px 2px;
+  color: var(--color-text-muted);
+  font-size: 0.69rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.calendar-day {
+  position: relative;
+  min-height: 82px;
+  padding: 8px 5px 6px;
+  border-right: 1px solid rgba(23,42,136,0.08);
+  border-bottom: 1px solid rgba(23,42,136,0.08);
+  background: #fff;
+}
+
+.calendar-day:nth-child(7n) {
+  border-right: 0;
+}
+
+.calendar-day:nth-last-child(-n+7) {
+  border-bottom: 0;
+}
+
+.calendar-day.today {
+  background: #f5f8ff;
+}
+
+.calendar-date {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  margin: 0 auto 5px;
+  border-radius: 999px;
+  color: var(--color-text);
+  font-size: 0.77rem;
+  font-weight: 800;
+}
+
+.calendar-day.today .calendar-date {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.calendar-events {
+  display: grid;
+  gap: 3px;
+}
+
+.calendar-event {
+  width: 100%;
+  padding: 4px 3px;
+  border: 0;
+  border-radius: 6px;
+  background: var(--color-accent-soft);
+  color: var(--color-primary);
+  font: inherit;
+  font-size: 0.63rem;
+  line-height: 1.25;
+  font-weight: 800;
+  text-align: center;
+  cursor: pointer;
+}
+
+.calendar-event.final {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.calendar-event:hover,
+.calendar-event:focus-visible {
+  outline: 2px solid rgba(79,125,243,0.32);
+  outline-offset: 1px;
+}
+
+.schedule-detail {
+  margin-top: 10px;
+  padding: 13px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: #f9fbff;
+}
+
+.schedule-detail strong {
+  display: block;
+  color: var(--color-text);
+  font-size: 0.92rem;
+}
+
+.schedule-detail span {
+  display: block;
+  margin-top: 3px;
+  color: var(--color-text-muted);
+  font-size: 0.82rem;
+}
+
+.metric-tabs,
+.contest-switch {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: #f7f8fc;
+}
+
+.metric-tabs {
+  max-width: 100%;
+  overflow-x: auto;
+  margin-bottom: 12px;
+  scrollbar-width: none;
+}
+
+.metric-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.metric-tab,
+.contest-button {
+  flex: 0 0 auto;
+  min-height: 34px;
+  padding: 6px 11px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--color-text-muted);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.metric-tab.active,
+.contest-button.active {
+  background: #fff;
+  color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(23,29,46,0.09);
+}
+
+.calculation-caption {
+  margin: 0 0 14px;
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+  line-height: 1.55;
+}
+
+.candidate-summary-grid {
+  display: grid;
+  gap: 12px;
+}
+
+/*
+ * 당대표 후보 영역
+ * 방송 그래픽처럼 후보별 컬러 블록 + 하단 인물 컷으로 구성한다.
+ * 후보 사진 원본은 투명 배경 컬러 이미지를 권장하며,
+ * 평상시에는 흑백 / 선택된 후보만 컬러로 표시한다.
+ */
+.leader-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.candidate-card {
+  --card-ink: #ffffff;
+  position: relative;
+  isolation: isolate;
+  display: block;
+  min-width: 0;
+  min-height: 238px;
+  padding: 18px 16px 16px;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--candidate-color) 72%, #ffffff 28%);
+  border-radius: 15px;
+  background:
+    linear-gradient(180deg, rgba(8, 17, 46, 0.04) 0%, rgba(8, 17, 46, 0.16) 100%),
+    var(--candidate-color, var(--color-primary));
+  color: var(--card-ink);
+  box-shadow: 0 10px 24px rgba(23, 29, 46, 0.12);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    filter 180ms ease,
+    border-color 180ms ease;
+}
+
+.candidate-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    linear-gradient(90deg, rgba(4, 11, 34, 0.27) 0%, rgba(4, 11, 34, 0.06) 56%, transparent 74%),
+    linear-gradient(0deg, rgba(4, 11, 34, 0.16) 0%, transparent 42%);
+  pointer-events: none;
+}
+
+.candidate-card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.86);
+  opacity: 0;
+  transform: scaleX(0.45);
+  transform-origin: center;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.candidate-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px rgba(23, 29, 46, 0.18);
+}
+
+.candidate-card:focus-visible {
+  outline: 3px solid rgba(79, 125, 243, 0.44);
+  outline-offset: 3px;
+}
+
+.candidate-card.is-selected {
+  border-color: rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--candidate-color) 24%, transparent),
+    0 18px 36px rgba(23, 29, 46, 0.22);
+  transform: translateY(-3px);
+}
+
+.candidate-card.is-selected::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+/* 1위는 배경색을 바꾸지 않고 숫자/배지로만 구분 */
+.candidate-card.rank-1 {
+  box-shadow: 0 13px 28px rgba(23, 29, 46, 0.16);
+}
+
+.candidate-avatar {
+  position: absolute;
+  right: -7%;
+  bottom: 0;
+  z-index: -1;
+  display: block;
+  width: 78%;
+  height: 88%;
+  margin: 0;
+  overflow: visible;
+  border-radius: 0;
+  background: transparent;
+  color: #ffffff;
+  box-shadow: none;
+  pointer-events: none;
+}
+
+.candidate-avatar .avatar-fallback {
+  position: absolute;
+  right: 20px;
+  bottom: 18px;
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  font-size: 1.08rem;
+  font-weight: 850;
+  backdrop-filter: blur(6px);
+}
+
+.candidate-avatar.has-image .avatar-fallback {
+  display: none;
+}
+
+.candidate-avatar.has-image img {
+  position: absolute;
+  inset: auto 0 0 auto;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: right bottom;
+  filter: grayscale(1) contrast(1.04) brightness(0.98);
+  opacity: 0.97;
+  transform: translateZ(0) scale(1.015);
+  transform-origin: right bottom;
+  transition:
+    filter 240ms ease,
+    opacity 240ms ease,
+    transform 240ms ease;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+/* hover만으로는 컬러가 되지 않는다. 클릭해 선택된 후보만 컬러 */
+.candidate-card.is-selected .candidate-avatar.has-image img {
+  filter: grayscale(0) saturate(1.04) contrast(1.02);
+  opacity: 1;
+  transform: translateZ(0) scale(1.035);
+}
+
+.candidate-rank,
+.candidate-name,
+.candidate-percent,
+.candidate-votes {
+  position: relative;
+  z-index: 2;
+  max-width: 58%;
+  text-shadow: 0 1px 2px rgba(8, 17, 46, 0.2);
+}
+
+.candidate-rank {
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  padding: 2px 7px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 999px;
+  background: rgba(8, 17, 46, 0.18);
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.66rem;
+  font-weight: 800;
+  backdrop-filter: blur(4px);
+}
+
+.candidate-name {
+  display: block;
+  margin-top: 8px;
+  color: #ffffff;
+  font-size: clamp(1rem, 2.8vw, 1.2rem);
+  line-height: 1.2;
+  font-weight: 900;
+  letter-spacing: -0.025em;
+}
+
+.candidate-percent {
+  display: block;
+  margin-top: 9px;
+  color: #ffffff;
+  font-size: clamp(2rem, 6vw, 2.75rem);
+  line-height: 0.95;
+  font-weight: 950;
+  letter-spacing: -0.055em;
+}
+
+.candidate-votes {
+  display: block;
+  margin-top: 8px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.72rem;
+  line-height: 1.35;
+  font-weight: 700;
+}
+
+.result-bars {
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.result-bar-row {
+  display: grid;
+  grid-template-columns: 54px minmax(0, 1fr) 58px;
+  align-items: center;
+  gap: 9px;
+  padding: 4px 6px;
+  border-radius: 9px;
+  transition: background-color 180ms ease, opacity 180ms ease;
+}
+
+.result-bar-row.is-selected {
+  background: color-mix(in srgb, var(--candidate-color) 8%, #ffffff 92%);
+}
+
+.result-bar-name {
+  color: var(--color-text);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.result-bar-track {
+  height: 10px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #edf0f7;
+}
+
+.result-bar-fill {
+  height: 100%;
+  width: var(--bar-width, 0%);
+  border-radius: inherit;
+  background: var(--candidate-color, var(--color-primary));
+  transition: width 360ms ease;
+}
+
+.result-bar-value {
+  color: var(--candidate-color, var(--color-primary));
+  font-size: 0.8rem;
+  font-weight: 850;
+  text-align: right;
+}
+
+.cutline-badge {
+  flex: 0 0 auto;
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: var(--color-accent-soft);
+  color: var(--color-primary);
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+/* 최고위원 영역도 같은 선택 원칙을 적용한다. */
+.supreme-ranking {
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  background: #fff;
+}
+
+.supreme-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 30px 46px minmax(0, 1fr) 72px;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 64px;
+  padding: 8px 12px;
+  border: 0;
+  border-bottom: 1px solid rgba(23, 42, 136, 0.08);
+  background: #ffffff;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  transition: background-color 180ms ease, box-shadow 180ms ease;
+}
+
+.supreme-row:last-child {
+  border-bottom: 0;
+}
+
+.supreme-row:hover {
+  background: #f8faff;
+}
+
+.supreme-row:focus-visible {
+  z-index: 1;
+  outline: 3px solid rgba(79, 125, 243, 0.36);
+  outline-offset: -3px;
+}
+
+.supreme-row.is-selected {
+  background: color-mix(in srgb, var(--candidate-color) 8%, #ffffff 92%);
+  box-shadow: inset 4px 0 0 var(--candidate-color);
+}
+
+.supreme-row.cutline {
+  border-bottom: 3px solid rgba(23, 42, 136, 0.24);
+}
+
+.supreme-rank {
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+  font-weight: 850;
+  text-align: center;
+}
+
+.supreme-avatar {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 48px;
+  overflow: hidden;
+  border: 0;
+  border-radius: 8px 8px 2px 2px;
+  background: color-mix(in srgb, var(--candidate-color) 11%, #eef1f8 89%);
+  color: var(--candidate-color, var(--color-primary));
+  font-size: 0.72rem;
+  font-weight: 850;
+}
+
+.supreme-avatar .avatar-fallback {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.supreme-avatar.has-image .avatar-fallback {
+  display: none;
+}
+
+.supreme-avatar.has-image img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  filter: grayscale(1) contrast(1.03);
+  transition: filter 220ms ease, transform 220ms ease;
+}
+
+.supreme-row.is-selected .supreme-avatar.has-image img {
+  filter: grayscale(0) saturate(1.04) contrast(1.01);
+  transform: scale(1.04);
+}
+
+.supreme-info {
+  min-width: 0;
+}
+
+.supreme-info strong {
+  display: block;
+  color: var(--color-text);
+  font-size: 0.88rem;
+}
+
+.supreme-mini-track {
+  height: 5px;
+  margin-top: 5px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #edf0f7;
+}
+
+.supreme-mini-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: var(--candidate-color, var(--color-primary));
+}
+
+.supreme-value {
+  color: var(--candidate-color, var(--color-primary));
+  font-size: 0.83rem;
+  font-weight: 900;
+  text-align: right;
+}
+
+.supreme-value small {
+  display: block;
+  margin-top: 1px;
+  color: var(--color-text-muted);
+  font-size: 0.64rem;
+  font-weight: 650;
+}
+
+.region-heading {
+  align-items: center;
+}
+
+.region-list {
+  display: grid;
+  gap: 8px;
+}
+
+.region-card {
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 13px;
+  background: #fff;
+}
+
+.region-card summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+.region-card summary::-webkit-details-marker {
+  display: none;
+}
+
+.region-summary {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) auto 20px;
+  align-items: center;
+  gap: 10px;
+  min-height: 61px;
+  padding: 10px 13px;
+}
+
+.region-main {
+  min-width: 0;
+}
+
+.region-name-line {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.region-name {
+  color: var(--color-text);
+  font-size: 0.9rem;
+  font-weight: 850;
+}
+
+.weight-badge,
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 20px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  font-size: 0.62rem;
+  font-weight: 800;
+}
+
+.weight-badge {
+  background: #eef3ff;
+  color: var(--color-primary);
+}
+
+.status-badge {
+  background: #f0f2f6;
+  color: var(--color-text-muted);
+}
+
+.status-badge.done {
+  background: #eaf7f2;
+  color: #16705b;
+}
+
+.region-sub {
+  display: block;
+  margin-top: 3px;
+  color: var(--color-text-muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.region-lead {
+  text-align: right;
+}
+
+.region-lead strong {
+  display: block;
+  color: var(--color-primary);
+  font-size: 0.78rem;
+}
+
+.region-lead span {
+  display: block;
+  margin-top: 1px;
+  color: var(--color-text-muted);
+  font-size: 0.67rem;
+}
+
+.region-chevron {
+  color: var(--color-text-muted);
+  font-size: 1rem;
+  transition: transform 180ms ease;
+}
+
+.region-card[open] .region-chevron {
+  transform: rotate(180deg);
+}
+
+.region-detail {
+  padding: 0 13px 13px;
+  border-top: 1px solid rgba(23,42,136,0.08);
+}
+
+.region-result-row {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) auto;
+  gap: 12px;
+  padding: 10px 2px;
+  border-bottom: 1px solid rgba(23,42,136,0.06);
+}
+
+.region-result-row:last-child {
+  border-bottom: 0;
+}
+
+.region-result-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-text);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.candidate-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--candidate-color, var(--color-primary));
+}
+
+.region-result-value {
+  color: var(--color-text);
+  font-size: 0.79rem;
+  font-weight: 850;
+  text-align: right;
+}
+
+.region-result-value small {
+  display: block;
+  color: var(--color-text-muted);
+  font-size: 0.65rem;
+  font-weight: 600;
+}
+
+.region-empty {
+  padding: 13px 2px 2px;
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+  line-height: 1.55;
+}
+
+.method-grid {
+  display: grid;
+  gap: 9px;
+}
+
+.method-card {
+  padding: 14px;
+  border: 1px solid var(--color-border);
+  border-radius: 13px;
+  background: #f9fbff;
+}
+
+.method-card strong {
+  display: block;
+  color: var(--color-text);
+  font-size: 0.86rem;
+}
+
+.method-card code {
+  display: block;
+  margin-top: 7px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: #eef2ff;
+  color: var(--color-primary-active);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.72rem;
+  line-height: 1.55;
+  white-space: normal;
+}
+
+.method-note {
+  margin: 12px 0 0;
+  color: var(--color-text-muted);
+  font-size: 0.77rem;
+  line-height: 1.6;
+}
+
+.source-list {
+  display: grid;
+  gap: 8px;
+}
+
+.source-item {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) auto;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 11px;
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.source-item:hover {
+  background: #f9fbff;
+  border-color: rgba(36,70,184,0.3);
+}
+
+.source-item strong {
+  display: block;
+  font-size: 0.8rem;
+}
+
+.source-item span {
+  display: block;
+  margin-top: 2px;
+  color: var(--color-text-muted);
+  font-size: 0.7rem;
+}
+
+.source-arrow {
+  color: var(--color-primary);
+  font-size: 0.9rem;
+  font-weight: 850;
+}
+
+.data-error {
+  padding: 20px;
+  color: #9f1d35;
+  background: #fff5f7;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+@media (min-width: 700px) {
+  .convention-hero {
+    padding: 34px 36px 32px;
+  }
+
+  .dashboard-section {
+    padding: 34px 36px;
+  }
+
+  .hero-stats {
+    gap: 10px;
+  }
+
+  .hero-stat {
+    padding: 14px;
+  }
+
+  .calendar-day {
+    min-height: 98px;
+    padding: 10px 8px 8px;
+  }
+
+  .calendar-event {
+    font-size: 0.7rem;
+  }
+
+  .candidate-card {
+    min-height: 270px;
+    padding: 21px 18px 18px;
+  }
+
+  .candidate-avatar {
+    right: -3%;
+    width: 74%;
+    height: 91%;
+  }
+
+  .method-grid {
+    grid-template-columns: repeat(3, minmax(0,1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .document-header h1 {
+    font-size: 2rem;
+  }
+
+  .hero-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-stat {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .hero-stat strong {
+    margin-top: 0;
+    text-align: right;
+  }
+
+  .leader-grid {
+    grid-template-columns: repeat(3, minmax(190px, 1fr));
+    overflow-x: auto;
+    margin-right: -20px;
+    padding: 2px 20px 10px 0;
+    scroll-snap-type: x proximity;
+    scrollbar-width: thin;
+  }
+
+  .candidate-card {
+    min-width: 190px;
+    min-height: 230px;
+    scroll-snap-align: start;
+  }
+
+  .candidate-avatar {
+    right: -8%;
+    width: 82%;
+    height: 88%;
+  }
+
+  .candidate-rank,
+  .candidate-name,
+  .candidate-percent,
+  .candidate-votes {
+    max-width: 62%;
+  }
+
+  .candidate-percent {
+    font-size: 2.05rem;
+  }
+
+  .supreme-row {
+    grid-template-columns: 26px 42px minmax(0, 1fr) 68px;
+    gap: 8px;
+    padding-left: 9px;
+    padding-right: 9px;
+  }
+
+  .supreme-avatar {
+    width: 40px;
+    height: 44px;
+  }
+
+  .section-heading.region-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .contest-switch {
+    align-self: stretch;
+  }
+
+  .contest-button {
+    flex: 1 1 0;
+  }
+}
+
+@media (max-width: 380px) {
+  .dashboard-section {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .convention-hero {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .calendar-day {
+    min-height: 76px;
+    padding-left: 3px;
+    padding-right: 3px;
+  }
+
+  .calendar-event {
+    font-size: 0.58rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .candidate-card,
+  .candidate-card::after,
+  .candidate-avatar.has-image img,
+  .supreme-row,
+  .supreme-avatar.has-image img,
+  .result-bar-fill,
+  .region-chevron {
+    transition: none;
+  }
+}
+
+/* =========================================================
+   2026-08-09 responsive / candidate detail refinements
+   ========================================================= */
+
+.calendar-event.vote {
+  background: #eef7ff;
+  color: #155f9c;
+  box-shadow: inset 0 0 0 1px rgba(21, 95, 156, 0.12);
+}
+
+.calendar-event span,
+.calendar-event small {
+  display: block;
+}
+
+.calendar-event small {
+  margin-top: 2px;
+  font-size: 0.56rem;
+  font-weight: 750;
+  opacity: 0.72;
+}
+
+.calendar-date {
+  gap: 1px;
+  width: auto;
+  min-width: 30px;
+  padding: 0 3px;
+}
+
+.calendar-date span {
+  display: none;
+}
+
+.calendar-date strong {
+  font: inherit;
+}
+
+.candidate-action {
+  position: absolute;
+  left: 16px;
+  bottom: 14px;
+  z-index: 3;
+  max-width: 56%;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.62rem;
+  line-height: 1.25;
+  font-weight: 750;
+  text-shadow: 0 1px 2px rgba(8, 17, 46, 0.22);
+}
+
+/* vote count와 상세보기 안내가 겹치지 않도록 하단 공간 확보 */
+.candidate-card {
+  padding-bottom: 42px;
+}
+
+.candidate-votes {
+  margin-bottom: 8px;
+}
+
+/* 선택은 단순 강조가 아니라 아래 지역별 득표 상세와 연동된다. */
+.candidate-detail {
+  grid-column: 1 / -1;
+  margin-top: 12px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  background: #f9fbff;
+}
+
+.candidate-detail-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(23, 42, 136, 0.1);
+  background: #f3f6ff;
+  color: var(--color-text);
+  font-size: 0.82rem;
+  font-weight: 750;
+}
+
+.candidate-detail-heading strong {
+  color: var(--color-primary);
+  font-weight: 900;
+}
+
+.candidate-detail-heading small {
+  flex: 0 0 auto;
+  color: var(--color-text-muted);
+  font-size: 0.65rem;
+  font-weight: 650;
+}
+
+.candidate-detail-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.candidate-detail-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  padding: 10px 13px;
+  border-bottom: 1px solid rgba(23, 42, 136, 0.08);
+}
+
+.candidate-detail-row:nth-child(odd) {
+  border-right: 1px solid rgba(23, 42, 136, 0.08);
+}
+
+.candidate-detail-row:nth-last-child(-n + 2) {
+  border-bottom: 0;
+}
+
+.candidate-detail-region,
+.candidate-detail-score {
+  min-width: 0;
+}
+
+.candidate-detail-region strong,
+.candidate-detail-score strong,
+.candidate-detail-region small,
+.candidate-detail-score small {
+  display: block;
+}
+
+.candidate-detail-region strong {
+  color: var(--color-text);
+  font-size: 0.8rem;
+  font-weight: 850;
+}
+
+.candidate-detail-region small {
+  margin-top: 2px;
+  color: var(--color-primary);
+  font-size: 0.61rem;
+  font-weight: 750;
+}
+
+.candidate-detail-score {
+  text-align: right;
+}
+
+.candidate-detail-score strong {
+  color: var(--color-primary);
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.candidate-detail-score small {
+  margin-top: 2px;
+  color: var(--color-text-muted);
+  font-size: 0.62rem;
+  font-weight: 650;
+}
+
+/* 최고위원 1~5위를 당대표와 같은 방송형 카드로 크게 표시 */
+.supreme-ranking {
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.supreme-featured-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.supreme-featured-card {
+  min-height: 244px;
+}
+
+.supreme-cutline-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 18px 0 10px;
+  color: var(--color-primary);
+  font-size: 0.68rem;
+  font-weight: 850;
+}
+
+.supreme-cutline-divider::before,
+.supreme-cutline-divider::after {
+  content: "";
+  height: 1px;
+  flex: 1 1 auto;
+  background: rgba(23, 42, 136, 0.18);
+}
+
+.supreme-cutline-divider span {
+  flex: 0 0 auto;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: var(--color-accent-soft);
+}
+
+.supreme-rest-list {
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  background: #fff;
+}
+
+.supreme-rest-list .supreme-row:last-child {
+  border-bottom: 0;
+}
+
+.supreme-ranking > .candidate-detail {
+  margin-top: 14px;
+}
+
+/* -------------------------
+   Mobile: clipping 대신 재배치
+   ------------------------- */
+@media (max-width: 620px) {
+  .convention-shell {
+    width: 100%;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .convention-card {
+    border-radius: 16px;
+  }
+
+  .dashboard-section {
+    padding: 24px 16px;
+  }
+
+  .convention-hero {
+    padding: 24px 18px;
+  }
+
+  .hero-topline {
+    align-items: flex-start;
+  }
+
+  .hero-updated {
+    max-width: 55%;
+    line-height: 1.35;
+  }
+
+  .section-heading {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .section-heading h2 {
+    font-size: 1.2rem;
+  }
+
+  .section-note,
+  .cutline-badge {
+    align-self: center;
+  }
+
+  /* 7열 달력 대신 같은 데이터를 읽기 쉬운 모바일 agenda로 재배치 */
+  .calendar {
+    overflow: visible;
+  }
+
+  .calendar-weekdays {
+    display: none;
+  }
+
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .calendar-day,
+  .calendar-day:nth-child(7n),
+  .calendar-day:nth-last-child(-n+7) {
+    display: grid;
+    grid-template-columns: 54px minmax(0, 1fr);
+    align-items: start;
+    min-height: 54px;
+    padding: 8px 10px;
+    border-right: 0;
+    border-bottom: 1px solid rgba(23, 42, 136, 0.08);
+  }
+
+  .calendar-day:last-child {
+    border-bottom: 0;
+  }
+
+  .calendar-day:not(:has(.calendar-event)) {
+    min-height: 44px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+
+  .calendar-date {
+    justify-content: flex-start;
+    width: 46px;
+    height: 32px;
+    margin: 0;
+    border-radius: 9px;
+    font-size: 0.76rem;
+  }
+
+  .calendar-date span {
+    display: inline;
+    font-size: 0.66rem;
+    opacity: 0.68;
+  }
+
+  .calendar-day.today .calendar-date {
+    justify-content: center;
+  }
+
+  .calendar-events {
+    gap: 5px;
+  }
+
+  .calendar-event {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 9px;
+    font-size: 0.72rem;
+    text-align: left;
+  }
+
+  .calendar-event small {
+    margin-top: 0;
+    white-space: nowrap;
+    font-size: 0.61rem;
+  }
+
+  .metric-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 100%;
+    overflow: visible;
+    border-radius: 13px;
+  }
+
+  .metric-tab {
+    min-width: 0;
+    padding: 7px 5px;
+    white-space: normal;
+    font-size: 0.69rem;
+    line-height: 1.25;
+  }
+
+  .leader-grid,
+  .supreme-featured-grid {
+    grid-template-columns: 1fr;
+    overflow: visible;
+    margin-right: 0;
+    padding-right: 0;
+  }
+
+  .candidate-card,
+  .supreme-featured-card {
+    width: 100%;
+    min-width: 0;
+    min-height: 214px;
+    padding: 17px 15px 40px;
+    scroll-snap-align: none;
+  }
+
+  .candidate-avatar {
+    right: -2%;
+    width: 62%;
+    height: 91%;
+  }
+
+  .candidate-rank,
+  .candidate-name,
+  .candidate-percent,
+  .candidate-votes {
+    max-width: 52%;
+  }
+
+  .candidate-percent {
+    font-size: clamp(2rem, 11vw, 2.55rem);
+  }
+
+  .candidate-action {
+    left: 15px;
+    bottom: 13px;
+    max-width: 52%;
+  }
+
+  .candidate-detail-list {
+    grid-template-columns: 1fr;
+  }
+
+  .candidate-detail-row,
+  .candidate-detail-row:nth-child(odd),
+  .candidate-detail-row:nth-last-child(-n + 2) {
+    border-right: 0;
+    border-bottom: 1px solid rgba(23, 42, 136, 0.08);
+  }
+
+  .candidate-detail-row:last-child {
+    border-bottom: 0;
+  }
+
+  .candidate-detail-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .supreme-row {
+    grid-template-columns: 26px 40px minmax(0, 1fr) 66px;
+    gap: 7px;
+    min-width: 0;
+  }
+
+  .region-summary {
+    grid-template-columns: minmax(0, 1fr) 18px;
+    gap: 7px;
+  }
+
+  .region-lead {
+    grid-column: 1 / 2;
+    justify-self: start;
+    margin-top: 3px;
+    text-align: left;
+  }
+
+  .region-chevron {
+    grid-column: 2 / 3;
+    grid-row: 1 / span 2;
+  }
+
+  .source-item {
+    gap: 8px;
+  }
+}
+
+@media (max-width: 380px) {
+  .convention-shell {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .dashboard-section {
+    padding-left: 13px;
+    padding-right: 13px;
+  }
+
+  .metric-tab {
+    font-size: 0.64rem;
+  }
+
+  .candidate-card,
+  .supreme-featured-card {
+    min-height: 202px;
+  }
+
+  .candidate-avatar {
+    width: 64%;
+  }
+
+  .supreme-row {
+    grid-template-columns: 24px 36px minmax(0, 1fr) 62px;
+    padding-left: 7px;
+    padding-right: 7px;
+  }
+
+  .supreme-avatar {
+    width: 36px;
+    height: 42px;
+  }
+}
+
+
+/* =========================================================
+   2026-08-09 v3: multi-day calendar bars + compact supreme cards
+   ========================================================= */
+
+/* Desktop calendar: 기간 일정은 실제 달력처럼 날짜를 가로지르는 막대로 표시 */
+.calendar-desktop {
+  display: block;
+}
+
+.calendar-mobile {
+  display: none;
+}
+
+.calendar-week-row {
+  --calendar-lanes: 1;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  min-height: calc(56px + (var(--calendar-lanes) * 28px));
+  border-bottom: 1px solid rgba(23, 42, 136, 0.10);
+}
+
+.calendar-week-row:last-child {
+  border-bottom: 0;
+}
+
+.calendar-day-pc,
+.calendar-day-pc:nth-child(7n),
+.calendar-day-pc:nth-last-child(-n+7) {
+  min-height: 100%;
+  padding: 8px 8px 6px;
+  border-right: 1px solid rgba(23, 42, 136, 0.10);
+  border-bottom: 0;
+}
+
+.calendar-day-pc:nth-child(7) {
+  border-right: 0;
+}
+
+.calendar-day-pc .calendar-date {
+  position: relative;
+  z-index: 2;
+  margin-left: auto;
+  color: var(--color-text-muted);
+}
+
+.calendar-day-pc.today .calendar-date {
+  color: #fff;
+}
+
+.calendar-span-layer {
+  position: absolute;
+  z-index: 3;
+  inset: 40px 0 6px;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  grid-auto-rows: 24px;
+  row-gap: 4px;
+  pointer-events: none;
+}
+
+.calendar-span-layer .calendar-event {
+  grid-column: var(--event-start) / span var(--event-span);
+  grid-row: var(--event-lane);
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  height: 24px;
+  margin: 0 3px;
+  padding: 3px 8px;
+  overflow: hidden;
+  border: 0;
+  border-radius: 5px;
+  box-shadow: inset 0 0 0 1px rgba(23, 42, 136, 0.08);
+  font-size: 0.67rem;
+  line-height: 1;
+  text-align: left;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  pointer-events: auto;
+}
+
+.calendar-span-layer .calendar-event span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.calendar-span-layer .calendar-event small {
+  flex: 0 0 auto;
+  margin: 0 0 0 auto;
+  font-size: 0.54rem;
+  opacity: 0.72;
+}
+
+.calendar-event.phase-online {
+  background: #e8f3ff;
+  color: #155f9c;
+  box-shadow: inset 3px 0 0 #2f80ed, inset 0 0 0 1px rgba(47, 128, 237, 0.12);
+}
+
+.calendar-event.phase-forced-ars {
+  background: #f0ecff;
+  color: #5a43a8;
+  box-shadow: inset 3px 0 0 #7657d6, inset 0 0 0 1px rgba(118, 87, 214, 0.12);
+}
+
+.calendar-event.phase-voluntary-ars {
+  background: #eaf8f4;
+  color: #176e5e;
+  box-shadow: inset 3px 0 0 #24a383, inset 0 0 0 1px rgba(36, 163, 131, 0.12);
+}
+
+/* 최고위원 상위 5명: PC에서는 한 줄에 모두 표시 */
+.supreme-featured-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.supreme-featured-card {
+  min-height: 204px;
+  padding: 13px 10px 34px;
+  border-radius: 12px;
+}
+
+.supreme-featured-card .candidate-avatar {
+  right: -10%;
+  width: 76%;
+  height: 88%;
+}
+
+.supreme-featured-card .candidate-rank,
+.supreme-featured-card .candidate-name,
+.supreme-featured-card .candidate-percent,
+.supreme-featured-card .candidate-votes {
+  max-width: 67%;
+}
+
+.supreme-featured-card .candidate-rank {
+  min-height: 19px;
+  padding: 1px 5px;
+  font-size: 0.58rem;
+}
+
+.supreme-featured-card .candidate-name {
+  margin-top: 6px;
+  font-size: 0.9rem;
+}
+
+.supreme-featured-card .candidate-percent {
+  margin-top: 7px;
+  font-size: clamp(1.38rem, 2.8vw, 1.75rem);
+}
+
+.supreme-featured-card .candidate-votes {
+  margin-top: 6px;
+  font-size: 0.62rem;
+}
+
+.supreme-featured-card .candidate-action {
+  left: 10px;
+  bottom: 9px;
+  max-width: 62%;
+  font-size: 0.55rem;
+}
+
+@media (max-width: 620px) {
+  /* 모바일에서는 기간 이벤트를 각 날짜에 반복해서 보여준다. */
+  .calendar-desktop {
+    display: none;
+  }
+
+  .calendar-mobile {
+    display: grid;
+  }
+
+  .calendar-mobile-day {
+    display: grid;
+    grid-template-columns: 48px minmax(0, 1fr);
+    align-items: start;
+    gap: 8px;
+    min-height: 48px;
+    padding: 7px 9px;
+    border-bottom: 1px solid rgba(23, 42, 136, 0.08);
+  }
+
+  .calendar-mobile-day:last-child {
+    border-bottom: 0;
+  }
+
+  .calendar-mobile-date {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 1px;
+    min-height: 31px;
+    padding: 5px 4px;
+    border-radius: 9px;
+    color: var(--color-text-muted);
+    font-size: 0.68rem;
+    font-weight: 750;
+  }
+
+  .calendar-mobile-date strong {
+    color: var(--color-text);
+    font-size: 0.82rem;
+    font-weight: 900;
+  }
+
+  .calendar-mobile-day.today .calendar-mobile-date {
+    background: var(--color-primary);
+    color: rgba(255,255,255,0.76);
+  }
+
+  .calendar-mobile-day.today .calendar-mobile-date strong {
+    color: #fff;
+  }
+
+  .calendar-mobile-events {
+    display: grid;
+    gap: 4px;
+    min-width: 0;
+  }
+
+  .calendar-mobile-events:empty::after {
+    content: "";
+    display: block;
+    min-height: 31px;
+  }
+
+  .calendar-mobile .calendar-event {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+    padding: 6px 8px;
+    border-radius: 8px;
+    font-size: 0.68rem;
+    line-height: 1.25;
+    text-align: left;
+  }
+
+  .calendar-mobile .calendar-event span {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .calendar-mobile .calendar-event small {
+    max-width: 116px;
+    margin: 0;
+    overflow: hidden;
+    color: currentColor;
+    font-size: 0.56rem;
+    line-height: 1.2;
+    opacity: 0.68;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /*
+   * 최고위원 상위 5명 모바일 배치
+   * - 1열을 유지한다.
+   * - 당대표 카드(214px) 3장의 높이 합과 최고위원 카드 5장의 높이 합을 맞춘다.
+   *   214 × 3 ÷ 5 = 128.4px
+   * - 따라서 최고위원은 같은 방송형 카드이되 세로 정보밀도만 높인다.
+   */
+  .supreme-featured-grid {
+    grid-template-columns: 1fr;
+    gap: 7px;
+  }
+
+  .supreme-featured-card,
+  .candidate-card.supreme-featured-card {
+    width: 100%;
+    min-width: 0;
+    min-height: 128.4px;
+    height: 128.4px;
+    padding: 9px 12px 24px;
+    border-radius: 11px;
+  }
+
+  .supreme-featured-card .candidate-avatar {
+    right: -1%;
+    width: 50%;
+    height: 96%;
+  }
+
+  .supreme-featured-card .candidate-rank,
+  .supreme-featured-card .candidate-name,
+  .supreme-featured-card .candidate-percent,
+  .supreme-featured-card .candidate-votes {
+    max-width: 52%;
+  }
+
+  .supreme-featured-card .candidate-rank {
+    min-height: 17px;
+    padding: 1px 5px;
+    font-size: 0.54rem;
+  }
+
+  .supreme-featured-card .candidate-name {
+    margin-top: 3px;
+    font-size: 0.78rem;
+    line-height: 1.12;
+  }
+
+  .supreme-featured-card .candidate-percent {
+    margin-top: 3px;
+    font-size: 1.28rem;
+    line-height: 0.95;
+  }
+
+  .supreme-featured-card .candidate-votes {
+    margin-top: 3px;
+    margin-bottom: 0;
+    font-size: 0.54rem;
+    line-height: 1.2;
+  }
+
+  .supreme-featured-card .candidate-action {
+    left: 12px;
+    bottom: 7px;
+    max-width: 50%;
+    font-size: 0.48rem;
+    line-height: 1.15;
+  }
+
+  .supreme-cutline-divider {
+    margin: 13px 0 8px;
+  }
+}
+
+@media (max-width: 380px) {
+  /*
+   * 이 구간에서는 당대표 카드가 202px로 줄어든다.
+   * 동일한 3:5 비율을 유지: 202 × 3 ÷ 5 = 121.2px
+   */
+  .supreme-featured-grid {
+    gap: 6px;
+  }
+
+  .supreme-featured-card,
+  .candidate-card.supreme-featured-card {
+    min-height: 121.2px;
+    height: 121.2px;
+    padding: 8px 10px 22px;
+  }
+
+  .supreme-featured-card .candidate-avatar {
+    width: 49%;
+    height: 96%;
+  }
+
+  .supreme-featured-card .candidate-name {
+    font-size: 0.74rem;
+  }
+
+  .supreme-featured-card .candidate-percent {
+    font-size: 1.18rem;
+  }
+
+  .supreme-featured-card .candidate-action {
+    left: 10px;
+    bottom: 6px;
+    font-size: 0.46rem;
+  }
+}
+
+/* =========================================================
+   2026-08-09 v5: exact calendar-grid alignment
+   ========================================================= */
+
+/*
+ * 중요: 날짜 셀과 기간 막대가 반드시 동일한 7열 grid line을 공유해야 한다.
+ * span layer 자체를 좌우로 inset하면 7등분 기준이 날짜 셀과 달라져
+ * 뒤쪽 열로 갈수록 막대 중심이 미세하게 어긋난다.
+ */
+.calendar-desktop,
+.calendar-week-row,
+.calendar-span-layer {
+  max-width: 100%;
+}
+
+.calendar-week-row {
+  overflow: hidden;
+}
+
+.calendar-span-layer {
+  /* 날짜 셀의 grid line과 1:1로 정확히 맞춘다. */
+  inset: 40px 0 6px;
+  overflow: hidden;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.calendar-span-layer .calendar-event {
+  /*
+   * 기본 .calendar-event의 width:100%를 반드시 해제한다.
+   * grid area 안에서 좌우 동일한 8px 여백을 주므로,
+   * 단일 일정은 해당 날짜 칸의 정확한 중앙에 놓이고
+   * 기간 일정은 시작일/종료일 바깥쪽에 동일한 여백을 갖는다.
+   */
+  box-sizing: border-box;
+  justify-self: stretch;
+  width: auto;
+  max-width: none;
+  min-width: 0;
+  margin-inline: 8px;
+  overflow: hidden;
+}
+
+.calendar-span-layer .calendar-event > span,
+.calendar-span-layer .calendar-event > small {
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 공식 일정의 ARS 표기는 당 공식 자료의 'ARS투표'로 통일 */
+.calendar-event.phase-ars {
+  background: #f0ecff;
+  color: #5a43a8;
+  box-shadow: inset 3px 0 0 #7657d6, inset 0 0 0 1px rgba(118, 87, 214, 0.12);
+}
+
+/* 한 날짜에 일정이 많아져도 주간 행이 정확히 확장되도록 여유 확보 */
+.calendar-week-row {
+  min-height: calc(58px + (var(--calendar-lanes) * 28px));
+}
+
+@media (max-width: 620px) {
+  .calendar-mobile .calendar-event {
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .calendar-mobile .calendar-event span,
+  .calendar-mobile .calendar-event small {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+/* 모바일: 전당대회 종료 후 달력 대신 간단한 종료 안내만 표시 */
+@media (max-width: 620px) {
+  .calendar-mobile-finished {
+    padding: 22px 18px;
+    border: 1px solid var(--color-border);
+    border-radius: 14px;
+    background: var(--color-surface);
+    color: var(--color-text-muted);
+    font-size: 0.92rem;
+    font-weight: 700;
+    text-align: center;
+  }
+}
