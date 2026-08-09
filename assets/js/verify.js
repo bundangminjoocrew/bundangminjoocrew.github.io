@@ -1,4 +1,4 @@
-const VERIFICATION_API = "https://bunmink-verify-public.YOUR-SUBDOMAIN.workers.dev/api/submissions";
+const VERIFICATION_API = "https://bunmink-verify-public.directorjjun.workers.dev/api/submissions";
 
 const form = document.querySelector("#verification-form");
 const submitButton = document.querySelector("#verification-submit");
