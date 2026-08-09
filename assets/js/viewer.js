@@ -1,6 +1,6 @@
 const documents = {
   "operating-rules": {
-    title: "운영규칙 개정(안)",
+    title: "운영규칙",
     path: "./content/operating-rules.md"
   }
 };
