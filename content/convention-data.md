@@ -482,8 +482,21 @@
       "date": "2026-08-09",
       "status": "scheduled",
       "weight": 1.0,
-      "leaderVotes": null,
-      "supremeVotes": null
+      "leaderVotes": {
+        "song-younggil": 1467,
+        "jung-chungrae": 7978,
+        "kim-minseok": 9568
+      },
+      "supremeVotes": {
+        "choi-minhee": 6760,
+        "kim-yong": 5034,
+        "kim-youngho": 1231,
+        "seo-mihwa": 5740,
+        "han-minsoo": 5218,
+        "lee-sungyoon": 4472,
+        "park-sunwon": 6790,
+        "lim-miae": 2799
+      }
     },
     {
       "id": "daegu",
@@ -491,8 +504,21 @@
       "date": "2026-08-09",
       "status": "scheduled",
       "weight": 1.05,
-      "leaderVotes": null,
-      "supremeVotes": null,
+      "leaderVotes": {
+        "song-younggil": 561,
+        "jung-chungrae": 4603,
+        "kim-minseok": 4461
+      },
+      "supremeVotes": {
+        "choi-minhee": 3263,
+        "kim-yong": 2520,
+        "kim-youngho": 347,
+        "seo-mihwa": 2894,
+        "han-minsoo": 2972,
+        "lee-sungyoon": 2846,
+        "park-sunwon": 2935,
+        "lim-miae": 1473
+      },
       "memo": "전략지역 5% 가중치 적용 예정"
     },
     {
@@ -501,8 +527,21 @@
       "date": "2026-08-09",
       "status": "scheduled",
       "weight": 1.05,
-      "leaderVotes": null,
-      "supremeVotes": null,
+      "leaderVotes": {
+        "song-younggil": 723,
+        "jung-chungrae": 4774,
+        "kim-minseok": 4948
+      },
+      "supremeVotes": {
+        "choi-minhee": 3303,
+        "kim-yong": 2380,
+        "kim-youngho": 360,
+        "seo-mihwa": 2926,
+        "han-minsoo": 2871,
+        "lee-sungyoon": 2629,
+        "park-sunwon": 3152,
+        "lim-miae": 3269
+      },
       "memo": "전략지역 5% 가중치 적용 예정"
     },
     {
@@ -557,6 +596,11 @@
       "label": "더불어민주당 공식 공지 · 제주·인천 투표 결과",
       "description": "제주·인천 당대표·최고위원 지역별 득표 원자료",
       "url": "https://theminjoo.kr/main/sub/news/view.php?sno=0&brd=1&post=1219599&search="
+    },
+    {
+      "label": "더불어민주당 공식 공지 · 강원·대구·경북 투표 결과",
+      "description": "강원·대구·경북 당대표·최고위원 지역별 득표 원자료",
+      "url": "https://theminjoo.kr/main/sub/news/view.php?sno=0&brd=1&post=1219606&search="
     },
     {
       "label": "더불어민주당 공식 공지 · 지도부 선출 온라인투표율 공고",
