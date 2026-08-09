@@ -127,3 +127,94 @@ form.addEventListener("submit", async (event) => {
 
 syncRequestType();
 syncMemberType();
+
+// verification sample lightbox v6
+const sampleImages = Array.from(document.querySelectorAll("[data-sample-image]"));
+let sampleLightbox = null;
+let sampleLightboxImage = null;
+let sampleLightboxClose = null;
+let sampleLightboxPreviousFocus = null;
+
+function ensureSampleLightbox() {
+  if (sampleLightbox) return;
+
+  sampleLightbox = document.createElement("div");
+  sampleLightbox.className = "sample-lightbox";
+  sampleLightbox.hidden = true;
+  sampleLightbox.setAttribute("role", "dialog");
+  sampleLightbox.setAttribute("aria-modal", "true");
+  sampleLightbox.setAttribute("aria-label", "확인자료 예시 이미지 크게 보기");
+
+  sampleLightbox.innerHTML = `
+    <button class="sample-lightbox-close" type="button" aria-label="확대 이미지 닫기">×</button>
+    <img class="sample-lightbox-image" alt="">
+  `;
+
+  document.body.appendChild(sampleLightbox);
+
+  sampleLightboxImage = sampleLightbox.querySelector(".sample-lightbox-image");
+  sampleLightboxClose = sampleLightbox.querySelector(".sample-lightbox-close");
+
+  sampleLightboxClose.addEventListener("click", closeSampleLightbox);
+
+  sampleLightbox.addEventListener("click", (event) => {
+    if (event.target === sampleLightbox) {
+      closeSampleLightbox();
+    }
+  });
+}
+
+function openSampleLightbox(image) {
+  if (image.hidden || (!image.currentSrc && !image.src)) return;
+
+  ensureSampleLightbox();
+
+  sampleLightboxPreviousFocus = document.activeElement;
+  sampleLightboxImage.src = image.currentSrc || image.src;
+  sampleLightboxImage.alt = image.alt || "확인자료 예시 이미지";
+
+  sampleLightbox.hidden = false;
+  document.body.classList.add("sample-lightbox-open");
+  sampleLightboxClose.focus();
+}
+
+function closeSampleLightbox() {
+  if (!sampleLightbox || sampleLightbox.hidden) return;
+
+  sampleLightbox.hidden = true;
+  document.body.classList.remove("sample-lightbox-open");
+
+  sampleLightboxImage.removeAttribute("src");
+  sampleLightboxImage.alt = "";
+
+  if (
+    sampleLightboxPreviousFocus &&
+    typeof sampleLightboxPreviousFocus.focus === "function"
+  ) {
+    sampleLightboxPreviousFocus.focus();
+  }
+}
+
+sampleImages.forEach((image) => {
+  image.setAttribute("tabindex", "0");
+  image.setAttribute("role", "button");
+  image.setAttribute("aria-label", `${image.alt || "확인자료 예시"} 크게 보기`);
+
+  image.addEventListener("click", () => {
+    openSampleLightbox(image);
+  });
+
+  image.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openSampleLightbox(image);
+    }
+  });
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && sampleLightbox && !sampleLightbox.hidden) {
+    closeSampleLightbox();
+  }
+});
+
