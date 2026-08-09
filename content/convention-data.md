@@ -20,8 +20,8 @@
     "electionDate": "2026-08-17",
     "calendarStart": "2026-08-09",
     "calendarDays": 14,
-    "updatedAt": "2026-08-09T02:33:00+09:00",
-    "dataStatus": "8월 8일 결과 및 더불어민주당 공식 투표·순회경선 합동연설회 일정 반영"
+    "updatedAt": "2026-08-09T18:33:00+09:00",
+    "dataStatus": "8월 9일 결과 및 더불어민주당 공식 투표·순회경선 합동연설회 일정 반영"
   },
   "rules": {
     "partyVoteWeight": 0.7,
@@ -116,26 +116,26 @@
   },
   "published": {
     "leader": {
-      "label": "8월 8일 발표 누계",
+      "label": "8월 9일 발표 누계",
       "note": "제주·인천 결과까지 지역별 원득표를 모두 합산한 누계. 현재 입력된 원득표 자동계산과 동일합니다.",
       "votes": {
-        "song-younggil": 16955,
-        "jung-chungrae": 75380,
-        "kim-minseok": 76844
+        "song-younggil": 19715,
+        "jung-chungrae": 92735,
+        "kim-minseok": 95821
       }
     },
     "supreme": {
       "label": "8월 8일 발표 누계",
       "note": "제주·인천 결과까지 지역별 원득표를 모두 합산한 최고위원 누계. 현재 입력된 원득표 자동계산과 동일합니다.",
       "votes": {
-        "choi-minhee": 71140,
-        "kim-yong": 42770,
-        "kim-youngho": 11126,
-        "seo-mihwa": 47767,
-        "han-minsoo": 48892,
-        "lee-sungyoon": 39550,
-        "park-sunwon": 56857,
-        "lim-miae": 20256
+        "choi-minhee": 84466,
+        "kim-yong": 52704,
+        "kim-youngho": 13064,
+        "seo-mihwa": 59327,
+        "han-minsoo": 59953,
+        "lee-sungyoon": 49497,
+        "park-sunwon": 69734,
+        "lim-miae": 27797
       }
     }
   },
@@ -480,7 +480,7 @@
       "id": "gangwon",
       "name": "강원",
       "date": "2026-08-09",
-      "status": "scheduled",
+      "status": "done",
       "weight": 1.0,
       "leaderVotes": {
         "song-younggil": 1467,
@@ -502,7 +502,7 @@
       "id": "daegu",
       "name": "대구",
       "date": "2026-08-09",
-      "status": "scheduled",
+      "status": "done",
       "weight": 1.05,
       "leaderVotes": {
         "song-younggil": 561,
@@ -525,7 +525,7 @@
       "id": "gyeongbuk",
       "name": "경북",
       "date": "2026-08-09",
-      "status": "scheduled",
+      "status": "done",
       "weight": 1.05,
       "leaderVotes": {
         "song-younggil": 723,
