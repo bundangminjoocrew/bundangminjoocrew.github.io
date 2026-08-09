@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#172a88" />
+  <title>분당 선거결과 10년 | 분민크</title>
+  <link rel="stylesheet" href="assets/css/elections.css?v=7" />
+</head>
+
+<body>
+  <main class="document-page">
+    <header class="document-header dashboard-header">
+      <a class="back-link" href="./" aria-label="이전 페이지로">← 돌아가기</a>
+      <div class="eyebrow">BUNDANG MINJOO CREW DATA ARCHIVE</div>
+      <div class="title-row">
+        <div>
+          <h1>분당 선거결과 10년</h1>
+          <p class="subtitle">2017–2026 · 분당구 행정동별 더불어민주당 후보 득표율</p>
+        </div>
+        <div class="header-badge">22개 행정동</div>
+      </div>
+    </header>
+
+    <section class="document-shell dashboard-shell">
+      <article class="document-card dashboard-card">
+        <div id="demoNotice" class="demo-notice" hidden>
+          지금 보이는 동별 수치는 <strong>레이아웃 확인용 예시값</strong>입니다. 실제 개표 데이터가 아닙니다.
+        </div>
+
+        <section class="timeline-section" aria-labelledby="timelineTitle">
+          <div class="section-heading compact-heading">
+            <div>
+              <span class="section-kicker">ELECTION TIMELINE</span>
+              <h2 id="timelineTitle">선거 타임라인</h2>
+            </div>
+            <p>선거일을 선택하면 지도와 결과가 함께 바뀝니다.</p>
+          </div>
+          <div class="timeline-dial" id="timelineDial">
+            <div class="timeline-dial-head">
+              <button type="button" class="timeline-nav" id="timelinePrev" aria-label="이전 선거">←</button>
+              <div class="timeline-selection" id="timelineSelection" aria-live="polite">
+                <strong>선거를 선택하세요</strong>
+                <span>손잡이를 좌우로 움직여 선거 시점을 탐색합니다.</span>
+              </div>
+              <button type="button" class="timeline-nav" id="timelineNext" aria-label="다음 선거">→</button>
+            </div>
+            <div class="timeline-rail-wrap" id="timelineScroller">
+              <div class="timeline-track" aria-hidden="true"><span id="timelineProgress"></span></div>
+              <input id="timelineRange" class="timeline-range" type="range" min="0" max="0" step="1" value="0"
+                aria-label="선거 시점 선택" />
+              <div class="timeline" id="timeline" role="tablist" aria-label="선거 타임라인"></div>
+            </div>
+            <div class="timeline-help">드래그 · 클릭 · 방향키로 이동</div>
+          </div>
+        </section>
+
+        <section class="selected-election" aria-live="polite">
+          <div class="election-headline">
+            <div>
+              <div class="election-meta-row">
+                <span id="electionType" class="type-pill"></span>
+                <span id="electionDate" class="date-text"></span>
+              </div>
+              <h2 id="electionTitle">선거를 선택하세요</h2>
+              <p id="electionDescription" class="election-description"></p>
+            </div>
+            <div id="raceTabs" class="race-tabs" role="tablist" aria-label="세부 선거"></div>
+          </div>
+
+          <div id="benchmarkGrid" class="benchmark-grid"></div>
+
+          <div class="dashboard-grid">
+            <section class="map-panel panel-card" aria-labelledby="mapTitle">
+              <div class="panel-title-row">
+                <div>
+                  <span class="section-kicker">ADMINISTRATIVE DONG</span>
+                  <h3 id="mapTitle">행정동별 득표율</h3>
+                </div>
+                <div class="metric-chip">민주당 후보 득표율</div>
+              </div>
+
+              <div class="map-stage" id="mapStage">
+                <svg id="bundangMap" class="bundang-map" viewBox="0 0 720 650" role="img"
+                  aria-label="성남시 분당구 행정동별 선거결과 지도">
+                  <defs>
+                    <pattern id="notApplicablePattern" width="8" height="8" patternUnits="userSpaceOnUse"
+                      patternTransform="rotate(45)">
+                      <rect width="8" height="8" fill="#f1f3f8"></rect>
+                      <line x1="0" y1="0" x2="0" y2="8" stroke="#d8dce7" stroke-width="3"></line>
+                    </pattern>
+                  </defs>
+                  <g id="mapShapes"></g>
+                  <g id="mapLabels"></g>
+                </svg>
+                <div id="mapLoading" class="map-loading" hidden></div>
+                <div id="mapTooltip" class="map-tooltip" hidden></div>
+              </div>
+
+              <div class="legend-wrap">
+                <div class="legend-scale" aria-label="득표율 색상 범례">
+                  <span>35% 이하</span>
+                  <div class="legend-gradient"></div>
+                  <span>60% 이상</span>
+                </div>
+                <div class="legend-na"><span class="legend-na-box"></span> 해당 선거 없음 / 데이터 없음</div>
+              </div>
+            </section>
+
+            <aside class="insight-panel panel-card" aria-labelledby="insightTitle">
+              <div class="panel-title-row">
+                <div>
+                  <span class="section-kicker">RESULT SNAPSHOT</span>
+                  <h3 id="insightTitle">한눈에 보기</h3>
+                </div>
+              </div>
+              <div id="insightCards" class="insight-cards"></div>
+              <div class="selected-dong-card" id="selectedDongCard">
+                <div class="selected-dong-label">행정동을 선택하세요</div>
+                <strong>지도에서 동을 누르면 상세 결과가 표시됩니다.</strong>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <section class="table-section" aria-labelledby="tableTitle">
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">DONG RESULTS</span>
+              <h2 id="tableTitle">행정동별 상세</h2>
+            </div>
+            <p>득표율 순으로 정렬됩니다.</p>
+          </div>
+          <div class="table-wrap">
+            <table class="result-table">
+              <thead>
+                <tr>
+                  <th>행정동</th>
+                  <th>선거구</th>
+                  <th class="num">민주당</th>
+                  <th class="num">상대 후보</th>
+                  <th class="num">투표율</th>
+                  <th class="num">기준 대비</th>
+                </tr>
+              </thead>
+              <tbody id="resultTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="councilReferenceSection" class="council-reference-section" aria-labelledby="councilReferenceTitle"
+          hidden>
+          <div class="section-heading council-heading">
+            <div>
+              <span class="section-kicker">LOCAL COUNCIL · REFERENCE</span>
+              <h2 id="councilReferenceTitle">성남시의원 결과 · 참고</h2>
+            </div>
+            <p>중선거구·복수후보 선거이므로 메인 지도 지표와 분리해 제공합니다.</p>
+          </div>
+
+          <div id="councilReferenceNotice" class="council-reference-notice"></div>
+          <div id="councilLevelTabs" class="council-level-tabs" role="tablist" aria-label="지방의회 구분"></div>
+          <div id="councilDistrictTabs" class="council-district-tabs" role="tablist" aria-label="지방의회 선거구"></div>
+
+          <div id="councilDistrictPanel" class="council-panel">
+            <div id="councilDistrictMeta" class="council-meta-grid"></div>
+            <div id="councilDistrictStatus"></div>
+            <div id="councilCandidateTableWrap" class="table-wrap council-table-wrap"></div>
+            <div id="councilDongBreakdown" class="council-dong-breakdown"></div>
+          </div>
+
+          <div id="councilProportional" class="council-proportional"></div>
+        </section>
+
+        <footer class="data-footer">
+          <p><strong>대표지표 원칙</strong> · 대선은 대통령 후보, 총선은 해당 지역구 국회의원 후보, 지방선거는 성남시장 후보를 기본값으로 표시합니다. 지방선거에서는 경기도지사 결과를 세부
+            탭으로 제공하며, 기초의원 지역구·비례 결과는 중선거구 특성을 고려해 별도 참고 영역에서 후보·정당별 실제 득표로 표시합니다.</p>
+          <p>행정동 경계 원자료: <a href="https://sgis.mods.go.kr/view/pss/openDataIntrcn" target="_blank"
+              rel="noreferrer">국가데이터처 SGIS 통계지리정보서비스 「센서스용 행정구역경계(읍면동)」</a> (2025.06.30 기준, 성남시 분당구 22개 행정동 추출·가공) ·
+            선거결과 원자료: 중앙선거관리위원회</p>
+        </footer>
+      </article>
+    </section>
+  </main>
+
+  <script src="assets/js/election-data.js?v=7"></script>
+  <script src="assets/js/elections.js?v=7"></script>
+</body>
+
+</html>

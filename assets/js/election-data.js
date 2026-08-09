@@ -1,0 +1,14711 @@
+window.BUNMINK_DASHBOARD_CONFIG = {
+  "demoMode": false,
+  "boundaryUrl": "data/bundang_adm_dong_2025_sgis_web.geojson",
+  "boundaryDate": "2025-06-30",
+  "bundangAdminCodePrefix": "31023",
+  "sourceLabel": "국가데이터처 SGIS + 중앙선거관리위원회"
+};
+
+window.BUNMINK_PARTY_COLORS = {
+  "더불어민주당": {
+    "historical": "#004EA1",
+    "current": "#003B96",
+    "currentFromYear": 2024,
+    "text": "#FFFFFF",
+    "source": "2015~2023 #004EA2 계열 / 2024~현재 #003B96 계열 당색 자료"
+  },
+  "국민의힘": {
+    "color": "#E61E2B",
+    "text": "#FFFFFF",
+    "source": "국민의힘 공식 PI"
+  },
+  "자유한국당": {
+    "color": "#C9151E",
+    "text": "#FFFFFF",
+    "source": "정당 색채 연구자료"
+  },
+  "바른미래당": {
+    "color": "#00B4B4",
+    "text": "#062C2C",
+    "source": "당시 당색 자료"
+  },
+  "정의당": {
+    "color": "#FFCC00",
+    "text": "#292300",
+    "source": "정의당 PI/당색 자료"
+  },
+  "민중당": {
+    "color": "#F26522",
+    "text": "#FFFFFF",
+    "source": "국회도서관 정당정보"
+  },
+  "진보당": {
+    "color": "#D6001C",
+    "text": "#FFFFFF",
+    "source": "국회도서관 정당정보"
+  },
+  "개혁신당": {
+    "color": "#FF7210",
+    "text": "#FFFFFF",
+    "source": "개혁신당 공식 BI"
+  },
+  "조국혁신당": {
+    "color": "#0073CF",
+    "text": "#FFFFFF",
+    "source": "조국혁신당 공식 PI"
+  },
+  "통일한국당": {
+    "color": "#003793",
+    "text": "#FFFFFF",
+    "source": "당색 자료"
+  },
+  "깨어있는시민연대당": {
+    "color": "#000056",
+    "text": "#FFFFFF",
+    "source": "당색 자료"
+  },
+  "기본소득당": {
+    "color": "#00D2C3",
+    "text": "#052B29",
+    "source": "기본소득당 공식 PI"
+  },
+  "녹색당": {
+    "color": "#62BB46",
+    "text": "#12350B",
+    "source": "녹색당 공식 PI"
+  },
+  "민주평화당": {
+    "color": "#43B02A",
+    "text": "#FFFFFF",
+    "source": "당색 자료"
+  },
+  "새미래민주당": {
+    "color": "#51BDC5",
+    "text": "#0A3438",
+    "source": "새미래민주당 공식 PI RGB(81,189,197)"
+  },
+  "자유와혁신": {
+    "color": "#A50034",
+    "text": "#FFFFFF",
+    "source": "자유와혁신 공식 BI"
+  },
+  "무소속": {
+    "color": "#6B7280",
+    "text": "#FFFFFF",
+    "source": "중립 표시색"
+  },
+  "우리미래": {
+    "color": "#1C1F87",
+    "text": "#FFFFFF",
+    "source": "당색 자료"
+  },
+  "사회민주당": {
+    "color": "#F58400",
+    "text": "#FFFFFF",
+    "source": "당색 자료"
+  },
+  "공화당": {
+    "color": "#05354B",
+    "text": "#FFFFFF",
+    "source": "당색 자료"
+  },
+  "노동당": {
+    "color": "#FF0000",
+    "text": "#FFFFFF",
+    "source": "당색 자료"
+  },
+  "대한애국당": {
+    "color": "#009944",
+    "text": "#FFFFFF",
+    "source": "당색 자료"
+  },
+  "거지당": {
+    "color": "#038ED3",
+    "text": "#FFFFFF",
+    "source": "2026 당색 자료"
+  },
+  "국민대통합당": {
+    "color": "#002B58",
+    "text": "#FFFFFF",
+    "source": "2026 당색 자료"
+  },
+  "국민연합": {
+    "color": "#EC008B",
+    "text": "#FFFFFF",
+    "source": "2026 Main Color"
+  },
+  "기독당": {
+    "color": "#0167B7",
+    "text": "#FFFFFF",
+    "source": "2026 당색 자료"
+  },
+  "대한국민당": {
+    "color": "#51A776",
+    "text": "#FFFFFF",
+    "source": "2026 당색 자료"
+  },
+  "친미연합": {
+    "color": "#AD469F",
+    "text": "#FFFFFF",
+    "source": "2026 대표 당색"
+  },
+  "국민당": {
+    "color": "#D7000F",
+    "text": "#FFFFFF",
+    "source": "한국국민당(등록 약칭 국민당) 당색 자료"
+  },
+  "한나라당": {
+    "color": "#0000A8",
+    "text": "#FFFFFF",
+    "source": "한나라당 당색 자료"
+  }
+};
+
+window.BUNMINK_ELECTION_EVENTS = [
+  {
+    "id": "2017-05-09",
+    "date": "2017-05-09",
+    "year": "2017",
+    "shortName": "19대 대선",
+    "title": "제19대 대통령선거",
+    "type": "대통령선거",
+    "description": "분당구 22개 행정동에서 더불어민주당 문재인 후보의 득표율을 비교합니다.",
+    "defaultRace": "president",
+    "races": [
+      {
+        "id": "president",
+        "label": "대통령",
+        "metricLabel": "민주당 대통령 후보 득표율",
+        "coverage": [
+          "분당동",
+          "수내1동",
+          "수내2동",
+          "수내3동",
+          "정자동",
+          "정자1동",
+          "정자2동",
+          "정자3동",
+          "서현1동",
+          "서현2동",
+          "이매1동",
+          "이매2동",
+          "야탑1동",
+          "야탑2동",
+          "야탑3동",
+          "금곡동",
+          "구미동",
+          "구미1동",
+          "판교동",
+          "삼평동",
+          "백현동",
+          "운중동"
+        ],
+        "constituencyByDong": {},
+        "benchmarks": [
+          {
+            "label": "전국",
+            "value": 41.08,
+            "detail": "문재인 후보",
+            "source": "verified-public"
+          },
+          {
+            "label": "분당구 전체",
+            "value": 41.48,
+            "detail": "22개 행정동 합계",
+            "source": "official-user-file"
+          }
+        ],
+        "results": {
+          "분당동": {
+            "dem": 40.63,
+            "opponent": 21.91,
+            "turnout": 80.32,
+            "demVotes": 6258,
+            "opponentVotes": 3375,
+            "validVotes": 15401,
+            "electors": 19213,
+            "votes": 15432
+          },
+          "수내1동": {
+            "dem": 37.99,
+            "opponent": 21.72,
+            "turnout": 81.88,
+            "demVotes": 4242,
+            "opponentVotes": 2426,
+            "validVotes": 11167,
+            "electors": 13686,
+            "votes": 11206
+          },
+          "수내2동": {
+            "dem": 36.64,
+            "opponent": 23.51,
+            "turnout": 85.48,
+            "demVotes": 2333,
+            "opponentVotes": 1497,
+            "validVotes": 6367,
+            "electors": 7463,
+            "votes": 6379
+          },
+          "수내3동": {
+            "dem": 43.12,
+            "opponent": 22.4,
+            "turnout": 82.75,
+            "demVotes": 3660,
+            "opponentVotes": 1901,
+            "validVotes": 8487,
+            "electors": 10288,
+            "votes": 8513
+          },
+          "정자동": {
+            "dem": 41.2,
+            "opponent": 21.3,
+            "turnout": 80.76,
+            "demVotes": 4633,
+            "opponentVotes": 2395,
+            "validVotes": 11246,
+            "electors": 13958,
+            "votes": 11273
+          },
+          "정자1동": {
+            "dem": 34.43,
+            "opponent": 21.75,
+            "turnout": 79.46,
+            "demVotes": 6366,
+            "opponentVotes": 4022,
+            "validVotes": 18491,
+            "electors": 23318,
+            "votes": 18529
+          },
+          "정자2동": {
+            "dem": 44.96,
+            "opponent": 20.91,
+            "turnout": 82.59,
+            "demVotes": 5305,
+            "opponentVotes": 2467,
+            "validVotes": 11800,
+            "electors": 14333,
+            "votes": 11837
+          },
+          "정자3동": {
+            "dem": 42.29,
+            "opponent": 21.47,
+            "turnout": 83.48,
+            "demVotes": 4081,
+            "opponentVotes": 2072,
+            "validVotes": 9649,
+            "electors": 11580,
+            "votes": 9667
+          },
+          "서현1동": {
+            "dem": 39.19,
+            "opponent": 22.08,
+            "turnout": 81.98,
+            "demVotes": 7524,
+            "opponentVotes": 4240,
+            "validVotes": 19199,
+            "electors": 23475,
+            "votes": 19244
+          },
+          "서현2동": {
+            "dem": 40.7,
+            "opponent": 22.33,
+            "turnout": 85.19,
+            "demVotes": 5068,
+            "opponentVotes": 2780,
+            "validVotes": 12452,
+            "electors": 14647,
+            "votes": 12478
+          },
+          "이매1동": {
+            "dem": 38.14,
+            "opponent": 21.93,
+            "turnout": 84.52,
+            "demVotes": 6084,
+            "opponentVotes": 3499,
+            "validVotes": 15953,
+            "electors": 18924,
+            "votes": 15994
+          },
+          "이매2동": {
+            "dem": 35.55,
+            "opponent": 23.36,
+            "turnout": 84.88,
+            "demVotes": 3193,
+            "opponentVotes": 2098,
+            "validVotes": 8982,
+            "electors": 10606,
+            "votes": 9002
+          },
+          "야탑1동": {
+            "dem": 41.28,
+            "opponent": 22.68,
+            "turnout": 83.94,
+            "demVotes": 5262,
+            "opponentVotes": 2891,
+            "validVotes": 12747,
+            "electors": 15231,
+            "votes": 12785
+          },
+          "야탑2동": {
+            "dem": 36.94,
+            "opponent": 22.16,
+            "turnout": 84.68,
+            "demVotes": 4162,
+            "opponentVotes": 2497,
+            "validVotes": 11268,
+            "electors": 13332,
+            "votes": 11290
+          },
+          "야탑3동": {
+            "dem": 43.59,
+            "opponent": 23.14,
+            "turnout": 78.92,
+            "demVotes": 7572,
+            "opponentVotes": 4020,
+            "validVotes": 17370,
+            "electors": 22069,
+            "votes": 17417
+          },
+          "금곡동": {
+            "dem": 38.98,
+            "opponent": 22.57,
+            "turnout": 80.97,
+            "demVotes": 7018,
+            "opponentVotes": 4064,
+            "validVotes": 18004,
+            "electors": 22297,
+            "votes": 18054
+          },
+          "구미동": {
+            "dem": 40.05,
+            "opponent": 21.83,
+            "turnout": 80.74,
+            "demVotes": 7662,
+            "opponentVotes": 4177,
+            "validVotes": 19131,
+            "electors": 23751,
+            "votes": 19177
+          },
+          "구미1동": {
+            "dem": 43.65,
+            "opponent": 21.13,
+            "turnout": 83.5,
+            "demVotes": 5348,
+            "opponentVotes": 2589,
+            "validVotes": 12253,
+            "electors": 14710,
+            "votes": 12283
+          },
+          "판교동": {
+            "dem": 45.53,
+            "opponent": 21.12,
+            "turnout": 85.15,
+            "demVotes": 6033,
+            "opponentVotes": 2799,
+            "validVotes": 13251,
+            "electors": 15586,
+            "votes": 13272
+          },
+          "삼평동": {
+            "dem": 45.05,
+            "opponent": 22.58,
+            "turnout": 83.08,
+            "demVotes": 6525,
+            "opponentVotes": 3271,
+            "validVotes": 14485,
+            "electors": 17479,
+            "votes": 14521
+          },
+          "백현동": {
+            "dem": 45.37,
+            "opponent": 22.36,
+            "turnout": 83.12,
+            "demVotes": 7559,
+            "opponentVotes": 3725,
+            "validVotes": 16660,
+            "electors": 20098,
+            "votes": 16706
+          },
+          "운중동": {
+            "dem": 41.15,
+            "opponent": 21.55,
+            "turnout": 82.8,
+            "demVotes": 5136,
+            "opponentVotes": 2689,
+            "validVotes": 12480,
+            "electors": 15103,
+            "votes": 12506
+          }
+        },
+        "status": "complete",
+        "demCandidate": "문재인",
+        "opponentCandidate": "안철수",
+        "sourceFile": "중앙선거관리위원회 선거통계시스템 다운로드 XLSX"
+      }
+    ]
+  },
+  {
+    "id": "2018-06-13",
+    "date": "2018-06-13",
+    "year": "2018",
+    "shortName": "7회 지선",
+    "title": "제7회 전국동시지방선거",
+    "type": "지방선거",
+    "description": "성남시장 결과를 대표지표로 두고, 경기도지사 결과를 같은 날짜의 탭으로 비교합니다.",
+    "defaultRace": "mayor",
+    "races": [
+      {
+        "id": "mayor",
+        "label": "성남시장",
+        "metricLabel": "민주당 성남시장 후보 득표율",
+        "coverage": [
+          "분당동",
+          "수내1동",
+          "수내2동",
+          "수내3동",
+          "정자동",
+          "정자1동",
+          "정자2동",
+          "정자3동",
+          "서현1동",
+          "서현2동",
+          "이매1동",
+          "이매2동",
+          "야탑1동",
+          "야탑2동",
+          "야탑3동",
+          "금곡동",
+          "구미동",
+          "구미1동",
+          "판교동",
+          "삼평동",
+          "백현동",
+          "운중동"
+        ],
+        "constituencyByDong": {},
+        "benchmarks": [
+          {
+            "label": "성남시 전체",
+            "value": 57.64,
+            "detail": "은수미 후보",
+            "source": "verified-public"
+          },
+          {
+            "label": "분당구 전체",
+            "value": 55.7,
+            "detail": "22개 행정동 합계",
+            "source": "official-user-file"
+          }
+        ],
+        "results": {
+          "분당동": {
+            "dem": 55.14,
+            "opponent": 34.43,
+            "turnout": 62.06,
+            "demVotes": 6881,
+            "opponentVotes": 4297,
+            "validVotes": 12479,
+            "electors": 20382,
+            "votes": 12649
+          },
+          "수내1동": {
+            "dem": 51.79,
+            "opponent": 37.95,
+            "turnout": 62.4,
+            "demVotes": 4466,
+            "opponentVotes": 3273,
+            "validVotes": 8624,
+            "electors": 14005,
+            "votes": 8739
+          },
+          "수내2동": {
+            "dem": 50.91,
+            "opponent": 37.92,
+            "turnout": 66.88,
+            "demVotes": 2521,
+            "opponentVotes": 1878,
+            "validVotes": 4952,
+            "electors": 7513,
+            "votes": 5025
+          },
+          "수내3동": {
+            "dem": 59.15,
+            "opponent": 30.39,
+            "turnout": 64.68,
+            "demVotes": 4038,
+            "opponentVotes": 2075,
+            "validVotes": 6827,
+            "electors": 10706,
+            "votes": 6925
+          },
+          "정자동": {
+            "dem": 56.06,
+            "opponent": 33.62,
+            "turnout": 60.79,
+            "demVotes": 4933,
+            "opponentVotes": 2958,
+            "validVotes": 8799,
+            "electors": 14715,
+            "votes": 8945
+          },
+          "정자1동": {
+            "dem": 45.84,
+            "opponent": 44.24,
+            "turnout": 56.94,
+            "demVotes": 6274,
+            "opponentVotes": 6056,
+            "validVotes": 13688,
+            "electors": 24321,
+            "votes": 13848
+          },
+          "정자2동": {
+            "dem": 59.3,
+            "opponent": 29.73,
+            "turnout": 63.88,
+            "demVotes": 5040,
+            "opponentVotes": 2527,
+            "validVotes": 8499,
+            "electors": 13617,
+            "votes": 8698
+          },
+          "정자3동": {
+            "dem": 56.99,
+            "opponent": 32.86,
+            "turnout": 66.8,
+            "demVotes": 4642,
+            "opponentVotes": 2677,
+            "validVotes": 8146,
+            "electors": 12363,
+            "votes": 8258
+          },
+          "서현1동": {
+            "dem": 51.33,
+            "opponent": 36.47,
+            "turnout": 63.86,
+            "demVotes": 7836,
+            "opponentVotes": 5567,
+            "validVotes": 15266,
+            "electors": 24232,
+            "votes": 15474
+          },
+          "서현2동": {
+            "dem": 54.89,
+            "opponent": 32.54,
+            "turnout": 67.49,
+            "demVotes": 5410,
+            "opponentVotes": 3207,
+            "validVotes": 9856,
+            "electors": 14813,
+            "votes": 9998
+          },
+          "이매1동": {
+            "dem": 51.99,
+            "opponent": 36.95,
+            "turnout": 66.44,
+            "demVotes": 6798,
+            "opponentVotes": 4831,
+            "validVotes": 13075,
+            "electors": 19887,
+            "votes": 13212
+          },
+          "이매2동": {
+            "dem": 48.0,
+            "opponent": 40.05,
+            "turnout": 67.19,
+            "demVotes": 3482,
+            "opponentVotes": 2905,
+            "validVotes": 7254,
+            "electors": 10947,
+            "votes": 7355
+          },
+          "야탑1동": {
+            "dem": 55.26,
+            "opponent": 34.67,
+            "turnout": 66.89,
+            "demVotes": 5567,
+            "opponentVotes": 3493,
+            "validVotes": 10075,
+            "electors": 15310,
+            "votes": 10241
+          },
+          "야탑2동": {
+            "dem": 47.86,
+            "opponent": 40.89,
+            "turnout": 68.04,
+            "demVotes": 4376,
+            "opponentVotes": 3739,
+            "validVotes": 9143,
+            "electors": 13608,
+            "votes": 9259
+          },
+          "야탑3동": {
+            "dem": 59.28,
+            "opponent": 30.29,
+            "turnout": 62.04,
+            "demVotes": 8526,
+            "opponentVotes": 4357,
+            "validVotes": 14383,
+            "electors": 23604,
+            "votes": 14643
+          },
+          "금곡동": {
+            "dem": 54.41,
+            "opponent": 35.8,
+            "turnout": 63.07,
+            "demVotes": 7962,
+            "opponentVotes": 5239,
+            "validVotes": 14633,
+            "electors": 23616,
+            "votes": 14895
+          },
+          "구미동": {
+            "dem": 54.14,
+            "opponent": 34.99,
+            "turnout": 63.29,
+            "demVotes": 8546,
+            "opponentVotes": 5523,
+            "validVotes": 15785,
+            "electors": 25290,
+            "votes": 16007
+          },
+          "구미1동": {
+            "dem": 58.08,
+            "opponent": 31.91,
+            "turnout": 64.04,
+            "demVotes": 5386,
+            "opponentVotes": 2959,
+            "validVotes": 9274,
+            "electors": 14677,
+            "votes": 9399
+          },
+          "판교동": {
+            "dem": 58.22,
+            "opponent": 31.88,
+            "turnout": 67.64,
+            "demVotes": 6475,
+            "opponentVotes": 3545,
+            "validVotes": 11121,
+            "electors": 16648,
+            "votes": 11261
+          },
+          "삼평동": {
+            "dem": 61.55,
+            "opponent": 28.41,
+            "turnout": 64.76,
+            "demVotes": 7153,
+            "opponentVotes": 3302,
+            "validVotes": 11621,
+            "electors": 18199,
+            "votes": 11785
+          },
+          "백현동": {
+            "dem": 59.19,
+            "opponent": 30.03,
+            "turnout": 64.04,
+            "demVotes": 7814,
+            "opponentVotes": 3964,
+            "validVotes": 13201,
+            "electors": 20842,
+            "votes": 13347
+          },
+          "운중동": {
+            "dem": 54.32,
+            "opponent": 36.13,
+            "turnout": 64.47,
+            "demVotes": 5398,
+            "opponentVotes": 3590,
+            "validVotes": 9937,
+            "electors": 15629,
+            "votes": 10076
+          }
+        },
+        "status": "complete",
+        "demCandidate": "은수미",
+        "opponentCandidate": "박정오",
+        "sourceFile": "중앙선거관리위원회 선거통계시스템 다운로드 XLSX"
+      },
+      {
+        "id": "governor",
+        "label": "경기도지사",
+        "metricLabel": "민주당 경기도지사 후보 득표율",
+        "coverage": [
+          "분당동",
+          "수내1동",
+          "수내2동",
+          "수내3동",
+          "정자동",
+          "정자1동",
+          "정자2동",
+          "정자3동",
+          "서현1동",
+          "서현2동",
+          "이매1동",
+          "이매2동",
+          "야탑1동",
+          "야탑2동",
+          "야탑3동",
+          "금곡동",
+          "구미동",
+          "구미1동",
+          "판교동",
+          "삼평동",
+          "백현동",
+          "운중동"
+        ],
+        "constituencyByDong": {},
+        "benchmarks": [
+          {
+            "label": "경기도 전체",
+            "value": 56.4,
+            "detail": "이재명 후보",
+            "source": "verified-public"
+          },
+          {
+            "label": "분당구 전체",
+            "value": 53.7,
+            "detail": "22개 행정동 합계",
+            "source": "official-user-file"
+          }
+        ],
+        "results": {
+          "분당동": {
+            "dem": 53.03,
+            "opponent": 39.01,
+            "turnout": 62.12,
+            "demVotes": 6624,
+            "opponentVotes": 4873,
+            "validVotes": 12492,
+            "electors": 20382,
+            "votes": 12662
+          },
+          "수내1동": {
+            "dem": 48.67,
+            "opponent": 43.52,
+            "turnout": 62.42,
+            "demVotes": 4195,
+            "opponentVotes": 3751,
+            "validVotes": 8619,
+            "electors": 14005,
+            "votes": 8742
+          },
+          "수내2동": {
+            "dem": 47.94,
+            "opponent": 43.98,
+            "turnout": 66.91,
+            "demVotes": 2372,
+            "opponentVotes": 2176,
+            "validVotes": 4948,
+            "electors": 7513,
+            "votes": 5027
+          },
+          "수내3동": {
+            "dem": 56.28,
+            "opponent": 35.7,
+            "turnout": 64.67,
+            "demVotes": 3842,
+            "opponentVotes": 2437,
+            "validVotes": 6826,
+            "electors": 10706,
+            "votes": 6924
+          },
+          "정자동": {
+            "dem": 52.62,
+            "opponent": 39.87,
+            "turnout": 60.84,
+            "demVotes": 4640,
+            "opponentVotes": 3516,
+            "validVotes": 8818,
+            "electors": 14715,
+            "votes": 8952
+          },
+          "정자1동": {
+            "dem": 40.92,
+            "opponent": 51.61,
+            "turnout": 56.97,
+            "demVotes": 5606,
+            "opponentVotes": 7070,
+            "validVotes": 13700,
+            "electors": 24321,
+            "votes": 13856
+          },
+          "정자2동": {
+            "dem": 57.29,
+            "opponent": 34.84,
+            "turnout": 63.93,
+            "demVotes": 4881,
+            "opponentVotes": 2968,
+            "validVotes": 8520,
+            "electors": 13617,
+            "votes": 8706
+          },
+          "정자3동": {
+            "dem": 53.87,
+            "opponent": 37.79,
+            "turnout": 66.8,
+            "demVotes": 4387,
+            "opponentVotes": 3077,
+            "validVotes": 8143,
+            "electors": 12363,
+            "votes": 8259
+          },
+          "서현1동": {
+            "dem": 49.67,
+            "opponent": 42.34,
+            "turnout": 63.89,
+            "demVotes": 7592,
+            "opponentVotes": 6471,
+            "validVotes": 15284,
+            "electors": 24232,
+            "votes": 15481
+          },
+          "서현2동": {
+            "dem": 54.76,
+            "opponent": 37.63,
+            "turnout": 67.55,
+            "demVotes": 5419,
+            "opponentVotes": 3724,
+            "validVotes": 9896,
+            "electors": 14813,
+            "votes": 10006
+          },
+          "이매1동": {
+            "dem": 50.03,
+            "opponent": 42.27,
+            "turnout": 66.49,
+            "demVotes": 6548,
+            "opponentVotes": 5532,
+            "validVotes": 13087,
+            "electors": 19887,
+            "votes": 13223
+          },
+          "이매2동": {
+            "dem": 46.24,
+            "opponent": 45.88,
+            "turnout": 67.26,
+            "demVotes": 3359,
+            "opponentVotes": 3333,
+            "validVotes": 7265,
+            "electors": 10947,
+            "votes": 7363
+          },
+          "야탑1동": {
+            "dem": 55.81,
+            "opponent": 37.91,
+            "turnout": 66.94,
+            "demVotes": 5633,
+            "opponentVotes": 3826,
+            "validVotes": 10093,
+            "electors": 15310,
+            "votes": 10248
+          },
+          "야탑2동": {
+            "dem": 47.15,
+            "opponent": 45.73,
+            "turnout": 68.11,
+            "demVotes": 4315,
+            "opponentVotes": 4185,
+            "validVotes": 9151,
+            "electors": 13608,
+            "votes": 9269
+          },
+          "야탑3동": {
+            "dem": 60.95,
+            "opponent": 32.47,
+            "turnout": 62.11,
+            "demVotes": 8803,
+            "opponentVotes": 4689,
+            "validVotes": 14442,
+            "electors": 23604,
+            "votes": 14661
+          },
+          "금곡동": {
+            "dem": 51.65,
+            "opponent": 41.13,
+            "turnout": 63.1,
+            "demVotes": 7569,
+            "opponentVotes": 6027,
+            "validVotes": 14655,
+            "electors": 23616,
+            "votes": 14902
+          },
+          "구미동": {
+            "dem": 51.72,
+            "opponent": 40.81,
+            "turnout": 63.35,
+            "demVotes": 8166,
+            "opponentVotes": 6444,
+            "validVotes": 15790,
+            "electors": 25290,
+            "votes": 16021
+          },
+          "구미1동": {
+            "dem": 56.03,
+            "opponent": 36.83,
+            "turnout": 64.07,
+            "demVotes": 5191,
+            "opponentVotes": 3412,
+            "validVotes": 9265,
+            "electors": 14677,
+            "votes": 9403
+          },
+          "판교동": {
+            "dem": 52.83,
+            "opponent": 38.5,
+            "turnout": 67.67,
+            "demVotes": 5876,
+            "opponentVotes": 4282,
+            "validVotes": 11122,
+            "electors": 16648,
+            "votes": 11265
+          },
+          "삼평동": {
+            "dem": 58.24,
+            "opponent": 34.34,
+            "turnout": 64.81,
+            "demVotes": 6778,
+            "opponentVotes": 3997,
+            "validVotes": 11639,
+            "electors": 18199,
+            "votes": 11794
+          },
+          "백현동": {
+            "dem": 57.41,
+            "opponent": 35.12,
+            "turnout": 64.08,
+            "demVotes": 7575,
+            "opponentVotes": 4634,
+            "validVotes": 13195,
+            "electors": 20842,
+            "votes": 13356
+          },
+          "운중동": {
+            "dem": 50.39,
+            "opponent": 41.53,
+            "turnout": 64.42,
+            "demVotes": 5001,
+            "opponentVotes": 4122,
+            "validVotes": 9925,
+            "electors": 15629,
+            "votes": 10068
+          }
+        },
+        "status": "complete",
+        "demCandidate": "이재명",
+        "opponentCandidate": "남경필",
+        "sourceFile": "중앙선거관리위원회 선거통계시스템 다운로드 XLSX"
+      }
+    ],
+    "councilReference": {
+      "title": "성남시의원 결과 · 참고",
+      "description": "성남시의원 지역구는 중선거구제입니다. 선거구별 의원정수와 당선자를 함께 표시하며, 무투표 선거구는 실제 당선자 이름을 득표수 없이 제공합니다.",
+      "districts": [
+        {
+          "id": "아",
+          "name": "성남시아선거구",
+          "status": "counted",
+          "coverage": [
+            "이매1동",
+            "이매2동",
+            "삼평동"
+          ],
+          "electors": 52263,
+          "votes": 35612,
+          "validVotes": 34819,
+          "turnout": 68.14,
+          "candidates": [
+            {
+              "party": "더불어민주당",
+              "name": "이준배",
+              "votes": 11802,
+              "share": 33.9,
+              "elected": true
+            },
+            {
+              "party": "더불어민주당",
+              "name": "김금규",
+              "votes": 7975,
+              "share": 22.9,
+              "elected": false
+            },
+            {
+              "party": "자유한국당",
+              "name": "박영애",
+              "votes": 9295,
+              "share": 26.7,
+              "elected": true
+            },
+            {
+              "party": "바른미래당",
+              "name": "이승연",
+              "votes": 5195,
+              "share": 14.92,
+              "elected": false
+            },
+            {
+              "party": "무소속",
+              "name": "방신웅",
+              "votes": 552,
+              "share": 1.59,
+              "elected": false
+            }
+          ],
+          "dongResults": {
+            "이매1동": {
+              "electors": 19887,
+              "votes": 13186,
+              "validVotes": 12943,
+              "turnout": 66.3,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "이준배",
+                  "votes": 4174,
+                  "share": 32.25
+                },
+                {
+                  "party": "더불어민주당",
+                  "name": "김금규",
+                  "votes": 2613,
+                  "share": 20.19
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "박영애",
+                  "votes": 3738,
+                  "share": 28.88
+                },
+                {
+                  "party": "바른미래당",
+                  "name": "이승연",
+                  "votes": 2204,
+                  "share": 17.03
+                },
+                {
+                  "party": "무소속",
+                  "name": "방신웅",
+                  "votes": 214,
+                  "share": 1.65
+                }
+              ]
+            },
+            "이매2동": {
+              "electors": 10947,
+              "votes": 7345,
+              "validVotes": 7189,
+              "turnout": 67.1,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "이준배",
+                  "votes": 1937,
+                  "share": 26.94
+                },
+                {
+                  "party": "더불어민주당",
+                  "name": "김금규",
+                  "votes": 1591,
+                  "share": 22.13
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "박영애",
+                  "votes": 2440,
+                  "share": 33.94
+                },
+                {
+                  "party": "바른미래당",
+                  "name": "이승연",
+                  "votes": 1126,
+                  "share": 15.66
+                },
+                {
+                  "party": "무소속",
+                  "name": "방신웅",
+                  "votes": 95,
+                  "share": 1.32
+                }
+              ]
+            },
+            "삼평동": {
+              "electors": 18199,
+              "votes": 11779,
+              "validVotes": 11511,
+              "turnout": 64.72,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "이준배",
+                  "votes": 4358,
+                  "share": 37.86
+                },
+                {
+                  "party": "더불어민주당",
+                  "name": "김금규",
+                  "votes": 3058,
+                  "share": 26.57
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "박영애",
+                  "votes": 2462,
+                  "share": 21.39
+                },
+                {
+                  "party": "바른미래당",
+                  "name": "이승연",
+                  "votes": 1475,
+                  "share": 12.81
+                },
+                {
+                  "party": "무소속",
+                  "name": "방신웅",
+                  "votes": 158,
+                  "share": 1.37
+                }
+              ]
+            }
+          },
+          "seats": 2,
+          "winnerNames": [
+            "이준배",
+            "박영애"
+          ],
+          "winnerCount": 2
+        },
+        {
+          "id": "자",
+          "name": "성남시자선거구",
+          "status": "counted",
+          "coverage": [
+            "야탑1동",
+            "야탑2동",
+            "야탑3동"
+          ],
+          "electors": 56075,
+          "votes": 37706,
+          "validVotes": 36556,
+          "turnout": 67.24,
+          "candidates": [
+            {
+              "party": "더불어민주당",
+              "name": "박문석",
+              "votes": 13108,
+              "share": 35.86,
+              "elected": true
+            },
+            {
+              "party": "더불어민주당",
+              "name": "송위혁",
+              "votes": 8129,
+              "share": 22.24,
+              "elected": false
+            },
+            {
+              "party": "자유한국당",
+              "name": "박광순",
+              "votes": 9348,
+              "share": 25.57,
+              "elected": true
+            },
+            {
+              "party": "바른미래당",
+              "name": "김보석",
+              "votes": 5971,
+              "share": 16.33,
+              "elected": false
+            }
+          ],
+          "dongResults": {
+            "야탑1동": {
+              "electors": 15310,
+              "votes": 10234,
+              "validVotes": 9930,
+              "turnout": 66.85,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "박문석",
+                  "votes": 3519,
+                  "share": 35.44
+                },
+                {
+                  "party": "더불어민주당",
+                  "name": "송위혁",
+                  "votes": 2180,
+                  "share": 21.95
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "박광순",
+                  "votes": 2616,
+                  "share": 26.34
+                },
+                {
+                  "party": "바른미래당",
+                  "name": "김보석",
+                  "votes": 1615,
+                  "share": 16.26
+                }
+              ]
+            },
+            "야탑2동": {
+              "electors": 13608,
+              "votes": 9253,
+              "validVotes": 8990,
+              "turnout": 68.0,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "박문석",
+                  "votes": 2668,
+                  "share": 29.68
+                },
+                {
+                  "party": "더불어민주당",
+                  "name": "송위혁",
+                  "votes": 1884,
+                  "share": 20.96
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "박광순",
+                  "votes": 2970,
+                  "share": 33.04
+                },
+                {
+                  "party": "바른미래당",
+                  "name": "김보석",
+                  "votes": 1468,
+                  "share": 16.33
+                }
+              ]
+            },
+            "야탑3동": {
+              "electors": 23604,
+              "votes": 14638,
+              "validVotes": 14179,
+              "turnout": 62.01,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "박문석",
+                  "votes": 5347,
+                  "share": 37.71
+                },
+                {
+                  "party": "더불어민주당",
+                  "name": "송위혁",
+                  "votes": 3280,
+                  "share": 23.13
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "박광순",
+                  "votes": 3071,
+                  "share": 21.66
+                },
+                {
+                  "party": "바른미래당",
+                  "name": "김보석",
+                  "votes": 2481,
+                  "share": 17.5
+                }
+              ]
+            }
+          },
+          "seats": 2,
+          "winnerNames": [
+            "박문석",
+            "박광순"
+          ],
+          "winnerCount": 2
+        },
+        {
+          "id": "차",
+          "name": "성남시차선거구",
+          "status": "counted",
+          "coverage": [
+            "서현1동",
+            "서현2동"
+          ],
+          "electors": 41560,
+          "votes": 28001,
+          "validVotes": 27501,
+          "turnout": 67.37,
+          "candidates": [
+            {
+              "party": "더불어민주당",
+              "name": "박경희",
+              "votes": 11288,
+              "share": 41.05,
+              "elected": true
+            },
+            {
+              "party": "자유한국당",
+              "name": "이영희",
+              "votes": 7099,
+              "share": 25.81,
+              "elected": false
+            },
+            {
+              "party": "바른미래당",
+              "name": "이기인",
+              "votes": 9114,
+              "share": 33.14,
+              "elected": true
+            }
+          ],
+          "dongResults": {
+            "서현1동": {
+              "electors": 24232,
+              "votes": 15462,
+              "validVotes": 15179,
+              "turnout": 63.81,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "박경희",
+                  "votes": 6000,
+                  "share": 39.53
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "이영희",
+                  "votes": 4243,
+                  "share": 27.95
+                },
+                {
+                  "party": "바른미래당",
+                  "name": "이기인",
+                  "votes": 4936,
+                  "share": 32.52
+                }
+              ]
+            },
+            "서현2동": {
+              "electors": 14813,
+              "votes": 9991,
+              "validVotes": 9846,
+              "turnout": 67.45,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "박경희",
+                  "votes": 3852,
+                  "share": 39.12
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "이영희",
+                  "votes": 2312,
+                  "share": 23.48
+                },
+                {
+                  "party": "바른미래당",
+                  "name": "이기인",
+                  "votes": 3682,
+                  "share": 37.4
+                }
+              ]
+            }
+          },
+          "seats": 2,
+          "winnerNames": [
+            "박경희",
+            "이기인"
+          ],
+          "winnerCount": 2
+        },
+        {
+          "id": "카",
+          "name": "성남시카선거구",
+          "status": "counted",
+          "coverage": [
+            "판교동",
+            "백현동",
+            "운중동"
+          ],
+          "electors": 56563,
+          "votes": 38120,
+          "validVotes": 36962,
+          "turnout": 67.39,
+          "candidates": [
+            {
+              "party": "더불어민주당",
+              "name": "정윤",
+              "votes": 12428,
+              "share": 33.62,
+              "elected": true
+            },
+            {
+              "party": "더불어민주당",
+              "name": "최현백",
+              "votes": 10505,
+              "share": 28.42,
+              "elected": true
+            },
+            {
+              "party": "자유한국당",
+              "name": "노환인",
+              "votes": 10166,
+              "share": 27.5,
+              "elected": false
+            },
+            {
+              "party": "바른미래당",
+              "name": "김정호",
+              "votes": 3863,
+              "share": 10.45,
+              "elected": false
+            }
+          ],
+          "dongResults": {
+            "판교동": {
+              "electors": 16648,
+              "votes": 11242,
+              "validVotes": 10906,
+              "turnout": 67.53,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "정윤",
+                  "votes": 3612,
+                  "share": 33.12
+                },
+                {
+                  "party": "더불어민주당",
+                  "name": "최현백",
+                  "votes": 2888,
+                  "share": 26.48
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "노환인",
+                  "votes": 2981,
+                  "share": 27.33
+                },
+                {
+                  "party": "바른미래당",
+                  "name": "김정호",
+                  "votes": 1425,
+                  "share": 13.07
+                }
+              ]
+            },
+            "백현동": {
+              "electors": 20842,
+              "votes": 13263,
+              "validVotes": 12873,
+              "turnout": 63.64,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "정윤",
+                  "votes": 4354,
+                  "share": 33.82
+                },
+                {
+                  "party": "더불어민주당",
+                  "name": "최현백",
+                  "votes": 4101,
+                  "share": 31.86
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "노환인",
+                  "votes": 3223,
+                  "share": 25.04
+                },
+                {
+                  "party": "바른미래당",
+                  "name": "김정호",
+                  "votes": 1195,
+                  "share": 9.28
+                }
+              ]
+            },
+            "운중동": {
+              "electors": 15629,
+              "votes": 10068,
+              "validVotes": 9798,
+              "turnout": 64.42,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "정윤",
+                  "votes": 3064,
+                  "share": 31.27
+                },
+                {
+                  "party": "더불어민주당",
+                  "name": "최현백",
+                  "votes": 2593,
+                  "share": 26.46
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "노환인",
+                  "votes": 3191,
+                  "share": 32.57
+                },
+                {
+                  "party": "바른미래당",
+                  "name": "김정호",
+                  "votes": 950,
+                  "share": 9.7
+                }
+              ]
+            }
+          },
+          "seats": 2,
+          "winnerNames": [
+            "정윤",
+            "최현백"
+          ],
+          "winnerCount": 2
+        },
+        {
+          "id": "타",
+          "name": "성남시타선거구",
+          "status": "counted",
+          "coverage": [
+            "수내1동",
+            "수내2동",
+            "정자1동"
+          ],
+          "electors": 48455,
+          "votes": 30233,
+          "validVotes": 29577,
+          "turnout": 62.39,
+          "candidates": [
+            {
+              "party": "더불어민주당",
+              "name": "김명수",
+              "votes": 16118,
+              "share": 54.5,
+              "elected": true
+            },
+            {
+              "party": "자유한국당",
+              "name": "정봉규",
+              "votes": 10283,
+              "share": 34.77,
+              "elected": true
+            },
+            {
+              "party": "바른미래당",
+              "name": "서학선",
+              "votes": 3176,
+              "share": 10.74,
+              "elected": false
+            }
+          ],
+          "dongResults": {
+            "수내1동": {
+              "electors": 14005,
+              "votes": 8736,
+              "validVotes": 8529,
+              "turnout": 62.38,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "김명수",
+                  "votes": 4828,
+                  "share": 56.61
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "정봉규",
+                  "votes": 2801,
+                  "share": 32.84
+                },
+                {
+                  "party": "바른미래당",
+                  "name": "서학선",
+                  "votes": 900,
+                  "share": 10.55
+                }
+              ]
+            },
+            "수내2동": {
+              "electors": 7513,
+              "votes": 5024,
+              "validVotes": 4905,
+              "turnout": 66.87,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "김명수",
+                  "votes": 2765,
+                  "share": 56.37
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "정봉규",
+                  "votes": 1514,
+                  "share": 30.87
+                },
+                {
+                  "party": "바른미래당",
+                  "name": "서학선",
+                  "votes": 626,
+                  "share": 12.76
+                }
+              ]
+            },
+            "정자1동": {
+              "electors": 24321,
+              "votes": 13836,
+              "validVotes": 13579,
+              "turnout": 56.89,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "김명수",
+                  "votes": 6808,
+                  "share": 50.14
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "정봉규",
+                  "votes": 5349,
+                  "share": 39.39
+                },
+                {
+                  "party": "바른미래당",
+                  "name": "서학선",
+                  "votes": 1422,
+                  "share": 10.47
+                }
+              ]
+            }
+          },
+          "seats": 2,
+          "winnerNames": [
+            "김명수",
+            "정봉규"
+          ],
+          "winnerCount": 2
+        },
+        {
+          "id": "파",
+          "name": "성남시파선거구",
+          "status": "counted",
+          "coverage": [
+            "정자동",
+            "금곡동",
+            "구미1동"
+          ],
+          "electors": 57951,
+          "votes": 38180,
+          "validVotes": 37383,
+          "turnout": 65.88,
+          "candidates": [
+            {
+              "party": "더불어민주당",
+              "name": "조정식",
+              "votes": 21698,
+              "share": 58.04,
+              "elected": true
+            },
+            {
+              "party": "자유한국당",
+              "name": "김영발",
+              "votes": 11202,
+              "share": 29.97,
+              "elected": true
+            },
+            {
+              "party": "바른미래당",
+              "name": "이호재",
+              "votes": 4483,
+              "share": 11.99,
+              "elected": false
+            }
+          ],
+          "dongResults": {
+            "정자동": {
+              "electors": 14715,
+              "votes": 8945,
+              "validVotes": 8736,
+              "turnout": 60.79,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "조정식",
+                  "votes": 4992,
+                  "share": 57.14
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "김영발",
+                  "votes": 2552,
+                  "share": 29.21
+                },
+                {
+                  "party": "바른미래당",
+                  "name": "이호재",
+                  "votes": 1192,
+                  "share": 13.64
+                }
+              ]
+            },
+            "금곡동": {
+              "electors": 23616,
+              "votes": 14880,
+              "validVotes": 14595,
+              "turnout": 63.01,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "조정식",
+                  "votes": 8070,
+                  "share": 55.29
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "김영발",
+                  "votes": 4839,
+                  "share": 33.16
+                },
+                {
+                  "party": "바른미래당",
+                  "name": "이호재",
+                  "votes": 1686,
+                  "share": 11.55
+                }
+              ]
+            },
+            "구미1동": {
+              "electors": 14677,
+              "votes": 9384,
+              "validVotes": 9197,
+              "turnout": 63.94,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "조정식",
+                  "votes": 5400,
+                  "share": 58.71
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "김영발",
+                  "votes": 2748,
+                  "share": 29.88
+                },
+                {
+                  "party": "바른미래당",
+                  "name": "이호재",
+                  "votes": 1049,
+                  "share": 11.41
+                }
+              ]
+            }
+          },
+          "seats": 2,
+          "winnerNames": [
+            "조정식",
+            "김영발"
+          ],
+          "winnerCount": 2
+        },
+        {
+          "id": "하",
+          "name": "성남시하선거구",
+          "status": "counted",
+          "coverage": [
+            "분당동",
+            "수내3동",
+            "정자2동",
+            "정자3동",
+            "구미동"
+          ],
+          "electors": 88805,
+          "votes": 58977,
+          "validVotes": 56736,
+          "turnout": 66.41,
+          "candidates": [
+            {
+              "party": "더불어민주당",
+              "name": "유재호",
+              "votes": 17754,
+              "share": 31.29,
+              "elected": true
+            },
+            {
+              "party": "더불어민주당",
+              "name": "최종성",
+              "votes": 11834,
+              "share": 20.86,
+              "elected": true
+            },
+            {
+              "party": "자유한국당",
+              "name": "박은미",
+              "votes": 9416,
+              "share": 16.6,
+              "elected": true
+            },
+            {
+              "party": "자유한국당",
+              "name": "이제영",
+              "votes": 5737,
+              "share": 10.11,
+              "elected": false
+            },
+            {
+              "party": "바른미래당",
+              "name": "정종혁",
+              "votes": 3752,
+              "share": 6.61,
+              "elected": false
+            },
+            {
+              "party": "정의당",
+              "name": "양호영",
+              "votes": 4386,
+              "share": 7.73,
+              "elected": false
+            },
+            {
+              "party": "민중당",
+              "name": "신엘라",
+              "votes": 762,
+              "share": 1.34,
+              "elected": false
+            },
+            {
+              "party": "무소속",
+              "name": "강한구",
+              "votes": 3095,
+              "share": 5.46,
+              "elected": false
+            }
+          ],
+          "dongResults": {
+            "분당동": {
+              "electors": 20382,
+              "votes": 12650,
+              "validVotes": 12183,
+              "turnout": 62.06,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "유재호",
+                  "votes": 3783,
+                  "share": 31.05
+                },
+                {
+                  "party": "더불어민주당",
+                  "name": "최종성",
+                  "votes": 2708,
+                  "share": 22.23
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "박은미",
+                  "votes": 2215,
+                  "share": 18.18
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "이제영",
+                  "votes": 1207,
+                  "share": 9.91
+                },
+                {
+                  "party": "바른미래당",
+                  "name": "정종혁",
+                  "votes": 850,
+                  "share": 6.98
+                },
+                {
+                  "party": "정의당",
+                  "name": "양호영",
+                  "votes": 939,
+                  "share": 7.71
+                },
+                {
+                  "party": "민중당",
+                  "name": "신엘라",
+                  "votes": 144,
+                  "share": 1.18
+                },
+                {
+                  "party": "무소속",
+                  "name": "강한구",
+                  "votes": 337,
+                  "share": 2.77
+                }
+              ]
+            },
+            "수내3동": {
+              "electors": 10706,
+              "votes": 6915,
+              "validVotes": 6641,
+              "turnout": 64.59,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "유재호",
+                  "votes": 1875,
+                  "share": 28.23
+                },
+                {
+                  "party": "더불어민주당",
+                  "name": "최종성",
+                  "votes": 1690,
+                  "share": 25.45
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "박은미",
+                  "votes": 993,
+                  "share": 14.95
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "이제영",
+                  "votes": 582,
+                  "share": 8.76
+                },
+                {
+                  "party": "바른미래당",
+                  "name": "정종혁",
+                  "votes": 491,
+                  "share": 7.39
+                },
+                {
+                  "party": "정의당",
+                  "name": "양호영",
+                  "votes": 714,
+                  "share": 10.75
+                },
+                {
+                  "party": "민중당",
+                  "name": "신엘라",
+                  "votes": 71,
+                  "share": 1.07
+                },
+                {
+                  "party": "무소속",
+                  "name": "강한구",
+                  "votes": 225,
+                  "share": 3.39
+                }
+              ]
+            },
+            "정자2동": {
+              "electors": 13617,
+              "votes": 8694,
+              "validVotes": 8312,
+              "turnout": 63.85,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "유재호",
+                  "votes": 2841,
+                  "share": 34.18
+                },
+                {
+                  "party": "더불어민주당",
+                  "name": "최종성",
+                  "votes": 1745,
+                  "share": 20.99
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "박은미",
+                  "votes": 1344,
+                  "share": 16.17
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "이제영",
+                  "votes": 747,
+                  "share": 8.99
+                },
+                {
+                  "party": "바른미래당",
+                  "name": "정종혁",
+                  "votes": 533,
+                  "share": 6.41
+                },
+                {
+                  "party": "정의당",
+                  "name": "양호영",
+                  "votes": 722,
+                  "share": 8.69
+                },
+                {
+                  "party": "민중당",
+                  "name": "신엘라",
+                  "votes": 136,
+                  "share": 1.64
+                },
+                {
+                  "party": "무소속",
+                  "name": "강한구",
+                  "votes": 244,
+                  "share": 2.94
+                }
+              ]
+            },
+            "정자3동": {
+              "electors": 12363,
+              "votes": 8247,
+              "validVotes": 7973,
+              "turnout": 66.71,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "유재호",
+                  "votes": 2564,
+                  "share": 32.16
+                },
+                {
+                  "party": "더불어민주당",
+                  "name": "최종성",
+                  "votes": 1506,
+                  "share": 18.89
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "박은미",
+                  "votes": 1375,
+                  "share": 17.25
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "이제영",
+                  "votes": 891,
+                  "share": 11.18
+                },
+                {
+                  "party": "바른미래당",
+                  "name": "정종혁",
+                  "votes": 593,
+                  "share": 7.44
+                },
+                {
+                  "party": "정의당",
+                  "name": "양호영",
+                  "votes": 680,
+                  "share": 8.53
+                },
+                {
+                  "party": "민중당",
+                  "name": "신엘라",
+                  "votes": 121,
+                  "share": 1.52
+                },
+                {
+                  "party": "무소속",
+                  "name": "강한구",
+                  "votes": 243,
+                  "share": 3.05
+                }
+              ]
+            },
+            "구미동": {
+              "electors": 25290,
+              "votes": 15995,
+              "validVotes": 15461,
+              "turnout": 63.25,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "유재호",
+                  "votes": 4167,
+                  "share": 26.95
+                },
+                {
+                  "party": "더불어민주당",
+                  "name": "최종성",
+                  "votes": 2859,
+                  "share": 18.49
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "박은미",
+                  "votes": 2709,
+                  "share": 17.52
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "이제영",
+                  "votes": 1917,
+                  "share": 12.4
+                },
+                {
+                  "party": "바른미래당",
+                  "name": "정종혁",
+                  "votes": 894,
+                  "share": 5.78
+                },
+                {
+                  "party": "정의당",
+                  "name": "양호영",
+                  "votes": 899,
+                  "share": 5.81
+                },
+                {
+                  "party": "민중당",
+                  "name": "신엘라",
+                  "votes": 209,
+                  "share": 1.35
+                },
+                {
+                  "party": "무소속",
+                  "name": "강한구",
+                  "votes": 1807,
+                  "share": 11.69
+                }
+              ]
+            }
+          },
+          "seats": 3,
+          "winnerNames": [
+            "유재호",
+            "최종성",
+            "박은미"
+          ],
+          "winnerCount": 3
+        }
+      ],
+      "proportional": {
+        "electors": 401672,
+        "votes": 266839,
+        "validVotes": 237081,
+        "turnout": 66.43,
+        "parties": [
+          {
+            "party": "더불어민주당",
+            "votes": 130999,
+            "share": 55.25
+          },
+          {
+            "party": "자유한국당",
+            "votes": 74696,
+            "share": 31.51
+          },
+          {
+            "party": "바른미래당",
+            "votes": 29878,
+            "share": 12.6
+          },
+          {
+            "party": "민중당",
+            "votes": 1508,
+            "share": 0.64
+          }
+        ],
+        "dongResults": {
+          "분당동": {
+            "electors": 20382,
+            "votes": 12645,
+            "validVotes": 11256,
+            "turnout": 62.04,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 6210,
+                "share": 55.17
+              },
+              {
+                "party": "자유한국당",
+                "votes": 3554,
+                "share": 31.57
+              },
+              {
+                "party": "바른미래당",
+                "votes": 1417,
+                "share": 12.59
+              },
+              {
+                "party": "민중당",
+                "votes": 75,
+                "share": 0.67
+              }
+            ]
+          },
+          "수내1동": {
+            "electors": 14005,
+            "votes": 8743,
+            "validVotes": 7730,
+            "turnout": 62.43,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 3861,
+                "share": 49.95
+              },
+              {
+                "party": "자유한국당",
+                "votes": 2857,
+                "share": 36.96
+              },
+              {
+                "party": "바른미래당",
+                "votes": 985,
+                "share": 12.74
+              },
+              {
+                "party": "민중당",
+                "votes": 27,
+                "share": 0.35
+              }
+            ]
+          },
+          "수내2동": {
+            "electors": 7513,
+            "votes": 5028,
+            "validVotes": 4529,
+            "turnout": 66.92,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 2235,
+                "share": 49.35
+              },
+              {
+                "party": "자유한국당",
+                "votes": 1562,
+                "share": 34.49
+              },
+              {
+                "party": "바른미래당",
+                "votes": 713,
+                "share": 15.74
+              },
+              {
+                "party": "민중당",
+                "votes": 19,
+                "share": 0.42
+              }
+            ]
+          },
+          "수내3동": {
+            "electors": 10706,
+            "votes": 6920,
+            "validVotes": 5939,
+            "turnout": 64.64,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 3444,
+                "share": 57.99
+              },
+              {
+                "party": "자유한국당",
+                "votes": 1658,
+                "share": 27.92
+              },
+              {
+                "party": "바른미래당",
+                "votes": 797,
+                "share": 13.42
+              },
+              {
+                "party": "민중당",
+                "votes": 40,
+                "share": 0.67
+              }
+            ]
+          },
+          "정자동": {
+            "electors": 14715,
+            "votes": 8948,
+            "validVotes": 7942,
+            "turnout": 60.81,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 4390,
+                "share": 55.28
+              },
+              {
+                "party": "자유한국당",
+                "votes": 2517,
+                "share": 31.69
+              },
+              {
+                "party": "바른미래당",
+                "votes": 979,
+                "share": 12.33
+              },
+              {
+                "party": "민중당",
+                "votes": 56,
+                "share": 0.71
+              }
+            ]
+          },
+          "정자1동": {
+            "electors": 24321,
+            "votes": 13844,
+            "validVotes": 12559,
+            "turnout": 56.92,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 5504,
+                "share": 43.83
+              },
+              {
+                "party": "자유한국당",
+                "votes": 5344,
+                "share": 42.55
+              },
+              {
+                "party": "바른미래당",
+                "votes": 1680,
+                "share": 13.38
+              },
+              {
+                "party": "민중당",
+                "votes": 31,
+                "share": 0.25
+              }
+            ]
+          },
+          "정자2동": {
+            "electors": 13617,
+            "votes": 8698,
+            "validVotes": 7570,
+            "turnout": 63.88,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 4535,
+                "share": 59.91
+              },
+              {
+                "party": "자유한국당",
+                "votes": 2168,
+                "share": 28.64
+              },
+              {
+                "party": "바른미래당",
+                "votes": 798,
+                "share": 10.54
+              },
+              {
+                "party": "민중당",
+                "votes": 69,
+                "share": 0.91
+              }
+            ]
+          },
+          "정자3동": {
+            "electors": 12363,
+            "votes": 8253,
+            "validVotes": 7247,
+            "turnout": 66.76,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 4028,
+                "share": 55.58
+              },
+              {
+                "party": "자유한국당",
+                "votes": 2221,
+                "share": 30.65
+              },
+              {
+                "party": "바른미래당",
+                "votes": 946,
+                "share": 13.05
+              },
+              {
+                "party": "민중당",
+                "votes": 52,
+                "share": 0.72
+              }
+            ]
+          },
+          "서현1동": {
+            "electors": 24232,
+            "votes": 15480,
+            "validVotes": 13949,
+            "turnout": 63.88,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 7096,
+                "share": 50.87
+              },
+              {
+                "party": "자유한국당",
+                "votes": 4650,
+                "share": 33.34
+              },
+              {
+                "party": "바른미래당",
+                "votes": 2147,
+                "share": 15.39
+              },
+              {
+                "party": "민중당",
+                "votes": 56,
+                "share": 0.4
+              }
+            ]
+          },
+          "서현2동": {
+            "electors": 14813,
+            "votes": 10000,
+            "validVotes": 8887,
+            "turnout": 67.51,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 4828,
+                "share": 54.33
+              },
+              {
+                "party": "자유한국당",
+                "votes": 2649,
+                "share": 29.81
+              },
+              {
+                "party": "바른미래당",
+                "votes": 1361,
+                "share": 15.31
+              },
+              {
+                "party": "민중당",
+                "votes": 49,
+                "share": 0.55
+              }
+            ]
+          },
+          "이매1동": {
+            "electors": 19887,
+            "votes": 13218,
+            "validVotes": 11855,
+            "turnout": 66.47,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 6032,
+                "share": 50.88
+              },
+              {
+                "party": "자유한국당",
+                "votes": 4079,
+                "share": 34.41
+              },
+              {
+                "party": "바른미래당",
+                "votes": 1659,
+                "share": 13.99
+              },
+              {
+                "party": "민중당",
+                "votes": 85,
+                "share": 0.72
+              }
+            ]
+          },
+          "이매2동": {
+            "electors": 10947,
+            "votes": 7356,
+            "validVotes": 6592,
+            "turnout": 67.2,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 3083,
+                "share": 46.77
+              },
+              {
+                "party": "자유한국당",
+                "votes": 2515,
+                "share": 38.15
+              },
+              {
+                "party": "바른미래당",
+                "votes": 968,
+                "share": 14.68
+              },
+              {
+                "party": "민중당",
+                "votes": 26,
+                "share": 0.39
+              }
+            ]
+          },
+          "야탑1동": {
+            "electors": 15310,
+            "votes": 10245,
+            "validVotes": 9346,
+            "turnout": 66.92,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 5310,
+                "share": 56.82
+              },
+              {
+                "party": "자유한국당",
+                "votes": 2904,
+                "share": 31.07
+              },
+              {
+                "party": "바른미래당",
+                "votes": 1070,
+                "share": 11.45
+              },
+              {
+                "party": "민중당",
+                "votes": 62,
+                "share": 0.66
+              }
+            ]
+          },
+          "야탑2동": {
+            "electors": 13608,
+            "votes": 9268,
+            "validVotes": 8282,
+            "turnout": 68.11,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 3949,
+                "share": 47.68
+              },
+              {
+                "party": "자유한국당",
+                "votes": 3211,
+                "share": 38.77
+              },
+              {
+                "party": "바른미래당",
+                "votes": 1080,
+                "share": 13.04
+              },
+              {
+                "party": "민중당",
+                "votes": 42,
+                "share": 0.51
+              }
+            ]
+          },
+          "야탑3동": {
+            "electors": 23604,
+            "votes": 14657,
+            "validVotes": 13082,
+            "turnout": 62.1,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 8047,
+                "share": 61.51
+              },
+              {
+                "party": "자유한국당",
+                "votes": 3532,
+                "share": 27.0
+              },
+              {
+                "party": "바른미래당",
+                "votes": 1400,
+                "share": 10.7
+              },
+              {
+                "party": "민중당",
+                "votes": 103,
+                "share": 0.79
+              }
+            ]
+          },
+          "금곡동": {
+            "electors": 23616,
+            "votes": 14885,
+            "validVotes": 13353,
+            "turnout": 63.03,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 7166,
+                "share": 53.67
+              },
+              {
+                "party": "자유한국당",
+                "votes": 4562,
+                "share": 34.16
+              },
+              {
+                "party": "바른미래당",
+                "votes": 1526,
+                "share": 11.43
+              },
+              {
+                "party": "민중당",
+                "votes": 99,
+                "share": 0.74
+              }
+            ]
+          },
+          "구미동": {
+            "electors": 25290,
+            "votes": 16004,
+            "validVotes": 14258,
+            "turnout": 63.28,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 7592,
+                "share": 53.25
+              },
+              {
+                "party": "자유한국당",
+                "votes": 4803,
+                "share": 33.69
+              },
+              {
+                "party": "바른미래당",
+                "votes": 1718,
+                "share": 12.05
+              },
+              {
+                "party": "민중당",
+                "votes": 145,
+                "share": 1.02
+              }
+            ]
+          },
+          "구미1동": {
+            "electors": 14677,
+            "votes": 9397,
+            "validVotes": 8289,
+            "turnout": 64.03,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 4710,
+                "share": 56.82
+              },
+              {
+                "party": "자유한국당",
+                "votes": 2525,
+                "share": 30.46
+              },
+              {
+                "party": "바른미래당",
+                "votes": 986,
+                "share": 11.9
+              },
+              {
+                "party": "민중당",
+                "votes": 68,
+                "share": 0.82
+              }
+            ]
+          },
+          "판교동": {
+            "electors": 16648,
+            "votes": 11257,
+            "validVotes": 9893,
+            "turnout": 67.62,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 5560,
+                "share": 56.2
+              },
+              {
+                "party": "자유한국당",
+                "votes": 2885,
+                "share": 29.16
+              },
+              {
+                "party": "바른미래당",
+                "votes": 1388,
+                "share": 14.03
+              },
+              {
+                "party": "민중당",
+                "votes": 60,
+                "share": 0.61
+              }
+            ]
+          },
+          "삼평동": {
+            "electors": 18199,
+            "votes": 11786,
+            "validVotes": 10296,
+            "turnout": 64.76,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 6296,
+                "share": 61.15
+              },
+              {
+                "party": "자유한국당",
+                "votes": 2715,
+                "share": 26.37
+              },
+              {
+                "party": "바른미래당",
+                "votes": 1211,
+                "share": 11.76
+              },
+              {
+                "party": "민중당",
+                "votes": 74,
+                "share": 0.72
+              }
+            ]
+          },
+          "백현동": {
+            "electors": 20842,
+            "votes": 13344,
+            "validVotes": 11921,
+            "turnout": 64.02,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 7171,
+                "share": 60.15
+              },
+              {
+                "party": "자유한국당",
+                "votes": 3234,
+                "share": 27.13
+              },
+              {
+                "party": "바른미래당",
+                "votes": 1439,
+                "share": 12.07
+              },
+              {
+                "party": "민중당",
+                "votes": 77,
+                "share": 0.65
+              }
+            ]
+          },
+          "운중동": {
+            "electors": 15629,
+            "votes": 10073,
+            "validVotes": 8963,
+            "turnout": 64.45,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 4825,
+                "share": 53.83
+              },
+              {
+                "party": "자유한국당",
+                "votes": 3021,
+                "share": 33.71
+              },
+              {
+                "party": "바른미래당",
+                "votes": 1059,
+                "share": 11.82
+              },
+              {
+                "party": "민중당",
+                "votes": 58,
+                "share": 0.65
+              }
+            ]
+          }
+        }
+      },
+      "cycle": 7,
+      "source": "중앙선거관리위원회 선거통계시스템 다운로드 XLSX"
+    },
+    "provincialCouncilReference": {
+      "title": "경기도의원 결과 · 참고",
+      "description": "경기도의원 지역구는 1인 선거구입니다. 분당구에 해당하는 성남시 제5~8선거구의 후보별 실제 득표와 당선자를 제공합니다.",
+      "districts": [
+        {
+          "id": "제5",
+          "name": "성남시제5선거구",
+          "status": "counted",
+          "seats": 1,
+          "coverage": [
+            "이매1동",
+            "이매2동",
+            "야탑1동",
+            "야탑2동",
+            "야탑3동",
+            "삼평동"
+          ],
+          "electors": 108338,
+          "votes": 73317,
+          "validVotes": 71909,
+          "turnout": 67.67,
+          "candidates": [
+            {
+              "party": "더불어민주당",
+              "name": "임채철",
+              "votes": 44876,
+              "share": 62.41,
+              "elected": true
+            },
+            {
+              "party": "자유한국당",
+              "name": "방성환",
+              "votes": 27033,
+              "share": 37.59,
+              "elected": false
+            }
+          ],
+          "dongResults": {
+            "이매1동": {
+              "electors": 19887,
+              "votes": 13220,
+              "validVotes": 13000,
+              "turnout": 66.48,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "임채철",
+                  "votes": 7738,
+                  "share": 59.52
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "방성환",
+                  "votes": 5262,
+                  "share": 40.48
+                }
+              ]
+            },
+            "이매2동": {
+              "electors": 10947,
+              "votes": 7357,
+              "validVotes": 7228,
+              "turnout": 67.21,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "임채철",
+                  "votes": 4017,
+                  "share": 55.58
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "방성환",
+                  "votes": 3211,
+                  "share": 44.42
+                }
+              ]
+            },
+            "야탑1동": {
+              "electors": 15310,
+              "votes": 10226,
+              "validVotes": 10000,
+              "turnout": 66.79,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "임채철",
+                  "votes": 6165,
+                  "share": 61.65
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "방성환",
+                  "votes": 3835,
+                  "share": 38.35
+                }
+              ]
+            },
+            "야탑2동": {
+              "electors": 13608,
+              "votes": 9257,
+              "validVotes": 9095,
+              "turnout": 68.03,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "임채철",
+                  "votes": 4968,
+                  "share": 54.62
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "방성환",
+                  "votes": 4127,
+                  "share": 45.38
+                }
+              ]
+            },
+            "야탑3동": {
+              "electors": 23604,
+              "votes": 14648,
+              "validVotes": 14375,
+              "turnout": 62.06,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "임채철",
+                  "votes": 9344,
+                  "share": 65.0
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "방성환",
+                  "votes": 5031,
+                  "share": 35.0
+                }
+              ]
+            },
+            "삼평동": {
+              "electors": 18199,
+              "votes": 11779,
+              "validVotes": 11584,
+              "turnout": 64.72,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "임채철",
+                  "votes": 7881,
+                  "share": 68.03
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "방성환",
+                  "votes": 3703,
+                  "share": 31.97
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "제6",
+          "name": "성남시제6선거구",
+          "status": "counted",
+          "seats": 1,
+          "coverage": [
+            "서현1동",
+            "서현2동",
+            "판교동",
+            "백현동",
+            "운중동"
+          ],
+          "electors": 98123,
+          "votes": 66124,
+          "validVotes": 64897,
+          "turnout": 67.39,
+          "candidates": [
+            {
+              "party": "더불어민주당",
+              "name": "권락용",
+              "votes": 43356,
+              "share": 66.81,
+              "elected": true
+            },
+            {
+              "party": "자유한국당",
+              "name": "조용석",
+              "votes": 21541,
+              "share": 33.19,
+              "elected": false
+            }
+          ],
+          "dongResults": {
+            "서현1동": {
+              "electors": 24232,
+              "votes": 15466,
+              "validVotes": 15191,
+              "turnout": 63.82,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "권락용",
+                  "votes": 9513,
+                  "share": 62.62
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "조용석",
+                  "votes": 5678,
+                  "share": 37.38
+                }
+              ]
+            },
+            "서현2동": {
+              "electors": 14813,
+              "votes": 9994,
+              "validVotes": 9826,
+              "turnout": 67.47,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "권락용",
+                  "votes": 6494,
+                  "share": 66.09
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "조용석",
+                  "votes": 3332,
+                  "share": 33.91
+                }
+              ]
+            },
+            "판교동": {
+              "electors": 16648,
+              "votes": 11253,
+              "validVotes": 11054,
+              "turnout": 67.59,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "권락용",
+                  "votes": 7564,
+                  "share": 68.43
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "조용석",
+                  "votes": 3490,
+                  "share": 31.57
+                }
+              ]
+            },
+            "백현동": {
+              "electors": 20842,
+              "votes": 13339,
+              "validVotes": 13124,
+              "turnout": 64.0,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "권락용",
+                  "votes": 9122,
+                  "share": 69.51
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "조용석",
+                  "votes": 4002,
+                  "share": 30.49
+                }
+              ]
+            },
+            "운중동": {
+              "electors": 15629,
+              "votes": 10069,
+              "validVotes": 9885,
+              "turnout": 64.43,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "권락용",
+                  "votes": 6436,
+                  "share": 65.11
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "조용석",
+                  "votes": 3449,
+                  "share": 34.89
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "제7",
+          "name": "성남시제7선거구",
+          "status": "counted",
+          "seats": 1,
+          "coverage": [
+            "수내1동",
+            "수내2동",
+            "정자동",
+            "정자1동",
+            "금곡동",
+            "구미1동"
+          ],
+          "electors": 106406,
+          "votes": 68415,
+          "validVotes": 67333,
+          "turnout": 64.3,
+          "candidates": [
+            {
+              "party": "더불어민주당",
+              "name": "이나영",
+              "votes": 40776,
+              "share": 60.56,
+              "elected": true
+            },
+            {
+              "party": "자유한국당",
+              "name": "안계일",
+              "votes": 20850,
+              "share": 30.97,
+              "elected": false
+            },
+            {
+              "party": "바른미래당",
+              "name": "신완옥",
+              "votes": 5707,
+              "share": 8.48,
+              "elected": false
+            }
+          ],
+          "dongResults": {
+            "수내1동": {
+              "electors": 14005,
+              "votes": 8737,
+              "validVotes": 8615,
+              "turnout": 62.38,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "이나영",
+                  "votes": 5017,
+                  "share": 58.24
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "안계일",
+                  "votes": 2828,
+                  "share": 32.83
+                },
+                {
+                  "party": "바른미래당",
+                  "name": "신완옥",
+                  "votes": 770,
+                  "share": 8.94
+                }
+              ]
+            },
+            "수내2동": {
+              "electors": 7513,
+              "votes": 5026,
+              "validVotes": 4938,
+              "turnout": 66.9,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "이나영",
+                  "votes": 2915,
+                  "share": 59.03
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "안계일",
+                  "votes": 1487,
+                  "share": 30.11
+                },
+                {
+                  "party": "바른미래당",
+                  "name": "신완옥",
+                  "votes": 536,
+                  "share": 10.85
+                }
+              ]
+            },
+            "정자동": {
+              "electors": 14715,
+              "votes": 8947,
+              "validVotes": 8792,
+              "turnout": 60.8,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "이나영",
+                  "votes": 5514,
+                  "share": 62.72
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "안계일",
+                  "votes": 2544,
+                  "share": 28.94
+                },
+                {
+                  "party": "바른미래당",
+                  "name": "신완옥",
+                  "votes": 734,
+                  "share": 8.35
+                }
+              ]
+            },
+            "정자1동": {
+              "electors": 24321,
+              "votes": 13841,
+              "validVotes": 13643,
+              "turnout": 56.91,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "이나영",
+                  "votes": 7173,
+                  "share": 52.58
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "안계일",
+                  "votes": 5302,
+                  "share": 38.86
+                },
+                {
+                  "party": "바른미래당",
+                  "name": "신완옥",
+                  "votes": 1168,
+                  "share": 8.56
+                }
+              ]
+            },
+            "금곡동": {
+              "electors": 23616,
+              "votes": 14877,
+              "validVotes": 14611,
+              "turnout": 63.0,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "이나영",
+                  "votes": 8897,
+                  "share": 60.89
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "안계일",
+                  "votes": 4527,
+                  "share": 30.98
+                },
+                {
+                  "party": "바른미래당",
+                  "name": "신완옥",
+                  "votes": 1187,
+                  "share": 8.12
+                }
+              ]
+            },
+            "구미1동": {
+              "electors": 14677,
+              "votes": 9394,
+              "validVotes": 9284,
+              "turnout": 64.0,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "이나영",
+                  "votes": 6056,
+                  "share": 65.23
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "안계일",
+                  "votes": 2485,
+                  "share": 26.77
+                },
+                {
+                  "party": "바른미래당",
+                  "name": "신완옥",
+                  "votes": 743,
+                  "share": 8.0
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "제8",
+          "name": "성남시제8선거구",
+          "status": "counted",
+          "seats": 1,
+          "coverage": [
+            "분당동",
+            "수내3동",
+            "정자2동",
+            "정자3동",
+            "구미동"
+          ],
+          "electors": 88805,
+          "votes": 58981,
+          "validVotes": 57956,
+          "turnout": 66.42,
+          "candidates": [
+            {
+              "party": "더불어민주당",
+              "name": "최세명",
+              "votes": 32662,
+              "share": 56.36,
+              "elected": true
+            },
+            {
+              "party": "자유한국당",
+              "name": "박완정",
+              "votes": 16406,
+              "share": 28.31,
+              "elected": false
+            },
+            {
+              "party": "바른미래당",
+              "name": "김지환",
+              "votes": 8888,
+              "share": 15.34,
+              "elected": false
+            }
+          ],
+          "dongResults": {
+            "분당동": {
+              "electors": 20382,
+              "votes": 12644,
+              "validVotes": 12457,
+              "turnout": 62.04,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "최세명",
+                  "votes": 6822,
+                  "share": 54.76
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "박완정",
+                  "votes": 3723,
+                  "share": 29.89
+                },
+                {
+                  "party": "바른미래당",
+                  "name": "김지환",
+                  "votes": 1912,
+                  "share": 15.35
+                }
+              ]
+            },
+            "수내3동": {
+              "electors": 10706,
+              "votes": 6917,
+              "validVotes": 6818,
+              "turnout": 64.61,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "최세명",
+                  "votes": 3999,
+                  "share": 58.65
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "박완정",
+                  "votes": 1750,
+                  "share": 25.67
+                },
+                {
+                  "party": "바른미래당",
+                  "name": "김지환",
+                  "votes": 1069,
+                  "share": 15.68
+                }
+              ]
+            },
+            "정자2동": {
+              "electors": 13617,
+              "votes": 8699,
+              "validVotes": 8510,
+              "turnout": 63.88,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "최세명",
+                  "votes": 5001,
+                  "share": 58.77
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "박완정",
+                  "votes": 2284,
+                  "share": 26.84
+                },
+                {
+                  "party": "바른미래당",
+                  "name": "김지환",
+                  "votes": 1225,
+                  "share": 14.39
+                }
+              ]
+            },
+            "정자3동": {
+              "electors": 12363,
+              "votes": 8253,
+              "validVotes": 8129,
+              "turnout": 66.76,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "최세명",
+                  "votes": 4415,
+                  "share": 54.31
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "박완정",
+                  "votes": 2405,
+                  "share": 29.59
+                },
+                {
+                  "party": "바른미래당",
+                  "name": "김지환",
+                  "votes": 1309,
+                  "share": 16.1
+                }
+              ]
+            },
+            "구미동": {
+              "electors": 25290,
+              "votes": 15995,
+              "validVotes": 15755,
+              "turnout": 63.25,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "최세명",
+                  "votes": 8210,
+                  "share": 52.11
+                },
+                {
+                  "party": "자유한국당",
+                  "name": "박완정",
+                  "votes": 4975,
+                  "share": 31.58
+                },
+                {
+                  "party": "바른미래당",
+                  "name": "김지환",
+                  "votes": 2570,
+                  "share": 16.31
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "proportional": {
+        "electors": 401672,
+        "votes": 266861,
+        "validVotes": 264150,
+        "turnout": 66.44,
+        "parties": [
+          {
+            "party": "더불어민주당",
+            "votes": 125870,
+            "share": 47.65
+          },
+          {
+            "party": "자유한국당",
+            "votes": 74111,
+            "share": 28.06
+          },
+          {
+            "party": "바른미래당",
+            "votes": 29605,
+            "share": 11.21
+          },
+          {
+            "party": "민주평화당",
+            "votes": 1322,
+            "share": 0.5
+          },
+          {
+            "party": "정의당",
+            "votes": 28977,
+            "share": 10.97
+          },
+          {
+            "party": "민중당",
+            "votes": 872,
+            "share": 0.33
+          },
+          {
+            "party": "대한애국당",
+            "votes": 587,
+            "share": 0.22
+          },
+          {
+            "party": "노동당",
+            "votes": 343,
+            "share": 0.13
+          },
+          {
+            "party": "녹색당",
+            "votes": 2090,
+            "share": 0.79
+          },
+          {
+            "party": "우리미래",
+            "votes": 373,
+            "share": 0.14
+          }
+        ],
+        "dongResults": {
+          "분당동": {
+            "electors": 20382,
+            "votes": 12653,
+            "validVotes": 12470,
+            "turnout": 62.08,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 5897,
+                "share": 47.29
+              },
+              {
+                "party": "자유한국당",
+                "votes": 3489,
+                "share": 27.98
+              },
+              {
+                "party": "바른미래당",
+                "votes": 1432,
+                "share": 11.48
+              },
+              {
+                "party": "민주평화당",
+                "votes": 54,
+                "share": 0.43
+              },
+              {
+                "party": "정의당",
+                "votes": 1419,
+                "share": 11.38
+              },
+              {
+                "party": "민중당",
+                "votes": 42,
+                "share": 0.34
+              },
+              {
+                "party": "대한애국당",
+                "votes": 17,
+                "share": 0.14
+              },
+              {
+                "party": "노동당",
+                "votes": 15,
+                "share": 0.12
+              },
+              {
+                "party": "녹색당",
+                "votes": 95,
+                "share": 0.76
+              },
+              {
+                "party": "우리미래",
+                "votes": 10,
+                "share": 0.08
+              }
+            ]
+          },
+          "수내1동": {
+            "electors": 14005,
+            "votes": 8744,
+            "validVotes": 8657,
+            "turnout": 62.43,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 3722,
+                "share": 42.99
+              },
+              {
+                "party": "자유한국당",
+                "votes": 2826,
+                "share": 32.64
+              },
+              {
+                "party": "바른미래당",
+                "votes": 1004,
+                "share": 11.6
+              },
+              {
+                "party": "민주평화당",
+                "votes": 28,
+                "share": 0.32
+              },
+              {
+                "party": "정의당",
+                "votes": 955,
+                "share": 11.03
+              },
+              {
+                "party": "민중당",
+                "votes": 17,
+                "share": 0.2
+              },
+              {
+                "party": "대한애국당",
+                "votes": 24,
+                "share": 0.28
+              },
+              {
+                "party": "노동당",
+                "votes": 2,
+                "share": 0.02
+              },
+              {
+                "party": "녹색당",
+                "votes": 71,
+                "share": 0.82
+              },
+              {
+                "party": "우리미래",
+                "votes": 8,
+                "share": 0.09
+              }
+            ]
+          },
+          "수내2동": {
+            "electors": 7513,
+            "votes": 5028,
+            "validVotes": 4988,
+            "turnout": 66.92,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 2117,
+                "share": 42.44
+              },
+              {
+                "party": "자유한국당",
+                "votes": 1539,
+                "share": 30.85
+              },
+              {
+                "party": "바른미래당",
+                "votes": 712,
+                "share": 14.27
+              },
+              {
+                "party": "민주평화당",
+                "votes": 20,
+                "share": 0.4
+              },
+              {
+                "party": "정의당",
+                "votes": 541,
+                "share": 10.85
+              },
+              {
+                "party": "민중당",
+                "votes": 8,
+                "share": 0.16
+              },
+              {
+                "party": "대한애국당",
+                "votes": 3,
+                "share": 0.06
+              },
+              {
+                "party": "노동당",
+                "votes": 3,
+                "share": 0.06
+              },
+              {
+                "party": "녹색당",
+                "votes": 40,
+                "share": 0.8
+              },
+              {
+                "party": "우리미래",
+                "votes": 5,
+                "share": 0.1
+              }
+            ]
+          },
+          "수내3동": {
+            "electors": 10706,
+            "votes": 6922,
+            "validVotes": 6834,
+            "turnout": 64.66,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 3397,
+                "share": 49.71
+              },
+              {
+                "party": "자유한국당",
+                "votes": 1610,
+                "share": 23.56
+              },
+              {
+                "party": "바른미래당",
+                "votes": 768,
+                "share": 11.24
+              },
+              {
+                "party": "민주평화당",
+                "votes": 26,
+                "share": 0.38
+              },
+              {
+                "party": "정의당",
+                "votes": 929,
+                "share": 13.59
+              },
+              {
+                "party": "민중당",
+                "votes": 23,
+                "share": 0.34
+              },
+              {
+                "party": "대한애국당",
+                "votes": 24,
+                "share": 0.35
+              },
+              {
+                "party": "노동당",
+                "votes": 6,
+                "share": 0.09
+              },
+              {
+                "party": "녹색당",
+                "votes": 43,
+                "share": 0.63
+              },
+              {
+                "party": "우리미래",
+                "votes": 8,
+                "share": 0.12
+              }
+            ]
+          },
+          "정자동": {
+            "electors": 14715,
+            "votes": 8953,
+            "validVotes": 8855,
+            "turnout": 60.84,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 4142,
+                "share": 46.78
+              },
+              {
+                "party": "자유한국당",
+                "votes": 2512,
+                "share": 28.37
+              },
+              {
+                "party": "바른미래당",
+                "votes": 950,
+                "share": 10.73
+              },
+              {
+                "party": "민주평화당",
+                "votes": 48,
+                "share": 0.54
+              },
+              {
+                "party": "정의당",
+                "votes": 1032,
+                "share": 11.65
+              },
+              {
+                "party": "민중당",
+                "votes": 34,
+                "share": 0.38
+              },
+              {
+                "party": "대한애국당",
+                "votes": 28,
+                "share": 0.32
+              },
+              {
+                "party": "노동당",
+                "votes": 13,
+                "share": 0.15
+              },
+              {
+                "party": "녹색당",
+                "votes": 84,
+                "share": 0.95
+              },
+              {
+                "party": "우리미래",
+                "votes": 12,
+                "share": 0.14
+              }
+            ]
+          },
+          "정자1동": {
+            "electors": 24321,
+            "votes": 13846,
+            "validVotes": 13748,
+            "turnout": 56.93,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 5291,
+                "share": 38.49
+              },
+              {
+                "party": "자유한국당",
+                "votes": 5354,
+                "share": 38.94
+              },
+              {
+                "party": "바른미래당",
+                "votes": 1685,
+                "share": 12.26
+              },
+              {
+                "party": "민주평화당",
+                "votes": 47,
+                "share": 0.34
+              },
+              {
+                "party": "정의당",
+                "votes": 1202,
+                "share": 8.74
+              },
+              {
+                "party": "민중당",
+                "votes": 13,
+                "share": 0.09
+              },
+              {
+                "party": "대한애국당",
+                "votes": 29,
+                "share": 0.21
+              },
+              {
+                "party": "노동당",
+                "votes": 8,
+                "share": 0.06
+              },
+              {
+                "party": "녹색당",
+                "votes": 100,
+                "share": 0.73
+              },
+              {
+                "party": "우리미래",
+                "votes": 19,
+                "share": 0.14
+              }
+            ]
+          },
+          "정자2동": {
+            "electors": 13617,
+            "votes": 8703,
+            "validVotes": 8541,
+            "turnout": 63.91,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 4379,
+                "share": 51.27
+              },
+              {
+                "party": "자유한국당",
+                "votes": 2128,
+                "share": 24.92
+              },
+              {
+                "party": "바른미래당",
+                "votes": 802,
+                "share": 9.39
+              },
+              {
+                "party": "민주평화당",
+                "votes": 45,
+                "share": 0.53
+              },
+              {
+                "party": "정의당",
+                "votes": 1012,
+                "share": 11.85
+              },
+              {
+                "party": "민중당",
+                "votes": 45,
+                "share": 0.53
+              },
+              {
+                "party": "대한애국당",
+                "votes": 25,
+                "share": 0.29
+              },
+              {
+                "party": "노동당",
+                "votes": 21,
+                "share": 0.25
+              },
+              {
+                "party": "녹색당",
+                "votes": 61,
+                "share": 0.71
+              },
+              {
+                "party": "우리미래",
+                "votes": 23,
+                "share": 0.27
+              }
+            ]
+          },
+          "정자3동": {
+            "electors": 12363,
+            "votes": 8257,
+            "validVotes": 8154,
+            "turnout": 66.79,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 3869,
+                "share": 47.45
+              },
+              {
+                "party": "자유한국당",
+                "votes": 2186,
+                "share": 26.81
+              },
+              {
+                "party": "바른미래당",
+                "votes": 937,
+                "share": 11.49
+              },
+              {
+                "party": "민주평화당",
+                "votes": 28,
+                "share": 0.34
+              },
+              {
+                "party": "정의당",
+                "votes": 980,
+                "share": 12.02
+              },
+              {
+                "party": "민중당",
+                "votes": 30,
+                "share": 0.37
+              },
+              {
+                "party": "대한애국당",
+                "votes": 21,
+                "share": 0.26
+              },
+              {
+                "party": "노동당",
+                "votes": 9,
+                "share": 0.11
+              },
+              {
+                "party": "녹색당",
+                "votes": 84,
+                "share": 1.03
+              },
+              {
+                "party": "우리미래",
+                "votes": 10,
+                "share": 0.12
+              }
+            ]
+          },
+          "서현1동": {
+            "electors": 24232,
+            "votes": 15483,
+            "validVotes": 15350,
+            "turnout": 63.89,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 6787,
+                "share": 44.21
+              },
+              {
+                "party": "자유한국당",
+                "votes": 4627,
+                "share": 30.14
+              },
+              {
+                "party": "바른미래당",
+                "votes": 2099,
+                "share": 13.67
+              },
+              {
+                "party": "민주평화당",
+                "votes": 59,
+                "share": 0.38
+              },
+              {
+                "party": "정의당",
+                "votes": 1543,
+                "share": 10.05
+              },
+              {
+                "party": "민중당",
+                "votes": 32,
+                "share": 0.21
+              },
+              {
+                "party": "대한애국당",
+                "votes": 37,
+                "share": 0.24
+              },
+              {
+                "party": "노동당",
+                "votes": 11,
+                "share": 0.07
+              },
+              {
+                "party": "녹색당",
+                "votes": 141,
+                "share": 0.92
+              },
+              {
+                "party": "우리미래",
+                "votes": 14,
+                "share": 0.09
+              }
+            ]
+          },
+          "서현2동": {
+            "electors": 14813,
+            "votes": 10005,
+            "validVotes": 9932,
+            "turnout": 67.54,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 4644,
+                "share": 46.76
+              },
+              {
+                "party": "자유한국당",
+                "votes": 2623,
+                "share": 26.41
+              },
+              {
+                "party": "바른미래당",
+                "votes": 1322,
+                "share": 13.31
+              },
+              {
+                "party": "민주평화당",
+                "votes": 50,
+                "share": 0.5
+              },
+              {
+                "party": "정의당",
+                "votes": 1143,
+                "share": 11.51
+              },
+              {
+                "party": "민중당",
+                "votes": 28,
+                "share": 0.28
+              },
+              {
+                "party": "대한애국당",
+                "votes": 24,
+                "share": 0.24
+              },
+              {
+                "party": "노동당",
+                "votes": 16,
+                "share": 0.16
+              },
+              {
+                "party": "녹색당",
+                "votes": 71,
+                "share": 0.71
+              },
+              {
+                "party": "우리미래",
+                "votes": 11,
+                "share": 0.11
+              }
+            ]
+          },
+          "이매1동": {
+            "electors": 19887,
+            "votes": 13229,
+            "validVotes": 13128,
+            "turnout": 66.52,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 5760,
+                "share": 43.88
+              },
+              {
+                "party": "자유한국당",
+                "votes": 4059,
+                "share": 30.92
+              },
+              {
+                "party": "바른미래당",
+                "votes": 1611,
+                "share": 12.27
+              },
+              {
+                "party": "민주평화당",
+                "votes": 73,
+                "share": 0.56
+              },
+              {
+                "party": "정의당",
+                "votes": 1398,
+                "share": 10.65
+              },
+              {
+                "party": "민중당",
+                "votes": 41,
+                "share": 0.31
+              },
+              {
+                "party": "대한애국당",
+                "votes": 30,
+                "share": 0.23
+              },
+              {
+                "party": "노동당",
+                "votes": 22,
+                "share": 0.17
+              },
+              {
+                "party": "녹색당",
+                "votes": 112,
+                "share": 0.85
+              },
+              {
+                "party": "우리미래",
+                "votes": 22,
+                "share": 0.17
+              }
+            ]
+          },
+          "이매2동": {
+            "electors": 10947,
+            "votes": 7361,
+            "validVotes": 7300,
+            "turnout": 67.24,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 2965,
+                "share": 40.62
+              },
+              {
+                "party": "자유한국당",
+                "votes": 2510,
+                "share": 34.38
+              },
+              {
+                "party": "바른미래당",
+                "votes": 960,
+                "share": 13.15
+              },
+              {
+                "party": "민주평화당",
+                "votes": 33,
+                "share": 0.45
+              },
+              {
+                "party": "정의당",
+                "votes": 727,
+                "share": 9.96
+              },
+              {
+                "party": "민중당",
+                "votes": 15,
+                "share": 0.21
+              },
+              {
+                "party": "대한애국당",
+                "votes": 12,
+                "share": 0.16
+              },
+              {
+                "party": "노동당",
+                "votes": 13,
+                "share": 0.18
+              },
+              {
+                "party": "녹색당",
+                "votes": 53,
+                "share": 0.73
+              },
+              {
+                "party": "우리미래",
+                "votes": 12,
+                "share": 0.16
+              }
+            ]
+          },
+          "야탑1동": {
+            "electors": 15310,
+            "votes": 10244,
+            "validVotes": 10162,
+            "turnout": 66.91,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 5137,
+                "share": 50.55
+              },
+              {
+                "party": "자유한국당",
+                "votes": 2862,
+                "share": 28.16
+              },
+              {
+                "party": "바른미래당",
+                "votes": 1076,
+                "share": 10.59
+              },
+              {
+                "party": "민주평화당",
+                "votes": 52,
+                "share": 0.51
+              },
+              {
+                "party": "정의당",
+                "votes": 886,
+                "share": 8.72
+              },
+              {
+                "party": "민중당",
+                "votes": 38,
+                "share": 0.37
+              },
+              {
+                "party": "대한애국당",
+                "votes": 31,
+                "share": 0.31
+              },
+              {
+                "party": "노동당",
+                "votes": 11,
+                "share": 0.11
+              },
+              {
+                "party": "녹색당",
+                "votes": 56,
+                "share": 0.55
+              },
+              {
+                "party": "우리미래",
+                "votes": 13,
+                "share": 0.13
+              }
+            ]
+          },
+          "야탑2동": {
+            "electors": 13608,
+            "votes": 9266,
+            "validVotes": 9195,
+            "turnout": 68.09,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 3813,
+                "share": 41.47
+              },
+              {
+                "party": "자유한국당",
+                "votes": 3195,
+                "share": 34.75
+              },
+              {
+                "party": "바른미래당",
+                "votes": 1067,
+                "share": 11.6
+              },
+              {
+                "party": "민주평화당",
+                "votes": 55,
+                "share": 0.6
+              },
+              {
+                "party": "정의당",
+                "votes": 933,
+                "share": 10.15
+              },
+              {
+                "party": "민중당",
+                "votes": 28,
+                "share": 0.3
+              },
+              {
+                "party": "대한애국당",
+                "votes": 17,
+                "share": 0.18
+              },
+              {
+                "party": "노동당",
+                "votes": 10,
+                "share": 0.11
+              },
+              {
+                "party": "녹색당",
+                "votes": 71,
+                "share": 0.77
+              },
+              {
+                "party": "우리미래",
+                "votes": 6,
+                "share": 0.07
+              }
+            ]
+          },
+          "야탑3동": {
+            "electors": 23604,
+            "votes": 14655,
+            "validVotes": 14506,
+            "turnout": 62.09,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 7826,
+                "share": 53.95
+              },
+              {
+                "party": "자유한국당",
+                "votes": 3545,
+                "share": 24.44
+              },
+              {
+                "party": "바른미래당",
+                "votes": 1356,
+                "share": 9.35
+              },
+              {
+                "party": "민주평화당",
+                "votes": 93,
+                "share": 0.64
+              },
+              {
+                "party": "정의당",
+                "votes": 1451,
+                "share": 10.0
+              },
+              {
+                "party": "민중당",
+                "votes": 64,
+                "share": 0.44
+              },
+              {
+                "party": "대한애국당",
+                "votes": 26,
+                "share": 0.18
+              },
+              {
+                "party": "노동당",
+                "votes": 27,
+                "share": 0.19
+              },
+              {
+                "party": "녹색당",
+                "votes": 95,
+                "share": 0.65
+              },
+              {
+                "party": "우리미래",
+                "votes": 23,
+                "share": 0.16
+              }
+            ]
+          },
+          "금곡동": {
+            "electors": 23616,
+            "votes": 14890,
+            "validVotes": 14734,
+            "turnout": 63.05,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 6935,
+                "share": 47.07
+              },
+              {
+                "party": "자유한국당",
+                "votes": 4570,
+                "share": 31.02
+              },
+              {
+                "party": "바른미래당",
+                "votes": 1513,
+                "share": 10.27
+              },
+              {
+                "party": "민주평화당",
+                "votes": 78,
+                "share": 0.53
+              },
+              {
+                "party": "정의당",
+                "votes": 1369,
+                "share": 9.29
+              },
+              {
+                "party": "민중당",
+                "votes": 57,
+                "share": 0.39
+              },
+              {
+                "party": "대한애국당",
+                "votes": 43,
+                "share": 0.29
+              },
+              {
+                "party": "노동당",
+                "votes": 14,
+                "share": 0.1
+              },
+              {
+                "party": "녹색당",
+                "votes": 122,
+                "share": 0.83
+              },
+              {
+                "party": "우리미래",
+                "votes": 33,
+                "share": 0.22
+              }
+            ]
+          },
+          "구미동": {
+            "electors": 25290,
+            "votes": 16011,
+            "validVotes": 15752,
+            "turnout": 63.31,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 7162,
+                "share": 45.47
+              },
+              {
+                "party": "자유한국당",
+                "votes": 4726,
+                "share": 30.0
+              },
+              {
+                "party": "바른미래당",
+                "votes": 1713,
+                "share": 10.87
+              },
+              {
+                "party": "민주평화당",
+                "votes": 94,
+                "share": 0.6
+              },
+              {
+                "party": "정의당",
+                "votes": 1752,
+                "share": 11.12
+              },
+              {
+                "party": "민중당",
+                "votes": 87,
+                "share": 0.55
+              },
+              {
+                "party": "대한애국당",
+                "votes": 50,
+                "share": 0.32
+              },
+              {
+                "party": "노동당",
+                "votes": 28,
+                "share": 0.18
+              },
+              {
+                "party": "녹색당",
+                "votes": 113,
+                "share": 0.72
+              },
+              {
+                "party": "우리미래",
+                "votes": 27,
+                "share": 0.17
+              }
+            ]
+          },
+          "구미1동": {
+            "electors": 14677,
+            "votes": 9397,
+            "validVotes": 9345,
+            "turnout": 64.03,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 4486,
+                "share": 48.0
+              },
+              {
+                "party": "자유한국당",
+                "votes": 2504,
+                "share": 26.8
+              },
+              {
+                "party": "바른미래당",
+                "votes": 972,
+                "share": 10.4
+              },
+              {
+                "party": "민주평화당",
+                "votes": 59,
+                "share": 0.63
+              },
+              {
+                "party": "정의당",
+                "votes": 1157,
+                "share": 12.38
+              },
+              {
+                "party": "민중당",
+                "votes": 32,
+                "share": 0.34
+              },
+              {
+                "party": "대한애국당",
+                "votes": 19,
+                "share": 0.2
+              },
+              {
+                "party": "노동당",
+                "votes": 13,
+                "share": 0.14
+              },
+              {
+                "party": "녹색당",
+                "votes": 92,
+                "share": 0.98
+              },
+              {
+                "party": "우리미래",
+                "votes": 11,
+                "share": 0.12
+              }
+            ]
+          },
+          "판교동": {
+            "electors": 16648,
+            "votes": 11258,
+            "validVotes": 11179,
+            "turnout": 67.62,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 5219,
+                "share": 46.69
+              },
+              {
+                "party": "자유한국당",
+                "votes": 2846,
+                "share": 25.46
+              },
+              {
+                "party": "바른미래당",
+                "votes": 1377,
+                "share": 12.32
+              },
+              {
+                "party": "민주평화당",
+                "votes": 57,
+                "share": 0.51
+              },
+              {
+                "party": "정의당",
+                "votes": 1499,
+                "share": 13.41
+              },
+              {
+                "party": "민중당",
+                "votes": 27,
+                "share": 0.24
+              },
+              {
+                "party": "대한애국당",
+                "votes": 19,
+                "share": 0.17
+              },
+              {
+                "party": "노동당",
+                "votes": 12,
+                "share": 0.11
+              },
+              {
+                "party": "녹색당",
+                "votes": 115,
+                "share": 1.03
+              },
+              {
+                "party": "우리미래",
+                "votes": 8,
+                "share": 0.07
+              }
+            ]
+          },
+          "삼평동": {
+            "electors": 18199,
+            "votes": 11790,
+            "validVotes": 11687,
+            "turnout": 64.78,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 6090,
+                "share": 52.11
+              },
+              {
+                "party": "자유한국당",
+                "votes": 2749,
+                "share": 23.52
+              },
+              {
+                "party": "바른미래당",
+                "votes": 1217,
+                "share": 10.41
+              },
+              {
+                "party": "민주평화당",
+                "votes": 66,
+                "share": 0.56
+              },
+              {
+                "party": "정의당",
+                "votes": 1409,
+                "share": 12.06
+              },
+              {
+                "party": "민중당",
+                "votes": 54,
+                "share": 0.46
+              },
+              {
+                "party": "대한애국당",
+                "votes": 13,
+                "share": 0.11
+              },
+              {
+                "party": "노동당",
+                "votes": 11,
+                "share": 0.09
+              },
+              {
+                "party": "녹색당",
+                "votes": 60,
+                "share": 0.51
+              },
+              {
+                "party": "우리미래",
+                "votes": 18,
+                "share": 0.15
+              }
+            ]
+          },
+          "백현동": {
+            "electors": 20842,
+            "votes": 13346,
+            "validVotes": 13242,
+            "turnout": 64.03,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 6797,
+                "share": 51.33
+              },
+              {
+                "party": "자유한국당",
+                "votes": 3208,
+                "share": 24.23
+              },
+              {
+                "party": "바른미래당",
+                "votes": 1466,
+                "share": 11.07
+              },
+              {
+                "party": "민주평화당",
+                "votes": 73,
+                "share": 0.55
+              },
+              {
+                "party": "정의당",
+                "votes": 1490,
+                "share": 11.25
+              },
+              {
+                "party": "민중당",
+                "votes": 41,
+                "share": 0.31
+              },
+              {
+                "party": "대한애국당",
+                "votes": 27,
+                "share": 0.2
+              },
+              {
+                "party": "노동당",
+                "votes": 20,
+                "share": 0.15
+              },
+              {
+                "party": "녹색당",
+                "votes": 97,
+                "share": 0.73
+              },
+              {
+                "party": "우리미래",
+                "votes": 23,
+                "share": 0.17
+              }
+            ]
+          },
+          "운중동": {
+            "electors": 15629,
+            "votes": 10081,
+            "validVotes": 9998,
+            "turnout": 64.5,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 4524,
+                "share": 45.25
+              },
+              {
+                "party": "자유한국당",
+                "votes": 2999,
+                "share": 30.0
+              },
+              {
+                "party": "바른미래당",
+                "votes": 1086,
+                "share": 10.86
+              },
+              {
+                "party": "민주평화당",
+                "votes": 48,
+                "share": 0.48
+              },
+              {
+                "party": "정의당",
+                "votes": 1178,
+                "share": 11.78
+              },
+              {
+                "party": "민중당",
+                "votes": 23,
+                "share": 0.23
+              },
+              {
+                "party": "대한애국당",
+                "votes": 24,
+                "share": 0.24
+              },
+              {
+                "party": "노동당",
+                "votes": 12,
+                "share": 0.12
+              },
+              {
+                "party": "녹색당",
+                "votes": 91,
+                "share": 0.91
+              },
+              {
+                "party": "우리미래",
+                "votes": 13,
+                "share": 0.13
+              }
+            ]
+          }
+        }
+      },
+      "cycle": 7,
+      "source": "중앙선거관리위원회 선거통계시스템 다운로드 XLSX"
+    }
+  },
+  {
+    "id": "2020-04-15",
+    "date": "2020-04-15",
+    "year": "2020",
+    "shortName": "21대 총선",
+    "title": "제21대 국회의원선거",
+    "type": "국회의원선거",
+    "description": "행정동별로 해당 분당갑·분당을 민주당 지역구 후보 득표율을 표시합니다. 같은 날 도의원 보궐선거도 확인할 수 있습니다.",
+    "defaultRace": "assembly",
+    "races": [
+      {
+        "id": "assembly",
+        "label": "국회의원",
+        "metricLabel": "민주당 지역구 후보 득표율",
+        "coverage": [
+          "분당동",
+          "수내1동",
+          "수내2동",
+          "수내3동",
+          "정자동",
+          "정자1동",
+          "정자2동",
+          "정자3동",
+          "서현1동",
+          "서현2동",
+          "이매1동",
+          "이매2동",
+          "야탑1동",
+          "야탑2동",
+          "야탑3동",
+          "금곡동",
+          "구미동",
+          "구미1동",
+          "판교동",
+          "삼평동",
+          "백현동",
+          "운중동"
+        ],
+        "constituencyByDong": {
+          "서현1동": "분당갑",
+          "서현2동": "분당갑",
+          "이매1동": "분당갑",
+          "이매2동": "분당갑",
+          "야탑1동": "분당갑",
+          "야탑2동": "분당갑",
+          "야탑3동": "분당갑",
+          "판교동": "분당갑",
+          "삼평동": "분당갑",
+          "백현동": "분당갑",
+          "운중동": "분당갑",
+          "분당동": "분당을",
+          "수내1동": "분당을",
+          "수내2동": "분당을",
+          "수내3동": "분당을",
+          "정자동": "분당을",
+          "정자1동": "분당을",
+          "정자2동": "분당을",
+          "정자3동": "분당을",
+          "금곡동": "분당을",
+          "구미동": "분당을",
+          "구미1동": "분당을"
+        },
+        "benchmarks": [
+          {
+            "label": "분당갑",
+            "value": 49.35,
+            "detail": "김병관 후보",
+            "source": "official-user-file"
+          },
+          {
+            "label": "분당을",
+            "value": 47.94,
+            "detail": "김병욱 후보",
+            "source": "official-user-file"
+          }
+        ],
+        "results": {
+          "서현1동": {
+            "dem": 42.17,
+            "opponent": 57.34,
+            "turnout": 73.27,
+            "demVotes": 7516,
+            "opponentVotes": 10220,
+            "validVotes": 17824,
+            "electors": 24533,
+            "votes": 17976
+          },
+          "서현2동": {
+            "dem": 48.73,
+            "opponent": 50.87,
+            "turnout": 75.73,
+            "demVotes": 5359,
+            "opponentVotes": 5594,
+            "validVotes": 10997,
+            "electors": 14623,
+            "votes": 11074
+          },
+          "이매1동": {
+            "dem": 46.45,
+            "opponent": 53.09,
+            "turnout": 76.71,
+            "demVotes": 6977,
+            "opponentVotes": 7974,
+            "validVotes": 15019,
+            "electors": 19713,
+            "votes": 15121
+          },
+          "이매2동": {
+            "dem": 42.47,
+            "opponent": 57.07,
+            "turnout": 77.58,
+            "demVotes": 3557,
+            "opponentVotes": 4780,
+            "validVotes": 8375,
+            "electors": 10870,
+            "votes": 8433
+          },
+          "야탑1동": {
+            "dem": 52.03,
+            "opponent": 47.43,
+            "turnout": 73.97,
+            "demVotes": 5761,
+            "opponentVotes": 5251,
+            "validVotes": 11072,
+            "electors": 15131,
+            "votes": 11193
+          },
+          "야탑2동": {
+            "dem": 44.67,
+            "opponent": 54.83,
+            "turnout": 77.46,
+            "demVotes": 4624,
+            "opponentVotes": 5676,
+            "validVotes": 10352,
+            "electors": 13456,
+            "votes": 10423
+          },
+          "야탑3동": {
+            "dem": 56.36,
+            "opponent": 42.73,
+            "turnout": 68.87,
+            "demVotes": 8721,
+            "opponentVotes": 6613,
+            "validVotes": 15475,
+            "electors": 22717,
+            "votes": 15646
+          },
+          "판교동": {
+            "dem": 50.82,
+            "opponent": 48.78,
+            "turnout": 74.62,
+            "demVotes": 6199,
+            "opponentVotes": 5950,
+            "validVotes": 12198,
+            "electors": 16457,
+            "votes": 12281
+          },
+          "삼평동": {
+            "dem": 51.96,
+            "opponent": 47.48,
+            "turnout": 74.44,
+            "demVotes": 6961,
+            "opponentVotes": 6360,
+            "validVotes": 13396,
+            "electors": 18128,
+            "votes": 13495
+          },
+          "백현동": {
+            "dem": 50.95,
+            "opponent": 48.41,
+            "turnout": 73.35,
+            "demVotes": 7745,
+            "opponentVotes": 7359,
+            "validVotes": 15202,
+            "electors": 20881,
+            "votes": 15316
+          },
+          "운중동": {
+            "dem": 45.64,
+            "opponent": 53.92,
+            "turnout": 76.28,
+            "demVotes": 5697,
+            "opponentVotes": 6731,
+            "validVotes": 12483,
+            "electors": 16469,
+            "votes": 12562
+          },
+          "분당동": {
+            "dem": 49.54,
+            "opponent": 44.36,
+            "turnout": 70.34,
+            "demVotes": 6724,
+            "opponentVotes": 6022,
+            "validVotes": 13574,
+            "electors": 19403,
+            "votes": 13648
+          },
+          "수내1동": {
+            "dem": 43.87,
+            "opponent": 49.21,
+            "turnout": 73.15,
+            "demVotes": 4555,
+            "opponentVotes": 5110,
+            "validVotes": 10384,
+            "electors": 14309,
+            "votes": 10467
+          },
+          "수내2동": {
+            "dem": 43.31,
+            "opponent": 50.26,
+            "turnout": 78.97,
+            "demVotes": 2619,
+            "opponentVotes": 3039,
+            "validVotes": 6047,
+            "electors": 7699,
+            "votes": 6080
+          },
+          "수내3동": {
+            "dem": 52.64,
+            "opponent": 40.85,
+            "turnout": 74.55,
+            "demVotes": 4259,
+            "opponentVotes": 3305,
+            "validVotes": 8091,
+            "electors": 10910,
+            "votes": 8133
+          },
+          "정자동": {
+            "dem": 47.17,
+            "opponent": 45.08,
+            "turnout": 70.89,
+            "demVotes": 4839,
+            "opponentVotes": 4625,
+            "validVotes": 10259,
+            "electors": 14560,
+            "votes": 10321
+          },
+          "정자1동": {
+            "dem": 37.03,
+            "opponent": 57.52,
+            "turnout": 68.56,
+            "demVotes": 6129,
+            "opponentVotes": 9520,
+            "validVotes": 16552,
+            "electors": 24294,
+            "votes": 16657
+          },
+          "정자2동": {
+            "dem": 52.93,
+            "opponent": 39.09,
+            "turnout": 73.51,
+            "demVotes": 5633,
+            "opponentVotes": 4160,
+            "validVotes": 10642,
+            "electors": 14619,
+            "votes": 10747
+          },
+          "정자3동": {
+            "dem": 50.38,
+            "opponent": 42.47,
+            "turnout": 74.59,
+            "demVotes": 4535,
+            "opponentVotes": 3823,
+            "validVotes": 9001,
+            "electors": 12144,
+            "votes": 9058
+          },
+          "금곡동": {
+            "dem": 46.58,
+            "opponent": 45.92,
+            "turnout": 71.74,
+            "demVotes": 7561,
+            "opponentVotes": 7455,
+            "validVotes": 16234,
+            "electors": 22841,
+            "votes": 16385
+          },
+          "구미동": {
+            "dem": 48.22,
+            "opponent": 45.46,
+            "turnout": 71.43,
+            "demVotes": 8450,
+            "opponentVotes": 7966,
+            "validVotes": 17524,
+            "electors": 24681,
+            "votes": 17630
+          },
+          "구미1동": {
+            "dem": 50.69,
+            "opponent": 40.37,
+            "turnout": 74.6,
+            "demVotes": 5766,
+            "opponentVotes": 4592,
+            "validVotes": 11375,
+            "electors": 15360,
+            "votes": 11458
+          }
+        },
+        "status": "complete",
+        "demCandidate": "지역구별 상이",
+        "opponentCandidate": "지역구별 상이",
+        "sourceFile": "중앙선거관리위원회 선거통계시스템 다운로드 XLSX"
+      },
+      {
+        "id": "provincial-by",
+        "label": "도의원 보궐",
+        "metricLabel": "민주당 도의원 후보 득표율",
+        "coverage": [
+          "수내1동",
+          "수내2동",
+          "정자동",
+          "정자1동",
+          "금곡동",
+          "구미1동"
+        ],
+        "constituencyByDong": {
+          "수내1동": "당시 성남시 제7선거구",
+          "수내2동": "당시 성남시 제7선거구",
+          "정자동": "당시 성남시 제7선거구",
+          "정자1동": "당시 성남시 제7선거구",
+          "금곡동": "당시 성남시 제7선거구",
+          "구미1동": "당시 성남시 제7선거구"
+        },
+        "benchmarks": [
+          {
+            "label": "당시 성남시 제7선거구",
+            "value": 42.56,
+            "detail": "장정현 후보",
+            "source": "official-user-file"
+          }
+        ],
+        "results": {
+          "수내1동": {
+            "dem": 36.25,
+            "opponent": 55.36,
+            "turnout": 63.08,
+            "demVotes": 2443,
+            "opponentVotes": 3731,
+            "validVotes": 6740,
+            "electors": 10825,
+            "votes": 6828
+          },
+          "수내2동": {
+            "dem": 33.58,
+            "opponent": 56.41,
+            "turnout": 68.28,
+            "demVotes": 1225,
+            "opponentVotes": 2058,
+            "validVotes": 3648,
+            "electors": 5398,
+            "votes": 3686
+          },
+          "정자동": {
+            "dem": 39.3,
+            "opponent": 51.14,
+            "turnout": 63.01,
+            "demVotes": 2895,
+            "opponentVotes": 3767,
+            "validVotes": 7366,
+            "electors": 11850,
+            "votes": 7467
+          },
+          "정자1동": {
+            "dem": 30.6,
+            "opponent": 63.12,
+            "turnout": 61.28,
+            "demVotes": 3798,
+            "opponentVotes": 7834,
+            "validVotes": 12412,
+            "electors": 20489,
+            "votes": 12555
+          },
+          "금곡동": {
+            "dem": 39.97,
+            "opponent": 51.96,
+            "turnout": 65.38,
+            "demVotes": 4955,
+            "opponentVotes": 6442,
+            "validVotes": 12398,
+            "electors": 19262,
+            "votes": 12594
+          },
+          "구미1동": {
+            "dem": 42.72,
+            "opponent": 48.69,
+            "turnout": 62.78,
+            "demVotes": 2870,
+            "opponentVotes": 3271,
+            "validVotes": 6718,
+            "electors": 10851,
+            "votes": 6812
+          }
+        },
+        "status": "complete",
+        "demCandidate": "장정현",
+        "opponentCandidate": "이제영",
+        "sourceFile": "중앙선거관리위원회 선거통계시스템 다운로드 XLSX"
+      }
+    ]
+  },
+  {
+    "id": "2022-03-09",
+    "date": "2022-03-09",
+    "year": "2022",
+    "shortName": "20대 대선",
+    "title": "제20대 대통령선거",
+    "type": "대통령선거",
+    "description": "분당구 22개 행정동의 더불어민주당 이재명 후보 득표율을 비교합니다.",
+    "defaultRace": "president",
+    "races": [
+      {
+        "id": "president",
+        "label": "대통령",
+        "metricLabel": "민주당 대통령 후보 득표율",
+        "coverage": [
+          "분당동",
+          "수내1동",
+          "수내2동",
+          "수내3동",
+          "정자동",
+          "정자1동",
+          "정자2동",
+          "정자3동",
+          "서현1동",
+          "서현2동",
+          "이매1동",
+          "이매2동",
+          "야탑1동",
+          "야탑2동",
+          "야탑3동",
+          "금곡동",
+          "구미동",
+          "구미1동",
+          "판교동",
+          "삼평동",
+          "백현동",
+          "운중동"
+        ],
+        "constituencyByDong": {},
+        "benchmarks": [
+          {
+            "label": "전국",
+            "value": 47.83,
+            "detail": "이재명 후보",
+            "source": "verified-public"
+          },
+          {
+            "label": "분당구 전체",
+            "value": 42.35,
+            "detail": "22개 행정동 합계",
+            "source": "official-user-file"
+          }
+        ],
+        "results": {
+          "분당동": {
+            "dem": 42.31,
+            "opponent": 54.87,
+            "turnout": 78.41,
+            "demVotes": 5835,
+            "opponentVotes": 7568,
+            "validVotes": 13792,
+            "electors": 17687,
+            "votes": 13868
+          },
+          "수내1동": {
+            "dem": 38.09,
+            "opponent": 59.67,
+            "turnout": 81.47,
+            "demVotes": 4335,
+            "opponentVotes": 6792,
+            "validVotes": 11382,
+            "electors": 14092,
+            "votes": 11481
+          },
+          "수내2동": {
+            "dem": 37.01,
+            "opponent": 60.75,
+            "turnout": 85.69,
+            "demVotes": 2387,
+            "opponentVotes": 3918,
+            "validVotes": 6449,
+            "electors": 7559,
+            "votes": 6477
+          },
+          "수내3동": {
+            "dem": 44.53,
+            "opponent": 52.7,
+            "turnout": 81.06,
+            "demVotes": 3610,
+            "opponentVotes": 4272,
+            "validVotes": 8106,
+            "electors": 10055,
+            "votes": 8151
+          },
+          "정자동": {
+            "dem": 40.23,
+            "opponent": 56.67,
+            "turnout": 79.44,
+            "demVotes": 4350,
+            "opponentVotes": 6128,
+            "validVotes": 10813,
+            "electors": 13735,
+            "votes": 10911
+          },
+          "정자1동": {
+            "dem": 31.08,
+            "opponent": 66.92,
+            "turnout": 77.58,
+            "demVotes": 5452,
+            "opponentVotes": 11739,
+            "validVotes": 17541,
+            "electors": 22755,
+            "votes": 17654
+          },
+          "정자2동": {
+            "dem": 46.02,
+            "opponent": 50.99,
+            "turnout": 81.53,
+            "demVotes": 5091,
+            "opponentVotes": 5641,
+            "validVotes": 11062,
+            "electors": 13668,
+            "votes": 11143
+          },
+          "정자3동": {
+            "dem": 43.85,
+            "opponent": 53.21,
+            "turnout": 82.19,
+            "demVotes": 4387,
+            "opponentVotes": 5324,
+            "validVotes": 10005,
+            "electors": 12242,
+            "votes": 10062
+          },
+          "서현1동": {
+            "dem": 39.28,
+            "opponent": 58.21,
+            "turnout": 80.8,
+            "demVotes": 7672,
+            "opponentVotes": 11370,
+            "validVotes": 19534,
+            "electors": 24321,
+            "votes": 19651
+          },
+          "서현2동": {
+            "dem": 44.51,
+            "opponent": 52.94,
+            "turnout": 83.49,
+            "demVotes": 5530,
+            "opponentVotes": 6577,
+            "validVotes": 12424,
+            "electors": 14990,
+            "votes": 12515
+          },
+          "이매1동": {
+            "dem": 38.72,
+            "opponent": 59.0,
+            "turnout": 83.2,
+            "demVotes": 5912,
+            "opponentVotes": 9008,
+            "validVotes": 15269,
+            "electors": 18456,
+            "votes": 15356
+          },
+          "이매2동": {
+            "dem": 36.7,
+            "opponent": 61.34,
+            "turnout": 84.61,
+            "demVotes": 3141,
+            "opponentVotes": 5250,
+            "validVotes": 8559,
+            "electors": 10172,
+            "votes": 8607
+          },
+          "야탑1동": {
+            "dem": 45.26,
+            "opponent": 52.28,
+            "turnout": 83.0,
+            "demVotes": 5592,
+            "opponentVotes": 6460,
+            "validVotes": 12356,
+            "electors": 14990,
+            "votes": 12442
+          },
+          "야탑2동": {
+            "dem": 37.89,
+            "opponent": 59.73,
+            "turnout": 84.14,
+            "demVotes": 4050,
+            "opponentVotes": 6385,
+            "validVotes": 10690,
+            "electors": 12778,
+            "votes": 10751
+          },
+          "야탑3동": {
+            "dem": 49.95,
+            "opponent": 46.94,
+            "turnout": 78.16,
+            "demVotes": 7946,
+            "opponentVotes": 7466,
+            "validVotes": 15907,
+            "electors": 20502,
+            "votes": 16025
+          },
+          "금곡동": {
+            "dem": 40.5,
+            "opponent": 56.69,
+            "turnout": 79.39,
+            "demVotes": 6603,
+            "opponentVotes": 9242,
+            "validVotes": 16303,
+            "electors": 20700,
+            "votes": 16433
+          },
+          "구미동": {
+            "dem": 41.54,
+            "opponent": 55.72,
+            "turnout": 79.59,
+            "demVotes": 7366,
+            "opponentVotes": 9881,
+            "validVotes": 17733,
+            "electors": 22432,
+            "votes": 17853
+          },
+          "구미1동": {
+            "dem": 45.02,
+            "opponent": 52.31,
+            "turnout": 84.08,
+            "demVotes": 5861,
+            "opponentVotes": 6810,
+            "validVotes": 13018,
+            "electors": 15600,
+            "votes": 13117
+          },
+          "판교동": {
+            "dem": 42.63,
+            "opponent": 54.7,
+            "turnout": 84.16,
+            "demVotes": 6540,
+            "opponentVotes": 8391,
+            "validVotes": 15340,
+            "electors": 18313,
+            "votes": 15412
+          },
+          "삼평동": {
+            "dem": 46.27,
+            "opponent": 50.66,
+            "turnout": 82.29,
+            "demVotes": 6668,
+            "opponentVotes": 7300,
+            "validVotes": 14411,
+            "electors": 17619,
+            "votes": 14498
+          },
+          "백현동": {
+            "dem": 46.07,
+            "opponent": 51.27,
+            "turnout": 81.97,
+            "demVotes": 7491,
+            "opponentVotes": 8336,
+            "validVotes": 16260,
+            "electors": 19978,
+            "votes": 16375
+          },
+          "운중동": {
+            "dem": 42.52,
+            "opponent": 55.04,
+            "turnout": 83.23,
+            "demVotes": 7936,
+            "opponentVotes": 10273,
+            "validVotes": 18664,
+            "electors": 22559,
+            "votes": 18776
+          }
+        },
+        "status": "complete",
+        "demCandidate": "이재명",
+        "opponentCandidate": "윤석열",
+        "sourceFile": "중앙선거관리위원회 선거통계시스템 다운로드 XLSX"
+      }
+    ]
+  },
+  {
+    "id": "2022-06-01",
+    "date": "2022-06-01",
+    "year": "2022",
+    "shortName": "8회 지선",
+    "title": "제8회 전국동시지방선거",
+    "type": "지방선거 · 보궐선거",
+    "description": "성남시장·경기도지사·분당갑 국회의원 보궐선거를 행정동별로 비교합니다. 기초의원 결과는 아래 참고자료에서 선거구별 후보 득표로 제공합니다.",
+    "defaultRace": "mayor",
+    "races": [
+      {
+        "id": "mayor",
+        "label": "성남시장",
+        "metricLabel": "민주당 성남시장 후보 득표율",
+        "coverage": [
+          "분당동",
+          "수내1동",
+          "수내2동",
+          "수내3동",
+          "정자동",
+          "정자1동",
+          "정자2동",
+          "정자3동",
+          "서현1동",
+          "서현2동",
+          "이매1동",
+          "이매2동",
+          "야탑1동",
+          "야탑2동",
+          "야탑3동",
+          "금곡동",
+          "구미동",
+          "구미1동",
+          "판교동",
+          "삼평동",
+          "백현동",
+          "운중동"
+        ],
+        "constituencyByDong": {},
+        "benchmarks": [
+          {
+            "label": "성남시 전체",
+            "value": 42.88,
+            "detail": "배국환 후보",
+            "source": "verified-public"
+          },
+          {
+            "label": "분당구 전체",
+            "value": 39.62,
+            "detail": "배국환 후보 · 업로드 원본 합계",
+            "source": "official-user-file"
+          }
+        ],
+        "results": {
+          "분당동": {
+            "dem": 40.48,
+            "opponent": 58.57,
+            "turnout": 54.7,
+            "demVotes": 4255,
+            "opponentVotes": 6156,
+            "validVotes": 10511,
+            "electors": 19349,
+            "votes": 10584
+          },
+          "수내1동": {
+            "dem": 36.14,
+            "opponent": 63.09,
+            "turnout": 58.55,
+            "demVotes": 3000,
+            "opponentVotes": 5238,
+            "validVotes": 8302,
+            "electors": 14283,
+            "votes": 8362
+          },
+          "수내2동": {
+            "dem": 33.91,
+            "opponent": 65.61,
+            "turnout": 63.94,
+            "demVotes": 1564,
+            "opponentVotes": 3026,
+            "validVotes": 4612,
+            "electors": 7251,
+            "votes": 4636
+          },
+          "수내3동": {
+            "dem": 42.17,
+            "opponent": 57.12,
+            "turnout": 56.21,
+            "demVotes": 2444,
+            "opponentVotes": 3310,
+            "validVotes": 5795,
+            "electors": 10386,
+            "votes": 5838
+          },
+          "정자동": {
+            "dem": 38.41,
+            "opponent": 60.73,
+            "turnout": 53.37,
+            "demVotes": 2890,
+            "opponentVotes": 4569,
+            "validVotes": 7524,
+            "electors": 14204,
+            "votes": 7581
+          },
+          "정자1동": {
+            "dem": 29.29,
+            "opponent": 70.32,
+            "turnout": 53.71,
+            "demVotes": 3762,
+            "opponentVotes": 9033,
+            "validVotes": 12845,
+            "electors": 24088,
+            "votes": 12937
+          },
+          "정자2동": {
+            "dem": 43.53,
+            "opponent": 55.34,
+            "turnout": 56.62,
+            "demVotes": 3023,
+            "opponentVotes": 3843,
+            "validVotes": 6944,
+            "electors": 12448,
+            "votes": 7048
+          },
+          "정자3동": {
+            "dem": 42.3,
+            "opponent": 56.89,
+            "turnout": 58.75,
+            "demVotes": 3224,
+            "opponentVotes": 4336,
+            "validVotes": 7622,
+            "electors": 13089,
+            "votes": 7690
+          },
+          "서현1동": {
+            "dem": 34.24,
+            "opponent": 65.03,
+            "turnout": 59.75,
+            "demVotes": 4965,
+            "opponentVotes": 9430,
+            "validVotes": 14500,
+            "electors": 24517,
+            "votes": 14649
+          },
+          "서현2동": {
+            "dem": 39.79,
+            "opponent": 59.52,
+            "turnout": 61.46,
+            "demVotes": 3412,
+            "opponentVotes": 5104,
+            "validVotes": 8575,
+            "electors": 14072,
+            "votes": 8649
+          },
+          "이매1동": {
+            "dem": 36.24,
+            "opponent": 62.99,
+            "turnout": 63.8,
+            "demVotes": 4418,
+            "opponentVotes": 7679,
+            "validVotes": 12190,
+            "electors": 19350,
+            "votes": 12345
+          },
+          "이매2동": {
+            "dem": 33.1,
+            "opponent": 66.32,
+            "turnout": 65.78,
+            "demVotes": 2265,
+            "opponentVotes": 4538,
+            "validVotes": 6843,
+            "electors": 10486,
+            "votes": 6898
+          },
+          "야탑1동": {
+            "dem": 39.75,
+            "opponent": 59.51,
+            "turnout": 63.26,
+            "demVotes": 3764,
+            "opponentVotes": 5636,
+            "validVotes": 9470,
+            "electors": 15195,
+            "votes": 9612
+          },
+          "야탑2동": {
+            "dem": 34.56,
+            "opponent": 64.81,
+            "turnout": 65.33,
+            "demVotes": 2863,
+            "opponentVotes": 5369,
+            "validVotes": 8284,
+            "electors": 12782,
+            "votes": 8351
+          },
+          "야탑3동": {
+            "dem": 44.89,
+            "opponent": 54.16,
+            "turnout": 55.56,
+            "demVotes": 5394,
+            "opponentVotes": 6508,
+            "validVotes": 12017,
+            "electors": 21933,
+            "votes": 12186
+          },
+          "금곡동": {
+            "dem": 38.15,
+            "opponent": 61.05,
+            "turnout": 57.39,
+            "demVotes": 4851,
+            "opponentVotes": 7763,
+            "validVotes": 12715,
+            "electors": 22349,
+            "votes": 12825
+          },
+          "구미동": {
+            "dem": 40.82,
+            "opponent": 58.39,
+            "turnout": 57.49,
+            "demVotes": 5622,
+            "opponentVotes": 8043,
+            "validVotes": 13774,
+            "electors": 24169,
+            "votes": 13895
+          },
+          "구미1동": {
+            "dem": 41.65,
+            "opponent": 57.69,
+            "turnout": 59.28,
+            "demVotes": 3481,
+            "opponentVotes": 4822,
+            "validVotes": 8358,
+            "electors": 14209,
+            "votes": 8423
+          },
+          "판교동": {
+            "dem": 41.31,
+            "opponent": 57.73,
+            "turnout": 63.46,
+            "demVotes": 4970,
+            "opponentVotes": 6945,
+            "validVotes": 12030,
+            "electors": 19110,
+            "votes": 12128
+          },
+          "삼평동": {
+            "dem": 42.77,
+            "opponent": 56.23,
+            "turnout": 59.28,
+            "demVotes": 4596,
+            "opponentVotes": 6043,
+            "validVotes": 10747,
+            "electors": 18336,
+            "votes": 10870
+          },
+          "백현동": {
+            "dem": 42.88,
+            "opponent": 56.08,
+            "turnout": 59.78,
+            "demVotes": 5209,
+            "opponentVotes": 6813,
+            "validVotes": 12148,
+            "electors": 20607,
+            "votes": 12319
+          },
+          "운중동": {
+            "dem": 40.2,
+            "opponent": 59.0,
+            "turnout": 62.01,
+            "demVotes": 6000,
+            "opponentVotes": 8806,
+            "validVotes": 14926,
+            "electors": 24395,
+            "votes": 15127
+          }
+        },
+        "status": "complete",
+        "demCandidate": "배국환",
+        "opponentCandidate": "신상진",
+        "sourceFile": "개표현황(읍면동별)[제8회][지방선거][구·시·군의_장선거][경기도][성남시][성남시분당구].xlsx"
+      },
+      {
+        "id": "governor",
+        "label": "경기도지사",
+        "metricLabel": "민주당 경기도지사 후보 득표율",
+        "coverage": [
+          "분당동",
+          "수내1동",
+          "수내2동",
+          "수내3동",
+          "정자동",
+          "정자1동",
+          "정자2동",
+          "정자3동",
+          "서현1동",
+          "서현2동",
+          "이매1동",
+          "이매2동",
+          "야탑1동",
+          "야탑2동",
+          "야탑3동",
+          "금곡동",
+          "구미동",
+          "구미1동",
+          "판교동",
+          "삼평동",
+          "백현동",
+          "운중동"
+        ],
+        "constituencyByDong": {},
+        "benchmarks": [
+          {
+            "label": "경기도 전체",
+            "value": 49.06,
+            "detail": "김동연 후보",
+            "source": "verified-public"
+          },
+          {
+            "label": "분당구 전체",
+            "value": 41.82,
+            "detail": "김동연 후보 · 업로드 원본 합계",
+            "source": "official-user-file"
+          }
+        ],
+        "results": {
+          "분당동": {
+            "dem": 42.32,
+            "opponent": 55.79,
+            "turnout": 54.61,
+            "demVotes": 4448,
+            "opponentVotes": 5864,
+            "validVotes": 10511,
+            "electors": 19349,
+            "votes": 10566
+          },
+          "수내1동": {
+            "dem": 37.77,
+            "opponent": 60.42,
+            "turnout": 58.58,
+            "demVotes": 3144,
+            "opponentVotes": 5029,
+            "validVotes": 8323,
+            "electors": 14283,
+            "votes": 8367
+          },
+          "수내2동": {
+            "dem": 37.28,
+            "opponent": 61.12,
+            "turnout": 63.95,
+            "demVotes": 1725,
+            "opponentVotes": 2828,
+            "validVotes": 4627,
+            "electors": 7251,
+            "votes": 4637
+          },
+          "수내3동": {
+            "dem": 44.76,
+            "opponent": 53.76,
+            "turnout": 56.23,
+            "demVotes": 2601,
+            "opponentVotes": 3124,
+            "validVotes": 5811,
+            "electors": 10386,
+            "votes": 5840
+          },
+          "정자동": {
+            "dem": 40.32,
+            "opponent": 57.68,
+            "turnout": 53.4,
+            "demVotes": 3043,
+            "opponentVotes": 4354,
+            "validVotes": 7548,
+            "electors": 14204,
+            "votes": 7585
+          },
+          "정자1동": {
+            "dem": 30.37,
+            "opponent": 67.56,
+            "turnout": 53.75,
+            "demVotes": 3912,
+            "opponentVotes": 8702,
+            "validVotes": 12880,
+            "electors": 24088,
+            "votes": 12947
+          },
+          "정자2동": {
+            "dem": 44.26,
+            "opponent": 53.87,
+            "turnout": 56.64,
+            "demVotes": 3090,
+            "opponentVotes": 3761,
+            "validVotes": 6982,
+            "electors": 12448,
+            "votes": 7051
+          },
+          "정자3동": {
+            "dem": 44.51,
+            "opponent": 53.74,
+            "turnout": 58.8,
+            "demVotes": 3406,
+            "opponentVotes": 4113,
+            "validVotes": 7653,
+            "electors": 13089,
+            "votes": 7696
+          },
+          "서현1동": {
+            "dem": 36.48,
+            "opponent": 61.9,
+            "turnout": 59.86,
+            "demVotes": 5335,
+            "opponentVotes": 9052,
+            "validVotes": 14624,
+            "electors": 24517,
+            "votes": 14677
+          },
+          "서현2동": {
+            "dem": 41.71,
+            "opponent": 56.9,
+            "turnout": 61.51,
+            "demVotes": 3594,
+            "opponentVotes": 4903,
+            "validVotes": 8617,
+            "electors": 14072,
+            "votes": 8655
+          },
+          "이매1동": {
+            "dem": 38.66,
+            "opponent": 59.51,
+            "turnout": 63.8,
+            "demVotes": 4748,
+            "opponentVotes": 7310,
+            "validVotes": 12283,
+            "electors": 19350,
+            "votes": 12346
+          },
+          "이매2동": {
+            "dem": 35.55,
+            "opponent": 63.01,
+            "turnout": 65.82,
+            "demVotes": 2445,
+            "opponentVotes": 4334,
+            "validVotes": 6878,
+            "electors": 10486,
+            "votes": 6902
+          },
+          "야탑1동": {
+            "dem": 42.85,
+            "opponent": 55.41,
+            "turnout": 63.28,
+            "demVotes": 4098,
+            "opponentVotes": 5299,
+            "validVotes": 9563,
+            "electors": 15195,
+            "votes": 9616
+          },
+          "야탑2동": {
+            "dem": 36.96,
+            "opponent": 61.39,
+            "turnout": 65.34,
+            "demVotes": 3073,
+            "opponentVotes": 5104,
+            "validVotes": 8314,
+            "electors": 12782,
+            "votes": 8352
+          },
+          "야탑3동": {
+            "dem": 47.53,
+            "opponent": 50.83,
+            "turnout": 55.61,
+            "demVotes": 5752,
+            "opponentVotes": 6151,
+            "validVotes": 12102,
+            "electors": 21933,
+            "votes": 12196
+          },
+          "금곡동": {
+            "dem": 40.6,
+            "opponent": 57.75,
+            "turnout": 57.43,
+            "demVotes": 5174,
+            "opponentVotes": 7359,
+            "validVotes": 12743,
+            "electors": 22349,
+            "votes": 12836
+          },
+          "구미동": {
+            "dem": 42.47,
+            "opponent": 55.59,
+            "turnout": 57.52,
+            "demVotes": 5866,
+            "opponentVotes": 7678,
+            "validVotes": 13811,
+            "electors": 24169,
+            "votes": 13901
+          },
+          "구미1동": {
+            "dem": 43.6,
+            "opponent": 54.38,
+            "turnout": 59.38,
+            "demVotes": 3661,
+            "opponentVotes": 4566,
+            "validVotes": 8397,
+            "electors": 14209,
+            "votes": 8438
+          },
+          "판교동": {
+            "dem": 44.03,
+            "opponent": 54.4,
+            "turnout": 63.51,
+            "demVotes": 5326,
+            "opponentVotes": 6580,
+            "validVotes": 12096,
+            "electors": 19110,
+            "votes": 12137
+          },
+          "삼평동": {
+            "dem": 46.3,
+            "opponent": 51.84,
+            "turnout": 59.34,
+            "demVotes": 5007,
+            "opponentVotes": 5606,
+            "validVotes": 10814,
+            "electors": 18336,
+            "votes": 10880
+          },
+          "백현동": {
+            "dem": 45.16,
+            "opponent": 52.97,
+            "turnout": 59.79,
+            "demVotes": 5531,
+            "opponentVotes": 6487,
+            "validVotes": 12247,
+            "electors": 20607,
+            "votes": 12321
+          },
+          "운중동": {
+            "dem": 42.19,
+            "opponent": 56.15,
+            "turnout": 62.08,
+            "demVotes": 6366,
+            "opponentVotes": 8472,
+            "validVotes": 15089,
+            "electors": 24395,
+            "votes": 15145
+          }
+        },
+        "status": "complete",
+        "demCandidate": "김동연",
+        "opponentCandidate": "김은혜",
+        "sourceFile": "개표현황(읍면동별)[제8회][지방선거][시·도지사선거][경기도][성남시분당구].xlsx"
+      },
+      {
+        "id": "assembly-by",
+        "label": "분당갑 보궐",
+        "metricLabel": "민주당 국회의원 후보 득표율",
+        "coverage": [
+          "서현1동",
+          "서현2동",
+          "이매1동",
+          "이매2동",
+          "야탑1동",
+          "야탑2동",
+          "야탑3동",
+          "판교동",
+          "삼평동",
+          "백현동",
+          "운중동"
+        ],
+        "constituencyByDong": {
+          "서현1동": "분당갑",
+          "서현2동": "분당갑",
+          "이매1동": "분당갑",
+          "이매2동": "분당갑",
+          "야탑1동": "분당갑",
+          "야탑2동": "분당갑",
+          "야탑3동": "분당갑",
+          "판교동": "분당갑",
+          "삼평동": "분당갑",
+          "백현동": "분당갑",
+          "운중동": "분당갑"
+        },
+        "benchmarks": [
+          {
+            "label": "분당갑 전체",
+            "value": 37.49,
+            "detail": "김병관 후보",
+            "source": "official-user-file"
+          }
+        ],
+        "results": {
+          "서현1동": {
+            "dem": 32.15,
+            "opponent": 67.85,
+            "turnout": 59.79,
+            "demVotes": 4634,
+            "opponentVotes": 9778,
+            "validVotes": 14412,
+            "electors": 24498,
+            "votes": 14648
+          },
+          "서현2동": {
+            "dem": 37.7,
+            "opponent": 62.3,
+            "turnout": 61.51,
+            "demVotes": 3202,
+            "opponentVotes": 5291,
+            "validVotes": 8493,
+            "electors": 14065,
+            "votes": 8651
+          },
+          "이매1동": {
+            "dem": 34.1,
+            "opponent": 65.9,
+            "turnout": 63.77,
+            "demVotes": 4147,
+            "opponentVotes": 8013,
+            "validVotes": 12160,
+            "electors": 19338,
+            "votes": 12332
+          },
+          "이매2동": {
+            "dem": 31.6,
+            "opponent": 68.4,
+            "turnout": 65.67,
+            "demVotes": 2131,
+            "opponentVotes": 4613,
+            "validVotes": 6744,
+            "electors": 10479,
+            "votes": 6882
+          },
+          "야탑1동": {
+            "dem": 38.06,
+            "opponent": 61.94,
+            "turnout": 63.14,
+            "demVotes": 3573,
+            "opponentVotes": 5816,
+            "validVotes": 9389,
+            "electors": 15188,
+            "votes": 9590
+          },
+          "야탑2동": {
+            "dem": 33.28,
+            "opponent": 66.72,
+            "turnout": 65.05,
+            "demVotes": 2693,
+            "opponentVotes": 5398,
+            "validVotes": 8091,
+            "electors": 12777,
+            "votes": 8312
+          },
+          "야탑3동": {
+            "dem": 43.36,
+            "opponent": 56.64,
+            "turnout": 55.54,
+            "demVotes": 5145,
+            "opponentVotes": 6722,
+            "validVotes": 11867,
+            "electors": 21913,
+            "votes": 12171
+          },
+          "판교동": {
+            "dem": 37.86,
+            "opponent": 62.14,
+            "turnout": 63.47,
+            "demVotes": 4514,
+            "opponentVotes": 7410,
+            "validVotes": 11924,
+            "electors": 19094,
+            "votes": 12119
+          },
+          "삼평동": {
+            "dem": 40.09,
+            "opponent": 59.91,
+            "turnout": 59.22,
+            "demVotes": 4270,
+            "opponentVotes": 6381,
+            "validVotes": 10651,
+            "electors": 18315,
+            "votes": 10846
+          },
+          "백현동": {
+            "dem": 40.2,
+            "opponent": 59.8,
+            "turnout": 59.51,
+            "demVotes": 4820,
+            "opponentVotes": 7171,
+            "validVotes": 11991,
+            "electors": 20585,
+            "votes": 12250
+          },
+          "운중동": {
+            "dem": 38.05,
+            "opponent": 61.95,
+            "turnout": 62.02,
+            "demVotes": 5691,
+            "opponentVotes": 9266,
+            "validVotes": 14957,
+            "electors": 24371,
+            "votes": 15114
+          }
+        },
+        "status": "complete",
+        "demCandidate": "김병관",
+        "opponentCandidate": "안철수",
+        "sourceFile": "중앙선거관리위원회 선거통계시스템 다운로드 XLSX"
+      }
+    ],
+    "councilReference": {
+      "title": "성남시의원 결과 · 참고",
+      "description": "성남시의원 지역구는 중선거구제입니다. 선거구별 의원정수와 당선자를 함께 표시하며, 무투표 선거구는 실제 당선자 이름을 득표수 없이 제공합니다.",
+      "districts": [
+        {
+          "id": "아",
+          "name": "성남시아선거구",
+          "status": "counted",
+          "coverage": [
+            "이매1동",
+            "이매2동",
+            "삼평동"
+          ],
+          "electors": 51348,
+          "votes": 33275,
+          "validVotes": 32388,
+          "turnout": 64.8,
+          "candidates": [
+            {
+              "party": "더불어민주당",
+              "name": "이준배",
+              "votes": 12799,
+              "share": 39.52,
+              "elected": true
+            },
+            {
+              "party": "국민의힘",
+              "name": "박종각",
+              "votes": 14081,
+              "share": 43.48,
+              "elected": true
+            },
+            {
+              "party": "국민의힘",
+              "name": "박영애",
+              "votes": 5508,
+              "share": 17.01,
+              "elected": false
+            }
+          ],
+          "dongResults": {
+            "이매1동": {
+              "electors": 19350,
+              "votes": 12325,
+              "validVotes": 12009,
+              "turnout": 63.7,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "이준배",
+                  "votes": 4459,
+                  "share": 37.13
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "박종각",
+                  "votes": 5631,
+                  "share": 46.89
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "박영애",
+                  "votes": 1919,
+                  "share": 15.98
+                }
+              ]
+            },
+            "이매2동": {
+              "electors": 10486,
+              "votes": 6875,
+              "validVotes": 6688,
+              "turnout": 65.56,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "이준배",
+                  "votes": 2198,
+                  "share": 32.86
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "박종각",
+                  "votes": 2839,
+                  "share": 42.45
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "박영애",
+                  "votes": 1651,
+                  "share": 24.69
+                }
+              ]
+            },
+            "삼평동": {
+              "electors": 18336,
+              "votes": 10827,
+              "validVotes": 10522,
+              "turnout": 59.05,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "이준배",
+                  "votes": 4657,
+                  "share": 44.26
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "박종각",
+                  "votes": 4299,
+                  "share": 40.86
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "박영애",
+                  "votes": 1566,
+                  "share": 14.88
+                }
+              ]
+            }
+          },
+          "seats": 2,
+          "winnerNames": [
+            "이준배",
+            "박종각"
+          ],
+          "winnerCount": 2
+        },
+        {
+          "id": "자",
+          "name": "성남시자선거구",
+          "status": "counted",
+          "coverage": [
+            "야탑1동",
+            "야탑2동",
+            "야탑3동"
+          ],
+          "electors": 53271,
+          "votes": 33486,
+          "validVotes": 32495,
+          "turnout": 62.86,
+          "candidates": [
+            {
+              "party": "더불어민주당",
+              "name": "정연화",
+              "votes": 13176,
+              "share": 40.55,
+              "elected": true
+            },
+            {
+              "party": "국민의힘",
+              "name": "김보석",
+              "votes": 19163,
+              "share": 58.97,
+              "elected": true
+            },
+            {
+              "party": "통일한국당",
+              "name": "김중식",
+              "votes": 156,
+              "share": 0.48,
+              "elected": false
+            }
+          ],
+          "dongResults": {
+            "야탑1동": {
+              "electors": 15195,
+              "votes": 9583,
+              "validVotes": 9330,
+              "turnout": 63.07,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "정연화",
+                  "votes": 3688,
+                  "share": 39.53
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "김보석",
+                  "votes": 5606,
+                  "share": 60.09
+                },
+                {
+                  "party": "통일한국당",
+                  "name": "김중식",
+                  "votes": 36,
+                  "share": 0.39
+                }
+              ]
+            },
+            "야탑2동": {
+              "electors": 12782,
+              "votes": 8341,
+              "validVotes": 8132,
+              "turnout": 65.26,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "정연화",
+                  "votes": 2739,
+                  "share": 33.68
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "김보석",
+                  "votes": 5358,
+                  "share": 65.89
+                },
+                {
+                  "party": "통일한국당",
+                  "name": "김중식",
+                  "votes": 35,
+                  "share": 0.43
+                }
+              ]
+            },
+            "야탑3동": {
+              "electors": 21933,
+              "votes": 12137,
+              "validVotes": 11712,
+              "turnout": 55.34,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "정연화",
+                  "votes": 5160,
+                  "share": 44.06
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "김보석",
+                  "votes": 6485,
+                  "share": 55.37
+                },
+                {
+                  "party": "통일한국당",
+                  "name": "김중식",
+                  "votes": 67,
+                  "share": 0.57
+                }
+              ]
+            }
+          },
+          "seats": 2,
+          "winnerNames": [
+            "정연화",
+            "김보석"
+          ],
+          "winnerCount": 2
+        },
+        {
+          "id": "차",
+          "name": "성남시차선거구",
+          "status": "uncontested",
+          "coverage": [
+            "서현1동",
+            "서현2동"
+          ],
+          "electors": null,
+          "votes": null,
+          "validVotes": null,
+          "turnout": null,
+          "candidates": [
+            {
+              "party": "더불어민주당",
+              "name": "박경희",
+              "votes": null,
+              "share": null,
+              "elected": true
+            },
+            {
+              "party": "국민의힘",
+              "name": "이영경",
+              "votes": null,
+              "share": null,
+              "elected": true
+            }
+          ],
+          "dongResults": {},
+          "note": "후보자 수가 의원정수를 넘지 않아 무투표 당선되어 개표결과 파일이 없습니다.",
+          "seats": 2,
+          "winnerNames": [
+            "박경희",
+            "이영경"
+          ],
+          "winnerCount": 2
+        },
+        {
+          "id": "카",
+          "name": "성남시카선거구",
+          "status": "counted",
+          "coverage": [
+            "판교동",
+            "백현동",
+            "운중동"
+          ],
+          "electors": 68503,
+          "votes": 43971,
+          "validVotes": 42997,
+          "turnout": 64.19,
+          "candidates": [
+            {
+              "party": "더불어민주당",
+              "name": "최현백",
+              "votes": 17859,
+              "share": 41.54,
+              "elected": true
+            },
+            {
+              "party": "국민의힘",
+              "name": "김종환",
+              "votes": 17687,
+              "share": 41.14,
+              "elected": true
+            },
+            {
+              "party": "국민의힘",
+              "name": "한선미",
+              "votes": 5358,
+              "share": 12.46,
+              "elected": false
+            },
+            {
+              "party": "정의당",
+              "name": "예윤해",
+              "votes": 2093,
+              "share": 4.87,
+              "elected": false
+            }
+          ],
+          "dongResults": {
+            "판교동": {
+              "electors": 19110,
+              "votes": 12111,
+              "validVotes": 11925,
+              "turnout": 63.38,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "최현백",
+                  "votes": 4763,
+                  "share": 39.94
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "김종환",
+                  "votes": 4760,
+                  "share": 39.92
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "한선미",
+                  "votes": 1626,
+                  "share": 13.64
+                },
+                {
+                  "party": "정의당",
+                  "name": "예윤해",
+                  "votes": 776,
+                  "share": 6.51
+                }
+              ]
+            },
+            "백현동": {
+              "electors": 20607,
+              "votes": 12299,
+              "validVotes": 11942,
+              "turnout": 59.68,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "최현백",
+                  "votes": 5122,
+                  "share": 42.89
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "김종환",
+                  "votes": 4913,
+                  "share": 41.14
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "한선미",
+                  "votes": 1490,
+                  "share": 12.48
+                },
+                {
+                  "party": "정의당",
+                  "name": "예윤해",
+                  "votes": 417,
+                  "share": 3.49
+                }
+              ]
+            },
+            "운중동": {
+              "electors": 24395,
+              "votes": 15108,
+              "validVotes": 14783,
+              "turnout": 61.93,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "최현백",
+                  "votes": 6059,
+                  "share": 40.99
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "김종환",
+                  "votes": 6126,
+                  "share": 41.44
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "한선미",
+                  "votes": 1826,
+                  "share": 12.35
+                },
+                {
+                  "party": "정의당",
+                  "name": "예윤해",
+                  "votes": 772,
+                  "share": 5.22
+                }
+              ]
+            }
+          },
+          "seats": 2,
+          "winnerNames": [
+            "최현백",
+            "김종환"
+          ],
+          "winnerCount": 2
+        },
+        {
+          "id": "타",
+          "name": "성남시타선거구",
+          "status": "counted",
+          "coverage": [
+            "분당동",
+            "수내3동",
+            "정자2동",
+            "정자3동",
+            "구미동"
+          ],
+          "electors": 86151,
+          "votes": 51780,
+          "validVotes": 49149,
+          "turnout": 60.1,
+          "candidates": [
+            {
+              "party": "더불어민주당",
+              "name": "최종성",
+              "votes": 15013,
+              "share": 30.55,
+              "elected": true
+            },
+            {
+              "party": "더불어민주당",
+              "name": "이종목",
+              "votes": 5081,
+              "share": 10.34,
+              "elected": false
+            },
+            {
+              "party": "국민의힘",
+              "name": "박은미",
+              "votes": 19427,
+              "share": 39.53,
+              "elected": true
+            },
+            {
+              "party": "국민의힘",
+              "name": "서희경",
+              "votes": 5333,
+              "share": 10.85,
+              "elected": true
+            },
+            {
+              "party": "정의당",
+              "name": "양호영",
+              "votes": 3048,
+              "share": 6.2,
+              "elected": false
+            },
+            {
+              "party": "깨어있는시민연대당",
+              "name": "유재호",
+              "votes": 867,
+              "share": 1.76,
+              "elected": false
+            },
+            {
+              "party": "무소속",
+              "name": "서기용",
+              "votes": 380,
+              "share": 0.77,
+              "elected": false
+            }
+          ],
+          "dongResults": {
+            "분당동": {
+              "electors": 19349,
+              "votes": 10582,
+              "validVotes": 10038,
+              "turnout": 54.69,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "최종성",
+                  "votes": 2938,
+                  "share": 29.27
+                },
+                {
+                  "party": "더불어민주당",
+                  "name": "이종목",
+                  "votes": 1073,
+                  "share": 10.69
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "박은미",
+                  "votes": 3884,
+                  "share": 38.69
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "서희경",
+                  "votes": 1261,
+                  "share": 12.56
+                },
+                {
+                  "party": "정의당",
+                  "name": "양호영",
+                  "votes": 621,
+                  "share": 6.19
+                },
+                {
+                  "party": "깨어있는시민연대당",
+                  "name": "유재호",
+                  "votes": 203,
+                  "share": 2.02
+                },
+                {
+                  "party": "무소속",
+                  "name": "서기용",
+                  "votes": 58,
+                  "share": 0.58
+                }
+              ]
+            },
+            "수내3동": {
+              "electors": 10386,
+              "votes": 5840,
+              "validVotes": 5576,
+              "turnout": 56.23,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "최종성",
+                  "votes": 1642,
+                  "share": 29.45
+                },
+                {
+                  "party": "더불어민주당",
+                  "name": "이종목",
+                  "votes": 580,
+                  "share": 10.4
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "박은미",
+                  "votes": 2096,
+                  "share": 37.59
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "서희경",
+                  "votes": 685,
+                  "share": 12.28
+                },
+                {
+                  "party": "정의당",
+                  "name": "양호영",
+                  "votes": 481,
+                  "share": 8.63
+                },
+                {
+                  "party": "깨어있는시민연대당",
+                  "name": "유재호",
+                  "votes": 61,
+                  "share": 1.09
+                },
+                {
+                  "party": "무소속",
+                  "name": "서기용",
+                  "votes": 31,
+                  "share": 0.56
+                }
+              ]
+            },
+            "정자2동": {
+              "electors": 12448,
+              "votes": 7044,
+              "validVotes": 6649,
+              "turnout": 56.59,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "최종성",
+                  "votes": 2065,
+                  "share": 31.06
+                },
+                {
+                  "party": "더불어민주당",
+                  "name": "이종목",
+                  "votes": 722,
+                  "share": 10.86
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "박은미",
+                  "votes": 2678,
+                  "share": 40.28
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "서희경",
+                  "votes": 607,
+                  "share": 9.13
+                },
+                {
+                  "party": "정의당",
+                  "name": "양호영",
+                  "votes": 453,
+                  "share": 6.81
+                },
+                {
+                  "party": "깨어있는시민연대당",
+                  "name": "유재호",
+                  "votes": 79,
+                  "share": 1.19
+                },
+                {
+                  "party": "무소속",
+                  "name": "서기용",
+                  "votes": 45,
+                  "share": 0.68
+                }
+              ]
+            },
+            "정자3동": {
+              "electors": 13089,
+              "votes": 7695,
+              "validVotes": 7331,
+              "turnout": 58.79,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "최종성",
+                  "votes": 2175,
+                  "share": 29.67
+                },
+                {
+                  "party": "더불어민주당",
+                  "name": "이종목",
+                  "votes": 700,
+                  "share": 9.55
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "박은미",
+                  "votes": 2850,
+                  "share": 38.88
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "서희경",
+                  "votes": 883,
+                  "share": 12.04
+                },
+                {
+                  "party": "정의당",
+                  "name": "양호영",
+                  "votes": 540,
+                  "share": 7.37
+                },
+                {
+                  "party": "깨어있는시민연대당",
+                  "name": "유재호",
+                  "votes": 128,
+                  "share": 1.75
+                },
+                {
+                  "party": "무소속",
+                  "name": "서기용",
+                  "votes": 55,
+                  "share": 0.75
+                }
+              ]
+            },
+            "구미동": {
+              "electors": 24169,
+              "votes": 13884,
+              "validVotes": 13182,
+              "turnout": 57.45,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "최종성",
+                  "votes": 3860,
+                  "share": 29.28
+                },
+                {
+                  "party": "더불어민주당",
+                  "name": "이종목",
+                  "votes": 1240,
+                  "share": 9.41
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "박은미",
+                  "votes": 5634,
+                  "share": 42.74
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "서희경",
+                  "votes": 1352,
+                  "share": 10.26
+                },
+                {
+                  "party": "정의당",
+                  "name": "양호영",
+                  "votes": 647,
+                  "share": 4.91
+                },
+                {
+                  "party": "깨어있는시민연대당",
+                  "name": "유재호",
+                  "votes": 327,
+                  "share": 2.48
+                },
+                {
+                  "party": "무소속",
+                  "name": "서기용",
+                  "votes": 122,
+                  "share": 0.93
+                }
+              ]
+            }
+          },
+          "seats": 3,
+          "winnerNames": [
+            "최종성",
+            "박은미",
+            "서희경"
+          ],
+          "winnerCount": 3
+        },
+        {
+          "id": "파",
+          "name": "성남시파선거구",
+          "status": "counted",
+          "coverage": [
+            "수내1동",
+            "수내2동",
+            "정자1동"
+          ],
+          "electors": 48488,
+          "votes": 28808,
+          "validVotes": 28077,
+          "turnout": 59.41,
+          "candidates": [
+            {
+              "party": "더불어민주당",
+              "name": "서은경",
+              "votes": 10171,
+              "share": 36.23,
+              "elected": true
+            },
+            {
+              "party": "국민의힘",
+              "name": "김장권",
+              "votes": 14463,
+              "share": 51.51,
+              "elected": true
+            },
+            {
+              "party": "국민의힘",
+              "name": "정봉규",
+              "votes": 3443,
+              "share": 12.26,
+              "elected": false
+            }
+          ],
+          "dongResults": {
+            "수내1동": {
+              "electors": 14283,
+              "votes": 8351,
+              "validVotes": 8138,
+              "turnout": 58.47,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "서은경",
+                  "votes": 3240,
+                  "share": 39.81
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "김장권",
+                  "votes": 3880,
+                  "share": 47.68
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "정봉규",
+                  "votes": 1018,
+                  "share": 12.51
+                }
+              ]
+            },
+            "수내2동": {
+              "electors": 7251,
+              "votes": 4633,
+              "validVotes": 4544,
+              "turnout": 63.89,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "서은경",
+                  "votes": 1755,
+                  "share": 38.62
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "김장권",
+                  "votes": 2249,
+                  "share": 49.49
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "정봉규",
+                  "votes": 540,
+                  "share": 11.88
+                }
+              ]
+            },
+            "정자1동": {
+              "electors": 24088,
+              "votes": 12926,
+              "validVotes": 12558,
+              "turnout": 53.66,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "서은경",
+                  "votes": 3946,
+                  "share": 31.42
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "김장권",
+                  "votes": 6982,
+                  "share": 55.6
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "정봉규",
+                  "votes": 1630,
+                  "share": 12.98
+                }
+              ]
+            }
+          },
+          "seats": 2,
+          "winnerNames": [
+            "서은경",
+            "김장권"
+          ],
+          "winnerCount": 2
+        },
+        {
+          "id": "하",
+          "name": "성남시하선거구",
+          "status": "uncontested",
+          "coverage": [
+            "정자동",
+            "금곡동",
+            "구미1동"
+          ],
+          "electors": null,
+          "votes": null,
+          "validVotes": null,
+          "turnout": null,
+          "candidates": [
+            {
+              "party": "더불어민주당",
+              "name": "조정식",
+              "votes": null,
+              "share": null,
+              "elected": true
+            },
+            {
+              "party": "국민의힘",
+              "name": "정용한",
+              "votes": null,
+              "share": null,
+              "elected": true
+            }
+          ],
+          "dongResults": {},
+          "note": "후보자 수가 의원정수를 넘지 않아 무투표 당선되어 개표결과 파일이 없습니다.",
+          "seats": 2,
+          "winnerNames": [
+            "조정식",
+            "정용한"
+          ],
+          "winnerCount": 2
+        }
+      ],
+      "proportional": {
+        "electors": 404133,
+        "votes": 250551,
+        "validVotes": 246798,
+        "turnout": 62.0,
+        "parties": [
+          {
+            "party": "더불어민주당",
+            "votes": 93353,
+            "share": 37.83
+          },
+          {
+            "party": "국민의힘",
+            "votes": 143236,
+            "share": 58.04
+          },
+          {
+            "party": "정의당",
+            "votes": 10209,
+            "share": 4.14
+          }
+        ],
+        "dongResults": {
+          "분당동": {
+            "electors": 19349,
+            "votes": 10582,
+            "validVotes": 10408,
+            "turnout": 54.69,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 3988,
+                "share": 38.32
+              },
+              {
+                "party": "국민의힘",
+                "votes": 5898,
+                "share": 56.67
+              },
+              {
+                "party": "정의당",
+                "votes": 522,
+                "share": 5.02
+              }
+            ]
+          },
+          "수내1동": {
+            "electors": 14283,
+            "votes": 8359,
+            "validVotes": 8242,
+            "turnout": 58.52,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 2841,
+                "share": 34.47
+              },
+              {
+                "party": "국민의힘",
+                "votes": 5112,
+                "share": 62.02
+              },
+              {
+                "party": "정의당",
+                "votes": 289,
+                "share": 3.51
+              }
+            ]
+          },
+          "수내2동": {
+            "electors": 7251,
+            "votes": 4633,
+            "validVotes": 4600,
+            "turnout": 63.89,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 1503,
+                "share": 32.67
+              },
+              {
+                "party": "국민의힘",
+                "votes": 2934,
+                "share": 63.78
+              },
+              {
+                "party": "정의당",
+                "votes": 163,
+                "share": 3.54
+              }
+            ]
+          },
+          "수내3동": {
+            "electors": 10386,
+            "votes": 5839,
+            "validVotes": 5734,
+            "turnout": 56.22,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 2271,
+                "share": 39.61
+              },
+              {
+                "party": "국민의힘",
+                "votes": 3148,
+                "share": 54.9
+              },
+              {
+                "party": "정의당",
+                "votes": 315,
+                "share": 5.49
+              }
+            ]
+          },
+          "정자동": {
+            "electors": 14204,
+            "votes": 7579,
+            "validVotes": 7470,
+            "turnout": 53.36,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 2753,
+                "share": 36.85
+              },
+              {
+                "party": "국민의힘",
+                "votes": 4420,
+                "share": 59.17
+              },
+              {
+                "party": "정의당",
+                "votes": 297,
+                "share": 3.98
+              }
+            ]
+          },
+          "정자1동": {
+            "electors": 24088,
+            "votes": 12935,
+            "validVotes": 12694,
+            "turnout": 53.7,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 3464,
+                "share": 27.29
+              },
+              {
+                "party": "국민의힘",
+                "votes": 8879,
+                "share": 69.95
+              },
+              {
+                "party": "정의당",
+                "votes": 351,
+                "share": 2.77
+              }
+            ]
+          },
+          "정자2동": {
+            "electors": 12448,
+            "votes": 7034,
+            "validVotes": 6905,
+            "turnout": 56.51,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 2818,
+                "share": 40.81
+              },
+              {
+                "party": "국민의힘",
+                "votes": 3755,
+                "share": 54.38
+              },
+              {
+                "party": "정의당",
+                "votes": 332,
+                "share": 4.81
+              }
+            ]
+          },
+          "정자3동": {
+            "electors": 13089,
+            "votes": 7691,
+            "validVotes": 7560,
+            "turnout": 58.76,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 2965,
+                "share": 39.22
+              },
+              {
+                "party": "국민의힘",
+                "votes": 4172,
+                "share": 55.19
+              },
+              {
+                "party": "정의당",
+                "votes": 423,
+                "share": 5.6
+              }
+            ]
+          },
+          "서현1동": {
+            "electors": 24517,
+            "votes": 14659,
+            "validVotes": 14497,
+            "turnout": 59.79,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 4791,
+                "share": 33.05
+              },
+              {
+                "party": "국민의힘",
+                "votes": 9224,
+                "share": 63.63
+              },
+              {
+                "party": "정의당",
+                "votes": 482,
+                "share": 3.32
+              }
+            ]
+          },
+          "서현2동": {
+            "electors": 14072,
+            "votes": 8650,
+            "validVotes": 8579,
+            "turnout": 61.47,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 3276,
+                "share": 38.19
+              },
+              {
+                "party": "국민의힘",
+                "votes": 4987,
+                "share": 58.13
+              },
+              {
+                "party": "정의당",
+                "votes": 316,
+                "share": 3.68
+              }
+            ]
+          },
+          "이매1동": {
+            "electors": 19350,
+            "votes": 12339,
+            "validVotes": 12171,
+            "turnout": 63.77,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 4271,
+                "share": 35.09
+              },
+              {
+                "party": "국민의힘",
+                "votes": 7444,
+                "share": 61.16
+              },
+              {
+                "party": "정의당",
+                "votes": 456,
+                "share": 3.75
+              }
+            ]
+          },
+          "이매2동": {
+            "electors": 10486,
+            "votes": 6895,
+            "validVotes": 6841,
+            "turnout": 65.75,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 2236,
+                "share": 32.69
+              },
+              {
+                "party": "국민의힘",
+                "votes": 4395,
+                "share": 64.24
+              },
+              {
+                "party": "정의당",
+                "votes": 210,
+                "share": 3.07
+              }
+            ]
+          },
+          "야탑1동": {
+            "electors": 15195,
+            "votes": 9610,
+            "validVotes": 9488,
+            "turnout": 63.24,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 3704,
+                "share": 39.04
+              },
+              {
+                "party": "국민의힘",
+                "votes": 5468,
+                "share": 57.63
+              },
+              {
+                "party": "정의당",
+                "votes": 316,
+                "share": 3.33
+              }
+            ]
+          },
+          "야탑2동": {
+            "electors": 12782,
+            "votes": 8348,
+            "validVotes": 8243,
+            "turnout": 65.31,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 2766,
+                "share": 33.56
+              },
+              {
+                "party": "국민의힘",
+                "votes": 5190,
+                "share": 62.96
+              },
+              {
+                "party": "정의당",
+                "votes": 287,
+                "share": 3.48
+              }
+            ]
+          },
+          "야탑3동": {
+            "electors": 21933,
+            "votes": 12193,
+            "validVotes": 12031,
+            "turnout": 55.59,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 5379,
+                "share": 44.71
+              },
+              {
+                "party": "국민의힘",
+                "votes": 6190,
+                "share": 51.45
+              },
+              {
+                "party": "정의당",
+                "votes": 462,
+                "share": 3.84
+              }
+            ]
+          },
+          "금곡동": {
+            "electors": 22349,
+            "votes": 12814,
+            "validVotes": 12664,
+            "turnout": 57.34,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 4679,
+                "share": 36.95
+              },
+              {
+                "party": "국민의힘",
+                "votes": 7596,
+                "share": 59.98
+              },
+              {
+                "party": "정의당",
+                "votes": 389,
+                "share": 3.07
+              }
+            ]
+          },
+          "구미동": {
+            "electors": 24169,
+            "votes": 13886,
+            "validVotes": 13456,
+            "turnout": 57.45,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 5151,
+                "share": 38.28
+              },
+              {
+                "party": "국민의힘",
+                "votes": 7679,
+                "share": 57.07
+              },
+              {
+                "party": "정의당",
+                "votes": 626,
+                "share": 4.65
+              }
+            ]
+          },
+          "구미1동": {
+            "electors": 14209,
+            "votes": 8419,
+            "validVotes": 8333,
+            "turnout": 59.25,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 3329,
+                "share": 39.95
+              },
+              {
+                "party": "국민의힘",
+                "votes": 4715,
+                "share": 56.58
+              },
+              {
+                "party": "정의당",
+                "votes": 289,
+                "share": 3.47
+              }
+            ]
+          },
+          "판교동": {
+            "electors": 19110,
+            "votes": 12126,
+            "validVotes": 11969,
+            "turnout": 63.45,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 4558,
+                "share": 38.08
+              },
+              {
+                "party": "국민의힘",
+                "votes": 6728,
+                "share": 56.21
+              },
+              {
+                "party": "정의당",
+                "votes": 683,
+                "share": 5.71
+              }
+            ]
+          },
+          "삼평동": {
+            "electors": 18336,
+            "votes": 10865,
+            "validVotes": 10684,
+            "turnout": 59.26,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 4423,
+                "share": 41.4
+              },
+              {
+                "party": "국민의힘",
+                "votes": 5831,
+                "share": 54.58
+              },
+              {
+                "party": "정의당",
+                "votes": 430,
+                "share": 4.02
+              }
+            ]
+          },
+          "백현동": {
+            "electors": 20607,
+            "votes": 12310,
+            "validVotes": 12055,
+            "turnout": 59.74,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 4880,
+                "share": 40.48
+              },
+              {
+                "party": "국민의힘",
+                "votes": 6593,
+                "share": 54.69
+              },
+              {
+                "party": "정의당",
+                "votes": 582,
+                "share": 4.83
+              }
+            ]
+          },
+          "운중동": {
+            "electors": 24395,
+            "votes": 15132,
+            "validVotes": 14859,
+            "turnout": 62.03,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 5609,
+                "share": 37.75
+              },
+              {
+                "party": "국민의힘",
+                "votes": 8464,
+                "share": 56.96
+              },
+              {
+                "party": "정의당",
+                "votes": 786,
+                "share": 5.29
+              }
+            ]
+          }
+        }
+      },
+      "cycle": 8,
+      "source": "중앙선거관리위원회 선거통계시스템 다운로드 XLSX"
+    },
+    "provincialCouncilReference": {
+      "title": "경기도의원 결과 · 참고",
+      "description": "경기도의원 지역구는 1인 선거구입니다. 분당구에 해당하는 성남시 제5~8선거구의 후보별 실제 득표와 당선자를 제공합니다.",
+      "districts": [
+        {
+          "id": "제5",
+          "name": "성남시제5선거구",
+          "status": "counted",
+          "seats": 1,
+          "coverage": [
+            "이매1동",
+            "이매2동",
+            "야탑1동",
+            "야탑2동",
+            "야탑3동",
+            "삼평동"
+          ],
+          "electors": 104619,
+          "votes": 66839,
+          "validVotes": 65611,
+          "turnout": 63.89,
+          "candidates": [
+            {
+              "party": "더불어민주당",
+              "name": "임채철",
+              "votes": 27019,
+              "share": 41.18,
+              "elected": false
+            },
+            {
+              "party": "국민의힘",
+              "name": "방성환",
+              "votes": 38592,
+              "share": 58.82,
+              "elected": true
+            }
+          ],
+          "dongResults": {
+            "이매1동": {
+              "electors": 19350,
+              "votes": 12342,
+              "validVotes": 12162,
+              "turnout": 63.78,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "임채철",
+                  "votes": 4588,
+                  "share": 37.72
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "방성환",
+                  "votes": 7574,
+                  "share": 62.28
+                }
+              ]
+            },
+            "이매2동": {
+              "electors": 10486,
+              "votes": 6897,
+              "validVotes": 6797,
+              "turnout": 65.77,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "임채철",
+                  "votes": 2331,
+                  "share": 34.29
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "방성환",
+                  "votes": 4466,
+                  "share": 65.71
+                }
+              ]
+            },
+            "야탑1동": {
+              "electors": 15195,
+              "votes": 9611,
+              "validVotes": 9449,
+              "turnout": 63.25,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "임채철",
+                  "votes": 3911,
+                  "share": 41.39
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "방성환",
+                  "votes": 5538,
+                  "share": 58.61
+                }
+              ]
+            },
+            "야탑2동": {
+              "electors": 12782,
+              "votes": 8349,
+              "validVotes": 8243,
+              "turnout": 65.32,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "임채철",
+                  "votes": 2945,
+                  "share": 35.73
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "방성환",
+                  "votes": 5298,
+                  "share": 64.27
+                }
+              ]
+            },
+            "야탑3동": {
+              "electors": 21933,
+              "votes": 12187,
+              "validVotes": 11890,
+              "turnout": 55.56,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "임채철",
+                  "votes": 5524,
+                  "share": 46.46
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "방성환",
+                  "votes": 6366,
+                  "share": 53.54
+                }
+              ]
+            },
+            "삼평동": {
+              "electors": 18336,
+              "votes": 10864,
+              "validVotes": 10675,
+              "turnout": 59.25,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "임채철",
+                  "votes": 4721,
+                  "share": 44.22
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "방성환",
+                  "votes": 5954,
+                  "share": 55.78
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "제6",
+          "name": "성남시제6선거구",
+          "status": "counted",
+          "seats": 1,
+          "coverage": [
+            "서현1동",
+            "서현2동",
+            "판교동",
+            "백현동",
+            "운중동"
+          ],
+          "electors": 109507,
+          "votes": 69719,
+          "validVotes": 68608,
+          "turnout": 63.67,
+          "candidates": [
+            {
+              "party": "더불어민주당",
+              "name": "김승용",
+              "votes": 26464,
+              "share": 38.57,
+              "elected": false
+            },
+            {
+              "party": "국민의힘",
+              "name": "이기인",
+              "votes": 42144,
+              "share": 61.43,
+              "elected": true
+            }
+          ],
+          "dongResults": {
+            "서현1동": {
+              "electors": 24517,
+              "votes": 14659,
+              "validVotes": 14505,
+              "turnout": 59.79,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "김승용",
+                  "votes": 4527,
+                  "share": 31.21
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "이기인",
+                  "votes": 9978,
+                  "share": 68.79
+                }
+              ]
+            },
+            "서현2동": {
+              "electors": 14072,
+              "votes": 8651,
+              "validVotes": 8571,
+              "turnout": 61.48,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "김승용",
+                  "votes": 3006,
+                  "share": 35.07
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "이기인",
+                  "votes": 5565,
+                  "share": 64.93
+                }
+              ]
+            },
+            "판교동": {
+              "electors": 19110,
+              "votes": 12112,
+              "validVotes": 11809,
+              "turnout": 63.38,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "김승용",
+                  "votes": 4886,
+                  "share": 41.38
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "이기인",
+                  "votes": 6923,
+                  "share": 58.62
+                }
+              ]
+            },
+            "백현동": {
+              "electors": 20607,
+              "votes": 12311,
+              "validVotes": 12115,
+              "turnout": 59.74,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "김승용",
+                  "votes": 5264,
+                  "share": 43.45
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "이기인",
+                  "votes": 6851,
+                  "share": 56.55
+                }
+              ]
+            },
+            "운중동": {
+              "electors": 24395,
+              "votes": 15126,
+              "validVotes": 14881,
+              "turnout": 62.0,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "김승용",
+                  "votes": 5948,
+                  "share": 39.97
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "이기인",
+                  "votes": 8933,
+                  "share": 60.03
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "제7",
+          "name": "성남시제7선거구",
+          "status": "counted",
+          "seats": 1,
+          "coverage": [
+            "분당동",
+            "수내3동",
+            "정자2동",
+            "정자3동",
+            "구미동"
+          ],
+          "electors": 86151,
+          "votes": 51782,
+          "validVotes": 50817,
+          "turnout": 60.11,
+          "candidates": [
+            {
+              "party": "더불어민주당",
+              "name": "송민규",
+              "votes": 23544,
+              "share": 46.33,
+              "elected": false
+            },
+            {
+              "party": "국민의힘",
+              "name": "안계일",
+              "votes": 27273,
+              "share": 53.67,
+              "elected": true
+            }
+          ],
+          "dongResults": {
+            "분당동": {
+              "electors": 19349,
+              "votes": 10581,
+              "validVotes": 10367,
+              "turnout": 54.68,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "송민규",
+                  "votes": 4565,
+                  "share": 44.03
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "안계일",
+                  "votes": 5802,
+                  "share": 55.97
+                }
+              ]
+            },
+            "수내3동": {
+              "electors": 10386,
+              "votes": 5839,
+              "validVotes": 5760,
+              "turnout": 56.22,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "송민규",
+                  "votes": 2699,
+                  "share": 46.86
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "안계일",
+                  "votes": 3061,
+                  "share": 53.14
+                }
+              ]
+            },
+            "정자2동": {
+              "electors": 12448,
+              "votes": 7044,
+              "validVotes": 6936,
+              "turnout": 56.59,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "송민규",
+                  "votes": 3241,
+                  "share": 46.73
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "안계일",
+                  "votes": 3695,
+                  "share": 53.27
+                }
+              ]
+            },
+            "정자3동": {
+              "electors": 13089,
+              "votes": 7695,
+              "validVotes": 7564,
+              "turnout": 58.79,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "송민규",
+                  "votes": 3510,
+                  "share": 46.4
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "안계일",
+                  "votes": 4054,
+                  "share": 53.6
+                }
+              ]
+            },
+            "구미동": {
+              "electors": 24169,
+              "votes": 13887,
+              "validVotes": 13614,
+              "turnout": 57.46,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "송민규",
+                  "votes": 6107,
+                  "share": 44.86
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "안계일",
+                  "votes": 7507,
+                  "share": 55.14
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "제8",
+          "name": "성남시제8선거구",
+          "status": "counted",
+          "seats": 1,
+          "coverage": [
+            "수내1동",
+            "수내2동",
+            "정자동",
+            "정자1동",
+            "금곡동",
+            "구미1동"
+          ],
+          "electors": 103856,
+          "votes": 62265,
+          "validVotes": 61418,
+          "turnout": 59.95,
+          "candidates": [
+            {
+              "party": "더불어민주당",
+              "name": "왕홍곤",
+              "votes": 23074,
+              "share": 37.57,
+              "elected": false
+            },
+            {
+              "party": "국민의힘",
+              "name": "이제영",
+              "votes": 38344,
+              "share": 62.43,
+              "elected": true
+            }
+          ],
+          "dongResults": {
+            "수내1동": {
+              "electors": 14283,
+              "votes": 8361,
+              "validVotes": 8245,
+              "turnout": 58.54,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "왕홍곤",
+                  "votes": 3057,
+                  "share": 37.08
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "이제영",
+                  "votes": 5188,
+                  "share": 62.92
+                }
+              ]
+            },
+            "수내2동": {
+              "electors": 7251,
+              "votes": 4637,
+              "validVotes": 4570,
+              "turnout": 63.95,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "왕홍곤",
+                  "votes": 1585,
+                  "share": 34.68
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "이제영",
+                  "votes": 2985,
+                  "share": 65.32
+                }
+              ]
+            },
+            "정자동": {
+              "electors": 14204,
+              "votes": 7582,
+              "validVotes": 7506,
+              "turnout": 53.38,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "왕홍곤",
+                  "votes": 2943,
+                  "share": 39.21
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "이제영",
+                  "votes": 4563,
+                  "share": 60.79
+                }
+              ]
+            },
+            "정자1동": {
+              "electors": 24088,
+              "votes": 12936,
+              "validVotes": 12771,
+              "turnout": 53.7,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "왕홍곤",
+                  "votes": 3768,
+                  "share": 29.5
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "이제영",
+                  "votes": 9003,
+                  "share": 70.5
+                }
+              ]
+            },
+            "금곡동": {
+              "electors": 22349,
+              "votes": 12826,
+              "validVotes": 12657,
+              "turnout": 57.39,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "왕홍곤",
+                  "votes": 5000,
+                  "share": 39.5
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "이제영",
+                  "votes": 7657,
+                  "share": 60.5
+                }
+              ]
+            },
+            "구미1동": {
+              "electors": 14209,
+              "votes": 8422,
+              "validVotes": 8324,
+              "turnout": 59.27,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "왕홍곤",
+                  "votes": 3501,
+                  "share": 42.06
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "이제영",
+                  "votes": 4823,
+                  "share": 57.94
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "proportional": {
+        "electors": 404133,
+        "votes": 250603,
+        "validVotes": 248217,
+        "turnout": 62.01,
+        "parties": [
+          {
+            "party": "더불어민주당",
+            "votes": 93712,
+            "share": 37.75
+          },
+          {
+            "party": "국민의힘",
+            "votes": 143484,
+            "share": 57.81
+          },
+          {
+            "party": "정의당",
+            "votes": 9391,
+            "share": 3.78
+          },
+          {
+            "party": "기본소득당",
+            "votes": 456,
+            "share": 0.18
+          },
+          {
+            "party": "녹색당",
+            "votes": 671,
+            "share": 0.27
+          },
+          {
+            "party": "진보당",
+            "votes": 503,
+            "share": 0.2
+          }
+        ],
+        "dongResults": {
+          "분당동": {
+            "electors": 19349,
+            "votes": 10582,
+            "validVotes": 10372,
+            "turnout": 54.69,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 4003,
+                "share": 38.59
+              },
+              {
+                "party": "국민의힘",
+                "votes": 5834,
+                "share": 56.25
+              },
+              {
+                "party": "정의당",
+                "votes": 457,
+                "share": 4.41
+              },
+              {
+                "party": "기본소득당",
+                "votes": 22,
+                "share": 0.21
+              },
+              {
+                "party": "녹색당",
+                "votes": 26,
+                "share": 0.25
+              },
+              {
+                "party": "진보당",
+                "votes": 30,
+                "share": 0.29
+              }
+            ]
+          },
+          "수내1동": {
+            "electors": 14283,
+            "votes": 8361,
+            "validVotes": 8306,
+            "turnout": 58.54,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 2836,
+                "share": 34.14
+              },
+              {
+                "party": "국민의힘",
+                "votes": 5140,
+                "share": 61.88
+              },
+              {
+                "party": "정의당",
+                "votes": 288,
+                "share": 3.47
+              },
+              {
+                "party": "기본소득당",
+                "votes": 13,
+                "share": 0.16
+              },
+              {
+                "party": "녹색당",
+                "votes": 21,
+                "share": 0.25
+              },
+              {
+                "party": "진보당",
+                "votes": 8,
+                "share": 0.1
+              }
+            ]
+          },
+          "수내2동": {
+            "electors": 7251,
+            "votes": 4637,
+            "validVotes": 4616,
+            "turnout": 63.95,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 1499,
+                "share": 32.47
+              },
+              {
+                "party": "국민의힘",
+                "votes": 2942,
+                "share": 63.73
+              },
+              {
+                "party": "정의당",
+                "votes": 139,
+                "share": 3.01
+              },
+              {
+                "party": "기본소득당",
+                "votes": 10,
+                "share": 0.22
+              },
+              {
+                "party": "녹색당",
+                "votes": 18,
+                "share": 0.39
+              },
+              {
+                "party": "진보당",
+                "votes": 8,
+                "share": 0.17
+              }
+            ]
+          },
+          "수내3동": {
+            "electors": 10386,
+            "votes": 5831,
+            "validVotes": 5695,
+            "turnout": 56.14,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 2281,
+                "share": 40.05
+              },
+              {
+                "party": "국민의힘",
+                "votes": 3112,
+                "share": 54.64
+              },
+              {
+                "party": "정의당",
+                "votes": 271,
+                "share": 4.76
+              },
+              {
+                "party": "기본소득당",
+                "votes": 9,
+                "share": 0.16
+              },
+              {
+                "party": "녹색당",
+                "votes": 11,
+                "share": 0.19
+              },
+              {
+                "party": "진보당",
+                "votes": 11,
+                "share": 0.19
+              }
+            ]
+          },
+          "정자동": {
+            "electors": 14204,
+            "votes": 7583,
+            "validVotes": 7531,
+            "turnout": 53.39,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 2757,
+                "share": 36.61
+              },
+              {
+                "party": "국민의힘",
+                "votes": 4437,
+                "share": 58.92
+              },
+              {
+                "party": "정의당",
+                "votes": 281,
+                "share": 3.73
+              },
+              {
+                "party": "기본소득당",
+                "votes": 15,
+                "share": 0.2
+              },
+              {
+                "party": "녹색당",
+                "votes": 27,
+                "share": 0.36
+              },
+              {
+                "party": "진보당",
+                "votes": 14,
+                "share": 0.19
+              }
+            ]
+          },
+          "정자1동": {
+            "electors": 24088,
+            "votes": 12943,
+            "validVotes": 12871,
+            "turnout": 53.73,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 3518,
+                "share": 27.33
+              },
+              {
+                "party": "국민의힘",
+                "votes": 8962,
+                "share": 69.63
+              },
+              {
+                "party": "정의당",
+                "votes": 336,
+                "share": 2.61
+              },
+              {
+                "party": "기본소득당",
+                "votes": 22,
+                "share": 0.17
+              },
+              {
+                "party": "녹색당",
+                "votes": 17,
+                "share": 0.13
+              },
+              {
+                "party": "진보당",
+                "votes": 16,
+                "share": 0.12
+              }
+            ]
+          },
+          "정자2동": {
+            "electors": 12448,
+            "votes": 7044,
+            "validVotes": 6863,
+            "turnout": 56.59,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 2790,
+                "share": 40.65
+              },
+              {
+                "party": "국민의힘",
+                "votes": 3728,
+                "share": 54.32
+              },
+              {
+                "party": "정의당",
+                "votes": 302,
+                "share": 4.4
+              },
+              {
+                "party": "기본소득당",
+                "votes": 15,
+                "share": 0.22
+              },
+              {
+                "party": "녹색당",
+                "votes": 12,
+                "share": 0.17
+              },
+              {
+                "party": "진보당",
+                "votes": 16,
+                "share": 0.23
+              }
+            ]
+          },
+          "정자3동": {
+            "electors": 13089,
+            "votes": 7698,
+            "validVotes": 7537,
+            "turnout": 58.81,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 2985,
+                "share": 39.6
+              },
+              {
+                "party": "국민의힘",
+                "votes": 4123,
+                "share": 54.7
+              },
+              {
+                "party": "정의당",
+                "votes": 372,
+                "share": 4.94
+              },
+              {
+                "party": "기본소득당",
+                "votes": 15,
+                "share": 0.2
+              },
+              {
+                "party": "녹색당",
+                "votes": 26,
+                "share": 0.34
+              },
+              {
+                "party": "진보당",
+                "votes": 16,
+                "share": 0.21
+              }
+            ]
+          },
+          "서현1동": {
+            "electors": 24517,
+            "votes": 14675,
+            "validVotes": 14585,
+            "turnout": 59.86,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 4827,
+                "share": 33.1
+              },
+              {
+                "party": "국민의힘",
+                "votes": 9209,
+                "share": 63.14
+              },
+              {
+                "party": "정의당",
+                "votes": 477,
+                "share": 3.27
+              },
+              {
+                "party": "기본소득당",
+                "votes": 18,
+                "share": 0.12
+              },
+              {
+                "party": "녹색당",
+                "votes": 42,
+                "share": 0.29
+              },
+              {
+                "party": "진보당",
+                "votes": 12,
+                "share": 0.08
+              }
+            ]
+          },
+          "서현2동": {
+            "electors": 14072,
+            "votes": 8655,
+            "validVotes": 8609,
+            "turnout": 61.51,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 3280,
+                "share": 38.1
+              },
+              {
+                "party": "국민의힘",
+                "votes": 4986,
+                "share": 57.92
+              },
+              {
+                "party": "정의당",
+                "votes": 297,
+                "share": 3.45
+              },
+              {
+                "party": "기본소득당",
+                "votes": 15,
+                "share": 0.17
+              },
+              {
+                "party": "녹색당",
+                "votes": 21,
+                "share": 0.24
+              },
+              {
+                "party": "진보당",
+                "votes": 10,
+                "share": 0.12
+              }
+            ]
+          },
+          "이매1동": {
+            "electors": 19350,
+            "votes": 12343,
+            "validVotes": 12271,
+            "turnout": 63.79,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 4295,
+                "share": 35.0
+              },
+              {
+                "party": "국민의힘",
+                "votes": 7484,
+                "share": 60.99
+              },
+              {
+                "party": "정의당",
+                "votes": 404,
+                "share": 3.29
+              },
+              {
+                "party": "기본소득당",
+                "votes": 19,
+                "share": 0.15
+              },
+              {
+                "party": "녹색당",
+                "votes": 44,
+                "share": 0.36
+              },
+              {
+                "party": "진보당",
+                "votes": 25,
+                "share": 0.2
+              }
+            ]
+          },
+          "이매2동": {
+            "electors": 10486,
+            "votes": 6898,
+            "validVotes": 6868,
+            "turnout": 65.78,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 2216,
+                "share": 32.27
+              },
+              {
+                "party": "국민의힘",
+                "votes": 4409,
+                "share": 64.2
+              },
+              {
+                "party": "정의당",
+                "votes": 209,
+                "share": 3.04
+              },
+              {
+                "party": "기본소득당",
+                "votes": 15,
+                "share": 0.22
+              },
+              {
+                "party": "녹색당",
+                "votes": 13,
+                "share": 0.19
+              },
+              {
+                "party": "진보당",
+                "votes": 6,
+                "share": 0.09
+              }
+            ]
+          },
+          "야탑1동": {
+            "electors": 15195,
+            "votes": 9613,
+            "validVotes": 9541,
+            "turnout": 63.26,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 3731,
+                "share": 39.1
+              },
+              {
+                "party": "국민의힘",
+                "votes": 5468,
+                "share": 57.31
+              },
+              {
+                "party": "정의당",
+                "votes": 290,
+                "share": 3.04
+              },
+              {
+                "party": "기본소득당",
+                "votes": 13,
+                "share": 0.14
+              },
+              {
+                "party": "녹색당",
+                "votes": 26,
+                "share": 0.27
+              },
+              {
+                "party": "진보당",
+                "votes": 13,
+                "share": 0.14
+              }
+            ]
+          },
+          "야탑2동": {
+            "electors": 12782,
+            "votes": 8350,
+            "validVotes": 8269,
+            "turnout": 65.33,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 2761,
+                "share": 33.39
+              },
+              {
+                "party": "국민의힘",
+                "votes": 5192,
+                "share": 62.79
+              },
+              {
+                "party": "정의당",
+                "votes": 267,
+                "share": 3.23
+              },
+              {
+                "party": "기본소득당",
+                "votes": 9,
+                "share": 0.11
+              },
+              {
+                "party": "녹색당",
+                "votes": 22,
+                "share": 0.27
+              },
+              {
+                "party": "진보당",
+                "votes": 18,
+                "share": 0.22
+              }
+            ]
+          },
+          "야탑3동": {
+            "electors": 21933,
+            "votes": 12189,
+            "validVotes": 12059,
+            "turnout": 55.57,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 5349,
+                "share": 44.36
+              },
+              {
+                "party": "국민의힘",
+                "votes": 6170,
+                "share": 51.17
+              },
+              {
+                "party": "정의당",
+                "votes": 443,
+                "share": 3.67
+              },
+              {
+                "party": "기본소득당",
+                "votes": 30,
+                "share": 0.25
+              },
+              {
+                "party": "녹색당",
+                "votes": 28,
+                "share": 0.23
+              },
+              {
+                "party": "진보당",
+                "votes": 39,
+                "share": 0.32
+              }
+            ]
+          },
+          "금곡동": {
+            "electors": 22349,
+            "votes": 12829,
+            "validVotes": 12728,
+            "turnout": 57.4,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 4695,
+                "share": 36.89
+              },
+              {
+                "party": "국민의힘",
+                "votes": 7602,
+                "share": 59.73
+              },
+              {
+                "party": "정의당",
+                "votes": 367,
+                "share": 2.88
+              },
+              {
+                "party": "기본소득당",
+                "votes": 17,
+                "share": 0.13
+              },
+              {
+                "party": "녹색당",
+                "votes": 27,
+                "share": 0.21
+              },
+              {
+                "party": "진보당",
+                "votes": 20,
+                "share": 0.16
+              }
+            ]
+          },
+          "구미동": {
+            "electors": 24169,
+            "votes": 13886,
+            "validVotes": 13647,
+            "turnout": 57.45,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 5191,
+                "share": 38.04
+              },
+              {
+                "party": "국민의힘",
+                "votes": 7776,
+                "share": 56.98
+              },
+              {
+                "party": "정의당",
+                "votes": 587,
+                "share": 4.3
+              },
+              {
+                "party": "기본소득당",
+                "votes": 24,
+                "share": 0.18
+              },
+              {
+                "party": "녹색당",
+                "votes": 36,
+                "share": 0.26
+              },
+              {
+                "party": "진보당",
+                "votes": 33,
+                "share": 0.24
+              }
+            ]
+          },
+          "구미1동": {
+            "electors": 14209,
+            "votes": 8432,
+            "validVotes": 8382,
+            "turnout": 59.34,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 3322,
+                "share": 39.63
+              },
+              {
+                "party": "국민의힘",
+                "votes": 4743,
+                "share": 56.59
+              },
+              {
+                "party": "정의당",
+                "votes": 266,
+                "share": 3.17
+              },
+              {
+                "party": "기본소득당",
+                "votes": 20,
+                "share": 0.24
+              },
+              {
+                "party": "녹색당",
+                "votes": 20,
+                "share": 0.24
+              },
+              {
+                "party": "진보당",
+                "votes": 11,
+                "share": 0.13
+              }
+            ]
+          },
+          "판교동": {
+            "electors": 19110,
+            "votes": 12133,
+            "validVotes": 12058,
+            "turnout": 63.49,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 4598,
+                "share": 38.13
+              },
+              {
+                "party": "국민의힘",
+                "votes": 6752,
+                "share": 56.0
+              },
+              {
+                "party": "정의당",
+                "votes": 613,
+                "share": 5.08
+              },
+              {
+                "party": "기본소득당",
+                "votes": 19,
+                "share": 0.16
+              },
+              {
+                "party": "녹색당",
+                "votes": 54,
+                "share": 0.45
+              },
+              {
+                "party": "진보당",
+                "votes": 22,
+                "share": 0.18
+              }
+            ]
+          },
+          "삼평동": {
+            "electors": 18336,
+            "votes": 10868,
+            "validVotes": 10790,
+            "turnout": 59.27,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 4466,
+                "share": 41.39
+              },
+              {
+                "party": "국민의힘",
+                "votes": 5833,
+                "share": 54.06
+              },
+              {
+                "party": "정의당",
+                "votes": 419,
+                "share": 3.88
+              },
+              {
+                "party": "기본소득당",
+                "votes": 18,
+                "share": 0.17
+              },
+              {
+                "party": "녹색당",
+                "votes": 23,
+                "share": 0.21
+              },
+              {
+                "party": "진보당",
+                "votes": 31,
+                "share": 0.29
+              }
+            ]
+          },
+          "백현동": {
+            "electors": 20607,
+            "votes": 12322,
+            "validVotes": 12237,
+            "turnout": 59.8,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 4985,
+                "share": 40.74
+              },
+              {
+                "party": "국민의힘",
+                "votes": 6660,
+                "share": 54.43
+              },
+              {
+                "party": "정의당",
+                "votes": 518,
+                "share": 4.23
+              },
+              {
+                "party": "기본소득당",
+                "votes": 23,
+                "share": 0.19
+              },
+              {
+                "party": "녹색당",
+                "votes": 24,
+                "share": 0.2
+              },
+              {
+                "party": "진보당",
+                "votes": 27,
+                "share": 0.22
+              }
+            ]
+          },
+          "운중동": {
+            "electors": 24395,
+            "votes": 15142,
+            "validVotes": 15068,
+            "turnout": 62.07,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 5685,
+                "share": 37.73
+              },
+              {
+                "party": "국민의힘",
+                "votes": 8589,
+                "share": 57.0
+              },
+              {
+                "party": "정의당",
+                "votes": 695,
+                "share": 4.61
+              },
+              {
+                "party": "기본소득당",
+                "votes": 25,
+                "share": 0.17
+              },
+              {
+                "party": "녹색당",
+                "votes": 45,
+                "share": 0.3
+              },
+              {
+                "party": "진보당",
+                "votes": 29,
+                "share": 0.19
+              }
+            ]
+          }
+        }
+      },
+      "cycle": 8,
+      "source": "중앙선거관리위원회 선거통계시스템 다운로드 XLSX"
+    }
+  },
+  {
+    "id": "2024-04-10",
+    "date": "2024-04-10",
+    "year": "2024",
+    "shortName": "22대 총선",
+    "title": "제22대 국회의원선거",
+    "type": "국회의원선거",
+    "description": "분당갑·분당을 후보가 다르므로 각 행정동의 해당 지역구 민주당 후보 득표율을 표시합니다.",
+    "defaultRace": "assembly",
+    "races": [
+      {
+        "id": "assembly",
+        "label": "국회의원",
+        "metricLabel": "민주당 지역구 후보 득표율",
+        "coverage": [
+          "분당동",
+          "수내1동",
+          "수내2동",
+          "수내3동",
+          "정자동",
+          "정자1동",
+          "정자2동",
+          "정자3동",
+          "서현1동",
+          "서현2동",
+          "이매1동",
+          "이매2동",
+          "야탑1동",
+          "야탑2동",
+          "야탑3동",
+          "금곡동",
+          "구미동",
+          "구미1동",
+          "판교동",
+          "삼평동",
+          "백현동",
+          "운중동"
+        ],
+        "constituencyByDong": {
+          "서현1동": "분당갑",
+          "서현2동": "분당갑",
+          "이매1동": "분당갑",
+          "이매2동": "분당갑",
+          "야탑1동": "분당갑",
+          "야탑2동": "분당갑",
+          "야탑3동": "분당갑",
+          "판교동": "분당갑",
+          "삼평동": "분당갑",
+          "백현동": "분당갑",
+          "운중동": "분당갑",
+          "분당동": "분당을",
+          "수내1동": "분당을",
+          "수내2동": "분당을",
+          "수내3동": "분당을",
+          "정자동": "분당을",
+          "정자1동": "분당을",
+          "정자2동": "분당을",
+          "정자3동": "분당을",
+          "금곡동": "분당을",
+          "구미동": "분당을",
+          "구미1동": "분당을"
+        },
+        "benchmarks": [
+          {
+            "label": "분당갑",
+            "value": 46.72,
+            "detail": "이광재 후보",
+            "source": "official-user-file"
+          },
+          {
+            "label": "분당을",
+            "value": 48.87,
+            "detail": "김병욱 후보",
+            "source": "official-user-file"
+          }
+        ],
+        "results": {
+          "서현1동": {
+            "dem": 42.05,
+            "opponent": 57.95,
+            "turnout": 73.06,
+            "demVotes": 7295,
+            "opponentVotes": 10053,
+            "validVotes": 17348,
+            "electors": 23925,
+            "votes": 17479
+          },
+          "서현2동": {
+            "dem": 46.48,
+            "opponent": 53.52,
+            "turnout": 75.95,
+            "demVotes": 4740,
+            "opponentVotes": 5457,
+            "validVotes": 10197,
+            "electors": 13524,
+            "votes": 10272
+          },
+          "이매1동": {
+            "dem": 42.37,
+            "opponent": 57.63,
+            "turnout": 76.96,
+            "demVotes": 5972,
+            "opponentVotes": 8124,
+            "validVotes": 14096,
+            "electors": 18416,
+            "votes": 14173
+          },
+          "이매2동": {
+            "dem": 40.61,
+            "opponent": 59.39,
+            "turnout": 79.96,
+            "demVotes": 3382,
+            "opponentVotes": 4945,
+            "validVotes": 8327,
+            "electors": 10478,
+            "votes": 8378
+          },
+          "야탑1동": {
+            "dem": 47.8,
+            "opponent": 52.2,
+            "turnout": 77.76,
+            "demVotes": 5648,
+            "opponentVotes": 6169,
+            "validVotes": 11817,
+            "electors": 15338,
+            "votes": 11927
+          },
+          "야탑2동": {
+            "dem": 41.1,
+            "opponent": 58.9,
+            "turnout": 78.38,
+            "demVotes": 3976,
+            "opponentVotes": 5699,
+            "validVotes": 9675,
+            "electors": 12435,
+            "votes": 9747
+          },
+          "야탑3동": {
+            "dem": 50.06,
+            "opponent": 49.94,
+            "turnout": 70.44,
+            "demVotes": 6961,
+            "opponentVotes": 6943,
+            "validVotes": 13904,
+            "electors": 19929,
+            "votes": 14038
+          },
+          "판교동": {
+            "dem": 46.69,
+            "opponent": 53.31,
+            "turnout": 76.47,
+            "demVotes": 6590,
+            "opponentVotes": 7524,
+            "validVotes": 14114,
+            "electors": 18607,
+            "votes": 14228
+          },
+          "삼평동": {
+            "dem": 49.87,
+            "opponent": 50.13,
+            "turnout": 74.12,
+            "demVotes": 6484,
+            "opponentVotes": 6517,
+            "validVotes": 13001,
+            "electors": 17660,
+            "votes": 13090
+          },
+          "백현동": {
+            "dem": 49.06,
+            "opponent": 50.94,
+            "turnout": 74.49,
+            "demVotes": 7477,
+            "opponentVotes": 7765,
+            "validVotes": 15242,
+            "electors": 20645,
+            "votes": 15379
+          },
+          "운중동": {
+            "dem": 47.07,
+            "opponent": 52.93,
+            "turnout": 75.23,
+            "demVotes": 8975,
+            "opponentVotes": 10092,
+            "validVotes": 19067,
+            "electors": 25521,
+            "votes": 19199
+          },
+          "분당동": {
+            "dem": 47.87,
+            "opponent": 52.13,
+            "turnout": 68.36,
+            "demVotes": 5535,
+            "opponentVotes": 6028,
+            "validVotes": 11563,
+            "electors": 17071,
+            "votes": 11670
+          },
+          "수내1동": {
+            "dem": 45.94,
+            "opponent": 54.06,
+            "turnout": 74.32,
+            "demVotes": 4775,
+            "opponentVotes": 5618,
+            "validVotes": 10393,
+            "electors": 14134,
+            "votes": 10504
+          },
+          "수내2동": {
+            "dem": 45.19,
+            "opponent": 54.81,
+            "turnout": 78.68,
+            "demVotes": 2610,
+            "opponentVotes": 3165,
+            "validVotes": 5775,
+            "electors": 7400,
+            "votes": 5822
+          },
+          "수내3동": {
+            "dem": 53.6,
+            "opponent": 46.4,
+            "turnout": 73.8,
+            "demVotes": 3934,
+            "opponentVotes": 3406,
+            "validVotes": 7340,
+            "electors": 10052,
+            "votes": 7418
+          },
+          "정자동": {
+            "dem": 47.48,
+            "opponent": 52.52,
+            "turnout": 73.09,
+            "demVotes": 3839,
+            "opponentVotes": 4247,
+            "validVotes": 8086,
+            "electors": 11218,
+            "votes": 8199
+          },
+          "정자1동": {
+            "dem": 38.6,
+            "opponent": 61.4,
+            "turnout": 67.99,
+            "demVotes": 6028,
+            "opponentVotes": 9589,
+            "validVotes": 15617,
+            "electors": 23249,
+            "votes": 15808
+          },
+          "정자2동": {
+            "dem": 51.72,
+            "opponent": 48.28,
+            "turnout": 73.94,
+            "demVotes": 4700,
+            "opponentVotes": 4387,
+            "validVotes": 9087,
+            "electors": 12425,
+            "votes": 9187
+          },
+          "정자3동": {
+            "dem": 50.39,
+            "opponent": 49.61,
+            "turnout": 74.59,
+            "demVotes": 4689,
+            "opponentVotes": 4617,
+            "validVotes": 9306,
+            "electors": 12586,
+            "votes": 9388
+          },
+          "금곡동": {
+            "dem": 46.63,
+            "opponent": 53.37,
+            "turnout": 73.13,
+            "demVotes": 7026,
+            "opponentVotes": 8040,
+            "validVotes": 15066,
+            "electors": 20827,
+            "votes": 15230
+          },
+          "구미동": {
+            "dem": 47.2,
+            "opponent": 52.8,
+            "turnout": 71.81,
+            "demVotes": 7267,
+            "opponentVotes": 8128,
+            "validVotes": 15395,
+            "electors": 21631,
+            "votes": 15534
+          },
+          "구미1동": {
+            "dem": 53.35,
+            "opponent": 46.65,
+            "turnout": 78.09,
+            "demVotes": 6285,
+            "opponentVotes": 5495,
+            "validVotes": 11780,
+            "electors": 15241,
+            "votes": 11902
+          }
+        },
+        "status": "complete",
+        "demCandidate": "지역구별 상이",
+        "opponentCandidate": "지역구별 상이",
+        "sourceFile": "중앙선거관리위원회 선거통계시스템 다운로드 XLSX"
+      }
+    ]
+  },
+  {
+    "id": "2025-04-02",
+    "date": "2025-04-02",
+    "year": "2025",
+    "shortName": "도의원 보궐",
+    "title": "2025년 상반기 재·보궐선거",
+    "type": "경기도의회의원 보궐선거",
+    "description": "성남시 제6선거구에 해당하는 5개 행정동만 채색하고 나머지는 해당 선거 없음으로 표시합니다.",
+    "defaultRace": "provincial-by",
+    "races": [
+      {
+        "id": "provincial-by",
+        "label": "성남시 제6선거구",
+        "metricLabel": "민주당 도의원 후보 득표율",
+        "coverage": [
+          "서현1동",
+          "서현2동",
+          "판교동",
+          "백현동",
+          "운중동"
+        ],
+        "constituencyByDong": {
+          "서현1동": "성남시 제6선거구",
+          "서현2동": "성남시 제6선거구",
+          "판교동": "성남시 제6선거구",
+          "백현동": "성남시 제6선거구",
+          "운중동": "성남시 제6선거구"
+        },
+        "benchmarks": [
+          {
+            "label": "성남시 제6선거구",
+            "value": 53.39,
+            "detail": "김진명 후보",
+            "source": "official-user-file"
+          }
+        ],
+        "results": {
+          "서현1동": {
+            "dem": 48.05,
+            "opponent": 51.95,
+            "turnout": 24.06,
+            "demVotes": 2955,
+            "opponentVotes": 3195,
+            "validVotes": 6150,
+            "electors": 25672,
+            "votes": 6177
+          },
+          "서현2동": {
+            "dem": 51.25,
+            "opponent": 48.75,
+            "turnout": 27.3,
+            "demVotes": 2047,
+            "opponentVotes": 1947,
+            "validVotes": 3994,
+            "electors": 14670,
+            "votes": 4005
+          },
+          "판교동": {
+            "dem": 57.04,
+            "opponent": 42.96,
+            "turnout": 26.93,
+            "demVotes": 3161,
+            "opponentVotes": 2381,
+            "validVotes": 5542,
+            "electors": 20612,
+            "votes": 5550
+          },
+          "백현동": {
+            "dem": 54.81,
+            "opponent": 45.19,
+            "turnout": 24.33,
+            "demVotes": 2961,
+            "opponentVotes": 2441,
+            "validVotes": 5402,
+            "electors": 22301,
+            "votes": 5426
+          },
+          "운중동": {
+            "dem": 55.41,
+            "opponent": 44.59,
+            "turnout": 24.66,
+            "demVotes": 4074,
+            "opponentVotes": 3278,
+            "validVotes": 7352,
+            "electors": 29876,
+            "votes": 7367
+          }
+        },
+        "status": "complete",
+        "demCandidate": "김진명",
+        "opponentCandidate": "이승진",
+        "sourceFile": "중앙선거관리위원회 선거통계시스템 다운로드 XLSX"
+      }
+    ]
+  },
+  {
+    "id": "2025-06-03",
+    "date": "2025-06-03",
+    "year": "2025",
+    "shortName": "21대 대선",
+    "title": "제21대 대통령선거",
+    "type": "대통령선거",
+    "description": "분당구 22개 행정동의 더불어민주당 이재명 후보 득표율을 표시합니다.",
+    "defaultRace": "president",
+    "races": [
+      {
+        "id": "president",
+        "label": "대통령",
+        "metricLabel": "민주당 대통령 후보 득표율",
+        "coverage": [
+          "분당동",
+          "수내1동",
+          "수내2동",
+          "수내3동",
+          "정자동",
+          "정자1동",
+          "정자2동",
+          "정자3동",
+          "서현1동",
+          "서현2동",
+          "이매1동",
+          "이매2동",
+          "야탑1동",
+          "야탑2동",
+          "야탑3동",
+          "금곡동",
+          "구미동",
+          "구미1동",
+          "판교동",
+          "삼평동",
+          "백현동",
+          "운중동"
+        ],
+        "constituencyByDong": {},
+        "benchmarks": [
+          {
+            "label": "전국",
+            "value": 49.42,
+            "detail": "이재명 후보",
+            "source": "verified-public"
+          },
+          {
+            "label": "분당구 전체",
+            "value": 44.31,
+            "detail": "22개 행정동 합계",
+            "source": "official-user-file"
+          }
+        ],
+        "results": {
+          "분당동": {
+            "dem": 39.96,
+            "opponent": 50.99,
+            "turnout": 78.03,
+            "demVotes": 5014,
+            "opponentVotes": 6398,
+            "validVotes": 12547,
+            "electors": 16166,
+            "votes": 12615
+          },
+          "수내1동": {
+            "dem": 41.11,
+            "opponent": 47.9,
+            "turnout": 82.37,
+            "demVotes": 4751,
+            "opponentVotes": 5535,
+            "validVotes": 11556,
+            "electors": 14110,
+            "votes": 11623
+          },
+          "수내2동": {
+            "dem": 40.37,
+            "opponent": 49.73,
+            "turnout": 85.07,
+            "demVotes": 2470,
+            "opponentVotes": 3043,
+            "validVotes": 6119,
+            "electors": 7225,
+            "votes": 6146
+          },
+          "수내3동": {
+            "dem": 46.12,
+            "opponent": 43.55,
+            "turnout": 81.28,
+            "demVotes": 3587,
+            "opponentVotes": 3387,
+            "validVotes": 7777,
+            "electors": 9623,
+            "votes": 7822
+          },
+          "정자동": {
+            "dem": 39.27,
+            "opponent": 48.29,
+            "turnout": 82.08,
+            "demVotes": 3476,
+            "opponentVotes": 4275,
+            "validVotes": 8852,
+            "electors": 10856,
+            "votes": 8911
+          },
+          "정자1동": {
+            "dem": 32.4,
+            "opponent": 56.15,
+            "turnout": 78.23,
+            "demVotes": 5776,
+            "opponentVotes": 10009,
+            "validVotes": 17826,
+            "electors": 22973,
+            "votes": 17972
+          },
+          "정자2동": {
+            "dem": 45.24,
+            "opponent": 43.89,
+            "turnout": 80.93,
+            "demVotes": 4351,
+            "opponentVotes": 4221,
+            "validVotes": 9617,
+            "electors": 11973,
+            "votes": 9690
+          },
+          "정자3동": {
+            "dem": 43.48,
+            "opponent": 46.4,
+            "turnout": 81.86,
+            "demVotes": 4226,
+            "opponentVotes": 4510,
+            "validVotes": 9720,
+            "electors": 11954,
+            "votes": 9786
+          },
+          "서현1동": {
+            "dem": 41.09,
+            "opponent": 47.95,
+            "turnout": 81.34,
+            "demVotes": 7980,
+            "opponentVotes": 9313,
+            "validVotes": 19423,
+            "electors": 24010,
+            "votes": 19529
+          },
+          "서현2동": {
+            "dem": 46.85,
+            "opponent": 43.11,
+            "turnout": 84.59,
+            "demVotes": 5840,
+            "opponentVotes": 5374,
+            "validVotes": 12466,
+            "electors": 14825,
+            "votes": 12541
+          },
+          "이매1동": {
+            "dem": 39.63,
+            "opponent": 50.12,
+            "turnout": 83.29,
+            "demVotes": 5838,
+            "opponentVotes": 7383,
+            "validVotes": 14731,
+            "electors": 17799,
+            "votes": 14824
+          },
+          "이매2동": {
+            "dem": 39.33,
+            "opponent": 51.67,
+            "turnout": 84.18,
+            "demVotes": 3311,
+            "opponentVotes": 4350,
+            "validVotes": 8419,
+            "electors": 10045,
+            "votes": 8456
+          },
+          "야탑1동": {
+            "dem": 46.51,
+            "opponent": 42.65,
+            "turnout": 84.91,
+            "demVotes": 5999,
+            "opponentVotes": 5501,
+            "validVotes": 12898,
+            "electors": 15292,
+            "votes": 12984
+          },
+          "야탑2동": {
+            "dem": 39.62,
+            "opponent": 51.05,
+            "turnout": 84.54,
+            "demVotes": 4051,
+            "opponentVotes": 5219,
+            "validVotes": 10224,
+            "electors": 12151,
+            "votes": 10272
+          },
+          "야탑3동": {
+            "dem": 47.37,
+            "opponent": 43.15,
+            "turnout": 79.84,
+            "demVotes": 7012,
+            "opponentVotes": 6388,
+            "validVotes": 14803,
+            "electors": 18658,
+            "votes": 14896
+          },
+          "금곡동": {
+            "dem": 39.84,
+            "opponent": 50.35,
+            "turnout": 80.36,
+            "demVotes": 6442,
+            "opponentVotes": 8141,
+            "validVotes": 16170,
+            "electors": 20229,
+            "votes": 16256
+          },
+          "구미동": {
+            "dem": 40.75,
+            "opponent": 50.38,
+            "turnout": 80.32,
+            "demVotes": 6655,
+            "opponentVotes": 8228,
+            "validVotes": 16332,
+            "electors": 20433,
+            "votes": 16411
+          },
+          "구미1동": {
+            "dem": 47.95,
+            "opponent": 41.27,
+            "turnout": 85.48,
+            "demVotes": 6150,
+            "opponentVotes": 5294,
+            "validVotes": 12827,
+            "electors": 15106,
+            "votes": 12913
+          },
+          "판교동": {
+            "dem": 44.66,
+            "opponent": 45.05,
+            "turnout": 84.07,
+            "demVotes": 6875,
+            "opponentVotes": 6935,
+            "validVotes": 15395,
+            "electors": 18418,
+            "votes": 15484
+          },
+          "삼평동": {
+            "dem": 46.7,
+            "opponent": 41.94,
+            "turnout": 83.43,
+            "demVotes": 6726,
+            "opponentVotes": 6041,
+            "validVotes": 14404,
+            "electors": 17375,
+            "votes": 14496
+          },
+          "백현동": {
+            "dem": 46.68,
+            "opponent": 42.99,
+            "turnout": 82.75,
+            "demVotes": 7819,
+            "opponentVotes": 7201,
+            "validVotes": 16752,
+            "electors": 20371,
+            "votes": 16857
+          },
+          "운중동": {
+            "dem": 44.27,
+            "opponent": 46.31,
+            "turnout": 82.07,
+            "demVotes": 9586,
+            "opponentVotes": 10028,
+            "validVotes": 21653,
+            "electors": 26508,
+            "votes": 21756
+          }
+        },
+        "status": "complete",
+        "demCandidate": "이재명",
+        "opponentCandidate": "김문수",
+        "sourceFile": "중앙선거관리위원회 선거통계시스템 다운로드 XLSX"
+      }
+    ]
+  },
+  {
+    "id": "2026-06-03",
+    "date": "2026-06-03",
+    "year": "2026",
+    "shortName": "9회 지선",
+    "title": "제9회 전국동시지방선거",
+    "type": "지방선거",
+    "description": "성남시장 결과를 대표지표로 두고, 경기도지사 결과를 같은 화면에서 비교합니다.",
+    "defaultRace": "mayor",
+    "races": [
+      {
+        "id": "mayor",
+        "label": "성남시장",
+        "metricLabel": "민주당 성남시장 후보 득표율",
+        "coverage": [
+          "분당동",
+          "수내1동",
+          "수내2동",
+          "수내3동",
+          "정자동",
+          "정자1동",
+          "정자2동",
+          "정자3동",
+          "서현1동",
+          "서현2동",
+          "이매1동",
+          "이매2동",
+          "야탑1동",
+          "야탑2동",
+          "야탑3동",
+          "금곡동",
+          "구미동",
+          "구미1동",
+          "판교동",
+          "삼평동",
+          "백현동",
+          "운중동"
+        ],
+        "constituencyByDong": {},
+        "benchmarks": [
+          {
+            "label": "성남시 전체",
+            "value": 48.68,
+            "detail": "김병욱 후보",
+            "source": "verified-public"
+          },
+          {
+            "label": "분당구 전체",
+            "value": 45.1,
+            "detail": "22개 행정동 합계",
+            "source": "official-user-file"
+          }
+        ],
+        "results": {
+          "분당동": {
+            "dem": 43.72,
+            "opponent": 55.66,
+            "turnout": 61.47,
+            "demVotes": 4994,
+            "opponentVotes": 6358,
+            "validVotes": 11423,
+            "electors": 18739,
+            "votes": 11518
+          },
+          "수내1동": {
+            "dem": 41.05,
+            "opponent": 58.19,
+            "turnout": 63.65,
+            "demVotes": 3703,
+            "opponentVotes": 5249,
+            "validVotes": 9020,
+            "electors": 14301,
+            "votes": 9103
+          },
+          "수내2동": {
+            "dem": 41.08,
+            "opponent": 58.15,
+            "turnout": 68.35,
+            "demVotes": 2073,
+            "opponentVotes": 2934,
+            "validVotes": 5046,
+            "electors": 7428,
+            "votes": 5077
+          },
+          "수내3동": {
+            "dem": 50.09,
+            "opponent": 49.2,
+            "turnout": 63.67,
+            "demVotes": 3232,
+            "opponentVotes": 3175,
+            "validVotes": 6453,
+            "electors": 10233,
+            "votes": 6515
+          },
+          "정자동": {
+            "dem": 39.59,
+            "opponent": 59.42,
+            "turnout": 62.08,
+            "demVotes": 2559,
+            "opponentVotes": 3840,
+            "validVotes": 6463,
+            "electors": 10525,
+            "votes": 6534
+          },
+          "정자1동": {
+            "dem": 35.68,
+            "opponent": 63.77,
+            "turnout": 58.9,
+            "demVotes": 5119,
+            "opponentVotes": 9148,
+            "validVotes": 14345,
+            "electors": 24624,
+            "votes": 14504
+          },
+          "정자2동": {
+            "dem": 45.79,
+            "opponent": 53.35,
+            "turnout": 62.62,
+            "demVotes": 3109,
+            "opponentVotes": 3622,
+            "validVotes": 6789,
+            "electors": 10976,
+            "votes": 6873
+          },
+          "정자3동": {
+            "dem": 46.28,
+            "opponent": 52.81,
+            "turnout": 64.87,
+            "demVotes": 3872,
+            "opponentVotes": 4418,
+            "validVotes": 8366,
+            "electors": 13000,
+            "votes": 8433
+          },
+          "서현1동": {
+            "dem": 39.81,
+            "opponent": 59.41,
+            "turnout": 61.9,
+            "demVotes": 5902,
+            "opponentVotes": 8807,
+            "validVotes": 14824,
+            "electors": 24128,
+            "votes": 14935
+          },
+          "서현2동": {
+            "dem": 44.65,
+            "opponent": 54.72,
+            "turnout": 66.87,
+            "demVotes": 4138,
+            "opponentVotes": 5071,
+            "validVotes": 9268,
+            "electors": 13968,
+            "votes": 9341
+          },
+          "이매1동": {
+            "dem": 39.12,
+            "opponent": 60.16,
+            "turnout": 67.19,
+            "demVotes": 4981,
+            "opponentVotes": 7661,
+            "validVotes": 12734,
+            "electors": 19087,
+            "votes": 12824
+          },
+          "이매2동": {
+            "dem": 38.78,
+            "opponent": 60.56,
+            "turnout": 68.11,
+            "demVotes": 2707,
+            "opponentVotes": 4227,
+            "validVotes": 6980,
+            "electors": 10316,
+            "votes": 7026
+          },
+          "야탑1동": {
+            "dem": 45.54,
+            "opponent": 53.81,
+            "turnout": 68.95,
+            "demVotes": 4686,
+            "opponentVotes": 5537,
+            "validVotes": 10290,
+            "electors": 15074,
+            "votes": 10393
+          },
+          "야탑2동": {
+            "dem": 39.16,
+            "opponent": 60.1,
+            "turnout": 68.6,
+            "demVotes": 3301,
+            "opponentVotes": 5066,
+            "validVotes": 8429,
+            "electors": 12389,
+            "votes": 8499
+          },
+          "야탑3동": {
+            "dem": 46.32,
+            "opponent": 52.73,
+            "turnout": 63.13,
+            "demVotes": 6017,
+            "opponentVotes": 6849,
+            "validVotes": 12989,
+            "electors": 20908,
+            "votes": 13199
+          },
+          "금곡동": {
+            "dem": 42.12,
+            "opponent": 57.12,
+            "turnout": 63.73,
+            "demVotes": 5695,
+            "opponentVotes": 7724,
+            "validVotes": 13522,
+            "electors": 21458,
+            "votes": 13675
+          },
+          "구미동": {
+            "dem": 39.8,
+            "opponent": 59.47,
+            "turnout": 64.34,
+            "demVotes": 5681,
+            "opponentVotes": 8488,
+            "validVotes": 14273,
+            "electors": 22367,
+            "votes": 14391
+          },
+          "구미1동": {
+            "dem": 47.52,
+            "opponent": 51.65,
+            "turnout": 67.94,
+            "demVotes": 4447,
+            "opponentVotes": 4834,
+            "validVotes": 9359,
+            "electors": 13897,
+            "votes": 9441
+          },
+          "판교동": {
+            "dem": 47.72,
+            "opponent": 51.66,
+            "turnout": 67.68,
+            "demVotes": 6250,
+            "opponentVotes": 6766,
+            "validVotes": 13098,
+            "electors": 19473,
+            "votes": 13180
+          },
+          "삼평동": {
+            "dem": 47.99,
+            "opponent": 51.18,
+            "turnout": 64.88,
+            "demVotes": 5569,
+            "opponentVotes": 5940,
+            "validVotes": 11605,
+            "electors": 18049,
+            "votes": 11711
+          },
+          "백현동": {
+            "dem": 46.84,
+            "opponent": 52.36,
+            "turnout": 64.13,
+            "demVotes": 6230,
+            "opponentVotes": 6965,
+            "validVotes": 13301,
+            "electors": 20924,
+            "votes": 13418
+          },
+          "운중동": {
+            "dem": 47.28,
+            "opponent": 52.1,
+            "turnout": 64.1,
+            "demVotes": 8847,
+            "opponentVotes": 9750,
+            "validVotes": 18713,
+            "electors": 29399,
+            "votes": 18844
+          }
+        },
+        "status": "complete",
+        "demCandidate": "김병욱",
+        "opponentCandidate": "신상진",
+        "sourceFile": "중앙선거관리위원회 선거통계시스템 다운로드 XLSX"
+      },
+      {
+        "id": "governor",
+        "label": "경기도지사",
+        "metricLabel": "민주당 경기도지사 후보 득표율",
+        "coverage": [
+          "분당동",
+          "수내1동",
+          "수내2동",
+          "수내3동",
+          "정자동",
+          "정자1동",
+          "정자2동",
+          "정자3동",
+          "서현1동",
+          "서현2동",
+          "이매1동",
+          "이매2동",
+          "야탑1동",
+          "야탑2동",
+          "야탑3동",
+          "금곡동",
+          "구미동",
+          "구미1동",
+          "판교동",
+          "삼평동",
+          "백현동",
+          "운중동"
+        ],
+        "constituencyByDong": {},
+        "benchmarks": [
+          {
+            "label": "경기도 전체",
+            "value": 55.04,
+            "detail": "추미애 후보",
+            "source": "verified-public"
+          },
+          {
+            "label": "분당구 전체",
+            "value": 45.61,
+            "detail": "22개 행정동 합계",
+            "source": "official-user-file"
+          }
+        ],
+        "results": {
+          "분당동": {
+            "dem": 43.26,
+            "opponent": 50.74,
+            "turnout": 61.49,
+            "demVotes": 4937,
+            "opponentVotes": 5791,
+            "validVotes": 11413,
+            "electors": 18739,
+            "votes": 11523
+          },
+          "수내1동": {
+            "dem": 41.28,
+            "opponent": 52.18,
+            "turnout": 63.67,
+            "demVotes": 3722,
+            "opponentVotes": 4705,
+            "validVotes": 9017,
+            "electors": 14301,
+            "votes": 9106
+          },
+          "수내2동": {
+            "dem": 40.7,
+            "opponent": 52.56,
+            "turnout": 68.4,
+            "demVotes": 2049,
+            "opponentVotes": 2646,
+            "validVotes": 5034,
+            "electors": 7428,
+            "votes": 5081
+          },
+          "수내3동": {
+            "dem": 48.25,
+            "opponent": 45.51,
+            "turnout": 63.68,
+            "demVotes": 3110,
+            "opponentVotes": 2933,
+            "validVotes": 6445,
+            "electors": 10233,
+            "votes": 6516
+          },
+          "정자동": {
+            "dem": 38.29,
+            "opponent": 54.18,
+            "turnout": 62.1,
+            "demVotes": 2476,
+            "opponentVotes": 3503,
+            "validVotes": 6466,
+            "electors": 10525,
+            "votes": 6536
+          },
+          "정자1동": {
+            "dem": 34.52,
+            "opponent": 58.41,
+            "turnout": 58.91,
+            "demVotes": 4952,
+            "opponentVotes": 8378,
+            "validVotes": 14344,
+            "electors": 24624,
+            "votes": 14506
+          },
+          "정자2동": {
+            "dem": 44.84,
+            "opponent": 49.26,
+            "turnout": 62.65,
+            "demVotes": 3035,
+            "opponentVotes": 3334,
+            "validVotes": 6768,
+            "electors": 10976,
+            "votes": 6876
+          },
+          "정자3동": {
+            "dem": 46.27,
+            "opponent": 47.64,
+            "turnout": 64.88,
+            "demVotes": 3862,
+            "opponentVotes": 3976,
+            "validVotes": 8346,
+            "electors": 13000,
+            "votes": 8434
+          },
+          "서현1동": {
+            "dem": 41.08,
+            "opponent": 52.3,
+            "turnout": 61.92,
+            "demVotes": 6080,
+            "opponentVotes": 7740,
+            "validVotes": 14800,
+            "electors": 24128,
+            "votes": 14940
+          },
+          "서현2동": {
+            "dem": 45.49,
+            "opponent": 48.25,
+            "turnout": 66.9,
+            "demVotes": 4209,
+            "opponentVotes": 4465,
+            "validVotes": 9253,
+            "electors": 13968,
+            "votes": 9344
+          },
+          "이매1동": {
+            "dem": 41.31,
+            "opponent": 52.44,
+            "turnout": 67.2,
+            "demVotes": 5247,
+            "opponentVotes": 6661,
+            "validVotes": 12702,
+            "electors": 19087,
+            "votes": 12826
+          },
+          "이매2동": {
+            "dem": 40.02,
+            "opponent": 53.18,
+            "turnout": 68.11,
+            "demVotes": 2789,
+            "opponentVotes": 3706,
+            "validVotes": 6969,
+            "electors": 10316,
+            "votes": 7026
+          },
+          "야탑1동": {
+            "dem": 47.9,
+            "opponent": 46.51,
+            "turnout": 68.97,
+            "demVotes": 4921,
+            "opponentVotes": 4778,
+            "validVotes": 10273,
+            "electors": 15074,
+            "votes": 10397
+          },
+          "야탑2동": {
+            "dem": 40.72,
+            "opponent": 52.81,
+            "turnout": 68.63,
+            "demVotes": 3425,
+            "opponentVotes": 4442,
+            "validVotes": 8411,
+            "electors": 12389,
+            "votes": 8502
+          },
+          "야탑3동": {
+            "dem": 49.65,
+            "opponent": 44.69,
+            "turnout": 63.16,
+            "demVotes": 6438,
+            "opponentVotes": 5796,
+            "validVotes": 12968,
+            "electors": 20908,
+            "votes": 13205
+          },
+          "금곡동": {
+            "dem": 41.48,
+            "opponent": 52.53,
+            "turnout": 63.77,
+            "demVotes": 5604,
+            "opponentVotes": 7098,
+            "validVotes": 13511,
+            "electors": 21458,
+            "votes": 13683
+          },
+          "구미동": {
+            "dem": 41.84,
+            "opponent": 52.48,
+            "turnout": 64.35,
+            "demVotes": 5942,
+            "opponentVotes": 7452,
+            "validVotes": 14201,
+            "electors": 22367,
+            "votes": 14393
+          },
+          "구미1동": {
+            "dem": 46.79,
+            "opponent": 47.48,
+            "turnout": 67.97,
+            "demVotes": 4370,
+            "opponentVotes": 4434,
+            "validVotes": 9339,
+            "electors": 13897,
+            "votes": 9446
+          },
+          "판교동": {
+            "dem": 47.28,
+            "opponent": 45.85,
+            "turnout": 67.71,
+            "demVotes": 6182,
+            "opponentVotes": 5994,
+            "validVotes": 13074,
+            "electors": 19473,
+            "votes": 13186
+          },
+          "삼평동": {
+            "dem": 49.01,
+            "opponent": 44.83,
+            "turnout": 64.9,
+            "demVotes": 5681,
+            "opponentVotes": 5196,
+            "validVotes": 11591,
+            "electors": 18049,
+            "votes": 11714
+          },
+          "백현동": {
+            "dem": 47.63,
+            "opponent": 46.2,
+            "turnout": 64.16,
+            "demVotes": 6321,
+            "opponentVotes": 6131,
+            "validVotes": 13271,
+            "electors": 20924,
+            "votes": 13424
+          },
+          "운중동": {
+            "dem": 48.04,
+            "opponent": 45.99,
+            "turnout": 64.13,
+            "demVotes": 8978,
+            "opponentVotes": 8596,
+            "validVotes": 18689,
+            "electors": 29399,
+            "votes": 18855
+          }
+        },
+        "status": "complete",
+        "demCandidate": "추미애",
+        "opponentCandidate": "양향자",
+        "sourceFile": "중앙선거관리위원회 선거통계시스템 다운로드 XLSX"
+      }
+    ],
+    "councilReference": {
+      "title": "성남시의원 결과 · 참고",
+      "description": "성남시의원 지역구는 중선거구제입니다. 선거구별 의원정수와 당선자를 함께 표시하며, 무투표 선거구는 실제 당선자 이름을 득표수 없이 제공합니다.",
+      "districts": [
+        {
+          "id": "바",
+          "name": "성남시바선거구",
+          "status": "counted",
+          "coverage": [
+            "이매1동",
+            "이매2동",
+            "삼평동"
+          ],
+          "electors": 50578,
+          "votes": 34675,
+          "validVotes": 34066,
+          "turnout": 68.56,
+          "candidates": [
+            {
+              "party": "더불어민주당",
+              "name": "김소희",
+              "votes": 14644,
+              "share": 42.99,
+              "elected": true
+            },
+            {
+              "party": "국민의힘",
+              "name": "민영미",
+              "votes": 14869,
+              "share": 43.65,
+              "elected": true
+            },
+            {
+              "party": "개혁신당",
+              "name": "오정대",
+              "votes": 1003,
+              "share": 2.94,
+              "elected": false
+            },
+            {
+              "party": "무소속",
+              "name": "박종각",
+              "votes": 3550,
+              "share": 10.42,
+              "elected": false
+            }
+          ],
+          "dongResults": {
+            "이매1동": {
+              "electors": 19087,
+              "votes": 12809,
+              "validVotes": 12605,
+              "turnout": 67.11,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "김소희",
+                  "votes": 4900,
+                  "share": 38.87
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "민영미",
+                  "votes": 5953,
+                  "share": 47.23
+                },
+                {
+                  "party": "개혁신당",
+                  "name": "오정대",
+                  "votes": 361,
+                  "share": 2.86
+                },
+                {
+                  "party": "무소속",
+                  "name": "박종각",
+                  "votes": 1391,
+                  "share": 11.04
+                }
+              ]
+            },
+            "이매2동": {
+              "electors": 10316,
+              "votes": 7017,
+              "validVotes": 6912,
+              "turnout": 68.02,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "김소희",
+                  "votes": 2559,
+                  "share": 37.02
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "민영미",
+                  "votes": 3163,
+                  "share": 45.76
+                },
+                {
+                  "party": "개혁신당",
+                  "name": "오정대",
+                  "votes": 165,
+                  "share": 2.39
+                },
+                {
+                  "party": "무소속",
+                  "name": "박종각",
+                  "votes": 1025,
+                  "share": 14.83
+                }
+              ]
+            },
+            "삼평동": {
+              "electors": 18049,
+              "votes": 11692,
+              "validVotes": 11437,
+              "turnout": 64.78,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "김소희",
+                  "votes": 5392,
+                  "share": 47.15
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "민영미",
+                  "votes": 4763,
+                  "share": 41.65
+                },
+                {
+                  "party": "개혁신당",
+                  "name": "오정대",
+                  "votes": 333,
+                  "share": 2.91
+                },
+                {
+                  "party": "무소속",
+                  "name": "박종각",
+                  "votes": 949,
+                  "share": 8.3
+                }
+              ]
+            }
+          },
+          "seats": 2,
+          "winnerNames": [
+            "김소희",
+            "민영미"
+          ],
+          "winnerCount": 2
+        },
+        {
+          "id": "사",
+          "name": "성남시사선거구",
+          "status": "uncontested",
+          "coverage": [
+            "야탑1동",
+            "야탑2동",
+            "야탑3동"
+          ],
+          "electors": null,
+          "votes": null,
+          "validVotes": null,
+          "turnout": null,
+          "candidates": [
+            {
+              "party": "더불어민주당",
+              "name": "정연화",
+              "votes": null,
+              "share": null,
+              "elected": true
+            },
+            {
+              "party": "국민의힘",
+              "name": "김보석",
+              "votes": null,
+              "share": null,
+              "elected": true
+            }
+          ],
+          "dongResults": {},
+          "note": "후보자 수가 의원정수를 넘지 않아 무투표 당선되어 개표결과 파일이 없습니다.",
+          "seats": 2,
+          "winnerNames": [
+            "정연화",
+            "김보석"
+          ],
+          "winnerCount": 2
+        },
+        {
+          "id": "아",
+          "name": "성남시아선거구",
+          "status": "uncontested",
+          "coverage": [
+            "서현1동",
+            "서현2동"
+          ],
+          "electors": null,
+          "votes": null,
+          "validVotes": null,
+          "turnout": null,
+          "candidates": [
+            {
+              "party": "더불어민주당",
+              "name": "오종길",
+              "votes": null,
+              "share": null,
+              "elected": true
+            },
+            {
+              "party": "국민의힘",
+              "name": "김건우",
+              "votes": null,
+              "share": null,
+              "elected": true
+            }
+          ],
+          "dongResults": {},
+          "note": "후보자 수가 의원정수를 넘지 않아 무투표 당선되어 개표결과 파일이 없습니다.",
+          "seats": 2,
+          "winnerNames": [
+            "오종길",
+            "김건우"
+          ],
+          "winnerCount": 2
+        },
+        {
+          "id": "자",
+          "name": "성남시자선거구",
+          "status": "uncontested",
+          "coverage": [
+            "판교동",
+            "백현동",
+            "운중동"
+          ],
+          "electors": null,
+          "votes": null,
+          "validVotes": null,
+          "turnout": null,
+          "candidates": [
+            {
+              "party": "더불어민주당",
+              "name": "이세미",
+              "votes": null,
+              "share": null,
+              "elected": true
+            },
+            {
+              "party": "국민의힘",
+              "name": "김종환",
+              "votes": null,
+              "share": null,
+              "elected": true
+            }
+          ],
+          "dongResults": {},
+          "note": "후보자 수가 의원정수를 넘지 않아 무투표 당선되어 개표결과 파일이 없습니다.",
+          "seats": 2,
+          "winnerNames": [
+            "이세미",
+            "김종환"
+          ],
+          "winnerCount": 2
+        },
+        {
+          "id": "차",
+          "name": "성남시차선거구",
+          "status": "counted",
+          "coverage": [
+            "분당동",
+            "수내3동",
+            "정자2동",
+            "정자3동",
+            "구미동"
+          ],
+          "electors": 81995,
+          "votes": 54402,
+          "validVotes": 51806,
+          "turnout": 66.35,
+          "candidates": [
+            {
+              "party": "더불어민주당",
+              "name": "이종목",
+              "votes": 15597,
+              "share": 30.11,
+              "elected": true
+            },
+            {
+              "party": "더불어민주당",
+              "name": "최종성",
+              "votes": 10243,
+              "share": 19.77,
+              "elected": true
+            },
+            {
+              "party": "국민의힘",
+              "name": "이정아",
+              "votes": 17046,
+              "share": 32.9,
+              "elected": true
+            },
+            {
+              "party": "국민의힘",
+              "name": "서희경",
+              "votes": 7198,
+              "share": 13.89,
+              "elected": false
+            },
+            {
+              "party": "개혁신당",
+              "name": "홍승우",
+              "votes": 1722,
+              "share": 3.32,
+              "elected": false
+            }
+          ],
+          "dongResults": {
+            "분당동": {
+              "electors": 18739,
+              "votes": 11520,
+              "validVotes": 10991,
+              "turnout": 61.48,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "이종목",
+                  "votes": 3076,
+                  "share": 27.99
+                },
+                {
+                  "party": "더불어민주당",
+                  "name": "최종성",
+                  "votes": 2155,
+                  "share": 19.61
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "이정아",
+                  "votes": 3881,
+                  "share": 35.31
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "서희경",
+                  "votes": 1538,
+                  "share": 13.99
+                },
+                {
+                  "party": "개혁신당",
+                  "name": "홍승우",
+                  "votes": 341,
+                  "share": 3.1
+                }
+              ]
+            },
+            "수내3동": {
+              "electors": 10233,
+              "votes": 6515,
+              "validVotes": 6188,
+              "turnout": 63.67,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "이종목",
+                  "votes": 1751,
+                  "share": 28.3
+                },
+                {
+                  "party": "더불어민주당",
+                  "name": "최종성",
+                  "votes": 1445,
+                  "share": 23.35
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "이정아",
+                  "votes": 1798,
+                  "share": 29.06
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "서희경",
+                  "votes": 991,
+                  "share": 16.01
+                },
+                {
+                  "party": "개혁신당",
+                  "name": "홍승우",
+                  "votes": 203,
+                  "share": 3.28
+                }
+              ]
+            },
+            "정자2동": {
+              "electors": 10976,
+              "votes": 6871,
+              "validVotes": 6496,
+              "turnout": 62.6,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "이종목",
+                  "votes": 2027,
+                  "share": 31.2
+                },
+                {
+                  "party": "더불어민주당",
+                  "name": "최종성",
+                  "votes": 1226,
+                  "share": 18.87
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "이정아",
+                  "votes": 2201,
+                  "share": 33.88
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "서희경",
+                  "votes": 824,
+                  "share": 12.68
+                },
+                {
+                  "party": "개혁신당",
+                  "name": "홍승우",
+                  "votes": 218,
+                  "share": 3.36
+                }
+              ]
+            },
+            "정자3동": {
+              "electors": 13000,
+              "votes": 8432,
+              "validVotes": 8058,
+              "turnout": 64.86,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "이종목",
+                  "votes": 2413,
+                  "share": 29.95
+                },
+                {
+                  "party": "더불어민주당",
+                  "name": "최종성",
+                  "votes": 1497,
+                  "share": 18.58
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "이정아",
+                  "votes": 2595,
+                  "share": 32.2
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "서희경",
+                  "votes": 1292,
+                  "share": 16.03
+                },
+                {
+                  "party": "개혁신당",
+                  "name": "홍승우",
+                  "votes": 261,
+                  "share": 3.24
+                }
+              ]
+            },
+            "구미동": {
+              "electors": 22367,
+              "votes": 14383,
+              "validVotes": 13687,
+              "turnout": 64.3,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "이종목",
+                  "votes": 3575,
+                  "share": 26.12
+                },
+                {
+                  "party": "더불어민주당",
+                  "name": "최종성",
+                  "votes": 2440,
+                  "share": 17.83
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "이정아",
+                  "votes": 5098,
+                  "share": 37.25
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "서희경",
+                  "votes": 2170,
+                  "share": 15.85
+                },
+                {
+                  "party": "개혁신당",
+                  "name": "홍승우",
+                  "votes": 404,
+                  "share": 2.95
+                }
+              ]
+            }
+          },
+          "seats": 3,
+          "winnerNames": [
+            "이종목",
+            "최종성",
+            "이정아"
+          ],
+          "winnerCount": 3
+        },
+        {
+          "id": "카",
+          "name": "성남시카선거구",
+          "status": "uncontested",
+          "coverage": [
+            "수내1동",
+            "수내2동",
+            "정자1동"
+          ],
+          "electors": null,
+          "votes": null,
+          "validVotes": null,
+          "turnout": null,
+          "candidates": [
+            {
+              "party": "더불어민주당",
+              "name": "서은경",
+              "votes": null,
+              "share": null,
+              "elected": true
+            },
+            {
+              "party": "국민의힘",
+              "name": "정봉규",
+              "votes": null,
+              "share": null,
+              "elected": true
+            }
+          ],
+          "dongResults": {},
+          "note": "후보자 수가 의원정수를 넘지 않아 무투표 당선되어 개표결과 파일이 없습니다.",
+          "seats": 2,
+          "winnerNames": [
+            "서은경",
+            "정봉규"
+          ],
+          "winnerCount": 2
+        },
+        {
+          "id": "타",
+          "name": "성남시타선거구",
+          "status": "counted",
+          "coverage": [
+            "정자동",
+            "금곡동",
+            "구미1동"
+          ],
+          "electors": 49562,
+          "votes": 33330,
+          "validVotes": 32557,
+          "turnout": 67.25,
+          "candidates": [
+            {
+              "party": "더불어민주당",
+              "name": "장정현",
+              "votes": 14491,
+              "share": 44.51,
+              "elected": true
+            },
+            {
+              "party": "국민의힘",
+              "name": "백진규",
+              "votes": 16133,
+              "share": 49.55,
+              "elected": true
+            },
+            {
+              "party": "무소속",
+              "name": "김영발",
+              "votes": 1933,
+              "share": 5.94,
+              "elected": false
+            }
+          ],
+          "dongResults": {
+            "정자동": {
+              "electors": 10525,
+              "votes": 6523,
+              "validVotes": 6407,
+              "turnout": 61.98,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "장정현",
+                  "votes": 2560,
+                  "share": 39.96
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "백진규",
+                  "votes": 3624,
+                  "share": 56.56
+                },
+                {
+                  "party": "무소속",
+                  "name": "김영발",
+                  "votes": 223,
+                  "share": 3.48
+                }
+              ]
+            },
+            "금곡동": {
+              "electors": 21458,
+              "votes": 13665,
+              "validVotes": 13239,
+              "turnout": 63.68,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "장정현",
+                  "votes": 5469,
+                  "share": 41.31
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "백진규",
+                  "votes": 6885,
+                  "share": 52.01
+                },
+                {
+                  "party": "무소속",
+                  "name": "김영발",
+                  "votes": 885,
+                  "share": 6.68
+                }
+              ]
+            },
+            "구미1동": {
+              "electors": 13897,
+              "votes": 9433,
+              "validVotes": 9273,
+              "turnout": 67.88,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "장정현",
+                  "votes": 4274,
+                  "share": 46.09
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "백진규",
+                  "votes": 4326,
+                  "share": 46.65
+                },
+                {
+                  "party": "무소속",
+                  "name": "김영발",
+                  "votes": 673,
+                  "share": 7.26
+                }
+              ]
+            }
+          },
+          "seats": 2,
+          "winnerNames": [
+            "장정현",
+            "백진규"
+          ],
+          "winnerCount": 2
+        }
+      ],
+      "proportional": {
+        "electors": 396814,
+        "votes": 264975,
+        "validVotes": 260842,
+        "turnout": 66.78,
+        "parties": [
+          {
+            "party": "더불어민주당",
+            "votes": 108272,
+            "share": 41.51
+          },
+          {
+            "party": "국민의힘",
+            "votes": 133459,
+            "share": 51.16
+          },
+          {
+            "party": "조국혁신당",
+            "votes": 14384,
+            "share": 5.51
+          },
+          {
+            "party": "진보당",
+            "votes": 4727,
+            "share": 1.81
+          }
+        ],
+        "dongResults": {
+          "분당동": {
+            "electors": 18739,
+            "votes": 11516,
+            "validVotes": 11348,
+            "turnout": 61.45,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 4456,
+                "share": 39.27
+              },
+              {
+                "party": "국민의힘",
+                "votes": 6094,
+                "share": 53.7
+              },
+              {
+                "party": "조국혁신당",
+                "votes": 608,
+                "share": 5.36
+              },
+              {
+                "party": "진보당",
+                "votes": 190,
+                "share": 1.67
+              }
+            ]
+          },
+          "수내1동": {
+            "electors": 14301,
+            "votes": 9099,
+            "validVotes": 8947,
+            "turnout": 63.62,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 3354,
+                "share": 37.49
+              },
+              {
+                "party": "국민의힘",
+                "votes": 4992,
+                "share": 55.8
+              },
+              {
+                "party": "조국혁신당",
+                "votes": 462,
+                "share": 5.16
+              },
+              {
+                "party": "진보당",
+                "votes": 139,
+                "share": 1.55
+              }
+            ]
+          },
+          "수내2동": {
+            "electors": 7428,
+            "votes": 5080,
+            "validVotes": 5017,
+            "turnout": 68.39,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 1834,
+                "share": 36.56
+              },
+              {
+                "party": "국민의힘",
+                "votes": 2820,
+                "share": 56.21
+              },
+              {
+                "party": "조국혁신당",
+                "votes": 258,
+                "share": 5.14
+              },
+              {
+                "party": "진보당",
+                "votes": 105,
+                "share": 2.09
+              }
+            ]
+          },
+          "수내3동": {
+            "electors": 10233,
+            "votes": 6513,
+            "validVotes": 6430,
+            "turnout": 63.65,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 2865,
+                "share": 44.56
+              },
+              {
+                "party": "국민의힘",
+                "votes": 3067,
+                "share": 47.7
+              },
+              {
+                "party": "조국혁신당",
+                "votes": 356,
+                "share": 5.54
+              },
+              {
+                "party": "진보당",
+                "votes": 142,
+                "share": 2.21
+              }
+            ]
+          },
+          "정자동": {
+            "electors": 10525,
+            "votes": 6532,
+            "validVotes": 6410,
+            "turnout": 62.06,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 2240,
+                "share": 34.95
+              },
+              {
+                "party": "국민의힘",
+                "votes": 3725,
+                "share": 58.11
+              },
+              {
+                "party": "조국혁신당",
+                "votes": 330,
+                "share": 5.15
+              },
+              {
+                "party": "진보당",
+                "votes": 115,
+                "share": 1.79
+              }
+            ]
+          },
+          "정자1동": {
+            "electors": 24624,
+            "votes": 14491,
+            "validVotes": 14277,
+            "turnout": 58.85,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 4620,
+                "share": 32.36
+              },
+              {
+                "party": "국민의힘",
+                "votes": 8926,
+                "share": 62.52
+              },
+              {
+                "party": "조국혁신당",
+                "votes": 559,
+                "share": 3.92
+              },
+              {
+                "party": "진보당",
+                "votes": 172,
+                "share": 1.2
+              }
+            ]
+          },
+          "정자2동": {
+            "electors": 10976,
+            "votes": 6872,
+            "validVotes": 6757,
+            "turnout": 62.61,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 2847,
+                "share": 42.13
+              },
+              {
+                "party": "국민의힘",
+                "votes": 3484,
+                "share": 51.56
+              },
+              {
+                "party": "조국혁신당",
+                "votes": 312,
+                "share": 4.62
+              },
+              {
+                "party": "진보당",
+                "votes": 114,
+                "share": 1.69
+              }
+            ]
+          },
+          "정자3동": {
+            "electors": 13000,
+            "votes": 8429,
+            "validVotes": 8329,
+            "turnout": 64.84,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 3454,
+                "share": 41.47
+              },
+              {
+                "party": "국민의힘",
+                "votes": 4190,
+                "share": 50.31
+              },
+              {
+                "party": "조국혁신당",
+                "votes": 521,
+                "share": 6.26
+              },
+              {
+                "party": "진보당",
+                "votes": 164,
+                "share": 1.97
+              }
+            ]
+          },
+          "서현1동": {
+            "electors": 24128,
+            "votes": 14934,
+            "validVotes": 14716,
+            "turnout": 61.89,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 5478,
+                "share": 37.22
+              },
+              {
+                "party": "국민의힘",
+                "votes": 8172,
+                "share": 55.53
+              },
+              {
+                "party": "조국혁신당",
+                "votes": 792,
+                "share": 5.38
+              },
+              {
+                "party": "진보당",
+                "votes": 274,
+                "share": 1.86
+              }
+            ]
+          },
+          "서현2동": {
+            "electors": 13968,
+            "votes": 9332,
+            "validVotes": 9233,
+            "turnout": 66.81,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 3810,
+                "share": 41.27
+              },
+              {
+                "party": "국민의힘",
+                "votes": 4780,
+                "share": 51.77
+              },
+              {
+                "party": "조국혁신당",
+                "votes": 490,
+                "share": 5.31
+              },
+              {
+                "party": "진보당",
+                "votes": 153,
+                "share": 1.66
+              }
+            ]
+          },
+          "이매1동": {
+            "electors": 19087,
+            "votes": 12823,
+            "validVotes": 12592,
+            "turnout": 67.18,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 4680,
+                "share": 37.17
+              },
+              {
+                "party": "국민의힘",
+                "votes": 7000,
+                "share": 55.59
+              },
+              {
+                "party": "조국혁신당",
+                "votes": 691,
+                "share": 5.49
+              },
+              {
+                "party": "진보당",
+                "votes": 221,
+                "share": 1.76
+              }
+            ]
+          },
+          "이매2동": {
+            "electors": 10316,
+            "votes": 7023,
+            "validVotes": 6885,
+            "turnout": 68.08,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 2524,
+                "share": 36.66
+              },
+              {
+                "party": "국민의힘",
+                "votes": 3895,
+                "share": 56.57
+              },
+              {
+                "party": "조국혁신당",
+                "votes": 344,
+                "share": 5.0
+              },
+              {
+                "party": "진보당",
+                "votes": 122,
+                "share": 1.77
+              }
+            ]
+          },
+          "야탑1동": {
+            "electors": 15074,
+            "votes": 10396,
+            "validVotes": 10243,
+            "turnout": 68.97,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 4491,
+                "share": 43.84
+              },
+              {
+                "party": "국민의힘",
+                "votes": 5098,
+                "share": 49.77
+              },
+              {
+                "party": "조국혁신당",
+                "votes": 489,
+                "share": 4.77
+              },
+              {
+                "party": "진보당",
+                "votes": 165,
+                "share": 1.61
+              }
+            ]
+          },
+          "야탑2동": {
+            "electors": 12389,
+            "votes": 8499,
+            "validVotes": 8388,
+            "turnout": 68.6,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 3127,
+                "share": 37.28
+              },
+              {
+                "party": "국민의힘",
+                "votes": 4712,
+                "share": 56.18
+              },
+              {
+                "party": "조국혁신당",
+                "votes": 406,
+                "share": 4.84
+              },
+              {
+                "party": "진보당",
+                "votes": 143,
+                "share": 1.7
+              }
+            ]
+          },
+          "야탑3동": {
+            "electors": 20908,
+            "votes": 13207,
+            "validVotes": 12967,
+            "turnout": 63.17,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 6061,
+                "share": 46.74
+              },
+              {
+                "party": "국민의힘",
+                "votes": 6156,
+                "share": 47.47
+              },
+              {
+                "party": "조국혁신당",
+                "votes": 556,
+                "share": 4.29
+              },
+              {
+                "party": "진보당",
+                "votes": 194,
+                "share": 1.5
+              }
+            ]
+          },
+          "금곡동": {
+            "electors": 21458,
+            "votes": 13669,
+            "validVotes": 13355,
+            "turnout": 63.7,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 5086,
+                "share": 38.08
+              },
+              {
+                "party": "국민의힘",
+                "votes": 7362,
+                "share": 55.13
+              },
+              {
+                "party": "조국혁신당",
+                "votes": 689,
+                "share": 5.16
+              },
+              {
+                "party": "진보당",
+                "votes": 218,
+                "share": 1.63
+              }
+            ]
+          },
+          "구미동": {
+            "electors": 22367,
+            "votes": 14378,
+            "validVotes": 14164,
+            "turnout": 64.28,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 5407,
+                "share": 38.17
+              },
+              {
+                "party": "국민의힘",
+                "votes": 7786,
+                "share": 54.97
+              },
+              {
+                "party": "조국혁신당",
+                "votes": 764,
+                "share": 5.39
+              },
+              {
+                "party": "진보당",
+                "votes": 207,
+                "share": 1.46
+              }
+            ]
+          },
+          "구미1동": {
+            "electors": 13897,
+            "votes": 9437,
+            "validVotes": 9277,
+            "turnout": 67.91,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 3969,
+                "share": 42.78
+              },
+              {
+                "party": "국민의힘",
+                "votes": 4585,
+                "share": 49.42
+              },
+              {
+                "party": "조국혁신당",
+                "votes": 564,
+                "share": 6.08
+              },
+              {
+                "party": "진보당",
+                "votes": 159,
+                "share": 1.71
+              }
+            ]
+          },
+          "판교동": {
+            "electors": 19473,
+            "votes": 13191,
+            "validVotes": 13018,
+            "turnout": 67.74,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 5441,
+                "share": 41.8
+              },
+              {
+                "party": "국민의힘",
+                "votes": 6436,
+                "share": 49.44
+              },
+              {
+                "party": "조국혁신당",
+                "votes": 871,
+                "share": 6.69
+              },
+              {
+                "party": "진보당",
+                "votes": 270,
+                "share": 2.07
+              }
+            ]
+          },
+          "삼평동": {
+            "electors": 18049,
+            "votes": 11703,
+            "validVotes": 11480,
+            "turnout": 64.84,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 5034,
+                "share": 43.85
+              },
+              {
+                "party": "국민의힘",
+                "votes": 5462,
+                "share": 47.58
+              },
+              {
+                "party": "조국혁신당",
+                "votes": 759,
+                "share": 6.61
+              },
+              {
+                "party": "진보당",
+                "votes": 225,
+                "share": 1.96
+              }
+            ]
+          },
+          "백현동": {
+            "electors": 20924,
+            "votes": 13408,
+            "validVotes": 13156,
+            "turnout": 64.08,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 5722,
+                "share": 43.49
+              },
+              {
+                "party": "국민의힘",
+                "votes": 6431,
+                "share": 48.88
+              },
+              {
+                "party": "조국혁신당",
+                "votes": 748,
+                "share": 5.69
+              },
+              {
+                "party": "진보당",
+                "votes": 255,
+                "share": 1.94
+              }
+            ]
+          },
+          "운중동": {
+            "electors": 29399,
+            "votes": 18828,
+            "validVotes": 18627,
+            "turnout": 64.04,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 7906,
+                "share": 42.44
+              },
+              {
+                "party": "국민의힘",
+                "votes": 9217,
+                "share": 49.48
+              },
+              {
+                "party": "조국혁신당",
+                "votes": 1160,
+                "share": 6.23
+              },
+              {
+                "party": "진보당",
+                "votes": 344,
+                "share": 1.85
+              }
+            ]
+          }
+        }
+      },
+      "cycle": 9,
+      "source": "중앙선거관리위원회 선거통계시스템 다운로드 XLSX"
+    },
+    "provincialCouncilReference": {
+      "title": "경기도의원 결과 · 참고",
+      "description": "경기도의원 지역구는 1인 선거구입니다. 분당구에 해당하는 성남시 제5~8선거구의 후보별 실제 득표와 당선자를 제공합니다.",
+      "districts": [
+        {
+          "id": "제5",
+          "name": "성남시제5선거구",
+          "status": "counted",
+          "seats": 1,
+          "coverage": [
+            "이매1동",
+            "이매2동",
+            "야탑1동",
+            "야탑2동",
+            "야탑3동",
+            "삼평동"
+          ],
+          "electors": 102181,
+          "votes": 70010,
+          "validVotes": 69096,
+          "turnout": 68.52,
+          "candidates": [
+            {
+              "party": "더불어민주당",
+              "name": "유민아",
+              "votes": 31748,
+              "share": 45.95,
+              "elected": false
+            },
+            {
+              "party": "국민의힘",
+              "name": "방성환",
+              "votes": 33947,
+              "share": 49.13,
+              "elected": true
+            },
+            {
+              "party": "무소속",
+              "name": "이서영",
+              "votes": 3401,
+              "share": 4.92,
+              "elected": false
+            }
+          ],
+          "dongResults": {
+            "이매1동": {
+              "electors": 19087,
+              "votes": 12816,
+              "validVotes": 12703,
+              "turnout": 67.15,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "유민아",
+                  "votes": 5198,
+                  "share": 40.92
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "방성환",
+                  "votes": 6910,
+                  "share": 54.4
+                },
+                {
+                  "party": "무소속",
+                  "name": "이서영",
+                  "votes": 595,
+                  "share": 4.68
+                }
+              ]
+            },
+            "이매2동": {
+              "electors": 10316,
+              "votes": 7022,
+              "validVotes": 6948,
+              "turnout": 68.07,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "유민아",
+                  "votes": 2749,
+                  "share": 39.57
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "방성환",
+                  "votes": 3862,
+                  "share": 55.58
+                },
+                {
+                  "party": "무소속",
+                  "name": "이서영",
+                  "votes": 337,
+                  "share": 4.85
+                }
+              ]
+            },
+            "야탑1동": {
+              "electors": 15074,
+              "votes": 10392,
+              "validVotes": 10252,
+              "turnout": 68.94,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "유민아",
+                  "votes": 4880,
+                  "share": 47.6
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "방성환",
+                  "votes": 4864,
+                  "share": 47.44
+                },
+                {
+                  "party": "무소속",
+                  "name": "이서영",
+                  "votes": 508,
+                  "share": 4.96
+                }
+              ]
+            },
+            "야탑2동": {
+              "electors": 12389,
+              "votes": 8500,
+              "validVotes": 8416,
+              "turnout": 68.61,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "유민아",
+                  "votes": 3350,
+                  "share": 39.81
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "방성환",
+                  "votes": 4621,
+                  "share": 54.91
+                },
+                {
+                  "party": "무소속",
+                  "name": "이서영",
+                  "votes": 445,
+                  "share": 5.29
+                }
+              ]
+            },
+            "야탑3동": {
+              "electors": 20908,
+              "votes": 13195,
+              "validVotes": 12915,
+              "turnout": 63.11,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "유민아",
+                  "votes": 6248,
+                  "share": 48.38
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "방성환",
+                  "votes": 6058,
+                  "share": 46.91
+                },
+                {
+                  "party": "무소속",
+                  "name": "이서영",
+                  "votes": 609,
+                  "share": 4.72
+                }
+              ]
+            },
+            "삼평동": {
+              "electors": 18049,
+              "votes": 11704,
+              "validVotes": 11581,
+              "turnout": 64.85,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "유민아",
+                  "votes": 5591,
+                  "share": 48.28
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "방성환",
+                  "votes": 5352,
+                  "share": 46.21
+                },
+                {
+                  "party": "무소속",
+                  "name": "이서영",
+                  "votes": 638,
+                  "share": 5.51
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "제6",
+          "name": "성남시제6선거구",
+          "status": "counted",
+          "seats": 1,
+          "coverage": [
+            "서현1동",
+            "서현2동",
+            "판교동",
+            "백현동",
+            "운중동"
+          ],
+          "electors": 114308,
+          "votes": 76115,
+          "validVotes": 74875,
+          "turnout": 66.59,
+          "candidates": [
+            {
+              "party": "더불어민주당",
+              "name": "김진명",
+              "votes": 37787,
+              "share": 50.47,
+              "elected": true
+            },
+            {
+              "party": "국민의힘",
+              "name": "송경택",
+              "votes": 37088,
+              "share": 49.53,
+              "elected": false
+            }
+          ],
+          "dongResults": {
+            "서현1동": {
+              "electors": 24128,
+              "votes": 14936,
+              "validVotes": 14661,
+              "turnout": 61.9,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "김진명",
+                  "votes": 6547,
+                  "share": 44.66
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "송경택",
+                  "votes": 8114,
+                  "share": 55.34
+                }
+              ]
+            },
+            "서현2동": {
+              "electors": 13968,
+              "votes": 9334,
+              "validVotes": 9183,
+              "turnout": 66.82,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "김진명",
+                  "votes": 4413,
+                  "share": 48.06
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "송경택",
+                  "votes": 4770,
+                  "share": 51.94
+                }
+              ]
+            },
+            "판교동": {
+              "electors": 19473,
+              "votes": 13174,
+              "validVotes": 12996,
+              "turnout": 67.65,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "김진명",
+                  "votes": 6640,
+                  "share": 51.09
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "송경택",
+                  "votes": 6356,
+                  "share": 48.91
+                }
+              ]
+            },
+            "백현동": {
+              "electors": 20924,
+              "votes": 13415,
+              "validVotes": 13176,
+              "turnout": 64.11,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "김진명",
+                  "votes": 6778,
+                  "share": 51.44
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "송경택",
+                  "votes": 6398,
+                  "share": 48.56
+                }
+              ]
+            },
+            "운중동": {
+              "electors": 29399,
+              "votes": 18834,
+              "validVotes": 18545,
+              "turnout": 64.06,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "김진명",
+                  "votes": 9440,
+                  "share": 50.9
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "송경택",
+                  "votes": 9105,
+                  "share": 49.1
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "제7",
+          "name": "성남시제7선거구",
+          "status": "counted",
+          "seats": 1,
+          "coverage": [
+            "분당동",
+            "수내3동",
+            "정자2동",
+            "정자3동",
+            "구미동"
+          ],
+          "electors": 81995,
+          "votes": 54401,
+          "validVotes": 53369,
+          "turnout": 66.35,
+          "candidates": [
+            {
+              "party": "더불어민주당",
+              "name": "정종혁",
+              "votes": 26727,
+              "share": 50.08,
+              "elected": true
+            },
+            {
+              "party": "국민의힘",
+              "name": "안계일",
+              "votes": 26642,
+              "share": 49.92,
+              "elected": false
+            }
+          ],
+          "dongResults": {
+            "분당동": {
+              "electors": 18739,
+              "votes": 11520,
+              "validVotes": 11322,
+              "turnout": 61.48,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "정종혁",
+                  "votes": 5256,
+                  "share": 46.42
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "안계일",
+                  "votes": 6066,
+                  "share": 53.58
+                }
+              ]
+            },
+            "수내3동": {
+              "electors": 10233,
+              "votes": 6513,
+              "validVotes": 6380,
+              "turnout": 63.65,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "정종혁",
+                  "votes": 3403,
+                  "share": 53.34
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "안계일",
+                  "votes": 2977,
+                  "share": 46.66
+                }
+              ]
+            },
+            "정자2동": {
+              "electors": 10976,
+              "votes": 6868,
+              "validVotes": 6754,
+              "turnout": 62.57,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "정종혁",
+                  "votes": 3315,
+                  "share": 49.08
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "안계일",
+                  "votes": 3439,
+                  "share": 50.92
+                }
+              ]
+            },
+            "정자3동": {
+              "electors": 13000,
+              "votes": 8429,
+              "validVotes": 8245,
+              "turnout": 64.84,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "정종혁",
+                  "votes": 4103,
+                  "share": 49.76
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "안계일",
+                  "votes": 4142,
+                  "share": 50.24
+                }
+              ]
+            },
+            "구미동": {
+              "electors": 22367,
+              "votes": 14379,
+              "validVotes": 14108,
+              "turnout": 64.29,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "정종혁",
+                  "votes": 6222,
+                  "share": 44.1
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "안계일",
+                  "votes": 7886,
+                  "share": 55.9
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "제8",
+          "name": "성남시제8선거구",
+          "status": "counted",
+          "seats": 1,
+          "coverage": [
+            "수내1동",
+            "수내2동",
+            "정자동",
+            "정자1동",
+            "금곡동",
+            "구미1동"
+          ],
+          "electors": 98330,
+          "votes": 64436,
+          "validVotes": 63381,
+          "turnout": 65.53,
+          "candidates": [
+            {
+              "party": "더불어민주당",
+              "name": "이창임",
+              "votes": 28717,
+              "share": 45.31,
+              "elected": false
+            },
+            {
+              "party": "국민의힘",
+              "name": "정용한",
+              "votes": 34664,
+              "share": 54.69,
+              "elected": true
+            }
+          ],
+          "dongResults": {
+            "수내1동": {
+              "electors": 14301,
+              "votes": 9105,
+              "validVotes": 8977,
+              "turnout": 63.67,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "이창임",
+                  "votes": 3949,
+                  "share": 43.99
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "정용한",
+                  "votes": 5028,
+                  "share": 56.01
+                }
+              ]
+            },
+            "수내2동": {
+              "electors": 7428,
+              "votes": 5079,
+              "validVotes": 5017,
+              "turnout": 68.38,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "이창임",
+                  "votes": 2208,
+                  "share": 44.01
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "정용한",
+                  "votes": 2809,
+                  "share": 55.99
+                }
+              ]
+            },
+            "정자동": {
+              "electors": 10525,
+              "votes": 6534,
+              "validVotes": 6419,
+              "turnout": 62.08,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "이창임",
+                  "votes": 2675,
+                  "share": 41.67
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "정용한",
+                  "votes": 3744,
+                  "share": 58.33
+                }
+              ]
+            },
+            "정자1동": {
+              "electors": 24624,
+              "votes": 14492,
+              "validVotes": 14208,
+              "turnout": 58.85,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "이창임",
+                  "votes": 5407,
+                  "share": 38.06
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "정용한",
+                  "votes": 8801,
+                  "share": 61.94
+                }
+              ]
+            },
+            "금곡동": {
+              "electors": 21458,
+              "votes": 13673,
+              "validVotes": 13447,
+              "turnout": 63.72,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "이창임",
+                  "votes": 6053,
+                  "share": 45.01
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "정용한",
+                  "votes": 7394,
+                  "share": 54.99
+                }
+              ]
+            },
+            "구미1동": {
+              "electors": 13897,
+              "votes": 9440,
+              "validVotes": 9317,
+              "turnout": 67.93,
+              "candidates": [
+                {
+                  "party": "더불어민주당",
+                  "name": "이창임",
+                  "votes": 4721,
+                  "share": 50.67
+                },
+                {
+                  "party": "국민의힘",
+                  "name": "정용한",
+                  "votes": 4596,
+                  "share": 49.33
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "proportional": {
+        "electors": 396814,
+        "votes": 264975,
+        "validVotes": 262340,
+        "turnout": 66.78,
+        "parties": [
+          {
+            "party": "더불어민주당",
+            "votes": 102938,
+            "share": 39.24
+          },
+          {
+            "party": "국민의힘",
+            "votes": 124019,
+            "share": 47.27
+          },
+          {
+            "party": "조국혁신당",
+            "votes": 14596,
+            "share": 5.56
+          },
+          {
+            "party": "개혁신당",
+            "votes": 12160,
+            "share": 4.64
+          },
+          {
+            "party": "진보당",
+            "votes": 3007,
+            "share": 1.15
+          },
+          {
+            "party": "기본소득당",
+            "votes": 1882,
+            "share": 0.72
+          },
+          {
+            "party": "사회민주당",
+            "votes": 96,
+            "share": 0.04
+          },
+          {
+            "party": "거지당",
+            "votes": 242,
+            "share": 0.09
+          },
+          {
+            "party": "공화당",
+            "votes": 42,
+            "share": 0.02
+          },
+          {
+            "party": "국민대통합당",
+            "votes": 45,
+            "share": 0.02
+          },
+          {
+            "party": "국민연합",
+            "votes": 47,
+            "share": 0.02
+          },
+          {
+            "party": "기독당",
+            "votes": 106,
+            "share": 0.04
+          },
+          {
+            "party": "대한국민당",
+            "votes": 43,
+            "share": 0.02
+          },
+          {
+            "party": "새미래민주당",
+            "votes": 233,
+            "share": 0.09
+          },
+          {
+            "party": "자유와혁신",
+            "votes": 1330,
+            "share": 0.51
+          },
+          {
+            "party": "정의당",
+            "votes": 1349,
+            "share": 0.51
+          },
+          {
+            "party": "친미연합",
+            "votes": 36,
+            "share": 0.01
+          },
+          {
+            "party": "국민당",
+            "votes": 49,
+            "share": 0.02
+          },
+          {
+            "party": "한나라당",
+            "votes": 120,
+            "share": 0.05
+          }
+        ],
+        "dongResults": {
+          "분당동": {
+            "electors": 18739,
+            "votes": 11522,
+            "validVotes": 11427,
+            "turnout": 61.49,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 4201,
+                "share": 36.76
+              },
+              {
+                "party": "국민의힘",
+                "votes": 5737,
+                "share": 50.21
+              },
+              {
+                "party": "조국혁신당",
+                "votes": 648,
+                "share": 5.67
+              },
+              {
+                "party": "개혁신당",
+                "votes": 440,
+                "share": 3.85
+              },
+              {
+                "party": "진보당",
+                "votes": 130,
+                "share": 1.14
+              },
+              {
+                "party": "기본소득당",
+                "votes": 96,
+                "share": 0.84
+              },
+              {
+                "party": "사회민주당",
+                "votes": 6,
+                "share": 0.05
+              },
+              {
+                "party": "거지당",
+                "votes": 10,
+                "share": 0.09
+              },
+              {
+                "party": "공화당",
+                "votes": 1,
+                "share": 0.01
+              },
+              {
+                "party": "국민대통합당",
+                "votes": 1,
+                "share": 0.01
+              },
+              {
+                "party": "국민연합",
+                "votes": 0,
+                "share": 0.0
+              },
+              {
+                "party": "기독당",
+                "votes": 8,
+                "share": 0.07
+              },
+              {
+                "party": "대한국민당",
+                "votes": 1,
+                "share": 0.01
+              },
+              {
+                "party": "새미래민주당",
+                "votes": 14,
+                "share": 0.12
+              },
+              {
+                "party": "자유와혁신",
+                "votes": 65,
+                "share": 0.57
+              },
+              {
+                "party": "정의당",
+                "votes": 59,
+                "share": 0.52
+              },
+              {
+                "party": "친미연합",
+                "votes": 1,
+                "share": 0.01
+              },
+              {
+                "party": "국민당",
+                "votes": 1,
+                "share": 0.01
+              },
+              {
+                "party": "한나라당",
+                "votes": 8,
+                "share": 0.07
+              }
+            ]
+          },
+          "수내1동": {
+            "electors": 14301,
+            "votes": 9105,
+            "validVotes": 9027,
+            "turnout": 63.67,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 3187,
+                "share": 35.31
+              },
+              {
+                "party": "국민의힘",
+                "votes": 4595,
+                "share": 50.9
+              },
+              {
+                "party": "조국혁신당",
+                "votes": 497,
+                "share": 5.51
+              },
+              {
+                "party": "개혁신당",
+                "votes": 470,
+                "share": 5.21
+              },
+              {
+                "party": "진보당",
+                "votes": 86,
+                "share": 0.95
+              },
+              {
+                "party": "기본소득당",
+                "votes": 68,
+                "share": 0.75
+              },
+              {
+                "party": "사회민주당",
+                "votes": 3,
+                "share": 0.03
+              },
+              {
+                "party": "거지당",
+                "votes": 7,
+                "share": 0.08
+              },
+              {
+                "party": "공화당",
+                "votes": 2,
+                "share": 0.02
+              },
+              {
+                "party": "국민대통합당",
+                "votes": 2,
+                "share": 0.02
+              },
+              {
+                "party": "국민연합",
+                "votes": 1,
+                "share": 0.01
+              },
+              {
+                "party": "기독당",
+                "votes": 2,
+                "share": 0.02
+              },
+              {
+                "party": "대한국민당",
+                "votes": 3,
+                "share": 0.03
+              },
+              {
+                "party": "새미래민주당",
+                "votes": 12,
+                "share": 0.13
+              },
+              {
+                "party": "자유와혁신",
+                "votes": 49,
+                "share": 0.54
+              },
+              {
+                "party": "정의당",
+                "votes": 39,
+                "share": 0.43
+              },
+              {
+                "party": "친미연합",
+                "votes": 2,
+                "share": 0.02
+              },
+              {
+                "party": "국민당",
+                "votes": 1,
+                "share": 0.01
+              },
+              {
+                "party": "한나라당",
+                "votes": 1,
+                "share": 0.01
+              }
+            ]
+          },
+          "수내2동": {
+            "electors": 7428,
+            "votes": 5081,
+            "validVotes": 5049,
+            "turnout": 68.4,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 1747,
+                "share": 34.6
+              },
+              {
+                "party": "국민의힘",
+                "votes": 2603,
+                "share": 51.55
+              },
+              {
+                "party": "조국혁신당",
+                "votes": 294,
+                "share": 5.82
+              },
+              {
+                "party": "개혁신당",
+                "votes": 262,
+                "share": 5.19
+              },
+              {
+                "party": "진보당",
+                "votes": 56,
+                "share": 1.11
+              },
+              {
+                "party": "기본소득당",
+                "votes": 27,
+                "share": 0.53
+              },
+              {
+                "party": "사회민주당",
+                "votes": 2,
+                "share": 0.04
+              },
+              {
+                "party": "거지당",
+                "votes": 2,
+                "share": 0.04
+              },
+              {
+                "party": "공화당",
+                "votes": 0,
+                "share": 0.0
+              },
+              {
+                "party": "국민대통합당",
+                "votes": 0,
+                "share": 0.0
+              },
+              {
+                "party": "국민연합",
+                "votes": 0,
+                "share": 0.0
+              },
+              {
+                "party": "기독당",
+                "votes": 0,
+                "share": 0.0
+              },
+              {
+                "party": "대한국민당",
+                "votes": 0,
+                "share": 0.0
+              },
+              {
+                "party": "새미래민주당",
+                "votes": 5,
+                "share": 0.1
+              },
+              {
+                "party": "자유와혁신",
+                "votes": 22,
+                "share": 0.44
+              },
+              {
+                "party": "정의당",
+                "votes": 24,
+                "share": 0.48
+              },
+              {
+                "party": "친미연합",
+                "votes": 1,
+                "share": 0.02
+              },
+              {
+                "party": "국민당",
+                "votes": 3,
+                "share": 0.06
+              },
+              {
+                "party": "한나라당",
+                "votes": 1,
+                "share": 0.02
+              }
+            ]
+          },
+          "수내3동": {
+            "electors": 10233,
+            "votes": 6516,
+            "validVotes": 6445,
+            "turnout": 63.68,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 2679,
+                "share": 41.57
+              },
+              {
+                "party": "국민의힘",
+                "votes": 2892,
+                "share": 44.87
+              },
+              {
+                "party": "조국혁신당",
+                "votes": 362,
+                "share": 5.62
+              },
+              {
+                "party": "개혁신당",
+                "votes": 272,
+                "share": 4.22
+              },
+              {
+                "party": "진보당",
+                "votes": 101,
+                "share": 1.57
+              },
+              {
+                "party": "기본소득당",
+                "votes": 54,
+                "share": 0.84
+              },
+              {
+                "party": "사회민주당",
+                "votes": 2,
+                "share": 0.03
+              },
+              {
+                "party": "거지당",
+                "votes": 4,
+                "share": 0.06
+              },
+              {
+                "party": "공화당",
+                "votes": 0,
+                "share": 0.0
+              },
+              {
+                "party": "국민대통합당",
+                "votes": 1,
+                "share": 0.02
+              },
+              {
+                "party": "국민연합",
+                "votes": 0,
+                "share": 0.0
+              },
+              {
+                "party": "기독당",
+                "votes": 2,
+                "share": 0.03
+              },
+              {
+                "party": "대한국민당",
+                "votes": 4,
+                "share": 0.06
+              },
+              {
+                "party": "새미래민주당",
+                "votes": 3,
+                "share": 0.05
+              },
+              {
+                "party": "자유와혁신",
+                "votes": 34,
+                "share": 0.53
+              },
+              {
+                "party": "정의당",
+                "votes": 30,
+                "share": 0.47
+              },
+              {
+                "party": "친미연합",
+                "votes": 3,
+                "share": 0.05
+              },
+              {
+                "party": "국민당",
+                "votes": 1,
+                "share": 0.02
+              },
+              {
+                "party": "한나라당",
+                "votes": 1,
+                "share": 0.02
+              }
+            ]
+          },
+          "정자동": {
+            "electors": 10525,
+            "votes": 6534,
+            "validVotes": 6473,
+            "turnout": 62.08,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 2133,
+                "share": 32.95
+              },
+              {
+                "party": "국민의힘",
+                "votes": 3437,
+                "share": 53.1
+              },
+              {
+                "party": "조국혁신당",
+                "votes": 324,
+                "share": 5.01
+              },
+              {
+                "party": "개혁신당",
+                "votes": 343,
+                "share": 5.3
+              },
+              {
+                "party": "진보당",
+                "votes": 65,
+                "share": 1.0
+              },
+              {
+                "party": "기본소득당",
+                "votes": 51,
+                "share": 0.79
+              },
+              {
+                "party": "사회민주당",
+                "votes": 1,
+                "share": 0.02
+              },
+              {
+                "party": "거지당",
+                "votes": 6,
+                "share": 0.09
+              },
+              {
+                "party": "공화당",
+                "votes": 0,
+                "share": 0.0
+              },
+              {
+                "party": "국민대통합당",
+                "votes": 4,
+                "share": 0.06
+              },
+              {
+                "party": "국민연합",
+                "votes": 1,
+                "share": 0.02
+              },
+              {
+                "party": "기독당",
+                "votes": 7,
+                "share": 0.11
+              },
+              {
+                "party": "대한국민당",
+                "votes": 0,
+                "share": 0.0
+              },
+              {
+                "party": "새미래민주당",
+                "votes": 9,
+                "share": 0.14
+              },
+              {
+                "party": "자유와혁신",
+                "votes": 48,
+                "share": 0.74
+              },
+              {
+                "party": "정의당",
+                "votes": 39,
+                "share": 0.6
+              },
+              {
+                "party": "친미연합",
+                "votes": 1,
+                "share": 0.02
+              },
+              {
+                "party": "국민당",
+                "votes": 1,
+                "share": 0.02
+              },
+              {
+                "party": "한나라당",
+                "votes": 3,
+                "share": 0.05
+              }
+            ]
+          },
+          "정자1동": {
+            "electors": 24624,
+            "votes": 14493,
+            "validVotes": 14360,
+            "turnout": 58.86,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 4378,
+                "share": 30.49
+              },
+              {
+                "party": "국민의힘",
+                "votes": 8298,
+                "share": 57.79
+              },
+              {
+                "party": "조국혁신당",
+                "votes": 556,
+                "share": 3.87
+              },
+              {
+                "party": "개혁신당",
+                "votes": 779,
+                "share": 5.42
+              },
+              {
+                "party": "진보당",
+                "votes": 106,
+                "share": 0.74
+              },
+              {
+                "party": "기본소득당",
+                "votes": 79,
+                "share": 0.55
+              },
+              {
+                "party": "사회민주당",
+                "votes": 4,
+                "share": 0.03
+              },
+              {
+                "party": "거지당",
+                "votes": 7,
+                "share": 0.05
+              },
+              {
+                "party": "공화당",
+                "votes": 1,
+                "share": 0.01
+              },
+              {
+                "party": "국민대통합당",
+                "votes": 0,
+                "share": 0.0
+              },
+              {
+                "party": "국민연합",
+                "votes": 3,
+                "share": 0.02
+              },
+              {
+                "party": "기독당",
+                "votes": 3,
+                "share": 0.02
+              },
+              {
+                "party": "대한국민당",
+                "votes": 1,
+                "share": 0.01
+              },
+              {
+                "party": "새미래민주당",
+                "votes": 9,
+                "share": 0.06
+              },
+              {
+                "party": "자유와혁신",
+                "votes": 72,
+                "share": 0.5
+              },
+              {
+                "party": "정의당",
+                "votes": 59,
+                "share": 0.41
+              },
+              {
+                "party": "친미연합",
+                "votes": 2,
+                "share": 0.01
+              },
+              {
+                "party": "국민당",
+                "votes": 1,
+                "share": 0.01
+              },
+              {
+                "party": "한나라당",
+                "votes": 2,
+                "share": 0.01
+              }
+            ]
+          },
+          "정자2동": {
+            "electors": 10976,
+            "votes": 6872,
+            "validVotes": 6774,
+            "turnout": 62.61,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 2714,
+                "share": 40.06
+              },
+              {
+                "party": "국민의힘",
+                "votes": 3248,
+                "share": 47.95
+              },
+              {
+                "party": "조국혁신당",
+                "votes": 313,
+                "share": 4.62
+              },
+              {
+                "party": "개혁신당",
+                "votes": 289,
+                "share": 4.27
+              },
+              {
+                "party": "진보당",
+                "votes": 78,
+                "share": 1.15
+              },
+              {
+                "party": "기본소득당",
+                "votes": 35,
+                "share": 0.52
+              },
+              {
+                "party": "사회민주당",
+                "votes": 3,
+                "share": 0.04
+              },
+              {
+                "party": "거지당",
+                "votes": 7,
+                "share": 0.1
+              },
+              {
+                "party": "공화당",
+                "votes": 3,
+                "share": 0.04
+              },
+              {
+                "party": "국민대통합당",
+                "votes": 2,
+                "share": 0.03
+              },
+              {
+                "party": "국민연합",
+                "votes": 3,
+                "share": 0.04
+              },
+              {
+                "party": "기독당",
+                "votes": 3,
+                "share": 0.04
+              },
+              {
+                "party": "대한국민당",
+                "votes": 0,
+                "share": 0.0
+              },
+              {
+                "party": "새미래민주당",
+                "votes": 7,
+                "share": 0.1
+              },
+              {
+                "party": "자유와혁신",
+                "votes": 33,
+                "share": 0.49
+              },
+              {
+                "party": "정의당",
+                "votes": 29,
+                "share": 0.43
+              },
+              {
+                "party": "친미연합",
+                "votes": 1,
+                "share": 0.01
+              },
+              {
+                "party": "국민당",
+                "votes": 3,
+                "share": 0.04
+              },
+              {
+                "party": "한나라당",
+                "votes": 3,
+                "share": 0.04
+              }
+            ]
+          },
+          "정자3동": {
+            "electors": 13000,
+            "votes": 8439,
+            "validVotes": 8363,
+            "turnout": 64.92,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 3266,
+                "share": 39.05
+              },
+              {
+                "party": "국민의힘",
+                "votes": 3905,
+                "share": 46.69
+              },
+              {
+                "party": "조국혁신당",
+                "votes": 530,
+                "share": 6.34
+              },
+              {
+                "party": "개혁신당",
+                "votes": 367,
+                "share": 4.39
+              },
+              {
+                "party": "진보당",
+                "votes": 99,
+                "share": 1.18
+              },
+              {
+                "party": "기본소득당",
+                "votes": 68,
+                "share": 0.81
+              },
+              {
+                "party": "사회민주당",
+                "votes": 3,
+                "share": 0.04
+              },
+              {
+                "party": "거지당",
+                "votes": 7,
+                "share": 0.08
+              },
+              {
+                "party": "공화당",
+                "votes": 3,
+                "share": 0.04
+              },
+              {
+                "party": "국민대통합당",
+                "votes": 0,
+                "share": 0.0
+              },
+              {
+                "party": "국민연합",
+                "votes": 4,
+                "share": 0.05
+              },
+              {
+                "party": "기독당",
+                "votes": 4,
+                "share": 0.05
+              },
+              {
+                "party": "대한국민당",
+                "votes": 2,
+                "share": 0.02
+              },
+              {
+                "party": "새미래민주당",
+                "votes": 5,
+                "share": 0.06
+              },
+              {
+                "party": "자유와혁신",
+                "votes": 51,
+                "share": 0.61
+              },
+              {
+                "party": "정의당",
+                "votes": 46,
+                "share": 0.55
+              },
+              {
+                "party": "친미연합",
+                "votes": 0,
+                "share": 0.0
+              },
+              {
+                "party": "국민당",
+                "votes": 0,
+                "share": 0.0
+              },
+              {
+                "party": "한나라당",
+                "votes": 3,
+                "share": 0.04
+              }
+            ]
+          },
+          "서현1동": {
+            "electors": 24128,
+            "votes": 14939,
+            "validVotes": 14822,
+            "turnout": 61.92,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 5192,
+                "share": 35.03
+              },
+              {
+                "party": "국민의힘",
+                "votes": 7609,
+                "share": 51.34
+              },
+              {
+                "party": "조국혁신당",
+                "votes": 786,
+                "share": 5.3
+              },
+              {
+                "party": "개혁신당",
+                "votes": 728,
+                "share": 4.91
+              },
+              {
+                "party": "진보당",
+                "votes": 170,
+                "share": 1.15
+              },
+              {
+                "party": "기본소득당",
+                "votes": 113,
+                "share": 0.76
+              },
+              {
+                "party": "사회민주당",
+                "votes": 10,
+                "share": 0.07
+              },
+              {
+                "party": "거지당",
+                "votes": 18,
+                "share": 0.12
+              },
+              {
+                "party": "공화당",
+                "votes": 1,
+                "share": 0.01
+              },
+              {
+                "party": "국민대통합당",
+                "votes": 0,
+                "share": 0.0
+              },
+              {
+                "party": "국민연합",
+                "votes": 4,
+                "share": 0.03
+              },
+              {
+                "party": "기독당",
+                "votes": 4,
+                "share": 0.03
+              },
+              {
+                "party": "대한국민당",
+                "votes": 0,
+                "share": 0.0
+              },
+              {
+                "party": "새미래민주당",
+                "votes": 12,
+                "share": 0.08
+              },
+              {
+                "party": "자유와혁신",
+                "votes": 83,
+                "share": 0.56
+              },
+              {
+                "party": "정의당",
+                "votes": 84,
+                "share": 0.57
+              },
+              {
+                "party": "친미연합",
+                "votes": 1,
+                "share": 0.01
+              },
+              {
+                "party": "국민당",
+                "votes": 2,
+                "share": 0.01
+              },
+              {
+                "party": "한나라당",
+                "votes": 5,
+                "share": 0.03
+              }
+            ]
+          },
+          "서현2동": {
+            "electors": 13968,
+            "votes": 9338,
+            "validVotes": 9255,
+            "turnout": 66.85,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 3593,
+                "share": 38.82
+              },
+              {
+                "party": "국민의힘",
+                "votes": 4429,
+                "share": 47.86
+              },
+              {
+                "party": "조국혁신당",
+                "votes": 509,
+                "share": 5.5
+              },
+              {
+                "party": "개혁신당",
+                "votes": 423,
+                "share": 4.57
+              },
+              {
+                "party": "진보당",
+                "votes": 106,
+                "share": 1.15
+              },
+              {
+                "party": "기본소득당",
+                "votes": 71,
+                "share": 0.77
+              },
+              {
+                "party": "사회민주당",
+                "votes": 0,
+                "share": 0.0
+              },
+              {
+                "party": "거지당",
+                "votes": 7,
+                "share": 0.08
+              },
+              {
+                "party": "공화당",
+                "votes": 0,
+                "share": 0.0
+              },
+              {
+                "party": "국민대통합당",
+                "votes": 2,
+                "share": 0.02
+              },
+              {
+                "party": "국민연합",
+                "votes": 0,
+                "share": 0.0
+              },
+              {
+                "party": "기독당",
+                "votes": 3,
+                "share": 0.03
+              },
+              {
+                "party": "대한국민당",
+                "votes": 2,
+                "share": 0.02
+              },
+              {
+                "party": "새미래민주당",
+                "votes": 9,
+                "share": 0.1
+              },
+              {
+                "party": "자유와혁신",
+                "votes": 46,
+                "share": 0.5
+              },
+              {
+                "party": "정의당",
+                "votes": 47,
+                "share": 0.51
+              },
+              {
+                "party": "친미연합",
+                "votes": 0,
+                "share": 0.0
+              },
+              {
+                "party": "국민당",
+                "votes": 2,
+                "share": 0.02
+              },
+              {
+                "party": "한나라당",
+                "votes": 6,
+                "share": 0.06
+              }
+            ]
+          },
+          "이매1동": {
+            "electors": 19087,
+            "votes": 12821,
+            "validVotes": 12710,
+            "turnout": 67.17,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 4481,
+                "share": 35.26
+              },
+              {
+                "party": "국민의힘",
+                "votes": 6540,
+                "share": 51.46
+              },
+              {
+                "party": "조국혁신당",
+                "votes": 686,
+                "share": 5.4
+              },
+              {
+                "party": "개혁신당",
+                "votes": 606,
+                "share": 4.77
+              },
+              {
+                "party": "진보당",
+                "votes": 121,
+                "share": 0.95
+              },
+              {
+                "party": "기본소득당",
+                "votes": 77,
+                "share": 0.61
+              },
+              {
+                "party": "사회민주당",
+                "votes": 5,
+                "share": 0.04
+              },
+              {
+                "party": "거지당",
+                "votes": 8,
+                "share": 0.06
+              },
+              {
+                "party": "공화당",
+                "votes": 1,
+                "share": 0.01
+              },
+              {
+                "party": "국민대통합당",
+                "votes": 1,
+                "share": 0.01
+              },
+              {
+                "party": "국민연합",
+                "votes": 2,
+                "share": 0.02
+              },
+              {
+                "party": "기독당",
+                "votes": 6,
+                "share": 0.05
+              },
+              {
+                "party": "대한국민당",
+                "votes": 3,
+                "share": 0.02
+              },
+              {
+                "party": "새미래민주당",
+                "votes": 8,
+                "share": 0.06
+              },
+              {
+                "party": "자유와혁신",
+                "votes": 85,
+                "share": 0.67
+              },
+              {
+                "party": "정의당",
+                "votes": 69,
+                "share": 0.54
+              },
+              {
+                "party": "친미연합",
+                "votes": 3,
+                "share": 0.02
+              },
+              {
+                "party": "국민당",
+                "votes": 1,
+                "share": 0.01
+              },
+              {
+                "party": "한나라당",
+                "votes": 7,
+                "share": 0.06
+              }
+            ]
+          },
+          "이매2동": {
+            "electors": 10316,
+            "votes": 7024,
+            "validVotes": 6969,
+            "turnout": 68.09,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 2418,
+                "share": 34.7
+              },
+              {
+                "party": "국민의힘",
+                "votes": 3724,
+                "share": 53.44
+              },
+              {
+                "party": "조국혁신당",
+                "votes": 339,
+                "share": 4.86
+              },
+              {
+                "party": "개혁신당",
+                "votes": 302,
+                "share": 4.33
+              },
+              {
+                "party": "진보당",
+                "votes": 73,
+                "share": 1.05
+              },
+              {
+                "party": "기본소득당",
+                "votes": 36,
+                "share": 0.52
+              },
+              {
+                "party": "사회민주당",
+                "votes": 0,
+                "share": 0.0
+              },
+              {
+                "party": "거지당",
+                "votes": 6,
+                "share": 0.09
+              },
+              {
+                "party": "공화당",
+                "votes": 0,
+                "share": 0.0
+              },
+              {
+                "party": "국민대통합당",
+                "votes": 0,
+                "share": 0.0
+              },
+              {
+                "party": "국민연합",
+                "votes": 0,
+                "share": 0.0
+              },
+              {
+                "party": "기독당",
+                "votes": 1,
+                "share": 0.01
+              },
+              {
+                "party": "대한국민당",
+                "votes": 1,
+                "share": 0.01
+              },
+              {
+                "party": "새미래민주당",
+                "votes": 0,
+                "share": 0.0
+              },
+              {
+                "party": "자유와혁신",
+                "votes": 38,
+                "share": 0.55
+              },
+              {
+                "party": "정의당",
+                "votes": 28,
+                "share": 0.4
+              },
+              {
+                "party": "친미연합",
+                "votes": 0,
+                "share": 0.0
+              },
+              {
+                "party": "국민당",
+                "votes": 0,
+                "share": 0.0
+              },
+              {
+                "party": "한나라당",
+                "votes": 3,
+                "share": 0.04
+              }
+            ]
+          },
+          "야탑1동": {
+            "electors": 15074,
+            "votes": 10396,
+            "validVotes": 10284,
+            "turnout": 68.97,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 4335,
+                "share": 42.15
+              },
+              {
+                "party": "국민의힘",
+                "votes": 4751,
+                "share": 46.2
+              },
+              {
+                "party": "조국혁신당",
+                "votes": 496,
+                "share": 4.82
+              },
+              {
+                "party": "개혁신당",
+                "votes": 410,
+                "share": 3.99
+              },
+              {
+                "party": "진보당",
+                "votes": 115,
+                "share": 1.12
+              },
+              {
+                "party": "기본소득당",
+                "votes": 46,
+                "share": 0.45
+              },
+              {
+                "party": "사회민주당",
+                "votes": 3,
+                "share": 0.03
+              },
+              {
+                "party": "거지당",
+                "votes": 12,
+                "share": 0.12
+              },
+              {
+                "party": "공화당",
+                "votes": 5,
+                "share": 0.05
+              },
+              {
+                "party": "국민대통합당",
+                "votes": 1,
+                "share": 0.01
+              },
+              {
+                "party": "국민연합",
+                "votes": 2,
+                "share": 0.02
+              },
+              {
+                "party": "기독당",
+                "votes": 5,
+                "share": 0.05
+              },
+              {
+                "party": "대한국민당",
+                "votes": 3,
+                "share": 0.03
+              },
+              {
+                "party": "새미래민주당",
+                "votes": 4,
+                "share": 0.04
+              },
+              {
+                "party": "자유와혁신",
+                "votes": 48,
+                "share": 0.47
+              },
+              {
+                "party": "정의당",
+                "votes": 41,
+                "share": 0.4
+              },
+              {
+                "party": "친미연합",
+                "votes": 0,
+                "share": 0.0
+              },
+              {
+                "party": "국민당",
+                "votes": 2,
+                "share": 0.02
+              },
+              {
+                "party": "한나라당",
+                "votes": 5,
+                "share": 0.05
+              }
+            ]
+          },
+          "야탑2동": {
+            "electors": 12389,
+            "votes": 8502,
+            "validVotes": 8424,
+            "turnout": 68.63,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 2991,
+                "share": 35.51
+              },
+              {
+                "party": "국민의힘",
+                "votes": 4450,
+                "share": 52.83
+              },
+              {
+                "party": "조국혁신당",
+                "votes": 406,
+                "share": 4.82
+              },
+              {
+                "party": "개혁신당",
+                "votes": 318,
+                "share": 3.77
+              },
+              {
+                "party": "진보당",
+                "votes": 100,
+                "share": 1.19
+              },
+              {
+                "party": "기본소득당",
+                "votes": 41,
+                "share": 0.49
+              },
+              {
+                "party": "사회민주당",
+                "votes": 0,
+                "share": 0.0
+              },
+              {
+                "party": "거지당",
+                "votes": 5,
+                "share": 0.06
+              },
+              {
+                "party": "공화당",
+                "votes": 1,
+                "share": 0.01
+              },
+              {
+                "party": "국민대통합당",
+                "votes": 1,
+                "share": 0.01
+              },
+              {
+                "party": "국민연합",
+                "votes": 0,
+                "share": 0.0
+              },
+              {
+                "party": "기독당",
+                "votes": 2,
+                "share": 0.02
+              },
+              {
+                "party": "대한국민당",
+                "votes": 1,
+                "share": 0.01
+              },
+              {
+                "party": "새미래민주당",
+                "votes": 17,
+                "share": 0.2
+              },
+              {
+                "party": "자유와혁신",
+                "votes": 48,
+                "share": 0.57
+              },
+              {
+                "party": "정의당",
+                "votes": 38,
+                "share": 0.45
+              },
+              {
+                "party": "친미연합",
+                "votes": 1,
+                "share": 0.01
+              },
+              {
+                "party": "국민당",
+                "votes": 1,
+                "share": 0.01
+              },
+              {
+                "party": "한나라당",
+                "votes": 3,
+                "share": 0.04
+              }
+            ]
+          },
+          "야탑3동": {
+            "electors": 20908,
+            "votes": 13205,
+            "validVotes": 12994,
+            "turnout": 63.16,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 5814,
+                "share": 44.74
+              },
+              {
+                "party": "국민의힘",
+                "votes": 5723,
+                "share": 44.04
+              },
+              {
+                "party": "조국혁신당",
+                "votes": 534,
+                "share": 4.11
+              },
+              {
+                "party": "개혁신당",
+                "votes": 481,
+                "share": 3.7
+              },
+              {
+                "party": "진보당",
+                "votes": 116,
+                "share": 0.89
+              },
+              {
+                "party": "기본소득당",
+                "votes": 111,
+                "share": 0.85
+              },
+              {
+                "party": "사회민주당",
+                "votes": 5,
+                "share": 0.04
+              },
+              {
+                "party": "거지당",
+                "votes": 13,
+                "share": 0.1
+              },
+              {
+                "party": "공화당",
+                "votes": 3,
+                "share": 0.02
+              },
+              {
+                "party": "국민대통합당",
+                "votes": 5,
+                "share": 0.04
+              },
+              {
+                "party": "국민연합",
+                "votes": 0,
+                "share": 0.0
+              },
+              {
+                "party": "기독당",
+                "votes": 5,
+                "share": 0.04
+              },
+              {
+                "party": "대한국민당",
+                "votes": 0,
+                "share": 0.0
+              },
+              {
+                "party": "새미래민주당",
+                "votes": 14,
+                "share": 0.11
+              },
+              {
+                "party": "자유와혁신",
+                "votes": 84,
+                "share": 0.65
+              },
+              {
+                "party": "정의당",
+                "votes": 62,
+                "share": 0.48
+              },
+              {
+                "party": "친미연합",
+                "votes": 6,
+                "share": 0.05
+              },
+              {
+                "party": "국민당",
+                "votes": 4,
+                "share": 0.03
+              },
+              {
+                "party": "한나라당",
+                "votes": 14,
+                "share": 0.11
+              }
+            ]
+          },
+          "금곡동": {
+            "electors": 21458,
+            "votes": 13678,
+            "validVotes": 13512,
+            "turnout": 63.74,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 4851,
+                "share": 35.9
+              },
+              {
+                "party": "국민의힘",
+                "votes": 6946,
+                "share": 51.41
+              },
+              {
+                "party": "조국혁신당",
+                "votes": 702,
+                "share": 5.2
+              },
+              {
+                "party": "개혁신당",
+                "votes": 595,
+                "share": 4.4
+              },
+              {
+                "party": "진보당",
+                "votes": 143,
+                "share": 1.06
+              },
+              {
+                "party": "기본소득당",
+                "votes": 88,
+                "share": 0.65
+              },
+              {
+                "party": "사회민주당",
+                "votes": 7,
+                "share": 0.05
+              },
+              {
+                "party": "거지당",
+                "votes": 13,
+                "share": 0.1
+              },
+              {
+                "party": "공화당",
+                "votes": 4,
+                "share": 0.03
+              },
+              {
+                "party": "국민대통합당",
+                "votes": 2,
+                "share": 0.01
+              },
+              {
+                "party": "국민연합",
+                "votes": 6,
+                "share": 0.04
+              },
+              {
+                "party": "기독당",
+                "votes": 11,
+                "share": 0.08
+              },
+              {
+                "party": "대한국민당",
+                "votes": 2,
+                "share": 0.01
+              },
+              {
+                "party": "새미래민주당",
+                "votes": 11,
+                "share": 0.08
+              },
+              {
+                "party": "자유와혁신",
+                "votes": 65,
+                "share": 0.48
+              },
+              {
+                "party": "정의당",
+                "votes": 54,
+                "share": 0.4
+              },
+              {
+                "party": "친미연합",
+                "votes": 0,
+                "share": 0.0
+              },
+              {
+                "party": "국민당",
+                "votes": 4,
+                "share": 0.03
+              },
+              {
+                "party": "한나라당",
+                "votes": 8,
+                "share": 0.06
+              }
+            ]
+          },
+          "구미동": {
+            "electors": 22367,
+            "votes": 14384,
+            "validVotes": 14227,
+            "turnout": 64.31,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 5186,
+                "share": 36.45
+              },
+              {
+                "party": "국민의힘",
+                "votes": 7325,
+                "share": 51.49
+              },
+              {
+                "party": "조국혁신당",
+                "votes": 765,
+                "share": 5.38
+              },
+              {
+                "party": "개혁신당",
+                "votes": 531,
+                "share": 3.73
+              },
+              {
+                "party": "진보당",
+                "votes": 134,
+                "share": 0.94
+              },
+              {
+                "party": "기본소득당",
+                "votes": 103,
+                "share": 0.72
+              },
+              {
+                "party": "사회민주당",
+                "votes": 0,
+                "share": 0.0
+              },
+              {
+                "party": "거지당",
+                "votes": 11,
+                "share": 0.08
+              },
+              {
+                "party": "공화당",
+                "votes": 3,
+                "share": 0.02
+              },
+              {
+                "party": "국민대통합당",
+                "votes": 0,
+                "share": 0.0
+              },
+              {
+                "party": "국민연합",
+                "votes": 4,
+                "share": 0.03
+              },
+              {
+                "party": "기독당",
+                "votes": 2,
+                "share": 0.01
+              },
+              {
+                "party": "대한국민당",
+                "votes": 3,
+                "share": 0.02
+              },
+              {
+                "party": "새미래민주당",
+                "votes": 11,
+                "share": 0.08
+              },
+              {
+                "party": "자유와혁신",
+                "votes": 79,
+                "share": 0.56
+              },
+              {
+                "party": "정의당",
+                "votes": 55,
+                "share": 0.39
+              },
+              {
+                "party": "친미연합",
+                "votes": 1,
+                "share": 0.01
+              },
+              {
+                "party": "국민당",
+                "votes": 5,
+                "share": 0.04
+              },
+              {
+                "party": "한나라당",
+                "votes": 9,
+                "share": 0.06
+              }
+            ]
+          },
+          "구미1동": {
+            "electors": 13897,
+            "votes": 9443,
+            "validVotes": 9369,
+            "turnout": 67.95,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 3810,
+                "share": 40.67
+              },
+              {
+                "party": "국민의힘",
+                "votes": 4284,
+                "share": 45.73
+              },
+              {
+                "party": "조국혁신당",
+                "votes": 540,
+                "share": 5.76
+              },
+              {
+                "party": "개혁신당",
+                "votes": 428,
+                "share": 4.57
+              },
+              {
+                "party": "진보당",
+                "votes": 94,
+                "share": 1.0
+              },
+              {
+                "party": "기본소득당",
+                "votes": 74,
+                "share": 0.79
+              },
+              {
+                "party": "사회민주당",
+                "votes": 7,
+                "share": 0.07
+              },
+              {
+                "party": "거지당",
+                "votes": 11,
+                "share": 0.12
+              },
+              {
+                "party": "공화당",
+                "votes": 2,
+                "share": 0.02
+              },
+              {
+                "party": "국민대통합당",
+                "votes": 2,
+                "share": 0.02
+              },
+              {
+                "party": "국민연합",
+                "votes": 0,
+                "share": 0.0
+              },
+              {
+                "party": "기독당",
+                "votes": 4,
+                "share": 0.04
+              },
+              {
+                "party": "대한국민당",
+                "votes": 1,
+                "share": 0.01
+              },
+              {
+                "party": "새미래민주당",
+                "votes": 5,
+                "share": 0.05
+              },
+              {
+                "party": "자유와혁신",
+                "votes": 53,
+                "share": 0.57
+              },
+              {
+                "party": "정의당",
+                "votes": 50,
+                "share": 0.53
+              },
+              {
+                "party": "친미연합",
+                "votes": 0,
+                "share": 0.0
+              },
+              {
+                "party": "국민당",
+                "votes": 2,
+                "share": 0.02
+              },
+              {
+                "party": "한나라당",
+                "votes": 2,
+                "share": 0.02
+              }
+            ]
+          },
+          "판교동": {
+            "electors": 19473,
+            "votes": 13188,
+            "validVotes": 13072,
+            "turnout": 67.72,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 5090,
+                "share": 38.94
+              },
+              {
+                "party": "국민의힘",
+                "votes": 5919,
+                "share": 45.28
+              },
+              {
+                "party": "조국혁신당",
+                "votes": 914,
+                "share": 6.99
+              },
+              {
+                "party": "개혁신당",
+                "votes": 670,
+                "share": 5.13
+              },
+              {
+                "party": "진보당",
+                "votes": 164,
+                "share": 1.25
+              },
+              {
+                "party": "기본소득당",
+                "votes": 116,
+                "share": 0.89
+              },
+              {
+                "party": "사회민주당",
+                "votes": 4,
+                "share": 0.03
+              },
+              {
+                "party": "거지당",
+                "votes": 12,
+                "share": 0.09
+              },
+              {
+                "party": "공화당",
+                "votes": 2,
+                "share": 0.02
+              },
+              {
+                "party": "국민대통합당",
+                "votes": 3,
+                "share": 0.02
+              },
+              {
+                "party": "국민연합",
+                "votes": 1,
+                "share": 0.01
+              },
+              {
+                "party": "기독당",
+                "votes": 4,
+                "share": 0.03
+              },
+              {
+                "party": "대한국민당",
+                "votes": 0,
+                "share": 0.0
+              },
+              {
+                "party": "새미래민주당",
+                "votes": 9,
+                "share": 0.07
+              },
+              {
+                "party": "자유와혁신",
+                "votes": 70,
+                "share": 0.54
+              },
+              {
+                "party": "정의당",
+                "votes": 81,
+                "share": 0.62
+              },
+              {
+                "party": "친미연합",
+                "votes": 2,
+                "share": 0.02
+              },
+              {
+                "party": "국민당",
+                "votes": 2,
+                "share": 0.02
+              },
+              {
+                "party": "한나라당",
+                "votes": 9,
+                "share": 0.07
+              }
+            ]
+          },
+          "삼평동": {
+            "electors": 18049,
+            "votes": 11708,
+            "validVotes": 11584,
+            "turnout": 64.87,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 4818,
+                "share": 41.59
+              },
+              {
+                "party": "국민의힘",
+                "votes": 5010,
+                "share": 43.25
+              },
+              {
+                "party": "조국혁신당",
+                "votes": 765,
+                "share": 6.6
+              },
+              {
+                "party": "개혁신당",
+                "votes": 550,
+                "share": 4.75
+              },
+              {
+                "party": "진보당",
+                "votes": 141,
+                "share": 1.22
+              },
+              {
+                "party": "기본소득당",
+                "votes": 104,
+                "share": 0.9
+              },
+              {
+                "party": "사회민주당",
+                "votes": 9,
+                "share": 0.08
+              },
+              {
+                "party": "거지당",
+                "votes": 7,
+                "share": 0.06
+              },
+              {
+                "party": "공화당",
+                "votes": 3,
+                "share": 0.03
+              },
+              {
+                "party": "국민대통합당",
+                "votes": 4,
+                "share": 0.03
+              },
+              {
+                "party": "국민연합",
+                "votes": 3,
+                "share": 0.03
+              },
+              {
+                "party": "기독당",
+                "votes": 4,
+                "share": 0.03
+              },
+              {
+                "party": "대한국민당",
+                "votes": 5,
+                "share": 0.04
+              },
+              {
+                "party": "새미래민주당",
+                "votes": 14,
+                "share": 0.12
+              },
+              {
+                "party": "자유와혁신",
+                "votes": 70,
+                "share": 0.6
+              },
+              {
+                "party": "정의당",
+                "votes": 65,
+                "share": 0.56
+              },
+              {
+                "party": "친미연합",
+                "votes": 4,
+                "share": 0.03
+              },
+              {
+                "party": "국민당",
+                "votes": 5,
+                "share": 0.04
+              },
+              {
+                "party": "한나라당",
+                "votes": 3,
+                "share": 0.03
+              }
+            ]
+          },
+          "백현동": {
+            "electors": 20924,
+            "votes": 13417,
+            "validVotes": 13282,
+            "turnout": 64.12,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 5495,
+                "share": 41.37
+              },
+              {
+                "party": "국민의힘",
+                "votes": 5947,
+                "share": 44.77
+              },
+              {
+                "party": "조국혁신당",
+                "votes": 745,
+                "share": 5.61
+              },
+              {
+                "party": "개혁신당",
+                "votes": 654,
+                "share": 4.92
+              },
+              {
+                "party": "진보당",
+                "votes": 158,
+                "share": 1.19
+              },
+              {
+                "party": "기본소득당",
+                "votes": 95,
+                "share": 0.72
+              },
+              {
+                "party": "사회민주당",
+                "votes": 6,
+                "share": 0.05
+              },
+              {
+                "party": "거지당",
+                "votes": 8,
+                "share": 0.06
+              },
+              {
+                "party": "공화당",
+                "votes": 4,
+                "share": 0.03
+              },
+              {
+                "party": "국민대통합당",
+                "votes": 3,
+                "share": 0.02
+              },
+              {
+                "party": "국민연합",
+                "votes": 3,
+                "share": 0.02
+              },
+              {
+                "party": "기독당",
+                "votes": 5,
+                "share": 0.04
+              },
+              {
+                "party": "대한국민당",
+                "votes": 2,
+                "share": 0.02
+              },
+              {
+                "party": "새미래민주당",
+                "votes": 17,
+                "share": 0.13
+              },
+              {
+                "party": "자유와혁신",
+                "votes": 66,
+                "share": 0.5
+              },
+              {
+                "party": "정의당",
+                "votes": 63,
+                "share": 0.47
+              },
+              {
+                "party": "친미연합",
+                "votes": 0,
+                "share": 0.0
+              },
+              {
+                "party": "국민당",
+                "votes": 2,
+                "share": 0.02
+              },
+              {
+                "party": "한나라당",
+                "votes": 9,
+                "share": 0.07
+              }
+            ]
+          },
+          "운중동": {
+            "electors": 29399,
+            "votes": 18846,
+            "validVotes": 18692,
+            "turnout": 64.1,
+            "parties": [
+              {
+                "party": "더불어민주당",
+                "votes": 7495,
+                "share": 40.1
+              },
+              {
+                "party": "국민의힘",
+                "votes": 8545,
+                "share": 45.71
+              },
+              {
+                "party": "조국혁신당",
+                "votes": 1178,
+                "share": 6.3
+              },
+              {
+                "party": "개혁신당",
+                "votes": 827,
+                "share": 4.42
+              },
+              {
+                "party": "진보당",
+                "votes": 216,
+                "share": 1.16
+              },
+              {
+                "party": "기본소득당",
+                "votes": 154,
+                "share": 0.82
+              },
+              {
+                "party": "사회민주당",
+                "votes": 5,
+                "share": 0.03
+              },
+              {
+                "party": "거지당",
+                "votes": 17,
+                "share": 0.09
+              },
+              {
+                "party": "공화당",
+                "votes": 0,
+                "share": 0.0
+              },
+              {
+                "party": "국민대통합당",
+                "votes": 3,
+                "share": 0.02
+              },
+              {
+                "party": "국민연합",
+                "votes": 1,
+                "share": 0.01
+              },
+              {
+                "party": "기독당",
+                "votes": 11,
+                "share": 0.06
+              },
+              {
+                "party": "대한국민당",
+                "votes": 4,
+                "share": 0.02
+              },
+              {
+                "party": "새미래민주당",
+                "votes": 22,
+                "share": 0.12
+              },
+              {
+                "party": "자유와혁신",
+                "votes": 97,
+                "share": 0.52
+              },
+              {
+                "party": "정의당",
+                "votes": 104,
+                "share": 0.56
+              },
+              {
+                "party": "친미연합",
+                "votes": 4,
+                "share": 0.02
+              },
+              {
+                "party": "국민당",
+                "votes": 2,
+                "share": 0.01
+              },
+              {
+                "party": "한나라당",
+                "votes": 7,
+                "share": 0.04
+              }
+            ]
+          }
+        }
+      },
+      "cycle": 9,
+      "source": "중앙선거관리위원회 선거통계시스템 다운로드 XLSX"
+    }
+  }
+];

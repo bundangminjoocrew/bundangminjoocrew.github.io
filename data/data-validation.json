@@ -1,0 +1,144 @@
+[
+  {
+    "event": "2017-05-09",
+    "race": "president",
+    "status": "complete",
+    "expected": 22,
+    "populated": 22,
+    "missing": []
+  },
+  {
+    "event": "2018-06-13",
+    "race": "mayor",
+    "status": "complete",
+    "expected": 22,
+    "populated": 22,
+    "missing": []
+  },
+  {
+    "event": "2018-06-13",
+    "race": "governor",
+    "status": "complete",
+    "expected": 22,
+    "populated": 22,
+    "missing": []
+  },
+  {
+    "event": "2018-06-13",
+    "race": "council-reference",
+    "status": "reference",
+    "districts": 7,
+    "countedDistricts": 7,
+    "uncontestedDistricts": 0,
+    "coverageUnique": 22,
+    "coverageMissing": []
+  },
+  {
+    "event": "2020-04-15",
+    "race": "assembly",
+    "status": "complete",
+    "expected": 22,
+    "populated": 22,
+    "missing": []
+  },
+  {
+    "event": "2020-04-15",
+    "race": "provincial-by",
+    "status": "complete",
+    "expected": 6,
+    "populated": 6,
+    "missing": []
+  },
+  {
+    "event": "2022-03-09",
+    "race": "president",
+    "status": "complete",
+    "expected": 22,
+    "populated": 22,
+    "missing": []
+  },
+  {
+    "event": "2022-06-01",
+    "race": "mayor",
+    "status": "complete",
+    "expected": 22,
+    "populated": 22,
+    "missing": []
+  },
+  {
+    "event": "2022-06-01",
+    "race": "governor",
+    "status": "complete",
+    "expected": 22,
+    "populated": 22,
+    "missing": []
+  },
+  {
+    "event": "2022-06-01",
+    "race": "assembly-by",
+    "status": "complete",
+    "expected": 11,
+    "populated": 11,
+    "missing": []
+  },
+  {
+    "event": "2022-06-01",
+    "race": "council-reference",
+    "status": "reference",
+    "districts": 7,
+    "countedDistricts": 5,
+    "uncontestedDistricts": 2,
+    "coverageUnique": 22,
+    "coverageMissing": []
+  },
+  {
+    "event": "2024-04-10",
+    "race": "assembly",
+    "status": "complete",
+    "expected": 22,
+    "populated": 22,
+    "missing": []
+  },
+  {
+    "event": "2025-04-02",
+    "race": "provincial-by",
+    "status": "complete",
+    "expected": 5,
+    "populated": 5,
+    "missing": []
+  },
+  {
+    "event": "2025-06-03",
+    "race": "president",
+    "status": "complete",
+    "expected": 22,
+    "populated": 22,
+    "missing": []
+  },
+  {
+    "event": "2026-06-03",
+    "race": "mayor",
+    "status": "complete",
+    "expected": 22,
+    "populated": 22,
+    "missing": []
+  },
+  {
+    "event": "2026-06-03",
+    "race": "governor",
+    "status": "complete",
+    "expected": 22,
+    "populated": 22,
+    "missing": []
+  },
+  {
+    "event": "2026-06-03",
+    "race": "council-reference",
+    "status": "reference",
+    "districts": 7,
+    "countedDistricts": 3,
+    "uncontestedDistricts": 4,
+    "coverageUnique": 22,
+    "coverageMissing": []
+  }
+]
