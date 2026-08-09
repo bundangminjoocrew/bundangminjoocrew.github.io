@@ -1,0 +1,17 @@
+name = "bunmink-verify-admin"
+main = "src/index.js"
+compatibility_date = "2026-08-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "bunmink-verifications"
+database_id = "57197fe4-aa95-41e7-bd65-2ff664cdf8c3"
+
+[[d1_databases]]
+binding = "MEMBERS_DB"
+database_name = "bunmink-members"
+database_id = "892a9280-de1b-4f37-afa3-360bc75c7e17"
+
+[[r2_buckets]]
+binding = "PROOFS"
+bucket_name = "bunmink-verification-proofs"

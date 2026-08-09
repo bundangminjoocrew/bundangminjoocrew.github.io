@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>당원 확인 | 분당민주크루</title>
+  <meta name="description" content="분당민주크루 신규 참여 및 기존 참여자 재확인을 위한 당원 확인 페이지입니다.">
+  <meta name="theme-color" content="#172a88">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="분당민주크루 당원 확인">
+  <meta property="og:description" content="신규 참여 및 기존 참여자 재확인을 위한 비공개 당원 확인 절차입니다.">
+  <meta property="og:image" content="./assets/images/profile.png">
+  <link rel="icon" href="./assets/images/favicon.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="./assets/images/apple-touch-icon.png" sizes="180x180">
+  <link href="https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT.css" rel="stylesheet">
+  <!-- 기존 사이트 공용 스타일을 그대로 공유합니다. -->
+  <link rel="stylesheet" href="./assets/css/main.css">
+  <!-- 폼에만 필요한 최소 추가 스타일입니다. -->
+  <link rel="stylesheet" href="./assets/css/verify.css">
+  <script defer src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>
+  <script defer src="./assets/js/main.js"></script>
+  <script defer src="./assets/js/verify.js"></script>
+</head>
+
+<body class="document-page verification-page">
+  <a class="skip-link" href="#verification-form">본문으로 바로가기</a>
+
+  <header class="document-header verification-header">
+    <div class="document-header-inner">
+      <a class="back-link" href="./index.html" aria-label="메인 페이지로 돌아가기">
+        <span aria-hidden="true">←</span>
+        <span>돌아가기</span>
+      </a>
+      <p class="eyebrow">Bundang Minjoo Crew</p>
+      <h1>당원 확인</h1>
+      <p class="document-meta">
+        분당민주크루 참여를 위한 간단한 확인 절차입니다.<br>
+        제출한 인증자료 원본은 확인이 끝나면 즉시 삭제합니다.
+      </p>
+    </div>
+  </header>
+
+  <main class="document-shell verification-shell">
+    <section class="verification-notice" aria-labelledby="proof-notice-title">
+      <div class="verification-notice-icon" aria-hidden="true">✓</div>
+      <div>
+        <h2 id="proof-notice-title">제출 전에 개인정보를 가려주세요</h2>
+        <p>
+          <strong>이름과 당원 여부를 확인할 수 있는 부분만</strong> 남기고,
+          주민등록번호·상세주소·전화번호·당원번호·이메일·금융정보·QR/바코드 등은 가려주세요.
+        </p>
+        <details>
+          <summary>가려야 할 정보 전체보기</summary>
+          <p>
+            주민등록번호, 상세 주소, 휴대전화번호, 당원번호, 이메일주소,
+            계좌번호·카드번호·자동이체 정보, QR코드·바코드·영수증 번호,
+            잔액 및 다른 금융거래내역, 다른 사람의 개인정보
+          </p>
+        </details>
+      </div>
+    </section>
+
+    <form id="verification-form" class="document-card verification-form" novalidate>
+      <section class="form-section" aria-labelledby="request-type-title">
+        <div class="form-section-heading">
+          <div>
+            <span class="form-step">01</span>
+            <h2 id="request-type-title">신청 구분</h2>
+          </div>
+          <span class="required-chip">필수</span>
+        </div>
+
+        <div class="choice-grid">
+          <label class="choice-card">
+            <input type="radio" name="request_type" value="reverify" required>
+            <span class="choice-copy">
+              <strong>기존 참여자 재확인</strong>
+              <small>현재 분당민주크루 오픈채팅방에 참여 중인 경우</small>
+            </span>
+          </label>
+
+          <label class="choice-card">
+            <input type="radio" name="request_type" value="new" required>
+            <span class="choice-copy">
+              <strong>신규 입장 신청</strong>
+              <small>새로 분당민주크루 참여를 희망하는 경우</small>
+            </span>
+          </label>
+        </div>
+      </section>
+
+      <section class="form-section" aria-labelledby="nickname-title">
+        <div class="form-section-heading">
+          <div>
+            <span class="form-step">02</span>
+            <h2 id="nickname-title">오픈채팅방 닉네임</h2>
+          </div>
+          <span class="required-chip">필수</span>
+        </div>
+
+        <label class="form-field">
+          <span class="field-label">닉네임</span>
+          <input type="text" name="chat_nickname" maxlength="80" autocomplete="off" placeholder="예: 홍길동/판교동" required>
+          <small>
+            이름과 현재 거주하는 <strong>법정동</strong>을
+            <strong>이름/거주동</strong> 형식으로 입력해주세요.
+          </small>
+        </label>
+
+        <label class="form-field conditional-field" id="phone-field" hidden>
+          <span class="field-label">전화번호 <em>신규 입장 신청자만</em></span>
+          <input type="tel" name="phone" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="01012345678">
+          <small>
+            입장 안내 연락에만 사용하며, <strong>실제 입장이 확인되면 즉시 삭제</strong>합니다.
+          </small>
+        </label>
+      </section>
+
+      <section class="form-section" aria-labelledby="member-type-title">
+        <div class="form-section-heading">
+          <div>
+            <span class="form-step">03</span>
+            <h2 id="member-type-title">당원 구분</h2>
+          </div>
+          <span class="required-chip">필수</span>
+        </div>
+
+        <div class="choice-grid">
+          <label class="choice-card">
+            <input type="radio" name="member_type" value="rights" required>
+            <span class="choice-copy">
+              <strong>권리당원</strong>
+              <small>아래 안내된 확인자료 중 하나를 제출해주세요.</small>
+            </span>
+          </label>
+
+          <label class="choice-card">
+            <input type="radio" name="member_type" value="general" required>
+            <span class="choice-copy">
+              <strong>일반당원</strong>
+              <small>온라인 당원증·당원정보 화면 또는 당적증명서</small>
+            </span>
+          </label>
+        </div>
+      </section>
+
+      <section class="form-section" aria-labelledby="proof-guide-title">
+        <div class="form-section-heading">
+          <div>
+            <span class="form-step">04</span>
+            <h2 id="proof-guide-title">어떤 자료를 제출하면 되나요?</h2>
+          </div>
+        </div>
+
+        <p class="form-lead">
+          아래 자료 중 <strong>본인의 이름과 당원 여부를 확인할 수 있는 자료 하나</strong>를 제출해주세요.
+        </p>
+
+        <div class="sample-grid">
+          <article class="sample-card is-recommended">
+            <div class="sample-card-heading">
+              <span class="sample-chip">권장</span>
+              <h3>온라인 당원증·당원정보 화면</h3>
+            </div>
+            <div class="sample-media">
+              <img src="./assets/images/verification-samples/online-member-info.webp" alt="온라인 당원증 또는 당원정보 화면 제출 예시"
+                data-sample-image>
+              <div class="sample-placeholder" hidden>
+                <span>샘플 이미지 자리</span>
+                <code>online-member-info.webp</code>
+              </div>
+            </div>
+            <p>권리당원·일반당원 모두 가능하며, 이름과 당원 구분이 보이도록 캡처해주세요.</p>
+          </article>
+
+          <article class="sample-card">
+            <div class="sample-card-heading">
+              <h3>당적증명서</h3>
+            </div>
+            <div class="sample-media">
+              <img src="./assets/images/verification-samples/membership-certificate.webp" alt="당적증명서 제출 예시"
+                data-sample-image>
+              <div class="sample-placeholder" hidden>
+                <span>샘플 이미지 자리</span>
+                <code>membership-certificate.webp</code>
+              </div>
+            </div>
+            <p>권리당원·일반당원 모두 가능하며, 이름과 당원임을 확인할 수 있는 부분만 남겨주세요.</p>
+          </article>
+
+          <article class="sample-card rights-sample" id="dues-sample">
+            <div class="sample-card-heading">
+              <span class="sample-chip sample-chip-soft">권리당원</span>
+              <h3>최근 당비 납부 알림톡·문자</h3>
+            </div>
+            <div class="sample-media">
+              <img src="./assets/images/verification-samples/dues-message.webp" alt="최근 당비 납부 알림톡 또는 문자 제출 예시"
+                data-sample-image>
+              <div class="sample-placeholder" hidden>
+                <span>샘플 이미지 자리</span>
+                <code>dues-message.webp</code>
+              </div>
+            </div>
+            <p>본인 이름과 최근 당비 납부 사실을 함께 확인할 수 있는 경우에만 가능합니다.</p>
+          </article>
+        </div>
+
+        <p class="form-helper">
+          이름이나 당원 여부를 확인할 수 없는 자료는 확인이 어려울 수 있습니다.
+        </p>
+      </section>
+
+      <section class="form-section" aria-labelledby="upload-title">
+        <div class="form-section-heading">
+          <div>
+            <span class="form-step">05</span>
+            <h2 id="upload-title">당원 확인자료</h2>
+          </div>
+          <span class="required-chip">필수</span>
+        </div>
+
+        <label class="file-upload" for="proof-file">
+          <input id="proof-file" type="file" name="proof" accept="image/jpeg,image/png,image/webp,application/pdf"
+            required>
+          <span class="file-upload-icon" aria-hidden="true">＋</span>
+          <strong>파일 선택</strong>
+          <span id="selected-filename">JPG · PNG · WEBP · PDF / 최대 5MB</span>
+        </label>
+      </section>
+
+      <section class="form-section" aria-labelledby="consent-title">
+        <div class="form-section-heading">
+          <div>
+            <span class="form-step">06</span>
+            <h2 id="consent-title">동의 및 확인</h2>
+          </div>
+          <span class="required-chip">필수</span>
+        </div>
+
+        <details class="consent-detail">
+          <summary>개인정보 수집·이용 안내</summary>
+          <div class="consent-copy">
+            <p><strong>처리 항목</strong> 오픈채팅 닉네임, 신규 신청자의 전화번호, 신청 구분, 제출일시</p>
+            <p><strong>처리 목적</strong> 참여자 식별, 신규 입장 안내, 신청 처리 및 문의 대응</p>
+            <p><strong>전화번호</strong> 신규 입장 확인 즉시 삭제합니다.</p>
+          </div>
+        </details>
+        <label class="agreement-row">
+          <input type="checkbox" name="privacy_consent" value="yes" required>
+          <span>개인정보 수집·이용에 동의합니다.</span>
+        </label>
+
+        <details class="consent-detail">
+          <summary>민감정보 처리 안내</summary>
+          <div class="consent-copy">
+            <p><strong>처리 항목</strong> 더불어민주당 가입 사실, 당원 구분, 당원 확인 결과·확인일·확인 담당자</p>
+            <p><strong>처리 목적</strong> 분당민주크루 참여 자격 확인</p>
+            <p><strong>인증자료 원본</strong> 확인 완료 즉시 삭제하며, 미확인 자료도 제출일부터 7일을 넘겨 보관하지 않습니다.</p>
+            <p><strong>최소 확인정보</strong> 확인일부터 최대 2년간 보유합니다.</p>
+          </div>
+        </details>
+        <label class="agreement-row">
+          <input type="checkbox" name="sensitive_consent" value="yes" required>
+          <span>민감정보 처리에 동의합니다.</span>
+        </label>
+
+        <label class="agreement-row">
+          <input type="checkbox" name="material_confirmation" value="yes" required>
+          <span>제출한 자료가 본인의 자료이며, 필요한 개인정보를 가렸음을 확인합니다.</span>
+        </label>
+      </section>
+
+      <div class="turnstile-wrap">
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAAELBerrU4ZDOjcKv"></div>
+      </div>
+
+      <button class="primary-action verify-submit" id="verification-submit" type="submit">
+        당원 확인자료 제출
+      </button>
+      <div class="form-result" id="verification-result" role="status" aria-live="polite"></div>
+    </form>
+
+    <a class="document-home-link" href="./index.html">메인으로 돌아가기</a>
+  </main>
+
+  <footer class="site-footer verification-footer">
+    <p>© <span id="current-year">2026</span> 분당민주크루. 함께 만드는 커뮤니티.</p>
+  </footer>
+</body>
+
+</html>

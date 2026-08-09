@@ -1,0 +1,533 @@
+/*
+ * 분당민주크루 당원 확인 페이지 전용 스타일
+ * 공통 색상, 글꼴, 문서 레이아웃, 버튼 등은 assets/css/main.css를 공유합니다.
+ */
+
+.verification-page {
+  --verification-success: #137a43;
+  --verification-danger: #b42318;
+  --verification-warning-bg: #fff9eb;
+  --verification-warning-border: rgba(180, 122, 0, 0.22);
+}
+
+.verification-header .document-meta {
+  max-width: 660px;
+  line-height: 1.7;
+}
+
+.verification-shell {
+  padding-bottom: 32px;
+}
+
+.verification-notice {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr);
+  gap: 14px;
+  margin-bottom: 14px;
+  padding: 18px 20px;
+  border: 1px solid var(--verification-warning-border);
+  border-radius: 16px;
+  background: var(--verification-warning-bg);
+  box-shadow: 0 8px 20px rgba(23, 29, 46, 0.04);
+}
+
+.verification-notice-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: #fff;
+  font-weight: 850;
+}
+
+.verification-notice h2 {
+  margin: 2px 0 6px;
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.verification-notice p {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.verification-notice details {
+  margin-top: 9px;
+  color: var(--color-text-muted);
+  font-size: 0.84rem;
+}
+
+.verification-notice summary,
+.consent-detail summary {
+  cursor: pointer;
+  color: var(--color-primary);
+  font-weight: 750;
+}
+
+.verification-form {
+  padding: 24px;
+  overflow: visible;
+}
+
+.form-section {
+  padding: 26px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.form-section:first-child {
+  padding-top: 2px;
+}
+
+.form-section:last-of-type {
+  border-bottom: 0;
+}
+
+.form-section-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.form-section-heading > div {
+  min-width: 0;
+}
+
+.form-step {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--color-primary);
+  font-size: 0.72rem;
+  line-height: 1;
+  font-weight: 850;
+  letter-spacing: 0.06em;
+}
+
+.form-section-heading h2 {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 1.08rem;
+  line-height: 1.45;
+  font-weight: 820;
+}
+
+.required-chip,
+.sample-chip {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 24px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--color-accent-soft);
+  color: var(--color-primary);
+  font-size: 0.7rem;
+  font-weight: 820;
+}
+
+.choice-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.choice-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  min-height: 88px;
+  padding: 15px;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  background: var(--color-surface);
+  cursor: pointer;
+  transition: border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+}
+
+.choice-card:hover {
+  border-color: rgba(36, 70, 184, 0.3);
+  background: #f9fbff;
+}
+
+.choice-card:has(input:checked) {
+  border-color: var(--color-primary);
+  background: #f8faff;
+  box-shadow: 0 0 0 3px rgba(79, 125, 243, 0.12);
+}
+
+.choice-card input,
+.agreement-row input {
+  accent-color: var(--color-primary);
+}
+
+.choice-card input {
+  margin: 3px 0 0;
+}
+
+.choice-copy {
+  display: grid;
+  gap: 5px;
+}
+
+.choice-copy strong {
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.choice-copy small,
+.form-field small,
+.form-helper {
+  color: var(--color-text-muted);
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+.form-field {
+  display: block;
+}
+
+.conditional-field {
+  margin-top: 18px;
+}
+
+.field-label {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--color-text);
+  font-size: 0.9rem;
+  font-weight: 780;
+}
+
+.field-label em {
+  margin-left: 4px;
+  color: var(--color-text-muted);
+  font-size: 0.78rem;
+  font-style: normal;
+  font-weight: 650;
+}
+
+.form-field input[type="text"],
+.form-field input[type="tel"] {
+  width: 100%;
+  min-height: 48px;
+  padding: 11px 13px;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+  outline: none;
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.form-field input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(79, 125, 243, 0.16);
+}
+
+.form-field small {
+  display: block;
+  margin-top: 7px;
+}
+
+.form-lead {
+  margin: -2px 0 14px;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.sample-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.sample-card {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  background: var(--color-surface);
+}
+
+.sample-card.is-recommended {
+  border-color: rgba(36, 70, 184, 0.34);
+  box-shadow: 0 8px 20px rgba(23, 42, 136, 0.06);
+}
+
+.sample-card-heading {
+  min-height: 78px;
+  padding: 12px;
+}
+
+.sample-card-heading h3 {
+  margin: 7px 0 0;
+  font-size: 0.84rem;
+  line-height: 1.45;
+  font-weight: 800;
+}
+
+.sample-card-heading h3:first-child {
+  margin-top: 0;
+}
+
+.sample-chip {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.sample-chip-soft {
+  background: var(--color-accent-soft);
+  color: var(--color-primary);
+}
+
+.sample-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 160px;
+  overflow: hidden;
+  background: #f1f3f7;
+  border-top: 1px solid rgba(23, 42, 136, 0.07);
+  border-bottom: 1px solid rgba(23, 42, 136, 0.07);
+}
+
+.sample-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sample-placeholder {
+  display: grid;
+  gap: 6px;
+  padding: 14px;
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.sample-placeholder code {
+  font-size: 0.68rem;
+  overflow-wrap: anywhere;
+}
+
+.sample-card > p {
+  margin: 0;
+  padding: 12px;
+  color: var(--color-text-muted);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
+
+.form-helper {
+  margin: 10px 2px 0;
+}
+
+.file-upload {
+  display: grid;
+  justify-items: center;
+  gap: 5px;
+  padding: 24px 16px;
+  border: 1px dashed rgba(23, 42, 136, 0.28);
+  border-radius: 14px;
+  background: #fafbff;
+  cursor: pointer;
+  text-align: center;
+  transition: border-color 180ms ease, background-color 180ms ease;
+}
+
+.file-upload:hover {
+  border-color: var(--color-primary);
+  background: #f6f8ff;
+}
+
+.file-upload input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.file-upload-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  background: var(--color-accent-soft);
+  color: var(--color-primary);
+  font-size: 1.35rem;
+  line-height: 1;
+  font-weight: 650;
+}
+
+.file-upload strong {
+  color: var(--color-primary);
+}
+
+.file-upload > span:last-child {
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+}
+
+.consent-detail {
+  margin-top: 10px;
+  padding: 12px 14px;
+  border: 1px solid rgba(23, 42, 136, 0.08);
+  border-radius: 12px;
+  background: #f8f9fc;
+}
+
+.consent-copy {
+  padding-top: 8px;
+}
+
+.consent-copy p {
+  margin: 5px 0;
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+  line-height: 1.65;
+}
+
+.agreement-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  margin: 12px 1px 18px;
+  color: var(--color-text);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.agreement-row input {
+  margin: 3px 0 0;
+}
+
+.turnstile-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 12px 0 0;
+}
+
+.verify-submit {
+  width: 100%;
+  border: 0;
+  margin-top: 18px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.verify-submit:disabled {
+  opacity: 0.55;
+  cursor: default;
+  transform: none;
+}
+
+.form-result {
+  min-height: 20px;
+  margin-top: 12px;
+  font-size: 0.86rem;
+  line-height: 1.55;
+  font-weight: 650;
+  text-align: center;
+}
+
+.form-result.success {
+  color: var(--verification-success);
+}
+
+.form-result.error {
+  color: var(--verification-danger);
+}
+
+.verification-footer {
+  padding: 0 20px 46px;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+@media (max-width: 720px) {
+  .sample-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sample-card {
+    display: grid;
+    grid-template-columns: minmax(128px, 36%) minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+  }
+
+  .sample-card-heading {
+    grid-column: 2;
+    grid-row: 1;
+    min-height: 0;
+  }
+
+  .sample-media {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    height: 100%;
+    min-height: 155px;
+    border-top: 0;
+    border-bottom: 0;
+    border-right: 1px solid rgba(23, 42, 136, 0.07);
+  }
+
+  .sample-card > p {
+    grid-column: 2;
+    grid-row: 2;
+  }
+}
+
+@media (max-width: 560px) {
+  .verification-form {
+    padding: 18px;
+  }
+
+  .choice-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .choice-card {
+    min-height: 0;
+  }
+
+  .verification-notice {
+    grid-template-columns: 1fr;
+    padding: 16px;
+  }
+
+  .sample-card {
+    display: block;
+  }
+
+  .sample-media {
+    height: 190px;
+    min-height: 0;
+    border-right: 0;
+    border-top: 1px solid rgba(23, 42, 136, 0.07);
+    border-bottom: 1px solid rgba(23, 42, 136, 0.07);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .choice-card,
+  .file-upload,
+  .form-field input {
+    transition: none;
+  }
+}
