@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       result_url:
-        description: "새 더불어민주당 결과 공지 URL (비워두면 등록된 기존 공지 전체만 다시 읽음)"
+        description: "새 결과 공지 URL (총선거인수·투표자수·투표율·득표·출처·진행률 자동 반영)"
         required: false
         type: string
 
@@ -30,7 +30,7 @@ jobs:
       - name: 파서 의존성 설치
         run: pip install -r scripts/requirements-convention.txt
 
-      - name: 공식 공지 전체 재구축
+      - name: 공식 공지 결과·선거인단·출처·진행률 재구축
         env:
           RESULT_URL: ${{ inputs.result_url }}
         run: |
@@ -55,5 +55,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/convention-data.json data/convention-sources.json
-          git commit -m "Update convention results from official notices"
+          git commit -m "Update convention results, electorate progress and sources"
           git push

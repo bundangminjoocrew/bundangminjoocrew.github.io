@@ -182,82 +182,53 @@ function rankingFromResult(result, contest) {
 
 function renderHeader() {
   const { meta } = state.data;
-  els.title.textContent = meta.pageTitle || "2026 전당대회";
-  document.title = `${meta.pageTitle || "2026 전당대회"} | 분당민주크루`;
-  els.eventName.textContent = meta.eventName || meta.pageTitle;
-  els.eventDescription.textContent = meta.description || "";
-  els.meta.textContent = meta.dataStatus || "전당대회 현황";
-
-  const updatedDate = meta.updatedAt ? new Date(meta.updatedAt) : null;
-  els.updated.textContent = updatedDate && !Number.isNaN(updatedDate.getTime())
-    ? `업데이트 ${updatedDate.toLocaleString("ko-KR", { month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit" })}`
-    : "";
-
-  const election = new Date(`${meta.electionDate}T00:00:00+09:00`);
-  const now = new Date();
-  const todayKst = new Date(now.toLocaleString("en-US", { timeZone: "Asia/Seoul" }));
-  const todayMidnight = new Date(todayKst.getFullYear(), todayKst.getMonth(), todayKst.getDate());
-  const electionLocal = new Date(election.getFullYear(), election.getMonth(), election.getDate());
-  const diff = Math.ceil((electionLocal - todayMidnight) / 86400000);
-  els.dday.textContent = diff > 0 ? `D-${diff}` : diff === 0 ? "D-DAY" : `D+${Math.abs(diff)}`;
-
   const leaderSnapshot = calculatePublished("leader");
   const leaderTop = rankingFromResult(leaderSnapshot, "leader")[0];
-  const completedSchedule = state.data.schedule.filter((item) => item.date < meta.electionDate).length;
-  const strategicCount = state.data.resultUnits.filter((unit) => Number(unit.weight) > 1).length;
+
+  const officialTotal = Number(state.data.electorate?.officialTotalEligibleVoters);
+  const doneUnits = state.data.resultUnits.filter((unit) => unit.status === "done");
+  const announcedEligible = doneUnits.reduce(
+    (sum, unit) => sum + (Number(unit.eligibleVoters) || 0),
+    0
+  );
+  const progressRate = Number.isFinite(officialTotal) && officialTotal > 0
+    ? (announcedEligible / officialTotal) * 100
+    : 0;
 
   els.heroStats.innerHTML = [
     ["현재 1위", leaderTop ? `${leaderTop.name} ${formatPercent(leaderTop.percent)}` : "-"],
     ["최종 선출", formatDate(meta.electionDate, { month: "numeric", day: "numeric" })],
-    ["가중치 단위", `${strategicCount}개 설정`]
+    [state.data.electorate?.label || "권리당원 선거인단", Number.isFinite(officialTotal) ? `${formatNumber(officialTotal)}명` : "-"]
   ].map(([label, value]) => `<div class="hero-stat"><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></div>`).join("");
-}
 
-function dateKey(date) {
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
-  return `${year}-${month}-${day}`;
-}
+  let progressEl = document.getElementById("electorate-progress");
+  if (!progressEl) {
+    progressEl = document.createElement("div");
+    progressEl.id = "electorate-progress";
+    progressEl.className = "electorate-progress";
+    els.heroStats.insertAdjacentElement("afterend", progressEl);
+  }
 
-function formatScheduleRange(event) {
-  const startLabel = formatDate(event.date, { month: "long", day: "numeric", weekday: "short" });
-  if (!event.endDate || event.endDate === event.date) return startLabel;
-  const endLabel = formatDate(event.endDate, { month: "long", day: "numeric", weekday: "short" });
-  return `${startLabel} ~ ${endLabel}`;
-}
+  progressEl.innerHTML = `
+    <div class="electorate-progress-head">
+      <span>전국 권리당원 선거인단 기준</span>
+      <strong>${progressRate.toFixed(1)}% 결과 발표 완료</strong>
+    </div>
+    <div class="electorate-progress-track" role="progressbar"
+      aria-label="권리당원 선거인단 기준 결과 발표 진행률"
+      aria-valuemin="0" aria-valuemax="100"
+      aria-valuenow="${Math.min(100, Math.max(0, progressRate)).toFixed(1)}">
+      <span style="width:${Math.min(100, Math.max(0, progressRate))}%"></span>
+    </div>
+    <div class="electorate-progress-meta">
+      <span>${formatNumber(announcedEligible)}명분 결과 발표</span>
+      <span>전체 ${Number.isFinite(officialTotal) ? formatNumber(officialTotal) : "-"}명</span>
+    </div>
+  `;
 
-function daysBetween(startDate, endDate) {
-  const start = new Date(`${startDate}T00:00:00+09:00`);
-  const end = new Date(`${endDate}T00:00:00+09:00`);
-  return Math.round((end - start) / 86400000);
+  els.pageUpdated.textContent = meta.updatedAt ? `업데이트 ${formatDateTime(meta.updatedAt)}` : "";
+  els.dataStatus.textContent = meta.dataStatus || "";
 }
-
-function eventOccursOn(event, key) {
-  const end = event.endDate || event.date;
-  return key >= event.date && key <= end;
-}
-
-function phaseClass(event) {
-  return event.phase ? ` phase-${String(event.phase).replace(/[^a-z0-9-]/gi, "-")}` : "";
-}
-
-function assignCalendarLanes(segments) {
-  const laneEnds = [];
-  return segments
-    .sort((a, b) => a.startCol - b.startCol || b.span - a.span || a.index - b.index)
-    .map((segment) => {
-      let lane = laneEnds.findIndex((endCol) => endCol < segment.startCol);
-      if (lane === -1) {
-        lane = laneEnds.length;
-        laneEnds.push(segment.endCol);
-      } else {
-        laneEnds[lane] = segment.endCol;
-      }
-      return { ...segment, lane: lane + 1 };
-    });
-}
-
 function renderCalendar() {
   const { meta, schedule } = state.data;
   const start = new Date(`${meta.calendarStart}T00:00:00+09:00`);
@@ -518,34 +489,82 @@ function renderRegions() {
     const weighted = Number(unit.weight) > 1;
     const isDone = unit.status === "done";
     const dateLabel = formatDate(unit.date, { month: "numeric", day: "numeric" });
+
+    const turnoutRate = Number(unit.turnoutRate);
+    const voterCount = Number(unit.voterCount);
+    const eligibleVoters = Number(unit.eligibleVoters);
+
+    const hasTurnout = Number.isFinite(turnoutRate);
+    const hasVoterCount = Number.isFinite(voterCount);
+    const hasEligible = Number.isFinite(eligibleVoters);
+    const isEstimated = unit.eligibleVotersStatus === "estimated";
+
+    const electorateBadge = hasEligible
+      ? `<span class="electorate-status-badge ${isEstimated ? "estimated" : "confirmed"}">${isEstimated ? "선거인단 추정" : "선거인단 확정"}</span>`
+      : "";
+
+    const electorateText = hasEligible
+      ? `${isEstimated ? "약 " : ""}${formatNumber(eligibleVoters)}명${isEstimated ? " · 추정" : ""}`
+      : "-";
+
+    const turnoutDetail = (hasEligible || hasTurnout || hasVoterCount)
+      ? `<div class="region-turnout-panel">
+          ${hasEligible ? `<div><span>권리당원 총선거인수</span><strong>${electorateText}</strong><small>${isEstimated ? "결과 발표 전 잠정 추정치" : "공식 결과 공지 확정값"}</small></div>` : ""}
+          ${hasVoterCount ? `<div><span>투표자수</span><strong>${formatNumber(voterCount)}명</strong><small>당대표 실제 투표자 기준</small></div>` : ""}
+          ${hasTurnout ? `<div><span>최종 투표율</span><strong>${formatPercent(turnoutRate)}</strong><small>온라인 + ARS 합산</small></div>` : ""}
+        </div>`
+      : "";
+
     const detailRows = data
       ? data.ranking.map((candidate) => `<div class="region-result-row" style="--candidate-color:${candidateColor(candidate.index)}"><span class="region-result-name"><span class="candidate-dot"></span>${escapeHtml(candidate.name)}</span><span class="region-result-value">${formatPercent(candidate.percent)}<small>${formatNumber(candidate.votes)}표${weighted ? ` · 환산 ${formatNumber(candidate.votes * Number(unit.weight), 2)}` : ""}</small></span></div>`).join("")
-      : `<div class="region-empty">${escapeHtml(unit.memo || "아직 공식 결과가 반영되지 않았습니다. 새 공지 URL을 GitHub Actions에 추가하면 자동 갱신됩니다.")}</div>`;
+      : `<div class="region-empty">${escapeHtml(unit.memo || "아직 공식 결과가 반영되지 않았습니다. 새 공지 URL을 GitHub Actions에 추가하면 총선거인수·투표자수·최종 투표율과 후보별 득표가 함께 자동 갱신됩니다.")}</div>`;
 
     return `<details class="region-card">
       <summary class="region-summary">
-        <span class="region-main"><span class="region-name-line"><span class="region-name">${escapeHtml(unit.name)}</span>${weighted ? `<span class="weight-badge">×${Number(unit.weight).toFixed(2)}</span>` : ""}<span class="status-badge ${isDone ? "done" : ""}">${isDone ? "발표" : "예정"}</span></span><span class="region-sub">${escapeHtml(dateLabel)}${data ? ` · ${data.complete ? "유효 입력" : "전체 기준"} ${formatNumber(data.total)}표${data.complete ? "" : " · 일부 후보 표수만 입력"}` : ""}</span></span>
+        <span class="region-main">
+          <span class="region-name-line">
+            <span class="region-name">${escapeHtml(unit.name)}</span>
+            ${weighted ? `<span class="weight-badge">×${Number(unit.weight).toFixed(2)}</span>` : ""}
+            <span class="status-badge ${isDone ? "done" : ""}">${isDone ? "발표" : "예정"}</span>
+            ${electorateBadge}
+            ${hasTurnout ? `<span class="turnout-badge">투표율 ${formatPercent(turnoutRate)}</span>` : ""}
+          </span>
+          <span class="region-sub">
+            ${escapeHtml(dateLabel)}
+            ${hasEligible ? ` · 선거인단 ${electorateText}` : ""}
+            ${data ? ` · ${data.complete ? "유효 입력" : "전체 기준"} ${formatNumber(data.total)}표${data.complete ? "" : " · 일부 후보 표수만 입력"}` : ""}
+          </span>
+        </span>
         <span class="region-lead">${top ? `<strong>${escapeHtml(top.name)} ${formatPercent(top.percent)}</strong><span>현재 1위</span>` : `<strong>결과 대기</strong><span>클릭해 확인</span>`}</span>
         <span class="region-chevron" aria-hidden="true">⌄</span>
       </summary>
-      <div class="region-detail">${detailRows}</div>
+      <div class="region-detail">${turnoutDetail}${detailRows}</div>
     </details>`;
   }).join("");
 }
-
 function renderMethod() {
-  const { rules } = state.data;
+  const { rules, electorate } = state.data;
+  const officialTotal = Number(electorate?.officialTotalEligibleVoters);
+
   els.methodGrid.innerHTML = [
-    ["지역별 득표율", "후보 득표수 ÷ 해당 결과단위의 전체 유효득표수 × 100"],
-    ["가중치 환산", "지역 후보 득표수 × resultUnit.weight"],
-    ["가중치 전체 득표율", "후보별 환산득표수 합계 ÷ 전체 후보 환산득표수 합계 × 100"]
+    ["결과 발표 진행률", "발표 완료 지역의 확정 총선거인수 합계 ÷ 전국 권리당원 선거인단 총수 × 100"],
+    ["지역별 최종 투표율", "더불어민주당 공식 결과 공지의 온라인투표 + ARS투표 합산 투표율"],
+    ["결과 검산", "당대표 3명 득표 합계 = 투표자수 / 투표자수 ÷ 총선거인수 ≈ 공식 투표율"],
+    ["가중치 환산", "지역 후보 득표수 × resultUnit.weight"]
   ].map(([title, formula]) => `<div class="method-card"><strong>${escapeHtml(title)}</strong><code>${escapeHtml(formula)}</code></div>`).join("");
 
-  els.methodNote.textContent = `최종 선출 반영 비율은 당원·대의원 ${(Number(rules.partyVoteWeight) * 100).toFixed(0)}%, 국민여론조사 ${(Number(rules.publicPollWeight) * 100).toFixed(0)}%로 설정되어 있습니다. ${rules.weightRuleNote || ""}`;
-}
+  const totalText = Number.isFinite(officialTotal)
+    ? `전국 권리당원 선거인단 총수는 ${formatNumber(officialTotal)}명입니다. `
+    : "";
 
+  els.methodNote.textContent = `${totalText}미발표 지역의 선거인단은 잠정 추정치를 표시하며, 결과 발표 후 공식 공지의 실제 총선거인수로 자동 대체합니다. 최종 선출 반영 비율은 당원·대의원 ${(Number(rules.partyVoteWeight) * 100).toFixed(0)}%, 국민여론조사 ${(Number(rules.publicPollWeight) * 100).toFixed(0)}%입니다. ${rules.weightRuleNote || ""}`;
+}
 function renderSources() {
   const sources = state.data.sources || [];
+  if (!sources.length) {
+    els.sourceList.innerHTML = `<div class="source-empty">공식 결과 공지를 등록하면 출처가 자동으로 추가됩니다.</div>`;
+    return;
+  }
   els.sourceList.innerHTML = sources.map((source) => `<a class="source-item" href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer"><span><strong>${escapeHtml(source.label)}</strong><span>${escapeHtml(source.description || "")}</span></span><span class="source-arrow" aria-hidden="true">↗</span></a>`).join("");
 }
 
