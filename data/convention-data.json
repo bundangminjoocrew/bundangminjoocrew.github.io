@@ -6,8 +6,8 @@
     "electionDate": "2026-08-17",
     "calendarStart": "2026-08-09",
     "calendarDays": 14,
-    "updatedAt": "2026-08-10T14:54:26+09:00",
-    "dataStatus": "8월 10일 기준 더불어민주당 공식 결과 공지 2건 자동 반영 · 7개 지역"
+    "updatedAt": "2026-08-10T14:56:10+09:00",
+    "dataStatus": "8월 10일 기준 더불어민주당 공식 결과 공지 3건 자동 반영 · 9개 지역"
   },
   "rules": {
     "partyVoteWeight": 0.7,
@@ -405,18 +405,46 @@
       "name": "제주",
       "date": "2026-08-08",
       "weight": 1.0,
-      "status": "scheduled",
-      "leaderVotes": null,
-      "supremeVotes": null
+      "status": "done",
+      "leaderVotes": {
+        "song-younggil": 1240,
+        "jung-chungrae": 6625,
+        "kim-minseok": 8742
+      },
+      "supremeVotes": {
+        "choi-minhee": 6080,
+        "kim-yong": 4422,
+        "kim-youngho": 1376,
+        "seo-mihwa": 4781,
+        "han-minsoo": 4680,
+        "lee-sungyoon": 3696,
+        "park-sunwon": 5125,
+        "lim-miae": 3054
+      },
+      "sourceUrl": "https://theminjoo.kr/main/sub/news/view.php?brd=1&post=1219599"
     },
     {
       "id": "incheon",
       "name": "인천",
       "date": "2026-08-08",
       "weight": 1.0,
-      "status": "scheduled",
-      "leaderVotes": null,
-      "supremeVotes": null
+      "status": "done",
+      "leaderVotes": {
+        "song-younggil": 3559,
+        "jung-chungrae": 13237,
+        "kim-minseok": 13795
+      },
+      "supremeVotes": {
+        "choi-minhee": 9980,
+        "kim-yong": 8071,
+        "kim-youngho": 1588,
+        "seo-mihwa": 9508,
+        "han-minsoo": 8930,
+        "lee-sungyoon": 8200,
+        "park-sunwon": 11694,
+        "lim-miae": 3211
+      },
+      "sourceUrl": "https://theminjoo.kr/main/sub/news/view.php?brd=1&post=1219599"
     },
     {
       "id": "gangwon",
@@ -494,6 +522,11 @@
       "label": "더불어민주당 공식 공지 · 공지사항 - 더불어민주당",
       "description": "당대표·최고위원 지역별 득표 원자료 · GitHub Actions 자동 반영",
       "url": "https://theminjoo.kr/main/sub/news/view.php?brd=1&post=1219534"
+    },
+    {
+      "label": "더불어민주당 공식 공지 · 공지사항 - 더불어민주당",
+      "description": "당대표·최고위원 지역별 득표 원자료 · GitHub Actions 자동 반영",
+      "url": "https://theminjoo.kr/main/sub/news/view.php?brd=1&post=1219599"
     },
     {
       "label": "더불어민주당 공식 공지 · 지도부 선출 온라인투표율 공고",
