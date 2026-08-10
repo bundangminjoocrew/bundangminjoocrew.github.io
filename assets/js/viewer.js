@@ -107,16 +107,56 @@ function enhanceMarkdown(root, documentPath) {
   });
 }
 
-function formatLastModified(value) {
-  if (!value) return "문서를 불러왔습니다.";
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return "문서를 불러왔습니다.";
+function parseFrontMatter(markdown) {
+  const match = markdown.match(/^---\s*\n([\s\S]*?)\n---\s*\n?/);
 
-  return `최종 수정: ${date.toLocaleDateString("ko-KR", {
-    year: "numeric",
-    month: "long",
-    day: "numeric"
-  })}`;
+  if (!match) {
+    return {
+      metadata: {},
+      body: markdown
+    };
+  }
+
+  const metadata = {};
+
+  match[1].split("\n").forEach((line) => {
+    const separator = line.indexOf(":");
+    if (separator === -1) return;
+
+    const key = line.slice(0, separator).trim();
+    let value = line.slice(separator + 1).trim();
+
+    value = value.replace(/^["']|["']$/g, "");
+
+    metadata[key] = value;
+  });
+
+  return {
+    metadata,
+    body: markdown.slice(match[0].length)
+  };
+}
+
+function formatDocumentMeta(metadata) {
+  const parts = [];
+
+  if (metadata.updated) {
+    const match = metadata.updated.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+
+    if (match) {
+      const [, year, month, day] = match;
+
+      parts.push(
+        `최종 개정: ${year}년 ${Number(month)}월 ${Number(day)}일`
+      );
+    }
+  }
+
+  if (metadata.version) {
+    parts.push(`ver. ${metadata.version}`);
+  }
+
+  return parts.join(" · ");
 }
 
 async function renderDocument() {
@@ -144,13 +184,18 @@ async function renderDocument() {
     }
 
     const markdown = await response.text();
+    const { metadata, body } = parseFrontMatter(markdown);
+    if (metadata.title) {
+      titleEl.textContent = metadata.title;
+      document.title = `${metadata.title} | 분당민주크루`;
+    }
     const markedApi = window.marked.marked || window.marked;
     markedApi.setOptions({
       breaks: false,
       gfm: true
     });
 
-    const dirtyHtml = markedApi.parse(markdown);
+    const dirtyHtml = markedApi.parse(body);
     const cleanHtml = window.DOMPurify.sanitize(dirtyHtml, {
       USE_PROFILES: { html: true },
       ADD_TAGS: ["input"],
@@ -159,7 +204,7 @@ async function renderDocument() {
 
     contentEl.innerHTML = cleanHtml;
     enhanceMarkdown(contentEl, selectedDocument.path);
-    metaEl.textContent = formatLastModified(response.headers.get("last-modified"));
+    metaEl.textContent = formatDocumentMeta(metadata);
     showContent();
   } catch (error) {
     metaEl.textContent = "";
