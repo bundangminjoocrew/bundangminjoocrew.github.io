@@ -215,7 +215,7 @@
 }
 .map-loading[hidden] { display: none !important; }
 .map-tooltip {
-  position: fixed; z-index: 20; pointer-events: none; min-width: 160px; max-width: 220px;
+  position: absolute; z-index: 20; pointer-events: none; min-width: 160px; max-width: 220px;
   padding: 10px 11px; border-radius: 11px; background: rgba(24,31,51,.94); color: #fff; box-shadow: 0 10px 30px rgba(0,0,0,.18);
   font-size: 12px; line-height: 1.45;
 }

@@ -28,6 +28,7 @@
     benchmarkGrid: document.getElementById('benchmarkGrid'),
     mapShapes: document.getElementById('mapShapes'),
     mapLabels: document.getElementById('mapLabels'),
+    mapStage: document.getElementById('mapStage'),
     mapLoading: document.getElementById('mapLoading'),
     mapTooltip: document.getElementById('mapTooltip'),
     insightCards: document.getElementById('insightCards'),
@@ -223,6 +224,22 @@
     updateTimelineDial();
   }
 
+  function animateDashboardRefresh() {
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
+    requestAnimationFrame(() => {
+      document.querySelectorAll('.selected-election, .table-section, .council-reference-section').forEach(el => {
+        if (el.hidden) return;
+        el.animate(
+          [
+            { opacity: 0.72, transform: 'translateY(4px)' },
+            { opacity: 1, transform: 'translateY(0)' }
+          ],
+          { duration: 220, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' }
+        );
+      });
+    });
+  }
+
   function selectEvent(eventId, options = {}) {
     const next = events.find(e => e.id === eventId);
     if (!next) return;
@@ -232,6 +249,7 @@
     currentCouncilLevel = currentEvent.provincialCouncilReference ? 'provincial' : 'city';
     currentCouncilDistrictId = null;
     renderAll();
+    animateDashboardRefresh();
     if (!options.fromDial) {
       requestAnimationFrame(() => {
         const active = els.timeline?.querySelector('.is-active');
@@ -270,6 +288,7 @@
     currentRace = getRace(currentEvent, raceId);
     selectedDong = null;
     renderAll(false);
+    animateDashboardRefresh();
   }
 
   function renderEventHeader() {
@@ -681,10 +700,44 @@
       <div class="tooltip-row"><span>상대 후보</span><strong>${fmtPct(r.opponent)}</strong></div>
       <div class="tooltip-row"><span>투표율</span><strong>${fmtPct(r.turnout)}</strong></div>`;
     els.mapTooltip.hidden = false;
-    const x = keyboard ? window.innerWidth/2 : (e.clientX || 0);
-    const y = keyboard ? window.innerHeight/2 : (e.clientY || 0);
-    els.mapTooltip.style.left = `${Math.min(window.innerWidth-235, x+14)}px`;
-    els.mapTooltip.style.top = `${Math.min(window.innerHeight-130, y+14)}px`;
+
+    const stage = els.mapStage || els.mapTooltip.parentElement;
+    if (!stage) return;
+
+    const stageRect = stage.getBoundingClientRect();
+    let x;
+    let y;
+
+    if (keyboard && e.currentTarget?.getBoundingClientRect) {
+      const targetRect = e.currentTarget.getBoundingClientRect();
+      x = targetRect.left + targetRect.width / 2 - stageRect.left;
+      y = targetRect.top + targetRect.height / 2 - stageRect.top;
+    } else {
+      x = (e.clientX ?? stageRect.left) - stageRect.left;
+      y = (e.clientY ?? stageRect.top) - stageRect.top;
+    }
+
+    // 실제 렌더링 크기를 기준으로 지도 영역 밖으로 나가지 않게 배치한다.
+    const gap = 14;
+    const edge = 8;
+    const tooltipWidth = els.mapTooltip.offsetWidth;
+    const tooltipHeight = els.mapTooltip.offsetHeight;
+
+    let left = x + gap;
+    let top = y + gap;
+
+    if (left + tooltipWidth > stageRect.width - edge) {
+      left = x - tooltipWidth - gap;
+    }
+    if (top + tooltipHeight > stageRect.height - edge) {
+      top = y - tooltipHeight - gap;
+    }
+
+    left = Math.max(edge, Math.min(stageRect.width - tooltipWidth - edge, left));
+    top = Math.max(edge, Math.min(stageRect.height - tooltipHeight - edge, top));
+
+    els.mapTooltip.style.left = `${left}px`;
+    els.mapTooltip.style.top = `${top}px`;
   }
   function hideTooltip() { els.mapTooltip.hidden = true; }
 
