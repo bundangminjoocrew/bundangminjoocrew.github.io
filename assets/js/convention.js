@@ -321,6 +321,80 @@ function renderHeader() {
     </div>
   `;
 }
+
+function dateKey(date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+function formatScheduleRange(event) {
+  const startLabel = formatDate(event.date, {
+    month: "long",
+    day: "numeric",
+    weekday: "short"
+  });
+
+  if (!event.endDate || event.endDate === event.date) {
+    return startLabel;
+  }
+
+  const endLabel = formatDate(event.endDate, {
+    month: "long",
+    day: "numeric",
+    weekday: "short"
+  });
+
+  return `${startLabel} ~ ${endLabel}`;
+}
+
+function daysBetween(startDate, endDate) {
+  const start = new Date(`${startDate}T00:00:00+09:00`);
+  const end = new Date(`${endDate}T00:00:00+09:00`);
+  return Math.round((end - start) / 86400000);
+}
+
+function eventOccursOn(event, key) {
+  const end = event.endDate || event.date;
+  return key >= event.date && key <= end;
+}
+
+function phaseClass(event) {
+  return event.phase
+    ? ` phase-${String(event.phase).replace(/[^a-z0-9-]/gi, "-")}`
+    : "";
+}
+
+function assignCalendarLanes(segments) {
+  const laneEnds = [];
+
+  return segments
+    .sort(
+      (a, b) =>
+        a.startCol - b.startCol ||
+        b.span - a.span ||
+        a.index - b.index
+    )
+    .map((segment) => {
+      let lane = laneEnds.findIndex(
+        (endCol) => endCol < segment.startCol
+      );
+
+      if (lane === -1) {
+        lane = laneEnds.length;
+        laneEnds.push(segment.endCol);
+      } else {
+        laneEnds[lane] = segment.endCol;
+      }
+
+      return {
+        ...segment,
+        lane: lane + 1
+      };
+    });
+}
+
 function renderCalendar() {
   const { meta, schedule } = state.data;
   const start = new Date(`${meta.calendarStart}T00:00:00+09:00`);
