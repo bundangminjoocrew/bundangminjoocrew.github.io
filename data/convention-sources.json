@@ -26,6 +26,15 @@
         "incheon"
       ],
       "label": "공지사항 - 더불어민주당"
+    },
+    {
+      "url": "https://theminjoo.kr/main/sub/news/view.php?brd=1&post=1219606",
+      "expectedRegions": [
+        "gangwon",
+        "daegu",
+        "gyeongbuk"
+      ],
+      "label": "공지사항 - 더불어민주당"
     }
   ],
   "references": [
