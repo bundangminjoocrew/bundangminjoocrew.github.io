@@ -1,4 +1,4 @@
-const DATA_PATH = "./content/convention-data.md";
+const DATA_PATH = "./data/convention-data.json";
 const COLOR_VARS = [
   "var(--candidate-1)",
   "var(--candidate-2)",
@@ -56,11 +56,6 @@ function escapeHtml(value) {
     .replaceAll("'", "&#039;");
 }
 
-function parseDataBlock(markdown) {
-  const match = markdown.match(/```json\s*([\s\S]*?)```/i);
-  if (!match) throw new Error("convention-data.md에서 JSON 데이터 블록을 찾지 못했습니다.");
-  return JSON.parse(match[1]);
-}
 
 function formatNumber(value, maximumFractionDigits = 0) {
   if (!Number.isFinite(value)) return "-";
@@ -146,11 +141,32 @@ function calculateFromUnits(contest, weighted = false) {
 }
 
 function calculatePublished(contest) {
-  const snapshot = state.data.published?.[contest];
-  const candidates = state.data.candidates[contest];
-  const totals = Object.fromEntries(candidates.map((candidate) => [candidate.id, Number(snapshot?.votes?.[candidate.id]) || 0]));
-  const grandTotal = Object.values(totals).reduce((sum, value) => sum + value, 0);
-  return { totals, grandTotal, label: snapshot?.label || "발표 누계", note: snapshot?.note || "" };
+  const result = calculateFromUnits(contest, false);
+  const voteKey = contest === "leader" ? "leaderVotes" : "supremeVotes";
+  const completedUnits = state.data.resultUnits.filter((unit) => normalizeVoteObject(unit[voteKey], contest));
+
+  if (!completedUnits.length) {
+    return {
+      ...result,
+      label: "발표 누계",
+      note: "아직 공식 결과가 반영된 지역이 없습니다."
+    };
+  }
+
+  const latestDate = completedUnits.reduce((latest, unit) => {
+    const date = String(unit.date || "");
+    return date > latest ? date : latest;
+  }, "");
+  const latestUnits = completedUnits.filter((unit) => String(unit.date || "") === latestDate);
+  const latestNames = latestUnits.map((unit) => unit.name).filter(Boolean).join("·");
+  const label = latestDate
+    ? `${formatDate(latestDate, { month: "numeric", day: "numeric" })} 발표 누계`
+    : "발표 누계";
+  const note = latestNames
+    ? `${latestNames} 결과까지 공식 공지에서 가져온 지역별 원득표 ${completedUnits.length}개 결과 단위를 자동 합산했습니다.`
+    : `공식 공지에서 가져온 지역별 원득표 ${completedUnits.length}개 결과 단위를 자동 합산했습니다.`;
+
+  return { ...result, label, note };
 }
 
 function rankingFromResult(result, contest) {
@@ -338,11 +354,10 @@ function getLeaderResult(mode) {
 function renderLeader() {
   const result = getLeaderResult(state.leaderMode);
   const ranking = rankingFromResult(result, "leader");
-  const snapshot = state.data.published?.leader;
   const entered = calculateFromUnits("leader", false).availableUnits;
 
   if (state.leaderMode === "published") {
-    els.leaderCaption.textContent = `${snapshot?.label || "발표 누계"} · ${snapshot?.note || ""}`;
+    els.leaderCaption.textContent = `${result.label || "발표 누계"} · ${result.note || ""}`;
   } else {
     const modeLabel = state.leaderMode === "weighted" ? "가중치 적용" : "가중치 미적용";
     els.leaderCaption.textContent = `${modeLabel} 자동계산 · 득표수가 입력된 ${entered}개 결과 단위만 합산합니다.`;
@@ -424,11 +439,10 @@ function getSupremeResult(mode) {
 function renderSupreme() {
   const result = getSupremeResult(state.supremeMode);
   const ranking = rankingFromResult(result, "supreme");
-  const snapshot = state.data.published?.supreme;
   const entered = calculateFromUnits("supreme", false).availableUnits;
 
   if (state.supremeMode === "published") {
-    els.supremeCaption.textContent = `${snapshot?.label || "발표 누계"} · ${snapshot?.note || ""}`;
+    els.supremeCaption.textContent = `${result.label || "발표 누계"} · ${result.note || ""}`;
   } else {
     const modeLabel = state.supremeMode === "weighted" ? "가중치 적용" : "가중치 미적용";
     els.supremeCaption.textContent = `${modeLabel} 자동계산 · 득표수가 입력된 ${entered}개 지역을 합산합니다.`;
@@ -506,7 +520,7 @@ function renderRegions() {
     const dateLabel = formatDate(unit.date, { month: "numeric", day: "numeric" });
     const detailRows = data
       ? data.ranking.map((candidate) => `<div class="region-result-row" style="--candidate-color:${candidateColor(candidate.index)}"><span class="region-result-name"><span class="candidate-dot"></span>${escapeHtml(candidate.name)}</span><span class="region-result-value">${formatPercent(candidate.percent)}<small>${formatNumber(candidate.votes)}표${weighted ? ` · 환산 ${formatNumber(candidate.votes * Number(unit.weight), 2)}` : ""}</small></span></div>`).join("")
-      : `<div class="region-empty">${escapeHtml(unit.memo || "득표수가 아직 입력되지 않았습니다. data.md에 결과를 입력하면 자동 계산됩니다.")}</div>`;
+      : `<div class="region-empty">${escapeHtml(unit.memo || "아직 공식 결과가 반영되지 않았습니다. 새 공지 URL을 GitHub Actions에 추가하면 자동 갱신됩니다.")}</div>`;
 
     return `<details class="region-card">
       <summary class="region-summary">
@@ -605,8 +619,7 @@ async function loadData() {
   try {
     const response = await fetch(DATA_PATH, { cache: "no-cache" });
     if (!response.ok) throw new Error(`데이터 파일을 불러오지 못했습니다. (${response.status})`);
-    const markdown = await response.text();
-    state.data = parseDataBlock(markdown);
+    state.data = await response.json();
     renderAll();
   } catch (error) {
     els.status.classList.add("error");
