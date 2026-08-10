@@ -13,10 +13,21 @@
   --shadow-hover: 0 14px 32px rgba(23, 42, 136, 0.16);
   --content-width: 660px;
   --document-width: 840px;
+  --radius-card: 18px;
+  --radius-control: 12px;
+  --motion-fast: 160ms;
+  --motion-base: 240ms;
+  --motion-slow: 420ms;
+  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 * {
   box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
 }
 
 html {
@@ -28,13 +39,29 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background: var(--color-background);
+  background:
+    radial-gradient(circle at 50% -18%, rgba(79, 125, 243, 0.09), transparent 30rem),
+    var(--color-background);
   color: var(--color-text);
   font-family: "SUIT", sans-serif;
   font-size: 16px;
   line-height: 1.65;
   word-break: keep-all;
   overflow-wrap: anywhere;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+::selection {
+  background: rgba(79, 125, 243, 0.2);
+  color: var(--color-text);
 }
 
 a {
@@ -140,7 +167,7 @@ a {
   color: var(--color-primary);
   text-decoration: none;
   box-shadow: 0 8px 18px rgba(23, 29, 46, 0.06);
-  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease, color 180ms ease;
+  transition: transform var(--motion-fast) var(--ease-standard), border-color var(--motion-fast) ease, box-shadow var(--motion-base) var(--ease-standard), color var(--motion-fast) ease;
 }
 
 .social-link:hover {
@@ -199,11 +226,11 @@ a {
   text-decoration: none;
   box-shadow: var(--shadow-card);
   transition:
-    transform 180ms ease,
-    background-color 180ms ease,
-    border-color 180ms ease,
-    box-shadow 180ms ease,
-    color 180ms ease;
+    transform var(--motion-fast) var(--ease-standard),
+    background-color var(--motion-fast) ease,
+    border-color var(--motion-fast) ease,
+    box-shadow var(--motion-base) var(--ease-standard),
+    color var(--motion-fast) ease;
 }
 
 .link-card:hover {
@@ -224,7 +251,9 @@ a {
 .back-link:focus-visible,
 .primary-action:focus-visible,
 .document-home-link:focus-visible,
-.top-button:focus-visible {
+.top-button:focus-visible,
+button:focus-visible,
+summary:focus-visible {
   outline: 3px solid rgba(79, 125, 243, 0.45);
   outline-offset: 3px;
 }
@@ -302,6 +331,47 @@ a {
   height: 20px;
 }
 
+
+.link-icon,
+.link-arrow,
+.back-link > span:first-child {
+  transition: transform var(--motion-fast) var(--ease-standard);
+}
+
+.link-card:hover .link-icon {
+  transform: scale(1.035);
+}
+
+.link-card:hover .link-arrow {
+  transform: translateX(2px);
+}
+
+.back-link:hover > span:first-child {
+  transform: translateX(-2px);
+}
+
+@keyframes ui-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.site-shell,
+.document-header-inner,
+.document-shell,
+.not-found-card {
+  animation: ui-enter var(--motion-slow) var(--ease-emphasized) both;
+}
+
+.document-shell {
+  animation-delay: 45ms;
+}
+
 .notice-band,
 .noscript-note {
   border: 1px solid var(--color-border);
@@ -338,7 +408,9 @@ a {
 }
 
 .document-page {
-  background: var(--color-background);
+  background:
+    radial-gradient(circle at 50% -18%, rgba(79, 125, 243, 0.09), transparent 30rem),
+    var(--color-background);
 }
 
 .document-header {
@@ -363,7 +435,7 @@ a {
   font-weight: 750;
   text-decoration: none;
   box-shadow: 0 8px 18px rgba(23, 29, 46, 0.06);
-  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+  transition: transform var(--motion-fast) var(--ease-standard), border-color var(--motion-fast) ease, box-shadow var(--motion-base) var(--ease-standard);
 }
 
 .back-link:hover {
@@ -399,10 +471,11 @@ a {
 .document-card {
   min-height: 360px;
   border: 1px solid var(--color-border);
-  border-radius: 18px;
+  border-radius: var(--radius-card);
   background: var(--color-surface);
   box-shadow: var(--shadow-card);
   overflow: hidden;
+  transition: border-color var(--motion-fast) ease, box-shadow var(--motion-base) var(--ease-standard);
 }
 
 .viewer-status {
@@ -431,7 +504,7 @@ a {
   font-weight: 800;
   text-decoration: none;
   box-shadow: 0 10px 24px rgba(23, 42, 136, 0.2);
-  transition: transform 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
+  transition: transform var(--motion-fast) var(--ease-standard), background-color var(--motion-fast) ease, box-shadow var(--motion-base) var(--ease-standard);
 }
 
 .document-home-link:hover,
@@ -467,7 +540,7 @@ a {
   opacity: 0;
   pointer-events: none;
   transform: translateY(10px);
-  transition: opacity 180ms ease, transform 180ms ease, background-color 180ms ease;
+  transition: opacity var(--motion-base) ease, transform var(--motion-base) var(--ease-standard), background-color var(--motion-fast) ease;
 }
 
 .top-button.visible {
@@ -566,6 +639,7 @@ a {
   *::after {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
     animation-iteration-count: 1 !important;
   }
 

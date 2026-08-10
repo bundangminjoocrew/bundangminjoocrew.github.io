@@ -2,28 +2,43 @@
 <html lang="ko">
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#172a88" />
-  <title>분당 선거결과 10년 | 분민크</title>
-  <link rel="stylesheet" href="assets/css/elections.css?v=7" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>분당 선거결과 10년 | 분당민주크루</title>
+  <meta name="description" content="2017년부터 2026년까지 분당구 22개 행정동의 주요 선거 결과와 표심 변화를 지도와 데이터로 확인합니다.">
+  <meta name="theme-color" content="#172a88">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="분당 선거결과 10년 | 분당민주크루">
+  <meta property="og:description" content="분당 22개 행정동의 주요 선거 결과와 10년간의 표심 변화를 한눈에 살펴보세요.">
+  <meta property="og:image" content="./assets/images/profile.png">
+  <link rel="icon" href="./assets/images/favicon.png?v=20260810" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="./assets/images/apple-touch-icon.png?v=20260810" sizes="180x180">
+  <link href="https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT.css" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/main.css?v=20260810">
+  <link rel="stylesheet" href="./assets/css/elections.css?v=20260810">
 </head>
 
-<body>
-  <main class="document-page">
-    <header class="document-header dashboard-header">
-      <a class="back-link" href="./" aria-label="이전 페이지로">← 돌아가기</a>
-      <div class="eyebrow">BUNDANG MINJOO CREW DATA ARCHIVE</div>
-      <div class="title-row">
+<body class="document-page election-page">
+  <a class="skip-link" href="#election-dashboard">본문으로 바로가기</a>
+
+  <header class="document-header dashboard-header">
+    <div class="document-header-inner dashboard-header-inner">
+      <a class="back-link" href="./index.html" aria-label="메인 페이지로 돌아가기">
+        <span aria-hidden="true">←</span>
+        <span>돌아가기</span>
+      </a>
+      <p class="eyebrow">Bundang Minjoo Crew · Data Archive</p>
+      <div class="dashboard-title-row">
         <div>
           <h1>분당 선거결과 10년</h1>
-          <p class="subtitle">2017–2026 · 분당구 행정동별 더불어민주당 후보 득표율</p>
+          <p class="document-meta">2017–2026 · 분당구 22개 행정동의 주요 선거 결과와 표심 변화</p>
         </div>
         <div class="header-badge">22개 행정동</div>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <section class="document-shell dashboard-shell">
+  <main class="document-shell dashboard-shell" id="election-dashboard">
       <article class="document-card dashboard-card">
         <div id="demoNotice" class="demo-notice" hidden>
           지금 보이는 동별 수치는 <strong>레이아웃 확인용 예시값</strong>입니다. 실제 개표 데이터가 아닙니다.
@@ -181,11 +196,15 @@
             선거결과 원자료: 중앙선거관리위원회</p>
         </footer>
       </article>
-    </section>
+
+    <a class="document-home-link" href="./index.html">메인으로 돌아가기</a>
   </main>
 
-  <script src="assets/js/election-data.js?v=7"></script>
-  <script src="assets/js/elections.js?v=7"></script>
+  <button class="top-button" id="top-button" type="button" aria-label="맨 위로 이동">↑</button>
+
+  <script defer src="./assets/js/main.js?v=20260810"></script>
+  <script defer src="./assets/js/election-data.js?v=20260810"></script>
+  <script defer src="./assets/js/elections.js?v=20260810"></script>
 </body>
 
 </html>
