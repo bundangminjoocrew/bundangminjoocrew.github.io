@@ -6,8 +6,17 @@
     "electionDate": "2026-08-17",
     "calendarStart": "2026-08-09",
     "calendarDays": 14,
-    "updatedAt": "2026-08-09T18:33:00+09:00",
-    "dataStatus": "결과 데이터와 결과 출처 초기화됨 · 공식 결과 공지를 하나씩 등록하세요."
+    "updatedAt": "2026-08-10T17:01:59+09:00",
+    "dataStatus": "8월 10일 기준 공식 결과 공지 4건 · 12개 지역 · 선거인단 기준 28.5% 결과 발표"
+  },
+  "electorate": {
+    "label": "권리당원 선거인단",
+    "officialTotalEligibleVoters": 1527261,
+    "progressLabel": "전국 권리당원 선거인단 기준 결과 발표 진행률",
+    "note": "결과 발표가 완료된 지역의 확정 총선거인수를 전국 권리당원 선거인단 총수로 나누어 계산합니다.",
+    "announcedEligibleVoters": 435903,
+    "announcedRegionCount": 12,
+    "resultProgressRate": 28.54148701498958
   },
   "rules": {
     "partyVoteWeight": 0.7,
@@ -242,219 +251,417 @@
       "id": "chungnam",
       "name": "충남",
       "date": "2026-08-01",
-      "status": "scheduled",
       "weight": 1.0,
-      "leaderVotes": null,
-      "supremeVotes": null,
-      "turnoutRate": null,
       "eligibleVoters": 69980,
-      "voterCount": null,
-      "eligibleVotersStatus": "confirmed"
+      "eligibleVotersStatus": "confirmed",
+      "status": "done",
+      "voterCount": 27345,
+      "turnoutRate": 39.08,
+      "leaderVotes": {
+        "song-younggil": 3026,
+        "jung-chungrae": 11835,
+        "kim-minseok": 12484
+      },
+      "supremeVotes": {
+        "choi-minhee": 12024,
+        "kim-yong": 6806,
+        "kim-youngho": 2113,
+        "seo-mihwa": 7716,
+        "han-minsoo": 7625,
+        "lee-sungyoon": 5840,
+        "park-sunwon": 9237,
+        "lim-miae": 3329
+      },
+      "sourceUrl": "https://theminjoo.kr/main/sub/news/view.php?brd=1&post=1219524"
     },
     {
       "id": "chungbuk",
       "name": "충북",
       "date": "2026-08-01",
-      "status": "scheduled",
       "weight": 1.0,
-      "leaderVotes": null,
-      "supremeVotes": null,
-      "turnoutRate": null,
       "eligibleVoters": 46769,
-      "voterCount": null,
-      "eligibleVotersStatus": "confirmed"
+      "eligibleVotersStatus": "confirmed",
+      "status": "done",
+      "voterCount": 18920,
+      "turnoutRate": 40.45,
+      "leaderVotes": {
+        "song-younggil": 2034,
+        "jung-chungrae": 7919,
+        "kim-minseok": 8967
+      },
+      "supremeVotes": {
+        "choi-minhee": 8217,
+        "kim-yong": 5065,
+        "kim-youngho": 1490,
+        "seo-mihwa": 5240,
+        "han-minsoo": 5084,
+        "lee-sungyoon": 3873,
+        "park-sunwon": 6405,
+        "lim-miae": 2466
+      },
+      "sourceUrl": "https://theminjoo.kr/main/sub/news/view.php?brd=1&post=1219524"
     },
     {
       "id": "daejeon",
       "name": "대전",
       "date": "2026-08-01",
-      "status": "scheduled",
       "weight": 1.0,
-      "leaderVotes": null,
-      "supremeVotes": null,
-      "turnoutRate": null,
       "eligibleVoters": 37937,
-      "voterCount": null,
-      "eligibleVotersStatus": "confirmed"
+      "eligibleVotersStatus": "confirmed",
+      "status": "done",
+      "voterCount": 16974,
+      "turnoutRate": 44.74,
+      "leaderVotes": {
+        "song-younggil": 1538,
+        "jung-chungrae": 8187,
+        "kim-minseok": 7249
+      },
+      "supremeVotes": {
+        "choi-minhee": 7854,
+        "kim-yong": 4049,
+        "kim-youngho": 1121,
+        "seo-mihwa": 4427,
+        "han-minsoo": 5028,
+        "lee-sungyoon": 3970,
+        "park-sunwon": 5556,
+        "lim-miae": 1943
+      },
+      "sourceUrl": "https://theminjoo.kr/main/sub/news/view.php?brd=1&post=1219524"
     },
     {
       "id": "sejong",
       "name": "세종",
       "date": "2026-08-01",
-      "status": "scheduled",
       "weight": 1.0,
-      "leaderVotes": null,
-      "supremeVotes": null,
-      "turnoutRate": null,
       "eligibleVoters": 9160,
-      "voterCount": null,
-      "eligibleVotersStatus": "confirmed"
+      "eligibleVotersStatus": "confirmed",
+      "status": "done",
+      "voterCount": 4749,
+      "turnoutRate": 51.84,
+      "leaderVotes": {
+        "song-younggil": 429,
+        "jung-chungrae": 2388,
+        "kim-minseok": 1932
+      },
+      "supremeVotes": {
+        "choi-minhee": 2289,
+        "kim-yong": 1125,
+        "kim-youngho": 299,
+        "seo-mihwa": 1134,
+        "han-minsoo": 1485,
+        "lee-sungyoon": 1155,
+        "park-sunwon": 1523,
+        "lim-miae": 488
+      },
+      "sourceUrl": "https://theminjoo.kr/main/sub/news/view.php?brd=1&post=1219524"
     },
     {
       "id": "ulsan",
       "name": "울산",
       "date": "2026-08-02",
-      "status": "scheduled",
       "weight": 1.0,
-      "leaderVotes": null,
-      "supremeVotes": null,
-      "turnoutRate": null,
       "eligibleVoters": 18027,
-      "voterCount": null,
-      "eligibleVotersStatus": "confirmed"
+      "eligibleVotersStatus": "confirmed",
+      "status": "done",
+      "voterCount": 9363,
+      "turnoutRate": 51.94,
+      "leaderVotes": {
+        "song-younggil": 972,
+        "jung-chungrae": 4054,
+        "kim-minseok": 4337
+      },
+      "supremeVotes": {
+        "choi-minhee": 4199,
+        "kim-yong": 2309,
+        "kim-youngho": 540,
+        "seo-mihwa": 2694,
+        "han-minsoo": 2680,
+        "lee-sungyoon": 2069,
+        "park-sunwon": 3205,
+        "lim-miae": 1030
+      },
+      "sourceUrl": "https://theminjoo.kr/main/sub/news/view.php?brd=1&post=1219534"
     },
     {
       "id": "busan",
       "name": "부산",
       "date": "2026-08-02",
-      "status": "scheduled",
       "weight": 1.0,
-      "leaderVotes": null,
-      "supremeVotes": null,
-      "turnoutRate": null,
       "eligibleVoters": 34016,
-      "voterCount": null,
-      "eligibleVotersStatus": "confirmed"
+      "eligibleVotersStatus": "confirmed",
+      "status": "done",
+      "voterCount": 21216,
+      "turnoutRate": 62.37,
+      "leaderVotes": {
+        "song-younggil": 1689,
+        "jung-chungrae": 10345,
+        "kim-minseok": 9182
+      },
+      "supremeVotes": {
+        "choi-minhee": 9846,
+        "kim-yong": 5254,
+        "kim-youngho": 1009,
+        "seo-mihwa": 6039,
+        "han-minsoo": 6484,
+        "lee-sungyoon": 5368,
+        "park-sunwon": 6528,
+        "lim-miae": 1904
+      },
+      "sourceUrl": "https://theminjoo.kr/main/sub/news/view.php?brd=1&post=1219534"
     },
     {
       "id": "gyeongnam",
       "name": "경남",
       "date": "2026-08-02",
-      "status": "scheduled",
       "weight": 1.05,
-      "leaderVotes": null,
-      "supremeVotes": null,
       "memo": "전략지역 5% 가중치 적용",
-      "turnoutRate": null,
       "eligibleVoters": 46681,
-      "voterCount": null,
-      "eligibleVotersStatus": "confirmed"
+      "eligibleVotersStatus": "confirmed",
+      "status": "done",
+      "voterCount": 23414,
+      "turnoutRate": 50.16,
+      "leaderVotes": {
+        "song-younggil": 2468,
+        "jung-chungrae": 10790,
+        "kim-minseok": 10156
+      },
+      "supremeVotes": {
+        "choi-minhee": 10651,
+        "kim-yong": 5669,
+        "kim-youngho": 1590,
+        "seo-mihwa": 6228,
+        "han-minsoo": 6896,
+        "lee-sungyoon": 5379,
+        "park-sunwon": 7584,
+        "lim-miae": 2831
+      },
+      "sourceUrl": "https://theminjoo.kr/main/sub/news/view.php?brd=1&post=1219534"
     },
     {
       "id": "jeju",
       "name": "제주",
       "date": "2026-08-08",
-      "status": "scheduled",
       "weight": 1.0,
-      "leaderVotes": null,
-      "supremeVotes": null,
-      "turnoutRate": null,
       "eligibleVoters": 44195,
-      "voterCount": null,
-      "eligibleVotersStatus": "confirmed"
+      "eligibleVotersStatus": "confirmed",
+      "status": "done",
+      "voterCount": 16607,
+      "turnoutRate": 37.58,
+      "leaderVotes": {
+        "song-younggil": 1240,
+        "jung-chungrae": 6625,
+        "kim-minseok": 8742
+      },
+      "supremeVotes": {
+        "choi-minhee": 6080,
+        "kim-yong": 4422,
+        "kim-youngho": 1376,
+        "seo-mihwa": 4781,
+        "han-minsoo": 4680,
+        "lee-sungyoon": 3696,
+        "park-sunwon": 5125,
+        "lim-miae": 3054
+      },
+      "sourceUrl": "https://theminjoo.kr/main/sub/news/view.php?brd=1&post=1219599"
     },
     {
       "id": "incheon",
       "name": "인천",
       "date": "2026-08-08",
-      "status": "scheduled",
       "weight": 1.0,
-      "leaderVotes": null,
-      "supremeVotes": null,
-      "turnoutRate": null,
       "eligibleVoters": 56942,
-      "voterCount": null,
-      "eligibleVotersStatus": "confirmed"
+      "eligibleVotersStatus": "confirmed",
+      "status": "done",
+      "voterCount": 30591,
+      "turnoutRate": 53.72,
+      "leaderVotes": {
+        "song-younggil": 3559,
+        "jung-chungrae": 13237,
+        "kim-minseok": 13795
+      },
+      "supremeVotes": {
+        "choi-minhee": 9980,
+        "kim-yong": 8071,
+        "kim-youngho": 1588,
+        "seo-mihwa": 9508,
+        "han-minsoo": 8930,
+        "lee-sungyoon": 8200,
+        "park-sunwon": 11694,
+        "lim-miae": 3211
+      },
+      "sourceUrl": "https://theminjoo.kr/main/sub/news/view.php?brd=1&post=1219599"
     },
     {
       "id": "gangwon",
       "name": "강원",
       "date": "2026-08-09",
-      "status": "scheduled",
       "weight": 1.0,
-      "leaderVotes": null,
-      "supremeVotes": null,
-      "turnoutRate": null,
       "eligibleVoters": 44164,
-      "voterCount": null,
-      "eligibleVotersStatus": "confirmed"
+      "eligibleVotersStatus": "confirmed",
+      "status": "done",
+      "voterCount": 19022,
+      "turnoutRate": 43.07,
+      "leaderVotes": {
+        "song-younggil": 1476,
+        "jung-chungrae": 7978,
+        "kim-minseok": 9568
+      },
+      "supremeVotes": {
+        "choi-minhee": 6760,
+        "kim-yong": 5034,
+        "kim-youngho": 1231,
+        "seo-mihwa": 5740,
+        "han-minsoo": 5218,
+        "lee-sungyoon": 4472,
+        "park-sunwon": 6790,
+        "lim-miae": 2799
+      },
+      "sourceUrl": "https://theminjoo.kr/main/sub/news/view.php?brd=1&post=1219606"
     },
     {
       "id": "daegu",
       "name": "대구",
       "date": "2026-08-09",
-      "status": "scheduled",
       "weight": 1.05,
-      "leaderVotes": null,
-      "supremeVotes": null,
       "memo": "전략지역 5% 가중치 적용 예정",
-      "turnoutRate": null,
       "eligibleVoters": 13366,
-      "voterCount": null,
-      "eligibleVotersStatus": "confirmed"
+      "eligibleVotersStatus": "confirmed",
+      "status": "done",
+      "voterCount": 9625,
+      "turnoutRate": 72.01,
+      "leaderVotes": {
+        "song-younggil": 561,
+        "jung-chungrae": 4603,
+        "kim-minseok": 4461
+      },
+      "supremeVotes": {
+        "choi-minhee": 3263,
+        "kim-yong": 2520,
+        "kim-youngho": 347,
+        "seo-mihwa": 2894,
+        "han-minsoo": 2972,
+        "lee-sungyoon": 2846,
+        "park-sunwon": 2935,
+        "lim-miae": 1473
+      },
+      "sourceUrl": "https://theminjoo.kr/main/sub/news/view.php?brd=1&post=1219606"
     },
     {
       "id": "gyeongbuk",
       "name": "경북",
       "date": "2026-08-09",
-      "status": "scheduled",
       "weight": 1.05,
-      "leaderVotes": null,
-      "supremeVotes": null,
       "memo": "전략지역 5% 가중치 적용 예정",
-      "turnoutRate": null,
       "eligibleVoters": 14666,
-      "voterCount": null,
-      "eligibleVotersStatus": "confirmed"
+      "eligibleVotersStatus": "confirmed",
+      "status": "done",
+      "voterCount": 10445,
+      "turnoutRate": 71.22,
+      "leaderVotes": {
+        "song-younggil": 723,
+        "jung-chungrae": 4774,
+        "kim-minseok": 4948
+      },
+      "supremeVotes": {
+        "choi-minhee": 3303,
+        "kim-yong": 2380,
+        "kim-youngho": 360,
+        "seo-mihwa": 2926,
+        "han-minsoo": 2871,
+        "lee-sungyoon": 2629,
+        "park-sunwon": 3152,
+        "lim-miae": 3269
+      },
+      "sourceUrl": "https://theminjoo.kr/main/sub/news/view.php?brd=1&post=1219606"
     },
     {
       "id": "jeonnam-gwangju",
       "name": "전남광주",
       "date": "2026-08-15",
-      "status": "scheduled",
       "weight": 1.0,
-      "leaderVotes": null,
-      "supremeVotes": null,
-      "turnoutRate": null,
       "eligibleVoters": 318090,
+      "eligibleVotersStatus": "estimated",
+      "status": "scheduled",
       "voterCount": null,
-      "eligibleVotersStatus": "estimated"
+      "turnoutRate": null,
+      "leaderVotes": null,
+      "supremeVotes": null
     },
     {
       "id": "jeonbuk",
       "name": "전북",
       "date": "2026-08-15",
-      "status": "scheduled",
       "weight": 1.0,
-      "leaderVotes": null,
-      "supremeVotes": null,
-      "turnoutRate": null,
       "eligibleVoters": 194664,
+      "eligibleVotersStatus": "estimated",
+      "status": "scheduled",
       "voterCount": null,
-      "eligibleVotersStatus": "estimated"
+      "turnoutRate": null,
+      "leaderVotes": null,
+      "supremeVotes": null
     },
     {
       "id": "gyeonggi",
       "name": "경기",
       "date": "2026-08-16",
-      "status": "scheduled",
       "weight": 1.0,
-      "leaderVotes": null,
-      "supremeVotes": null,
-      "turnoutRate": null,
       "eligibleVoters": 338979,
+      "eligibleVotersStatus": "estimated",
+      "status": "scheduled",
       "voterCount": null,
-      "eligibleVotersStatus": "estimated"
+      "turnoutRate": null,
+      "leaderVotes": null,
+      "supremeVotes": null
     },
     {
       "id": "seoul",
       "name": "서울",
       "date": "2026-08-16",
-      "status": "scheduled",
       "weight": 1.0,
-      "leaderVotes": null,
-      "supremeVotes": null,
-      "turnoutRate": null,
       "eligibleVoters": 257358,
+      "eligibleVotersStatus": "estimated",
+      "status": "scheduled",
       "voterCount": null,
-      "eligibleVotersStatus": "estimated"
+      "turnoutRate": null,
+      "leaderVotes": null,
+      "supremeVotes": null
     }
   ],
-  "sources": [],
-  "electorate": {
-    "label": "권리당원 선거인단",
-    "officialTotalEligibleVoters": 1527261,
-    "progressLabel": "전국 권리당원 선거인단 기준 결과 발표 진행률",
-    "note": "결과 발표가 완료된 지역의 확정 총선거인수를 전국 권리당원 선거인단 총수로 나누어 계산합니다."
-  }
+  "sources": [
+    {
+      "label": "더불어민주당 공식 공지 · 공지사항 - 더불어민주당",
+      "description": "지역별 총선거인수·투표자수·최종 투표율 및 당대표·최고위원 득표 원자료 · GitHub Actions 자동 반영",
+      "url": "https://theminjoo.kr/main/sub/news/view.php?brd=1&post=1219524"
+    },
+    {
+      "label": "더불어민주당 공식 공지 · 공지사항 - 더불어민주당",
+      "description": "지역별 총선거인수·투표자수·최종 투표율 및 당대표·최고위원 득표 원자료 · GitHub Actions 자동 반영",
+      "url": "https://theminjoo.kr/main/sub/news/view.php?brd=1&post=1219534"
+    },
+    {
+      "label": "더불어민주당 공식 공지 · 공지사항 - 더불어민주당",
+      "description": "지역별 총선거인수·투표자수·최종 투표율 및 당대표·최고위원 득표 원자료 · GitHub Actions 자동 반영",
+      "url": "https://theminjoo.kr/main/sub/news/view.php?brd=1&post=1219599"
+    },
+    {
+      "label": "더불어민주당 공식 공지 · 공지사항 - 더불어민주당",
+      "description": "지역별 총선거인수·투표자수·최종 투표율 및 당대표·최고위원 득표 원자료 · GitHub Actions 자동 반영",
+      "url": "https://theminjoo.kr/main/sub/news/view.php?brd=1&post=1219606"
+    },
+    {
+      "label": "더불어민주당 공식 공지 · 지도부 선출 온라인투표율 공고",
+      "description": "전남·광주·전북 및 경기·서울 권리당원 온라인투표 일정",
+      "url": "https://theminjoo.kr/main/sub/news/view.php?brd=1&post=1219378"
+    },
+    {
+      "label": "더불어민주당 공식 공지 · 지도부 선출 투표 Q&A",
+      "description": "권리당원 투표 방식 및 전체 투표기간",
+      "url": "https://theminjoo.kr/main/sub/news/view.php?brd=1&post=1219367"
+    },
+    {
+      "label": "더불어민주당 공식 공지 · 순회경선 합동연설회 공고",
+      "description": "강원·대구경북·전남광주·전북·경기·서울 합동연설회 일시와 장소",
+      "url": "https://theminjoo.kr/main/sub/news/view.php?brd=1&post=1219420"
+    }
+  ]
 }
