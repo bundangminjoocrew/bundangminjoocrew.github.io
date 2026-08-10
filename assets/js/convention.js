@@ -182,26 +182,105 @@ function rankingFromResult(result, contest) {
 
 function renderHeader() {
   const { meta } = state.data;
+
+  // 기본 헤더
+  els.title.textContent = meta.pageTitle || "2026 전당대회";
+  document.title = `${meta.pageTitle || "2026 전당대회"} | 분당민주크루`;
+  els.eventName.textContent = meta.eventName || meta.pageTitle;
+  els.eventDescription.textContent = meta.description || "";
+  els.meta.textContent = meta.dataStatus || "전당대회 현황";
+
+  // 업데이트 시각
+  const updatedDate = meta.updatedAt ? new Date(meta.updatedAt) : null;
+  els.updated.textContent =
+    updatedDate && !Number.isNaN(updatedDate.getTime())
+      ? `업데이트 ${updatedDate.toLocaleString("ko-KR", {
+        month: "numeric",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit"
+      })}`
+      : "";
+
+  // D-Day
+  const election = new Date(`${meta.electionDate}T00:00:00+09:00`);
+  const now = new Date();
+  const todayKst = new Date(
+    now.toLocaleString("en-US", { timeZone: "Asia/Seoul" })
+  );
+  const todayMidnight = new Date(
+    todayKst.getFullYear(),
+    todayKst.getMonth(),
+    todayKst.getDate()
+  );
+  const electionLocal = new Date(
+    election.getFullYear(),
+    election.getMonth(),
+    election.getDate()
+  );
+  const diff = Math.ceil((electionLocal - todayMidnight) / 86400000);
+
+  els.dday.textContent =
+    diff > 0 ? `D-${diff}` :
+      diff === 0 ? "D-DAY" :
+        `D+${Math.abs(diff)}`;
+
+  // 현재 당대표 누계
   const leaderSnapshot = calculatePublished("leader");
   const leaderTop = rankingFromResult(leaderSnapshot, "leader")[0];
 
-  const officialTotal = Number(state.data.electorate?.officialTotalEligibleVoters);
-  const doneUnits = state.data.resultUnits.filter((unit) => unit.status === "done");
+  // 전국 선거인단 / 결과 발표 진행률
+  const officialTotal = Number(
+    state.data.electorate?.officialTotalEligibleVoters
+  );
+
+  const doneUnits = state.data.resultUnits.filter(
+    (unit) => unit.status === "done"
+  );
+
   const announcedEligible = doneUnits.reduce(
     (sum, unit) => sum + (Number(unit.eligibleVoters) || 0),
     0
   );
-  const progressRate = Number.isFinite(officialTotal) && officialTotal > 0
-    ? (announcedEligible / officialTotal) * 100
-    : 0;
+
+  const progressRate =
+    Number.isFinite(officialTotal) && officialTotal > 0
+      ? (announcedEligible / officialTotal) * 100
+      : 0;
 
   els.heroStats.innerHTML = [
-    ["현재 1위", leaderTop ? `${leaderTop.name} ${formatPercent(leaderTop.percent)}` : "-"],
-    ["최종 선출", formatDate(meta.electionDate, { month: "numeric", day: "numeric" })],
-    [state.data.electorate?.label || "권리당원 선거인단", Number.isFinite(officialTotal) ? `${formatNumber(officialTotal)}명` : "-"]
-  ].map(([label, value]) => `<div class="hero-stat"><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></div>`).join("");
+    [
+      "현재 1위",
+      leaderTop
+        ? `${leaderTop.name} ${formatPercent(leaderTop.percent)}`
+        : "-"
+    ],
+    [
+      "최종 선출",
+      formatDate(meta.electionDate, {
+        month: "numeric",
+        day: "numeric"
+      })
+    ],
+    [
+      state.data.electorate?.label || "권리당원 선거인단",
+      Number.isFinite(officialTotal)
+        ? `${formatNumber(officialTotal)}명`
+        : "-"
+    ]
+  ]
+    .map(
+      ([label, value]) =>
+        `<div class="hero-stat">
+          <span>${escapeHtml(label)}</span>
+          <strong>${escapeHtml(value)}</strong>
+        </div>`
+    )
+    .join("");
 
+  // 진행률 바
   let progressEl = document.getElementById("electorate-progress");
+
   if (!progressEl) {
     progressEl = document.createElement("div");
     progressEl.id = "electorate-progress";
@@ -209,25 +288,38 @@ function renderHeader() {
     els.heroStats.insertAdjacentElement("afterend", progressEl);
   }
 
+  const safeProgress = Math.min(
+    100,
+    Math.max(0, progressRate)
+  );
+
   progressEl.innerHTML = `
     <div class="electorate-progress-head">
       <span>전국 권리당원 선거인단 기준</span>
       <strong>${progressRate.toFixed(1)}% 결과 발표 완료</strong>
     </div>
-    <div class="electorate-progress-track" role="progressbar"
+
+    <div
+      class="electorate-progress-track"
+      role="progressbar"
       aria-label="권리당원 선거인단 기준 결과 발표 진행률"
-      aria-valuemin="0" aria-valuemax="100"
-      aria-valuenow="${Math.min(100, Math.max(0, progressRate)).toFixed(1)}">
-      <span style="width:${Math.min(100, Math.max(0, progressRate))}%"></span>
+      aria-valuemin="0"
+      aria-valuemax="100"
+      aria-valuenow="${safeProgress.toFixed(1)}"
+    >
+      <span style="width:${safeProgress}%"></span>
     </div>
+
     <div class="electorate-progress-meta">
       <span>${formatNumber(announcedEligible)}명분 결과 발표</span>
-      <span>전체 ${Number.isFinite(officialTotal) ? formatNumber(officialTotal) : "-"}명</span>
+      <span>
+        전체 ${Number.isFinite(officialTotal)
+      ? formatNumber(officialTotal)
+      : "-"
+    }명
+      </span>
     </div>
   `;
-
-  els.pageUpdated.textContent = meta.updatedAt ? `업데이트 ${formatDateTime(meta.updatedAt)}` : "";
-  els.dataStatus.textContent = meta.dataStatus || "";
 }
 function renderCalendar() {
   const { meta, schedule } = state.data;
