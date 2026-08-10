@@ -1,0 +1,59 @@
+name: 전당대회 결과 자동 갱신
+
+on:
+  workflow_dispatch:
+    inputs:
+      result_url:
+        description: "새 더불어민주당 결과 공지 URL (비워두면 등록된 기존 공지 전체만 다시 읽음)"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: convention-results-update
+  cancel-in-progress: false
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 저장소 체크아웃
+        uses: actions/checkout@v4
+
+      - name: Python 설정
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 파서 의존성 설치
+        run: pip install -r scripts/requirements-convention.txt
+
+      - name: 공식 공지 전체 재구축
+        env:
+          RESULT_URL: ${{ inputs.result_url }}
+        run: |
+          if [ -n "$RESULT_URL" ]; then
+            python3 scripts/rebuild-convention-data.py --add-url "$RESULT_URL"
+          else
+            python3 scripts/rebuild-convention-data.py
+          fi
+
+      - name: JSON 검증
+        run: |
+          python3 -m json.tool data/convention-config.json >/dev/null
+          python3 -m json.tool data/convention-sources.json >/dev/null
+          python3 -m json.tool data/convention-data.json >/dev/null
+
+      - name: 변경사항 커밋
+        run: |
+          if git diff --quiet -- data/convention-data.json data/convention-sources.json; then
+            echo "변경사항 없음"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/convention-data.json data/convention-sources.json
+          git commit -m "Update convention results from official notices"
+          git push
