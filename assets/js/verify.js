@@ -8,16 +8,38 @@ const selectedFilename = document.querySelector("#selected-filename");
 const phoneInput = form.elements.phone;
 const phoneField = document.querySelector("#phone-field");
 const duesSample = document.querySelector("#dues-sample");
+const nicknameTitle = document.querySelector("#nickname-title");
+const nicknameLabel = document.querySelector("#nickname-label");
+const nicknameHelp = document.querySelector("#nickname-help");
+const nicknameInput = form.elements.chat_nickname;
 
 function syncRequestType() {
   const requestType = form.elements.request_type.value;
   const isNew = requestType === "new";
+  const isReverify = requestType === "reverify";
 
   phoneField.hidden = !isNew;
   phoneInput.required = isNew;
 
   if (!isNew) {
     phoneInput.value = "";
+  }
+
+  if (isNew) {
+    nicknameTitle.textContent = "실명/거주동";
+    nicknameLabel.textContent = "실명/거주동";
+    nicknameInput.placeholder = "예: 홍길동/판교동";
+    nicknameHelp.textContent = "별명·활동명이 아닌 실명을 사용해 '실명/거주동' 형식으로 입력해주세요. 입장 후에도 같은 형식으로 닉네임을 설정해주세요.";
+  } else if (isReverify) {
+    nicknameTitle.textContent = "현재 오픈채팅방 닉네임";
+    nicknameLabel.textContent = "현재 닉네임";
+    nicknameInput.placeholder = "예: 홍길동/판교동";
+    nicknameHelp.textContent = "현재 오픈채팅방에서 사용하는 닉네임을 '이름/거주동' 형식으로 입력해주세요. 직책이 있다면 거주동 뒤에 띄어 적어도 됩니다.";
+  } else {
+    nicknameTitle.textContent = "이름/거주동";
+    nicknameLabel.textContent = "이름/거주동";
+    nicknameInput.placeholder = "예: 홍길동/판교동";
+    nicknameHelp.textContent = "신규 신청자는 실명/거주동을, 기존 참여자는 현재 오픈채팅방 닉네임을 입력해주세요.";
   }
 }
 
@@ -31,8 +53,12 @@ function validateNickname() {
   const value = input.value.normalize("NFKC").trim();
   const parts = value.split("/");
   const valid = parts.length === 2 && parts[0].trim().length > 0 && parts[1].trim().length > 0;
+  const requestType = form.elements.request_type.value;
+  const message = requestType === "new"
+    ? "실명과 거주동을 '실명/거주동' 형식으로 입력해주세요. 예: 홍길동/판교동"
+    : "현재 닉네임을 '이름/거주동' 형식으로 입력해주세요. 예: 홍길동/판교동";
 
-  input.setCustomValidity(valid ? "" : "닉네임을 '이름/거주동' 형식으로 입력해주세요. 예: 홍길동/판교동");
+  input.setCustomValidity(valid ? "" : message);
   return valid;
 }
 

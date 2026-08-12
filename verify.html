@@ -94,17 +94,17 @@
         <div class="form-section-heading">
           <div>
             <span class="form-step">02</span>
-            <h2 id="nickname-title">오픈채팅방 닉네임</h2>
+            <h2 id="nickname-title">이름/거주동</h2>
           </div>
           <span class="required-chip">필수</span>
         </div>
 
         <label class="form-field">
-          <span class="field-label">닉네임</span>
+          <span class="field-label" id="nickname-label">이름/거주동</span>
           <input type="text" name="chat_nickname" maxlength="80" autocomplete="off" placeholder="예: 홍길동/판교동" required>
-          <small>
-            이름과 현재 거주하는 <strong>법정동</strong>을
-            <strong>이름/거주동</strong> 형식으로 입력해주세요.
+          <small id="nickname-help">
+            신규 신청자는 별명·활동명이 아닌 <strong>실명/거주동</strong>을 입력해주세요.
+            기존 참여자는 현재 오픈채팅방에서 사용하는 이름/거주동 형식의 닉네임을 입력해주세요.
           </small>
         </label>
 
@@ -112,7 +112,7 @@
           <span class="field-label">전화번호 <em>신규 입장 신청자만</em></span>
           <input type="tel" name="phone" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="01012345678">
           <small>
-            입장 안내 연락에만 사용하며, <strong>실제 입장이 확인되면 즉시 삭제</strong>합니다.
+            입장 안내 연락에만 사용하며, <strong>입장 완료·신청 거절 등 연락 목적이 끝나면 즉시 삭제</strong>합니다.
           </small>
         </label>
       </section>
@@ -248,9 +248,9 @@
         <details class="consent-detail">
           <summary>개인정보 수집·이용 안내</summary>
           <div class="consent-copy">
-            <p><strong>처리 항목</strong> 오픈채팅 닉네임, 신규 신청자의 전화번호, 신청 구분, 제출일시</p>
+            <p><strong>처리 항목</strong> 신규 신청자의 실명·거주동, 기존 참여자의 오픈채팅 닉네임, 신규 신청자의 전화번호, 신청 구분, 제출일시</p>
             <p><strong>처리 목적</strong> 참여자 식별, 신규 입장 안내, 신청 처리 및 문의 대응</p>
-            <p><strong>전화번호</strong> 신규 입장 확인 즉시 삭제합니다.</p>
+            <p><strong>전화번호</strong> 입장 완료·신청 거절 등 연락 목적이 끝나면 즉시 삭제합니다.</p>
           </div>
         </details>
         <label class="agreement-row">

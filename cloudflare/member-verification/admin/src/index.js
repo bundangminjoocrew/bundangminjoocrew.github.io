@@ -131,6 +131,8 @@ function page() {
   <dialog id="linkDlg"><div class="dlg"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><div><b id="linkTitle">기존 참여자 연결</b><div class="muted" id="linkSubtitle"></div></div><button id="closeLinkDlg">닫기</button></div><div class="field"><label for="linkSearch">참여자 검색</label><input id="linkSearch" autocomplete="off" placeholder="이름 또는 거주동"></div><div id="linkMemberList" class="memberList" style="margin-top:12px"></div></div></dialog>
 
   <dialog id="editDlg"><div class="dlg"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><b>기존 참여자 정보 수정</b><button id="closeEditDlg">닫기</button></div><form id="editMemberForm"><input type="hidden" id="editMemberId"><div class="formrow"><div class="field"><label for="editName">이름</label><input id="editName" required></div><div class="field"><label for="editDistrict">거주동</label><input id="editDistrict" required></div></div><div class="field"><label for="editAlias">추가할 현재/과거 닉네임 (선택)</label><input id="editAlias"></div><div class="import" style="margin-top:14px"><button class="view" type="submit">저장</button><span id="editResult" class="muted"></span></div></form></div></dialog>
+
+  <dialog id="submissionEditDlg"><div class="dlg"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><div><b>신규 신청 정보 수정</b><div class="muted">인증자료에서 확인한 실명과 거주동으로 바로잡습니다. 저장하면 신청 닉네임도 <code>실명/거주동</code>으로 정리됩니다.</div></div><button id="closeSubmissionEditDlg">닫기</button></div><form id="submissionEditForm"><input type="hidden" id="submissionEditId"><div class="formrow"><div class="field"><label for="submissionEditName">실명</label><input id="submissionEditName" autocomplete="off" required></div><div class="field"><label for="submissionEditDistrict">거주동</label><input id="submissionEditDistrict" autocomplete="off" placeholder="예: 판교동" required></div></div><div class="import" style="margin-top:14px"><button class="view" type="submit">신청정보 저장</button><span id="submissionEditResult" class="muted"></span></div></form></div></dialog>
   </main></body></html>`;
 }
 
@@ -138,6 +140,7 @@ const ADMIN_JS = String.raw`
 const $ = (s) => document.querySelector(s);
 let reviewRows = [];
 let rosterMembers = [];
+let editableNewRows = [];
 let linkContext = null;
 
 async function api(path, opt) {
@@ -176,6 +179,12 @@ async function loadAll() {
 
   reviewRows = l.items || [];
   rosterMembers = roster.items || [];
+  const editableMap = new Map();
+  [...(w1.items || []), ...(w2.items || []), ...reviewRows].forEach((r) => {
+    if (!r || !r.id) return;
+    editableMap.set(r.id, { ...(editableMap.get(r.id) || {}), ...r });
+  });
+  editableNewRows = Array.from(editableMap.values());
 
   $('#who').textContent = s.reviewer;
   $('#metrics').innerHTML = [
@@ -206,20 +215,73 @@ async function loadAll() {
   renderRosterMembers(rosterMembers);
 }
 
+function phonePretty(value) {
+  const d = String(value || '').replace(/\D/g, '');
+  if (d.length === 11) return d.slice(0, 3) + '-' + d.slice(3, 7) + '-' + d.slice(7);
+  if (d.length === 10) return d.slice(0, 3) + '-' + d.slice(3, 6) + '-' + d.slice(6);
+  return value || '-';
+}
+
+function phoneMasked(value) {
+  const d = String(value || '').replace(/\D/g, '');
+  if (d.length === 11) return d.slice(0, 3) + '-****-' + d.slice(7);
+  if (d.length === 10) return d.slice(0, 3) + '-***-' + d.slice(6);
+  return value ? '등록됨' : '-';
+}
+
+function newRowById(id) {
+  return editableNewRows.find((x) => x.id === id) || reviewRows.find((x) => x.id === id);
+}
+
+function showPhone(id) {
+  const r = newRowById(id);
+  if (!r || !r.phone) { alert('보관 중인 전화번호가 없습니다.'); return; }
+  alert('전화번호: ' + phonePretty(r.phone));
+}
+
+async function copyPhone(id) {
+  const r = newRowById(id);
+  if (!r || !r.phone) { alert('보관 중인 전화번호가 없습니다.'); return; }
+  const value = String(r.phone);
+  try {
+    await navigator.clipboard.writeText(value);
+  } catch (_) {
+    const ta = document.createElement('textarea');
+    ta.value = value;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    ta.remove();
+  }
+  alert('전화번호를 복사했습니다.');
+}
+
 function renderReview() {
   if (!reviewRows.length) {
     $('#reviewTable').innerHTML = '<p class="muted">표시할 접수 내역이 없습니다.</p>';
     return;
   }
-  $('#reviewTable').innerHTML = '<table><thead><tr><th>접수</th><th>유형</th><th>닉네임</th><th>이름</th><th>거주동</th><th>명부</th><th>상태</th><th>자료</th><th>판정</th></tr></thead><tbody>' +
+  $('#reviewTable').innerHTML = '<table><thead><tr><th>접수</th><th>유형</th><th>닉네임</th><th>이름</th><th>거주동</th><th>연락처</th><th>명부</th><th>상태</th><th>자료</th><th>판정/관리</th></tr></thead><tbody>' +
     reviewRows.map((r) => {
       let proof = r.proof_key ? '<button class="view compact" data-action="proof" data-id="' + e(r.id) + '">보기</button>' : '삭제됨';
       let action = '-';
       if (r.review_status === 'pending') {
-        action = '<button class="ok compact" data-action="review" data-decision="verified" data-id="' + e(r.id) + '">O</button> ' +
+        const edit = r.request_type === 'new' ? '<button class="secondary compact" data-action="edit-submission" data-id="' + e(r.id) + '">정보 수정</button> ' : '';
+        action = edit + '<button class="ok compact" data-action="review" data-decision="verified" data-id="' + e(r.id) + '">O</button> ' +
           '<button class="bad compact" data-action="review" data-decision="rejected" data-id="' + e(r.id) + '">X</button>';
       } else if (r.request_type === 'new' && r.review_status === 'verified') {
-        action = '<span class="pill ' + e(r.onboarding_stage || 'wait1') + '">' + stageName(r.onboarding_stage || 'wait1') + '</span>';
+        const canEdit = ['wait1', 'wait2'].includes(r.onboarding_stage || 'wait1');
+        action = '<span class="pill ' + e(r.onboarding_stage || 'wait1') + '">' + stageName(r.onboarding_stage || 'wait1') + '</span>' +
+          (canEdit ? ' <button class="secondary compact" data-action="edit-submission" data-id="' + e(r.id) + '">정보 수정</button>' : '');
+      }
+
+      let phoneCell = '-';
+      if (r.request_type === 'new') {
+        phoneCell = r.phone
+          ? '<span>' + e(phoneMasked(r.phone)) + '</span> <span class="actions"><button class="secondary compact" data-action="show-phone" data-id="' + e(r.id) + '">보기</button><button class="secondary compact" data-action="copy-phone" data-id="' + e(r.id) + '">복사</button></span>'
+          : '<span class="muted">삭제됨</span>';
       }
 
       let rosterCell = '-';
@@ -231,20 +293,20 @@ function renderReview() {
         }
       }
 
-      return '<tr><td>' + fmt(r.submitted_at) + '</td><td>' + (r.request_type === 'reverify' ? '재확인' : '신규') + '</td><td>' + e(r.chat_nickname || '-') + '</td><td>' + e(r.name) + '</td><td>' + e(r.district) + '</td><td>' + rosterCell + '</td><td><span class="pill ' + e(r.review_status) + '">' + ({ pending: '미확인', verified: 'O', rejected: 'X' })[r.review_status] + '</span></td><td>' + proof + '</td><td>' + action + '</td></tr>';
+      return '<tr><td>' + fmt(r.submitted_at) + '</td><td>' + (r.request_type === 'reverify' ? '재확인' : '신규') + '</td><td>' + e(r.chat_nickname || '-') + '</td><td>' + e(r.name) + '</td><td>' + e(r.district) + '</td><td>' + phoneCell + '</td><td>' + rosterCell + '</td><td><span class="pill ' + e(r.review_status) + '">' + ({ pending: '미확인', verified: 'O', rejected: 'X' })[r.review_status] + '</span></td><td>' + proof + '</td><td>' + action + '</td></tr>';
     }).join('') + '</tbody></table>';
 }
 
 function renderWait1(rows) {
   if (!rows.length) { $('#wait1Table').innerHTML = '<p class="muted">입장 대기-1 대상자가 없습니다.</p>'; return; }
   $('#wait1Table').innerHTML = '<table><thead><tr><th>O 확인일</th><th>이름</th><th>전화번호</th><th>거주동</th><th>당원구분</th><th>처리</th></tr></thead><tbody>' +
-    rows.map((r) => '<tr><td>' + fmt(r.reviewed_at) + '</td><td>' + e(r.name) + '</td><td>' + e(r.phone || '-') + '</td><td>' + e(r.district) + '</td><td>' + (r.member_type === 'rights' ? '권리당원' : '일반당원') + '</td><td><button class="view" data-action="contacted" data-id="' + e(r.id) + '">연락 완료</button></td></tr>').join('') + '</tbody></table>';
+    rows.map((r) => '<tr><td>' + fmt(r.reviewed_at) + '</td><td>' + e(r.name) + '</td><td>' + e(phonePretty(r.phone || '-')) + '</td><td>' + e(r.district) + '</td><td>' + (r.member_type === 'rights' ? '권리당원' : '일반당원') + '</td><td><button class="secondary compact" data-action="edit-submission" data-id="' + e(r.id) + '">정보 수정</button> <button class="view" data-action="contacted" data-id="' + e(r.id) + '">연락 완료</button></td></tr>').join('') + '</tbody></table>';
 }
 
 function renderWait2(rows) {
   if (!rows.length) { $('#wait2Table').innerHTML = '<p class="muted">입장 대기-2 대상자가 없습니다.</p>'; return; }
   $('#wait2Table').innerHTML = '<table><thead><tr><th>연락 완료일</th><th>이름</th><th>전화번호</th><th>거주동</th><th>처리</th></tr></thead><tbody>' +
-    rows.map((r) => '<tr><td>' + fmt(r.contacted_at) + '</td><td>' + e(r.name) + '</td><td>' + e(r.phone || '-') + '</td><td>' + e(r.district) + '</td><td><button class="ok" data-action="admit" data-id="' + e(r.id) + '">입장 확인</button></td></tr>').join('') + '</tbody></table>';
+    rows.map((r) => '<tr><td>' + fmt(r.contacted_at) + '</td><td>' + e(r.name) + '</td><td>' + e(phonePretty(r.phone || '-')) + '</td><td>' + e(r.district) + '</td><td><button class="secondary compact" data-action="edit-submission" data-id="' + e(r.id) + '">정보 수정</button> <button class="ok" data-action="admit" data-id="' + e(r.id) + '">입장 확인</button></td></tr>').join('') + '</tbody></table>';
 }
 
 function renderMembers(rows) {
@@ -290,8 +352,19 @@ function renderRosterMembers(rows) {
 }
 
 async function review(id, decision) {
-  if (decision === 'verified' && !confirm('O로 확인하면 인증 원본이 즉시 삭제됩니다. 신규 참여자는 입장 대기-1로 이동합니다. 계속할까요?')) return;
-  if (decision === 'rejected' && !confirm('X로 표시할까요? 원본은 제출일 기준 7일까지 보관 후 자동 삭제됩니다.')) return;
+  const row = reviewRows.find((x) => x.id === id);
+  if (decision === 'verified') {
+    const message = row && row.request_type === 'new'
+      ? '신규 신청자의 실명/거주동이 인증자료와 일치하는지 확인했나요? 다르면 먼저 정보 수정을 해주세요. O 처리하면 인증 원본이 즉시 삭제되고 입장 대기-1로 이동합니다. 계속할까요?'
+      : 'O로 확인하면 인증 원본이 즉시 삭제됩니다. 계속할까요?';
+    if (!confirm(message)) return;
+  }
+  if (decision === 'rejected') {
+    const message = row && row.request_type === 'new'
+      ? '거절 안내 문자를 먼저 발송했는지 확인해주세요. X 처리하면 신규 신청자의 전화번호는 즉시 삭제되고, 인증 원본은 제출일 기준 7일까지 보관 후 자동 삭제됩니다. 계속할까요?'
+      : 'X로 표시할까요? 인증 원본은 제출일 기준 7일까지 보관 후 자동 삭제됩니다.';
+    if (!confirm(message)) return;
+  }
   await api('/api/submissions/' + id + '/review', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ decision }) });
   await loadAll();
 }
@@ -467,6 +540,37 @@ async function saveMemberEdit(ev) {
   }
 }
 
+
+function openEditSubmission(id) {
+  const r = newRowById(id);
+  if (!r) { alert('신청 정보를 찾을 수 없습니다.'); return; }
+  $('#submissionEditId').value = id;
+  $('#submissionEditName').value = r.name || '';
+  $('#submissionEditDistrict').value = r.district || '';
+  $('#submissionEditResult').textContent = r.chat_nickname ? '현재 신청값: ' + r.chat_nickname : '';
+  $('#submissionEditResult').className = 'muted';
+  $('#submissionEditDlg').showModal();
+}
+
+async function saveSubmissionEdit(ev) {
+  ev.preventDefault();
+  const id = $('#submissionEditId').value;
+  const body = {
+    name: $('#submissionEditName').value.trim(),
+    district: $('#submissionEditDistrict').value.trim()
+  };
+  try {
+    const r = await api('/api/submissions/' + id + '/update-new', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) });
+    $('#submissionEditResult').textContent = r.nickname + '으로 저장했습니다.';
+    $('#submissionEditResult').className = 'successText';
+    await loadAll();
+    setTimeout(() => $('#submissionEditDlg').close(), 350);
+  } catch (err) {
+    $('#submissionEditResult').textContent = err.message || '신청정보 수정에 실패했습니다.';
+    $('#submissionEditResult').className = 'errorText';
+  }
+}
+
 async function handleAction(target) {
   const action = target.dataset.action;
   const id = target.dataset.id;
@@ -479,6 +583,9 @@ async function handleAction(target) {
   if (action === 'link-issue') return openLink('issue', id);
   if (action === 'choose-link-member') return chooseLinkMember(id);
   if (action === 'edit-member') return openEditMember(id);
+  if (action === 'edit-submission') return openEditSubmission(id);
+  if (action === 'show-phone') return showPhone(id);
+  if (action === 'copy-phone') return copyPhone(id);
 }
 
 document.addEventListener('click', (ev) => {
@@ -495,9 +602,11 @@ $('#manualForm').addEventListener('submit', manualAdd);
 $('#memberSearch').addEventListener('input', () => renderRosterMembers(rosterMembers));
 $('#linkSearch').addEventListener('input', renderLinkMembers);
 $('#editMemberForm').addEventListener('submit', saveMemberEdit);
+$('#submissionEditForm').addEventListener('submit', saveSubmissionEdit);
 $('#closeDlg').addEventListener('click', () => $('#dlg').close());
 $('#closeLinkDlg').addEventListener('click', () => $('#linkDlg').close());
 $('#closeEditDlg').addEventListener('click', () => $('#editDlg').close());
+$('#closeSubmissionEditDlg').addEventListener('click', () => $('#submissionEditDlg').close());
 
 loadAll().catch((err) => {
   console.error(err);
@@ -656,10 +765,48 @@ async function reviewSubmission(request, env, id) {
         .bind(now, id, row.roster_member_id).run();
     }
   } else {
-    await env.DB.prepare("UPDATE submissions SET review_status='rejected',reviewed_at=?,reviewer=?,expires_at=? WHERE id=? AND review_status='pending'")
-      .bind(now, who, expires, id).run();
+    if (row.request_type === "new") {
+      await env.DB.prepare("UPDATE submissions SET review_status='rejected',reviewed_at=?,reviewer=?,phone=NULL,expires_at=? WHERE id=? AND review_status='pending'")
+        .bind(now, who, expires, id).run();
+    } else {
+      await env.DB.prepare("UPDATE submissions SET review_status='rejected',reviewed_at=?,reviewer=?,expires_at=? WHERE id=? AND review_status='pending'")
+        .bind(now, who, expires, id).run();
+    }
   }
   return json({ ok: true });
+}
+
+
+async function updateNewSubmission(request, env, id) {
+  const row = await env.DB.prepare("SELECT * FROM submissions WHERE id=? LIMIT 1").bind(id).first();
+  if (!row) return json({ message: "접수 내역이 없습니다." }, 404);
+  if (row.request_type !== "new") return json({ message: "신규 입장 신청만 수정할 수 있습니다." }, 400);
+  if (row.review_status === "rejected") return json({ message: "이미 X 처리된 신청은 수정할 수 없습니다." }, 409);
+  if (row.onboarding_stage === "admitted") return json({ message: "이미 입장 완료된 신청은 수정할 수 없습니다." }, 409);
+
+  const editable = row.review_status === "pending" ||
+    (row.review_status === "verified" && ["wait1", "wait2"].includes(row.onboarding_stage));
+  if (!editable) return json({ message: "현재 단계에서는 신청정보를 수정할 수 없습니다." }, 409);
+
+  const body = await request.json();
+  const name = normalizeText(body.name);
+  const district = normalizeText(body.district);
+
+  if (!name || !district || isPlaceholder(name) || isPlaceholder(district)) {
+    return json({ message: "정확한 실명과 거주동을 입력해주세요." }, 400);
+  }
+  if (name.includes("/") || district.includes("/")) {
+    return json({ message: "실명과 거주동에는 / 문자를 사용할 수 없습니다." }, 400);
+  }
+  if (!districtLike(district)) {
+    return json({ message: "거주동은 '판교동', '서현동'처럼 법정동 이름만 입력해주세요." }, 400);
+  }
+
+  const display = name + "/" + district;
+  await env.DB.prepare("UPDATE submissions SET name=?,district=?,chat_nickname=? WHERE id=?")
+    .bind(name, district, display, id).run();
+
+  return json({ ok: true, nickname: display });
 }
 
 async function linkSubmissionMember(request, env, id) {
@@ -954,6 +1101,9 @@ export default {
 
       let m = p.match(/^\/api\/submissions\/([^/]+)\/review$/);
       if (request.method === "POST" && m) return reviewSubmission(request, env, m[1]);
+
+      m = p.match(/^\/api\/submissions\/([^/]+)\/update-new$/);
+      if (request.method === "POST" && m) return updateNewSubmission(request, env, m[1]);
 
       m = p.match(/^\/api\/submissions\/([^/]+)\/proof$/);
       if (request.method === "GET" && m) return proof(env, m[1]);
