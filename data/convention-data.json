@@ -6,17 +6,17 @@
     "electionDate": "2026-08-17",
     "calendarStart": "2026-08-09",
     "calendarDays": 14,
-    "updatedAt": "2026-08-15T19:34:25+09:00",
-    "dataStatus": "8월 15일 기준 공식 결과 공지 5건 · 14개 지역 · 선거인단 기준 61.7% 결과 발표"
+    "updatedAt": "2026-08-16T18:31:12+09:00",
+    "dataStatus": "8월 16일 기준 공식 결과 공지 6건 · 16개 지역 · 선거인단 기준 99.9% 결과 발표"
   },
   "electorate": {
     "label": "권리당원 선거인단",
     "officialTotalEligibleVoters": 1527261,
     "progressLabel": "전국 권리당원 선거인단 기준 결과 발표 진행률",
     "note": "결과 발표가 완료된 지역의 확정 총선거인수를 전국 권리당원 선거인단 총수로 나누어 계산합니다.",
-    "announcedEligibleVoters": 942107,
-    "announcedRegionCount": 14,
-    "resultProgressRate": 61.686051041701454
+    "announcedEligibleVoters": 1525745,
+    "announcedRegionCount": 16,
+    "resultProgressRate": 99.90073733304263
   },
   "rules": {
     "partyVoteWeight": 0.7,
@@ -633,26 +633,54 @@
       "name": "경기",
       "date": "2026-08-16",
       "weight": 1.0,
-      "eligibleVoters": 338979,
-      "eligibleVotersStatus": "estimated",
-      "status": "scheduled",
-      "voterCount": null,
-      "turnoutRate": null,
-      "leaderVotes": null,
-      "supremeVotes": null
+      "eligibleVoters": 331876,
+      "eligibleVotersStatus": "confirmed",
+      "status": "done",
+      "voterCount": 180804,
+      "turnoutRate": 54.48,
+      "leaderVotes": {
+        "song-younggil": 12530,
+        "jung-chungrae": 83832,
+        "kim-minseok": 84442
+      },
+      "supremeVotes": {
+        "choi-minhee": 59550,
+        "kim-yong": 52690,
+        "kim-youngho": 8310,
+        "seo-mihwa": 53100,
+        "han-minsoo": 54477,
+        "lee-sungyoon": 57304,
+        "park-sunwon": 55296,
+        "lim-miae": 20881
+      },
+      "sourceUrl": "https://theminjoo.kr/main/sub/news/view.php?brd=1&post=1219693"
     },
     {
       "id": "seoul",
       "name": "서울",
       "date": "2026-08-16",
       "weight": 1.0,
-      "eligibleVoters": 257358,
-      "eligibleVotersStatus": "estimated",
-      "status": "scheduled",
-      "voterCount": null,
-      "turnoutRate": null,
-      "leaderVotes": null,
-      "supremeVotes": null
+      "eligibleVoters": 251762,
+      "eligibleVotersStatus": "confirmed",
+      "status": "done",
+      "voterCount": 136889,
+      "turnoutRate": 54.37,
+      "leaderVotes": {
+        "song-younggil": 9880,
+        "jung-chungrae": 63206,
+        "kim-minseok": 63803
+      },
+      "supremeVotes": {
+        "choi-minhee": 44133,
+        "kim-yong": 37775,
+        "kim-youngho": 9563,
+        "seo-mihwa": 39167,
+        "han-minsoo": 42595,
+        "lee-sungyoon": 44144,
+        "park-sunwon": 40250,
+        "lim-miae": 16151
+      },
+      "sourceUrl": "https://theminjoo.kr/main/sub/news/view.php?brd=1&post=1219693"
     }
   ],
   "sources": [
@@ -680,6 +708,11 @@
       "label": "더불어민주당 공식 공지 · 당대표·최고위원 선출 순회경선 (전남광주·전북) 권리당원 투표 결과",
       "description": "지역별 총선거인수·투표자수·최종 투표율 및 당대표·최고위원 득표 원자료 · GitHub Actions 자동 반영",
       "url": "https://theminjoo.kr/main/sub/news/view.php?brd=1&post=1219685"
+    },
+    {
+      "label": "더불어민주당 공식 공지 · 당대표·최고위원 선출 순회경선 (경기·서울) 권리당원 투표 결과",
+      "description": "지역별 총선거인수·투표자수·최종 투표율 및 당대표·최고위원 득표 원자료 · GitHub Actions 자동 반영",
+      "url": "https://theminjoo.kr/main/sub/news/view.php?brd=1&post=1219693"
     },
     {
       "label": "더불어민주당 공식 공지 · 지도부 선출 온라인투표율 공고",

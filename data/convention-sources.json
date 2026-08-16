@@ -43,6 +43,14 @@
         "jeonbuk"
       ],
       "label": "당대표·최고위원 선출 순회경선 (전남광주·전북) 권리당원 투표 결과"
+    },
+    {
+      "url": "https://theminjoo.kr/main/sub/news/view.php?brd=1&post=1219693",
+      "expectedRegions": [
+        "gyeonggi",
+        "seoul"
+      ],
+      "label": "당대표·최고위원 선출 순회경선 (경기·서울) 권리당원 투표 결과"
     }
   ],
   "references": [
