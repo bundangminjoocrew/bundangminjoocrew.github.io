@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>2026 전당대회 | 분당민주크루</title>
-  <meta name="description" content="2026 더불어민주당 전당대회 일정과 지역별 경선 결과를 한눈에 확인합니다.">
+  <title>2026 전당대회 결과 분석 | 분당민주크루</title>
+  <meta name="description" content="2026 더불어민주당 제3차 정기전국당원대회 최종 결과와 권리당원 지역별 원자료를 함께 분석합니다.">
   <meta name="theme-color" content="#172a88">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="2026 전당대회 | 분당민주크루">
-  <meta property="og:description" content="남은 일정, 당대표·최고위원 누계, 지역별 득표 결과와 가중치 계산을 확인하세요.">
+  <meta property="og:title" content="2026 전당대회 결과 분석 | 분당민주크루">
+  <meta property="og:description" content="당대표·최고위원 최종 결과, 권리당원 16개 지역 원자료, 선호투표·재외국민 역산 분석을 한 화면에서 확인하세요.">
   <meta property="og:image" content="./assets/images/profile.png">
   <link rel="icon" href="./assets/images/favicon.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="./assets/images/apple-touch-icon.png" sizes="180x180">
@@ -21,117 +21,97 @@
   <header class="document-header">
     <div class="document-header-inner">
       <a class="back-link" href="./index.html" id="back-link" aria-label="메인 페이지로 돌아가기">
-        <span aria-hidden="true">←</span>
-        <span>돌아가기</span>
+        <span aria-hidden="true">←</span><span>돌아가기</span>
       </a>
-      <p class="eyebrow">Bundang Minjoo Crew</p>
-      <h1 id="document-title">2026 전당대회</h1>
-      <p class="document-meta" id="document-meta" aria-live="polite">데이터를 준비하고 있습니다.</p>
+      <p class="eyebrow">Bundang Minjoo Crew · Data Archive</p>
+      <h1 id="document-title">2026 전당대회 결과 분석</h1>
+      <p class="document-meta" id="document-meta" aria-live="polite">최종 결과 데이터를 불러오고 있습니다.</p>
     </div>
   </header>
 
   <main class="document-shell convention-shell">
     <article class="document-card convention-card" aria-labelledby="document-title">
-      <div class="viewer-status" id="convention-status" role="status" aria-live="polite">
-        전당대회 데이터를 불러오는 중입니다.
-      </div>
+      <div class="viewer-status" id="convention-status" role="status" aria-live="polite">전당대회 데이터를 불러오는 중입니다.</div>
 
       <div id="convention-app" hidden>
-        <section class="convention-hero" aria-labelledby="event-name">
-          <div class="hero-topline">
-            <span class="dday-badge" id="dday-badge">D-</span>
-            <span class="hero-updated" id="hero-updated"></span>
-          </div>
-          <h2 id="event-name"></h2>
-          <p id="event-description"></p>
-          <div class="hero-stats" id="hero-stats"></div>
-        </section>
+        <section class="final-hero" id="final-hero" aria-labelledby="final-title"></section>
 
-        <nav class="section-jump" aria-label="전당대회 페이지 바로가기">
-          <a href="#schedule-section">일정</a>
-          <a href="#leader-section">당대표</a>
-          <a href="#supreme-section">최고위원</a>
-          <a href="#region-section">지역별 결과</a>
+        <nav class="section-jump analysis-jump" aria-label="결과 분석 바로가기">
+          <a href="#leader-final-section">당대표</a>
+          <a href="#analysis-section">핵심 분석</a>
+          <a href="#supreme-final-section">최고위원</a>
+          <a href="#regional-section">지역 원자료</a>
+          <a href="#method-section">해석 기준</a>
         </nav>
 
-        <section class="dashboard-section" id="schedule-section">
+        <section class="dashboard-section" id="leader-final-section">
           <div class="section-heading">
             <div>
-              <p class="section-kicker">Schedule</p>
-              <h2>남은 전당대회 일정</h2>
+              <p class="section-kicker">Final Result · Party Leader</p>
+              <h2>당대표 최종 결과</h2>
             </div>
-            <p class="section-note">2주 보기</p>
+            <span class="status-chip official">공식 최종</span>
           </div>
-          <div class="calendar" id="calendar" aria-label="전당대회 2주 일정"></div>
-          <div class="schedule-detail" id="schedule-detail" hidden></div>
+          <div id="leader-final"></div>
         </section>
 
-        <section class="dashboard-section" id="leader-section">
+        <section class="dashboard-section analysis-section" id="analysis-section">
           <div class="section-heading">
             <div>
-              <p class="section-kicker">Party Leader</p>
-              <h2>당대표 1순위 득표 현황</h2>
+              <p class="section-kicker">Data Analysis</p>
+              <h2>공개 데이터로 어디까지 읽을 수 있나</h2>
             </div>
           </div>
-
-          <div class="metric-tabs" id="leader-metric-tabs" role="tablist" aria-label="당대표 집계 기준">
-            <button type="button" class="metric-tab active" data-mode="published" role="tab" aria-selected="true">발표 누계</button>
-            <button type="button" class="metric-tab" data-mode="raw" role="tab" aria-selected="false">원득표 자동계산</button>
-            <button type="button" class="metric-tab" data-mode="weighted" role="tab" aria-selected="false">가중치 자동계산</button>
-          </div>
-
-          <p class="calculation-caption" id="leader-caption"></p>
-          <div class="candidate-summary-grid leader-grid" id="leader-summary"></div>
-          <div class="result-bars" id="leader-bars"></div>
+          <div class="analysis-grid" id="analysis-grid"></div>
+          <div class="analysis-deep-dive" id="leader-preference-analysis"></div>
+          <div class="analysis-deep-dive" id="supreme-withdrawal-analysis"></div>
         </section>
 
-        <section class="dashboard-section" id="supreme-section">
+        <section class="dashboard-section" id="supreme-final-section">
           <div class="section-heading">
             <div>
-              <p class="section-kicker">Supreme Council</p>
-              <h2>최고위원 누적 득표 현황</h2>
+              <p class="section-kicker">Final Result · Supreme Council</p>
+              <h2>최고위원 최종 결과</h2>
             </div>
-            <span class="cutline-badge">5위까지 당선권</span>
+            <span class="status-chip official">공식 최종</span>
           </div>
-          <div class="metric-tabs" id="supreme-metric-tabs" role="tablist" aria-label="최고위원 집계 기준">
-            <button type="button" class="metric-tab active" data-supreme-mode="published" role="tab" aria-selected="true">발표 누계</button>
-            <button type="button" class="metric-tab" data-supreme-mode="raw" role="tab" aria-selected="false">원득표 자동계산</button>
-            <button type="button" class="metric-tab" data-supreme-mode="weighted" role="tab" aria-selected="false">가중치 자동계산</button>
-          </div>
-          <p class="calculation-caption" id="supreme-caption"></p>
-          <div class="supreme-ranking" id="supreme-ranking"></div>
+          <p class="section-intro">8월 16일 김영호·임미애 후보가 사퇴해 최종 결과표에는 6명의 후보만 집계되었습니다. 지역별 원자료에서는 사퇴 전 득표를 그대로 보존합니다.</p>
+          <div class="supreme-final-grid" id="supreme-final"></div>
         </section>
 
-        <section class="dashboard-section" id="region-section">
+        <section class="dashboard-section" id="regional-section">
           <div class="section-heading region-heading">
             <div>
-              <p class="section-kicker">Regional Results</p>
-              <h2>지역별 결과</h2>
+              <p class="section-kicker">Regional Raw Data</p>
+              <h2>권리당원 16개 지역 원자료</h2>
             </div>
             <div class="contest-switch" role="group" aria-label="지역별 결과 선거 선택">
-              <button type="button" class="contest-button active" data-contest="leader">당대표</button>
+              <button type="button" class="contest-button active" data-contest="leader">당대표 1순위</button>
               <button type="button" class="contest-button" data-contest="supreme">최고위원</button>
             </div>
           </div>
+          <p class="section-intro" id="regional-intro"></p>
+          <div class="regional-summary" id="regional-summary"></div>
           <div class="region-list" id="region-list"></div>
         </section>
 
-        <section class="dashboard-section calculation-section" id="calculation-section">
+        <section class="dashboard-section method-section" id="method-section">
           <div class="section-heading">
             <div>
-              <p class="section-kicker">Method</p>
-              <h2>계산 방식</h2>
+              <p class="section-kicker">Reading Guide</p>
+              <h2>수치의 확실성 구분</h2>
             </div>
           </div>
-          <div class="method-grid" id="method-grid"></div>
-          <p class="method-note" id="method-note"></p>
+          <div class="certainty-grid" id="certainty-grid"></div>
+          <div class="method-note" id="method-note"></div>
         </section>
 
         <section class="dashboard-section source-section" id="source-section">
           <div class="section-heading">
             <div>
               <p class="section-kicker">Sources</p>
-              <h2>출처</h2>
+              <h2>공식 출처</h2>
+              <p class="section-source-note">지역별 결과 6건 · 후보자 사퇴 1건 · 최종 결과 1건</p>
             </div>
           </div>
           <div class="source-list" id="source-list"></div>

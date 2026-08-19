@@ -1,0 +1,216 @@
+{
+  "meta": {
+    "pageTitle": "2026 전당대회 결과 분석",
+    "eventName": "더불어민주당 제3차 정기전국당원대회",
+    "electionDate": "2026-08-17",
+    "status": "final",
+    "updatedAt": "2026-08-19T09:04:00+09:00"
+  },
+  "source": {
+    "label": "제3차 정기전국전당원대회 당대표·최고위원 선거 결과",
+    "url": "https://theminjoo.kr/main/sub/news/view.php?sno=0&brd=1&post=1219700&search="
+  },
+  "turnout": {
+    "delegates": {
+      "eligibleVoters": 17667,
+      "voterCount": 14306,
+      "turnoutRate": 80.98
+    },
+    "rightsMembers": {
+      "eligibleVoters": 1527261,
+      "voterCount": 769051,
+      "turnoutRate": 50.35
+    },
+    "total": {
+      "eligibleVoters": 1544928,
+      "voterCount": 783357
+    }
+  },
+  "leader": {
+    "preferenceVotingApplied": true,
+    "preferenceBeforeResultPublished": false,
+    "results": [
+      {
+        "id": "kim-minseok",
+        "elected": true,
+        "delegateVotes": 9541,
+        "delegateRate": 66.69,
+        "rightsVotes": 430242,
+        "rightsRate": 55.94,
+        "publicPollRate": 49.3,
+        "finalRate": 54.08
+      },
+      {
+        "id": "jung-chungrae",
+        "elected": false,
+        "delegateVotes": 4765,
+        "delegateRate": 33.31,
+        "rightsVotes": 338809,
+        "rightsRate": 44.06,
+        "publicPollRate": 50.7,
+        "finalRate": 45.92
+      }
+    ]
+  },
+  "supreme": {
+    "voteMethod": "1인 2표",
+    "results": [
+      {
+        "id": "choi-minhee",
+        "elected": true,
+        "delegateVotes": 1955,
+        "delegateRate": 6.84,
+        "rightsVotes": 260098,
+        "rightsRate": 18.78,
+        "publicPollRate": 17.88,
+        "finalRate": 18.35
+      },
+      {
+        "id": "park-sunwon",
+        "elected": true,
+        "delegateVotes": 7777,
+        "delegateRate": 27.2,
+        "rightsVotes": 255262,
+        "rightsRate": 18.44,
+        "publicPollRate": 15.15,
+        "finalRate": 17.57
+      },
+      {
+        "id": "seo-mihwa",
+        "elected": true,
+        "delegateVotes": 2711,
+        "delegateRate": 9.48,
+        "rightsVotes": 233562,
+        "rightsRate": 16.87,
+        "publicPollRate": 16.33,
+        "finalRate": 16.6
+      },
+      {
+        "id": "lee-sungyoon",
+        "elected": true,
+        "delegateVotes": 3649,
+        "delegateRate": 12.76,
+        "rightsVotes": 214499,
+        "rightsRate": 15.49,
+        "publicPollRate": 18.49,
+        "finalRate": 16.35
+      },
+      {
+        "id": "han-minsoo",
+        "elected": true,
+        "delegateVotes": 3990,
+        "delegateRate": 13.95,
+        "rightsVotes": 211806,
+        "rightsRate": 15.3,
+        "publicPollRate": 17.24,
+        "finalRate": 15.86
+      },
+      {
+        "id": "kim-yong",
+        "elected": false,
+        "delegateVotes": 8513,
+        "delegateRate": 29.77,
+        "rightsVotes": 209432,
+        "rightsRate": 15.13,
+        "publicPollRate": 14.9,
+        "finalRate": 15.26
+      }
+    ],
+    "withdrawn": [
+      {
+        "id": "kim-youngho",
+        "withdrawnAt": "2026-08-16",
+        "statusSource": "official-notice",
+        "sourceUrl": "https://theminjoo.kr/main/sub/news/view.php?sno=0&brd=1&post=1219695&search=",
+        "sourceTitle": "후보자 사퇴 공고"
+      },
+      {
+        "id": "lim-miae",
+        "withdrawnAt": "2026-08-16",
+        "statusSource": "official-notice",
+        "sourceUrl": "https://theminjoo.kr/main/sub/news/view.php?sno=0&brd=1&post=1219695&search=",
+        "sourceTitle": "후보자 사퇴 공고"
+      }
+    ]
+  },
+  "rules": {
+    "partyBlockWeight": 0.7,
+    "publicPollWeight": 0.3,
+    "strategicRegions": [
+      "gyeongnam",
+      "daegu",
+      "gyeongbuk"
+    ],
+    "strategicMultiplier": 1.05
+  },
+  "notes": {
+    "leaderUnpublished": "당대표 선호투표 적용 전 전국 합산 1순위 결과는 공개되지 않았습니다.",
+    "withdrawal": "김영호·임미애 후보의 사퇴 사실은 더불어민주당 공식 후보자 사퇴 공고를 근거로 표시합니다."
+  },
+  "sources": [
+    {
+      "type": "regional",
+      "publishedAt": "2026-08-01",
+      "title": "당대표‧최고위원 선출 순회경선 (충청권) 권리당원 투표결과",
+      "shortLabel": "충청권 결과",
+      "description": "충남·충북·대전·세종 권리당원 총선거인수·투표자수·투표율 및 후보별 득표 원자료",
+      "url": "https://theminjoo.kr/main/sub/news/view.php?sno=0&brd=1&post=1219524&search="
+    },
+    {
+      "type": "regional",
+      "publishedAt": "2026-08-02",
+      "title": "당대표‧최고위원 선출 순회경선 (울산·부산·경남) 권리당원 투표결과",
+      "shortLabel": "울산·부산·경남 결과",
+      "description": "울산·부산·경남 권리당원 총선거인수·투표자수·투표율 및 후보별 득표 원자료",
+      "url": "https://theminjoo.kr/main/sub/news/view.php?sno=0&brd=1&post=1219534&search="
+    },
+    {
+      "type": "regional",
+      "publishedAt": "2026-08-08",
+      "title": "당대표·최고위원 선출 순회경선 (제주·인천) 권리당원 투표 결과",
+      "shortLabel": "제주·인천 결과",
+      "description": "제주·인천 권리당원 총선거인수·투표자수·투표율 및 후보별 득표 원자료",
+      "url": "https://theminjoo.kr/main/sub/news/view.php?sno=0&brd=1&post=1219599&search="
+    },
+    {
+      "type": "regional",
+      "publishedAt": "2026-08-09",
+      "title": "당대표·최고위원 선출 순회경선 (강원·대구·경북) 권리당원 투표 결과",
+      "shortLabel": "강원·대구·경북 결과",
+      "description": "강원·대구·경북 권리당원 총선거인수·투표자수·투표율 및 후보별 득표 원자료",
+      "url": "https://theminjoo.kr/main/sub/news/view.php?sno=0&brd=1&post=1219606&search="
+    },
+    {
+      "type": "regional",
+      "publishedAt": "2026-08-15",
+      "title": "당대표·최고위원 선출 순회경선 (전남광주·전북) 권리당원 투표 결과",
+      "shortLabel": "전남광주·전북 결과",
+      "description": "전남광주·전북 권리당원 총선거인수·투표자수·투표율 및 후보별 득표 원자료",
+      "url": "https://theminjoo.kr/main/sub/news/view.php?sno=0&brd=1&post=1219685&search="
+    },
+    {
+      "type": "regional",
+      "publishedAt": "2026-08-16",
+      "title": "당대표·최고위원 선출 순회경선 (경기·서울) 권리당원 투표 결과",
+      "shortLabel": "경기·서울 결과",
+      "description": "경기·서울 권리당원 총선거인수·투표자수·투표율 및 후보별 득표 원자료",
+      "url": "https://theminjoo.kr/main/sub/news/view.php?sno=0&brd=1&post=1219693&search="
+    },
+    {
+      "type": "withdrawal",
+      "publishedAt": "2026-08-17",
+      "title": "후보자 사퇴 공고",
+      "shortLabel": "최고위원 후보자 사퇴",
+      "description": "김영호·임미애 최고위원 후보자 사퇴 사실의 공식 근거",
+      "url": "https://theminjoo.kr/main/sub/news/view.php?sno=0&brd=1&post=1219695&search="
+    },
+    {
+      "type": "final",
+      "publishedAt": "2026-08-17",
+      "title": "제3차 정기전국전당원대회 당대표·최고위원 선거 결과",
+      "shortLabel": "전당대회 최종 결과",
+      "description": "전국대의원·권리당원 투표 현황과 당대표·최고위원 최종 선거 결과",
+      "url": "https://theminjoo.kr/main/sub/news/view.php?sno=0&brd=1&post=1219700&search="
+    }
+  ]
+}

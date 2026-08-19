@@ -1,23 +1,11 @@
-const DATA_PATH = "./data/convention-data.json";
-const COLOR_VARS = [
-  "var(--candidate-1)",
-  "var(--candidate-2)",
-  "var(--candidate-3)",
-  "var(--candidate-4)",
-  "var(--candidate-5)",
-  "var(--candidate-6)",
-  "var(--candidate-7)",
-  "var(--candidate-8)"
-];
+const REGIONAL_DATA_PATH = "./data/convention-data.json";
+const FINAL_DATA_PATH = "./data/convention-final.json";
 
 const state = {
-  data: null,
-  leaderMode: "published",
-  supremeMode: "published",
+  regional: null,
+  final: null,
   regionContest: "leader",
-  selectedLeaderCandidate: null,
-  selectedSupremeCandidate: null,
-  calendarDateKey: null
+  expandedRegion: null
 };
 
 const els = {
@@ -25,22 +13,16 @@ const els = {
   meta: document.querySelector("#document-meta"),
   status: document.querySelector("#convention-status"),
   app: document.querySelector("#convention-app"),
-  eventName: document.querySelector("#event-name"),
-  eventDescription: document.querySelector("#event-description"),
-  dday: document.querySelector("#dday-badge"),
-  updated: document.querySelector("#hero-updated"),
-  heroStats: document.querySelector("#hero-stats"),
-  calendar: document.querySelector("#calendar"),
-  scheduleDetail: document.querySelector("#schedule-detail"),
-  leaderTabs: document.querySelector("#leader-metric-tabs"),
-  leaderCaption: document.querySelector("#leader-caption"),
-  leaderSummary: document.querySelector("#leader-summary"),
-  leaderBars: document.querySelector("#leader-bars"),
-  supremeTabs: document.querySelector("#supreme-metric-tabs"),
-  supremeCaption: document.querySelector("#supreme-caption"),
-  supremeRanking: document.querySelector("#supreme-ranking"),
+  hero: document.querySelector("#final-hero"),
+  leaderFinal: document.querySelector("#leader-final"),
+  analysisGrid: document.querySelector("#analysis-grid"),
+  leaderPreference: document.querySelector("#leader-preference-analysis"),
+  supremeWithdrawal: document.querySelector("#supreme-withdrawal-analysis"),
+  supremeFinal: document.querySelector("#supreme-final"),
+  regionalIntro: document.querySelector("#regional-intro"),
+  regionalSummary: document.querySelector("#regional-summary"),
   regionList: document.querySelector("#region-list"),
-  methodGrid: document.querySelector("#method-grid"),
+  certaintyGrid: document.querySelector("#certainty-grid"),
   methodNote: document.querySelector("#method-note"),
   sourceList: document.querySelector("#source-list"),
   topButton: document.querySelector("#top-button"),
@@ -56,755 +38,360 @@ function escapeHtml(value) {
     .replaceAll("'", "&#039;");
 }
 
-
-function formatNumber(value, maximumFractionDigits = 0) {
-  if (!Number.isFinite(value)) return "-";
-  return new Intl.NumberFormat("ko-KR", { maximumFractionDigits }).format(value);
+function formatNumber(value, digits = 0) {
+  if (!Number.isFinite(Number(value))) return "-";
+  return new Intl.NumberFormat("ko-KR", { maximumFractionDigits: digits }).format(Number(value));
 }
 
-function formatPercent(value) {
-  return Number.isFinite(value) ? `${value.toFixed(2)}%` : "-";
+function formatPercent(value, digits = 2) {
+  return Number.isFinite(Number(value)) ? `${Number(value).toFixed(digits)}%` : "-";
 }
 
-function formatDate(dateString, options = {}) {
-  if (!dateString) return "";
-  const date = new Date(`${dateString}T00:00:00+09:00`);
-  if (Number.isNaN(date.getTime())) return dateString;
-  return new Intl.DateTimeFormat("ko-KR", options).format(date);
+function candidateMap(contest) {
+  return new Map((state.regional.candidates?.[contest] || []).map((candidate, index) => [candidate.id, { ...candidate, index }]));
 }
 
-function getCandidateMap(contest) {
-  return new Map(state.data.candidates[contest].map((candidate, index) => [candidate.id, { ...candidate, index }]));
+function candidateById(contest, id) {
+  return candidateMap(contest).get(id) || { id, name: id, short: id, image: "" };
 }
 
-function candidateColor(index) {
-  return COLOR_VARS[index % COLOR_VARS.length];
+function candidateAvatar(candidate, className = "analysis-avatar") {
+  const fallback = [...String(candidate.name || "?")].slice(0, 2).join("");
+  if (!candidate.image) return `<span class="${className}"><span>${escapeHtml(fallback)}</span></span>`;
+  return `<span class="${className} has-image"><span>${escapeHtml(fallback)}</span><img src="${escapeHtml(candidate.image)}" alt="${escapeHtml(candidate.name)}" loading="lazy"></span>`;
 }
 
-function initials(name) {
-  return [...String(name || "?")].slice(0, 2).join("");
+function doneUnits() {
+  return (state.regional.resultUnits || []).filter((unit) => unit.status === "done");
 }
 
-function candidateAvatar(candidate, sizeClass = "candidate-avatar") {
-  const color = candidateColor(candidate.index ?? 0);
-  const fallback = escapeHtml(initials(candidate.name));
-  if (candidate.image) {
-    return `<span class="${sizeClass} has-image" style="--candidate-color:${color}"><span class="avatar-fallback" aria-hidden="true">${fallback}</span><img src="${escapeHtml(candidate.image)}" alt="${escapeHtml(candidate.name)}" loading="lazy"></span>`;
-  }
-  return `<span class="${sizeClass}" style="--candidate-color:${color}"><span class="avatar-fallback" aria-hidden="true">${fallback}</span></span>`;
+function sumUnits(key) {
+  return doneUnits().reduce((sum, unit) => sum + (Number(unit[key]) || 0), 0);
 }
 
-function normalizeVoteObject(votes, contest) {
-  if (!votes || typeof votes !== "object") return null;
-  const ids = state.data.candidates[contest].map((candidate) => candidate.id);
-  const normalized = {};
-  let hasAny = false;
-  ids.forEach((id) => {
-    const value = votes[id];
-    if (Number.isFinite(value)) {
-      normalized[id] = value;
-      hasAny = true;
-    } else {
-      normalized[id] = null;
-    }
-  });
-  return hasAny ? normalized : null;
-}
-
-function calculateFromUnits(contest, weighted = false) {
-  const voteKey = contest === "leader" ? "leaderVotes" : "supremeVotes";
-  const candidates = state.data.candidates[contest];
-  const totals = Object.fromEntries(candidates.map((candidate) => [candidate.id, 0]));
-  let enteredUnits = 0;
-  let totalUnits = 0;
-
-  state.data.resultUnits.forEach((unit) => {
-    const votes = normalizeVoteObject(unit[voteKey], contest);
+function sumCandidateVotes(contest) {
+  const key = contest === "leader" ? "leaderVotes" : "supremeVotes";
+  const map = candidateMap(contest);
+  const totals = Object.fromEntries([...map.keys()].map((id) => [id, 0]));
+  doneUnits().forEach((unit) => {
+    const votes = unit[key];
     if (!votes) return;
-    if (contest === "supreme" && unit.supremeComplete === false) return;
-    totalUnits += 1;
-    enteredUnits += 1;
-    const multiplier = weighted ? (Number(unit.weight) || 1) : 1;
-    candidates.forEach((candidate) => {
-      const raw = votes[candidate.id];
-      if (Number.isFinite(raw)) totals[candidate.id] += raw * multiplier;
+    Object.keys(totals).forEach((id) => {
+      if (Number.isFinite(Number(votes[id]))) totals[id] += Number(votes[id]);
     });
   });
+  return totals;
+}
 
-  const grandTotal = Object.values(totals).reduce((sum, value) => sum + value, 0);
+function computeAnalysis() {
+  const rights = state.final.turnout.rightsMembers;
+  const domesticEligible = sumUnits("eligibleVoters");
+  const domesticVoters = sumUnits("voterCount");
+  const overseasEligible = rights.eligibleVoters - domesticEligible;
+  const overseasVoters = rights.voterCount - domesticVoters;
+  const overseasTurnout = overseasEligible > 0 ? overseasVoters / overseasEligible * 100 : 0;
+
+  const leaderDomestic = sumCandidateVotes("leader");
+  const leaderDomesticTotal = Object.values(leaderDomestic).reduce((a, b) => a + b, 0);
+  const leaderFinalRights = Object.fromEntries(state.final.leader.results.map((row) => [row.id, row.rightsVotes]));
+  const jungIncrease = leaderFinalRights["jung-chungrae"] - (leaderDomestic["jung-chungrae"] || 0);
+  const kimIncrease = leaderFinalRights["kim-minseok"] - (leaderDomestic["kim-minseok"] || 0);
+  const songDomestic = leaderDomestic["song-younggil"] || 0;
+
+  const supremeDomestic = sumCandidateVotes("supreme");
+  const supremeFinalRights = Object.fromEntries(state.final.supreme.results.map((row) => [row.id, row.rightsVotes]));
+  const supremeOverseasActive = Object.fromEntries(
+    state.final.supreme.results.map((row) => [row.id, row.rightsVotes - (supremeDomestic[row.id] || 0)])
+  );
+  const activeFinalVotes = Object.values(supremeFinalRights).reduce((a, b) => a + b, 0);
+  const withdrawnIds = state.final.supreme.withdrawn.map((item) => item.id);
+  const withdrawnDomesticVotes = withdrawnIds.reduce((sum, id) => sum + (supremeDomestic[id] || 0), 0);
+  const allRightsSelections = rights.voterCount * 2;
+  const excludedSelections = allRightsSelections - activeFinalVotes;
+  const overseasWithdrawnCombined = excludedSelections - withdrawnDomesticVotes;
+
   return {
-    totals,
-    grandTotal,
-    enteredUnits,
-    availableUnits: state.data.resultUnits.filter((unit) => normalizeVoteObject(unit[voteKey], contest)).length
+    domesticEligible,
+    domesticVoters,
+    domesticTurnout: domesticEligible ? domesticVoters / domesticEligible * 100 : 0,
+    overseasEligible,
+    overseasVoters,
+    overseasTurnout,
+    leaderDomestic,
+    leaderDomesticTotal,
+    leaderFinalRights,
+    jungIncrease,
+    kimIncrease,
+    songDomestic,
+    supremeDomestic,
+    supremeOverseasActive,
+    activeFinalVotes,
+    withdrawnDomesticVotes,
+    allRightsSelections,
+    excludedSelections,
+    overseasWithdrawnCombined
   };
 }
 
-function calculatePublished(contest) {
-  const result = calculateFromUnits(contest, false);
-  const voteKey = contest === "leader" ? "leaderVotes" : "supremeVotes";
-  const completedUnits = state.data.resultUnits.filter((unit) => normalizeVoteObject(unit[voteKey], contest));
+function renderHero(analysis) {
+  const winner = state.final.leader.results.find((row) => row.elected);
+  const winnerCandidate = candidateById("leader", winner.id);
+  const turnout = state.final.turnout;
 
-  if (!completedUnits.length) {
-    return {
-      ...result,
-      label: "발표 누계",
-      note: "아직 공식 결과가 반영된 지역이 없습니다."
-    };
-  }
+  els.title.textContent = state.final.meta.pageTitle;
+  els.meta.textContent = `8월 17일 최종 결과 확정 · 공식 결과와 지역별 원자료를 분리해 분석합니다.`;
+  document.title = `${state.final.meta.pageTitle} | 분당민주크루`;
 
-  const latestDate = completedUnits.reduce((latest, unit) => {
-    const date = String(unit.date || "");
-    return date > latest ? date : latest;
-  }, "");
-  const latestUnits = completedUnits.filter((unit) => String(unit.date || "") === latestDate);
-  const latestNames = latestUnits.map((unit) => unit.name).filter(Boolean).join("·");
-  const label = latestDate
-    ? `${formatDate(latestDate, { month: "numeric", day: "numeric" })} 발표 누계`
-    : "발표 누계";
-  const note = latestNames
-    ? `${latestNames} 결과까지 공식 공지에서 가져온 지역별 원득표 ${completedUnits.length}개 결과 단위를 자동 합산했습니다.`
-    : `공식 공지에서 가져온 지역별 원득표 ${completedUnits.length}개 결과 단위를 자동 합산했습니다.`;
-
-  return { ...result, label, note };
-}
-
-function rankingFromResult(result, contest) {
-  const candidateMap = getCandidateMap(contest);
-  return Object.entries(result.totals)
-    .map(([id, votes]) => {
-      const candidate = candidateMap.get(id);
-      const percent = result.grandTotal > 0 ? (votes / result.grandTotal) * 100 : 0;
-      return { ...candidate, votes, percent };
-    })
-    .sort((a, b) => b.votes - a.votes);
-}
-
-function renderHeader() {
-  const { meta } = state.data;
-
-  // 기본 헤더
-  els.title.textContent = meta.pageTitle || "2026 전당대회";
-  document.title = `${meta.pageTitle || "2026 전당대회"} | 분당민주크루`;
-  els.eventName.textContent = meta.eventName || meta.pageTitle;
-  els.eventDescription.textContent = meta.description || "";
-  els.meta.textContent = meta.dataStatus || "전당대회 현황";
-
-  // 업데이트 시각
-  const updatedDate = meta.updatedAt ? new Date(meta.updatedAt) : null;
-  els.updated.textContent =
-    updatedDate && !Number.isNaN(updatedDate.getTime())
-      ? `업데이트 ${updatedDate.toLocaleString("ko-KR", {
-        month: "numeric",
-        day: "numeric",
-        hour: "2-digit",
-        minute: "2-digit"
-      })}`
-      : "";
-
-  // D-Day
-  const election = new Date(`${meta.electionDate}T00:00:00+09:00`);
-  const now = new Date();
-  const todayKst = new Date(
-    now.toLocaleString("en-US", { timeZone: "Asia/Seoul" })
-  );
-  const todayMidnight = new Date(
-    todayKst.getFullYear(),
-    todayKst.getMonth(),
-    todayKst.getDate()
-  );
-  const electionLocal = new Date(
-    election.getFullYear(),
-    election.getMonth(),
-    election.getDate()
-  );
-  const diff = Math.ceil((electionLocal - todayMidnight) / 86400000);
-
-  els.dday.textContent =
-    diff > 0 ? `D-${diff}` :
-      diff === 0 ? "D-DAY" :
-        `D+${Math.abs(diff)}`;
-
-  // 현재 당대표 누계
-  const leaderSnapshot = calculatePublished("leader");
-  const leaderTop = rankingFromResult(leaderSnapshot, "leader")[0];
-
-  // 전국 선거인단 / 결과 발표 진행률
-  const officialTotal = Number(
-    state.data.electorate?.officialTotalEligibleVoters
-  );
-
-  const doneUnits = state.data.resultUnits.filter(
-    (unit) => unit.status === "done"
-  );
-
-  const announcedEligible = doneUnits.reduce(
-    (sum, unit) => sum + (Number(unit.eligibleVoters) || 0),
-    0
-  );
-
-  const progressRate =
-    Number.isFinite(officialTotal) && officialTotal > 0
-      ? (announcedEligible / officialTotal) * 100
-      : 0;
-
-  els.heroStats.innerHTML = [
-    [
-      "현재 1위",
-      leaderTop
-        ? `${leaderTop.name} ${formatPercent(leaderTop.percent)}`
-        : "-"
-    ],
-    [
-      "최종 선출",
-      formatDate(meta.electionDate, {
-        month: "numeric",
-        day: "numeric"
-      })
-    ],
-    [
-      state.data.electorate?.label || "권리당원 선거인단",
-      Number.isFinite(officialTotal)
-        ? `${formatNumber(officialTotal)}명`
-        : "-"
-    ]
-  ]
-    .map(
-      ([label, value]) =>
-        `<div class="hero-stat">
-          <span>${escapeHtml(label)}</span>
-          <strong>${escapeHtml(value)}</strong>
-        </div>`
-    )
-    .join("");
-
-  // 진행률 바
-  let progressEl = document.getElementById("electorate-progress");
-
-  if (!progressEl) {
-    progressEl = document.createElement("div");
-    progressEl.id = "electorate-progress";
-    progressEl.className = "electorate-progress";
-    els.heroStats.insertAdjacentElement("afterend", progressEl);
-  }
-
-  const safeProgress = Math.min(
-    100,
-    Math.max(0, progressRate)
-  );
-
-  progressEl.innerHTML = `
-    <div class="electorate-progress-head">
-      <span>전국 권리당원 선거인단 기준</span>
-      <strong>${progressRate.toFixed(1)}% 결과 발표 완료</strong>
+  els.hero.innerHTML = `
+    <div class="final-hero-status"><span class="status-dot"></span> 전당대회 종료 · 최종 결과 확정</div>
+    <div class="winner-lockup">
+      ${candidateAvatar(winnerCandidate, "winner-avatar")}
+      <div>
+        <p>더불어민주당 당대표 당선</p>
+        <h2 id="final-title">${escapeHtml(winnerCandidate.name)}</h2>
+        <strong>${formatPercent(winner.finalRate)}<span> 최종득표율</span></strong>
+      </div>
     </div>
-
-    <div
-      class="electorate-progress-track"
-      role="progressbar"
-      aria-label="권리당원 선거인단 기준 결과 발표 진행률"
-      aria-valuemin="0"
-      aria-valuemax="100"
-      aria-valuenow="${safeProgress.toFixed(1)}"
-    >
-      <span style="width:${safeProgress}%"></span>
+    <div class="hero-metrics">
+      <div><span>권리당원 투표율</span><strong>${formatPercent(turnout.rightsMembers.turnoutRate)}</strong><small>${formatNumber(turnout.rightsMembers.voterCount)} / ${formatNumber(turnout.rightsMembers.eligibleVoters)}명</small></div>
+      <div><span>전국대의원 투표율</span><strong>${formatPercent(turnout.delegates.turnoutRate)}</strong><small>${formatNumber(turnout.delegates.voterCount)} / ${formatNumber(turnout.delegates.eligibleVoters)}명</small></div>
+      <div><span>전체 투표자</span><strong>${formatNumber(turnout.total.voterCount)}명</strong><small>선거인단 ${formatNumber(turnout.total.eligibleVoters)}명</small></div>
     </div>
-
-    <div class="electorate-progress-meta">
-      <span>${formatNumber(announcedEligible)}명분 결과 발표</span>
-      <span>
-        전체 ${Number.isFinite(officialTotal)
-      ? formatNumber(officialTotal)
-      : "-"
-    }명
-      </span>
-    </div>
+    <div class="hero-derived-line"><span class="status-chip derived">역산</span> 국내 16개 지역과 전국 합계의 차이: 재외국민 권리당원 ${formatNumber(analysis.overseasEligible)}명 중 ${formatNumber(analysis.overseasVoters)}명 투표 · ${formatPercent(analysis.overseasTurnout)}</div>
   `;
 }
 
-function dateKey(date) {
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
-  return `${year}-${month}-${day}`;
+function renderLeaderFinal(analysis) {
+  const rows = [...state.final.leader.results].sort((a, b) => b.finalRate - a.finalRate);
+  const finalGap = rows[0].finalRate - rows[1].finalRate;
+  const delegateGap = rows[0].delegateRate - rows[1].delegateRate;
+  const rightsGap = rows[0].rightsRate - rows[1].rightsRate;
+  const pollGap = rows[0].publicPollRate - rows[1].publicPollRate;
+
+  const cards = rows.map((row) => {
+    const candidate = candidateById("leader", row.id);
+    return `<article class="leader-final-card ${row.elected ? "winner" : ""}">
+      <div class="leader-final-head">
+        ${candidateAvatar(candidate)}
+        <div><span>${row.elected ? "당선" : "최종 2위"}</span><h3>${escapeHtml(candidate.name)}</h3></div>
+        <strong>${formatPercent(row.finalRate)}</strong>
+      </div>
+      <div class="component-bars">
+        ${componentBar("전국대의원", row.delegateRate, `${formatNumber(row.delegateVotes)}표`)}
+        ${componentBar("권리당원", row.rightsRate, `${formatNumber(row.rightsVotes)}표`)}
+        ${componentBar("국민여론조사", row.publicPollRate, "30% 반영")}
+      </div>
+    </article>`;
+  }).join("");
+
+  els.leaderFinal.innerHTML = `
+    <div class="leader-final-grid">${cards}</div>
+    <div class="result-readout">
+      <div><span>최종 격차</span><strong>${formatPercent(finalGap)}p</strong><small>김민석 우위</small></div>
+      <div><span>대의원 격차</span><strong>${formatPercent(Math.abs(delegateGap))}p</strong><small>김민석 우위</small></div>
+      <div><span>권리당원 격차</span><strong>${formatPercent(Math.abs(rightsGap))}p</strong><small>김민석 우위</small></div>
+      <div><span>여론조사 격차</span><strong>${formatPercent(Math.abs(pollGap))}p</strong><small>${pollGap < 0 ? "정청래" : "김민석"} 우위</small></div>
+    </div>
+    <div class="official-note"><span class="status-chip limited">비공개</span><p>당대표는 선호투표가 적용됐습니다. 과반 후보가 없었던 선호투표 적용 전 전국 합산 1순위 결과는 공개되지 않았으므로, 최종 54.08%를 지역별 1순위 누계와 직접 비교하면 안 됩니다.</p></div>
+  `;
 }
 
-function formatScheduleRange(event) {
-  const startLabel = formatDate(event.date, {
-    month: "long",
-    day: "numeric",
-    weekday: "short"
-  });
-
-  if (!event.endDate || event.endDate === event.date) {
-    return startLabel;
-  }
-
-  const endLabel = formatDate(event.endDate, {
-    month: "long",
-    day: "numeric",
-    weekday: "short"
-  });
-
-  return `${startLabel} ~ ${endLabel}`;
+function componentBar(label, value, note) {
+  const width = Math.max(0, Math.min(100, Number(value) || 0));
+  return `<div class="component-row"><div><span>${escapeHtml(label)}</span><strong>${formatPercent(value)}</strong></div><div class="component-track"><span style="width:${width}%"></span></div><small>${escapeHtml(note)}</small></div>`;
 }
 
-function daysBetween(startDate, endDate) {
-  const start = new Date(`${startDate}T00:00:00+09:00`);
-  const end = new Date(`${endDate}T00:00:00+09:00`);
-  return Math.round((end - start) / 86400000);
+function renderAnalysis(analysis) {
+  const leaderDomestic = analysis.leaderDomestic;
+  const total = analysis.leaderDomesticTotal;
+  const kimShare = total ? (leaderDomestic["kim-minseok"] / total * 100) : 0;
+  const jungShare = total ? (leaderDomestic["jung-chungrae"] / total * 100) : 0;
+  const songShare = total ? (leaderDomestic["song-younggil"] / total * 100) : 0;
+
+  els.analysisGrid.innerHTML = `
+    ${analysisCard("official", "국내 16개 지역 공개분", `${formatNumber(analysis.domesticVoters)}명`, `권리당원 선거인단 ${formatNumber(analysis.domesticEligible)}명 · 투표율 ${formatPercent(analysis.domesticTurnout)}`)}
+    ${analysisCard("derived", "재외국민 권리당원", `${formatNumber(analysis.overseasVoters)}명 투표`, `전체−국내 16개 지역으로 역산 · 선거인단 ${formatNumber(analysis.overseasEligible)}명 · ${formatPercent(analysis.overseasTurnout)}`)}
+    ${analysisCard("derived", "국내 당대표 1순위", `김민석 ${formatPercent(kimShare)}`, `정청래 ${formatPercent(jungShare)} · 송영길 ${formatPercent(songShare)} · 총 ${formatNumber(total)}표`)}
+    ${analysisCard("limited", "전국 1차 결과", "정확한 복원 불가", "재외국민 998명의 1순위, 전국대의원 1순위, 여론조사 3인 1순위가 공개되지 않음")}
+  `;
+
+  const jMin = Math.max(0, analysis.jungIncrease - analysis.overseasVoters);
+  const jMax = analysis.jungIncrease;
+  const kMin = Math.max(0, analysis.kimIncrease - analysis.overseasVoters);
+  const kMax = analysis.kimIncrease;
+  const transferTotalMin = analysis.songDomestic;
+  const kShareMin = transferTotalMin ? kMin / transferTotalMin * 100 : 0;
+  const kShareMax = transferTotalMin ? kMax / transferTotalMin * 100 : 0;
+
+  els.leaderPreference.innerHTML = `
+    <div class="deep-dive-heading"><span class="status-chip derived">역산 분석</span><h3>선호투표에서 확인되는 66,872표의 이동</h3></div>
+    <p>최종 권리당원 표에서 국내 16개 지역 1순위 누계를 빼면 정청래는 <strong>+${formatNumber(analysis.jungIncrease)}표</strong>, 김민석은 <strong>+${formatNumber(analysis.kimIncrease)}표</strong>입니다. 두 증가분의 합은 ${formatNumber(analysis.jungIncrease + analysis.kimIncrease)}표로, 국내 송영길 1순위 ${formatNumber(analysis.songDomestic)}표와 재외국민 투표자 ${formatNumber(analysis.overseasVoters)}명을 합친 값과 정확히 같습니다.</p>
+    <div class="equation-card"><span>${formatNumber(analysis.jungIncrease)} + ${formatNumber(analysis.kimIncrease)}</span><strong>= ${formatNumber(analysis.songDomestic)} + ${formatNumber(analysis.overseasVoters)}</strong><small>정·김 최종 증가분 = 국내 송영길 1순위 + 재외국민 전체 투표자</small></div>
+    <div class="range-grid">
+      <div><span>송영길→정청래 이전표</span><strong>${formatNumber(jMin)} ~ ${formatNumber(jMax)}표</strong></div>
+      <div><span>송영길→김민석 이전표</span><strong>${formatNumber(kMin)} ~ ${formatNumber(kMax)}표</strong></div>
+    </div>
+    <p class="fine-print">재외국민 998명의 최초 1순위 분포를 알 수 없어 정확한 이관표는 확정할 수 없습니다. 가능한 범위에서는 송영길 1순위 표 가운데 김민석으로 이동한 비중이 대략 ${kShareMin.toFixed(1)}~${kShareMax.toFixed(1)}% 수준입니다.</p>
+  `;
+
+  const overseasRows = state.final.supreme.results.map((row) => {
+    const candidate = candidateById("supreme", row.id);
+    return `<div class="overseas-vote-row"><span>${escapeHtml(candidate.name)}</span><strong>${formatNumber(analysis.supremeOverseasActive[row.id])}표</strong></div>`;
+  }).join("");
+
+  els.supremeWithdrawal.innerHTML = `
+    <div class="deep-dive-heading"><span class="status-chip derived">역산 분석</span><h3>최고위원 사퇴와 재외국민 1,996표의 흔적</h3></div>
+    <p>최고위원은 1인 2표이므로 권리당원 ${formatNumber(state.final.turnout.rightsMembers.voterCount)}명의 전체 선택 가능 표는 <strong>${formatNumber(analysis.allRightsSelections)}표</strong>입니다. 최종 결과표에 남은 6명의 권리당원 득표 합계는 ${formatNumber(analysis.activeFinalVotes)}표로, 차이는 ${formatNumber(analysis.excludedSelections)}표입니다.</p>
+    <div class="equation-card"><span>${formatNumber(analysis.allRightsSelections)} − ${formatNumber(analysis.activeFinalVotes)}</span><strong>= ${formatNumber(analysis.excludedSelections)}표</strong><small>최종 6인 결과에서 제외된 권리당원 선택표</small></div>
+    <p>국내 16개 지역에서 김영호·임미애 후보가 사퇴 전 얻은 표는 합계 <strong>${formatNumber(analysis.withdrawnDomesticVotes)}표</strong>입니다. 따라서 나머지 <strong>${formatNumber(analysis.overseasWithdrawnCombined)}표</strong>는 재외국민 투표분에서 두 사퇴 후보에게 행사된 표의 합계로 역산됩니다.</p>
+    <div class="overseas-breakdown"><div class="overseas-breakdown-title">재외국민 최고위원 표 · 최종 6인에 반영된 분</div>${overseasRows}<div class="overseas-vote-row withdrawn"><span>김영호 + 임미애</span><strong>${formatNumber(analysis.overseasWithdrawnCombined)}표</strong></div></div>
+    <p class="fine-print">두 사퇴 후보의 재외국민 득표는 후보별로 분리해 공개되지 않아 98표의 내부 배분은 복원할 수 없습니다.</p>
+  `;
 }
 
-function eventOccursOn(event, key) {
-  const end = event.endDate || event.date;
-  return key >= event.date && key <= end;
+function analysisCard(type, label, value, note) {
+  const labels = { official: "공식", derived: "역산", limited: "비공개" };
+  return `<article class="analysis-card ${type}"><span class="status-chip ${type}">${labels[type]}</span><h3>${escapeHtml(label)}</h3><strong>${escapeHtml(value)}</strong><p>${escapeHtml(note)}</p></article>`;
 }
 
-function phaseClass(event) {
-  return event.phase
-    ? ` phase-${String(event.phase).replace(/[^a-z0-9-]/gi, "-")}`
-    : "";
-}
-
-function assignCalendarLanes(segments) {
-  const laneEnds = [];
-
-  return segments
-    .sort(
-      (a, b) =>
-        a.startCol - b.startCol ||
-        b.span - a.span ||
-        a.index - b.index
-    )
-    .map((segment) => {
-      let lane = laneEnds.findIndex(
-        (endCol) => endCol < segment.startCol
-      );
-
-      if (lane === -1) {
-        lane = laneEnds.length;
-        laneEnds.push(segment.endCol);
-      } else {
-        laneEnds[lane] = segment.endCol;
-      }
-
-      return {
-        ...segment,
-        lane: lane + 1
-      };
-    });
-}
-
-function renderCalendar() {
-  const { meta, schedule } = state.data;
-  const start = new Date(`${meta.calendarStart}T00:00:00+09:00`);
-  const count = Number(meta.calendarDays) || 14;
-  const weekdays = ["일", "월", "화", "수", "목", "금", "토"];
-  const dates = [];
-
-  for (let i = 0; i < count; i += 1) {
-    const date = new Date(start);
-    date.setDate(start.getDate() + i);
-    dates.push({ date, key: dateKey(date) });
-  }
-
-  const currentKst = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Seoul" }));
-  const currentKey = dateKey(currentKst);
-  state.calendarDateKey = currentKey;
-
-  // PC: 캘린더 위에 기간 이벤트를 여러 날짜를 가로지르는 막대로 배치한다.
-  let desktop = `<div class="calendar-desktop"><div class="calendar-weekdays">${weekdays.map((day) => `<div class="calendar-weekday">${day}</div>`).join("")}</div>`;
-
-  for (let weekStart = 0; weekStart < dates.length; weekStart += 7) {
-    const weekDates = dates.slice(weekStart, weekStart + 7);
-    if (!weekDates.length) continue;
-    const weekFirst = weekDates[0].key;
-    const weekLast = weekDates[weekDates.length - 1].key;
-
-    const segments = [];
-    schedule.forEach((event, index) => {
-      const eventEnd = event.endDate || event.date;
-      if (eventEnd < weekFirst || event.date > weekLast) return;
-      const clippedStart = event.date < weekFirst ? weekFirst : event.date;
-      const clippedEnd = eventEnd > weekLast ? weekLast : eventEnd;
-      const startCol = daysBetween(weekFirst, clippedStart) + 1;
-      const endCol = daysBetween(weekFirst, clippedEnd) + 1;
-      segments.push({ event, index, startCol, endCol, span: endCol - startCol + 1 });
-    });
-
-    const positioned = assignCalendarLanes(segments);
-    const laneCount = Math.max(1, ...positioned.map((segment) => segment.lane));
-
-    desktop += `<div class="calendar-week-row" style="--calendar-lanes:${laneCount}">`;
-    desktop += weekDates.map(({ date, key }) => {
-      const month = date.getMonth() + 1;
-      return `<div class="calendar-day calendar-day-pc ${key === currentKey ? "today" : ""}" data-date="${key}"><div class="calendar-date"><span>${month}.</span><strong>${date.getDate()}</strong></div></div>`;
+function renderSupremeFinal(analysis) {
+  els.supremeFinal.innerHTML = [...state.final.supreme.results]
+    .sort((a, b) => b.finalRate - a.finalRate)
+    .map((row, index) => {
+      const candidate = candidateById("supreme", row.id);
+      const overseas = analysis.supremeOverseasActive[row.id];
+      return `<article class="supreme-final-card ${row.elected ? "elected" : ""}">
+        <div class="supreme-rank">${index + 1}</div>
+        ${candidateAvatar(candidate, "supreme-final-avatar")}
+        <div class="supreme-final-info"><div><strong>${escapeHtml(candidate.name)}</strong>${row.elected ? `<span class="elected-badge">당선</span>` : ""}</div><small>권리당원 ${formatPercent(row.rightsRate)} · 대의원 ${formatPercent(row.delegateRate)} · 여론 ${formatPercent(row.publicPollRate)}</small><em>재외국민 역산 ${formatNumber(overseas)}표</em></div>
+        <div class="supreme-final-rate"><strong>${formatPercent(row.finalRate)}</strong><span>최종</span></div>
+      </article>`;
     }).join("");
-
-    desktop += `<div class="calendar-span-layer">${positioned.map(({ event, index, startCol, span, lane }) => {
-      const scope = event.scope ? `<small>${escapeHtml(event.scope)}</small>` : "";
-      return `<button class="calendar-event ${escapeHtml(event.type || "regional")}${phaseClass(event)}" type="button" data-event-index="${index}" style="--event-start:${startCol};--event-span:${span};--event-lane:${lane}"><span>${escapeHtml(event.shortTitle || event.title.replace(" 순회경선", ""))}</span>${scope}</button>`;
-    }).join("")}</div>`;
-    desktop += `</div>`;
-  }
-  desktop += `</div>`;
-
-  // 모바일: 지난 날짜는 숨기고, 최종 전당대회일까지만 표시한다.
-  // 기간 이벤트는 진행되는 각 날짜에 반복 노출한다.
-  const mobileEndKey = meta.electionDate || dates.at(-1)?.key || currentKey;
-  const mobileDates = dates.filter(({ key }) => key >= currentKey && key <= mobileEndKey);
-
-  let mobile = `<div class="calendar-mobile">`;
-  if (!mobileDates.length) {
-    mobile += `<div class="calendar-mobile-finished">전당대회 일정이 종료되었습니다.</div>`;
-  } else {
-    mobileDates.forEach(({ date, key }) => {
-      const events = schedule.map((event, index) => ({ ...event, index })).filter((event) => eventOccursOn(event, key));
-      const month = date.getMonth() + 1;
-      mobile += `<div class="calendar-mobile-day ${key === currentKey ? "today" : ""}" data-date="${key}">`;
-      mobile += `<div class="calendar-mobile-date"><span>${month}.</span><strong>${date.getDate()}</strong></div>`;
-      mobile += `<div class="calendar-mobile-events">${events.map((event) => {
-        const note = event.mobileNote || event.scope || (event.endDate && event.endDate !== event.date ? formatScheduleRange(event) : "");
-        return `<button class="calendar-event ${escapeHtml(event.type || "regional")}${phaseClass(event)}" type="button" data-event-index="${event.index}"><span>${escapeHtml(event.shortTitle || event.title.replace(" 순회경선", ""))}</span>${note ? `<small>${escapeHtml(note)}</small>` : ""}</button>`;
-      }).join("")}</div>`;
-      mobile += `</div>`;
-    });
-  }
-  mobile += `</div>`;
-
-  els.calendar.innerHTML = desktop + mobile;
-
-  els.calendar.querySelectorAll(".calendar-event").forEach((button) => {
-    button.addEventListener("click", () => {
-      const event = schedule[Number(button.dataset.eventIndex)];
-      els.scheduleDetail.hidden = false;
-      els.scheduleDetail.innerHTML = `<strong>${escapeHtml(formatScheduleRange(event))} · ${escapeHtml(event.title)}</strong><span>${escapeHtml(event.detail || "")}</span>`;
-    });
-  });
 }
 
-function getLeaderResult(mode) {
-  if (mode === "published") return { ...calculatePublished("leader"), mode };
-  return { ...calculateFromUnits("leader", mode === "weighted"), mode };
-}
-
-function renderLeader() {
-  const result = getLeaderResult(state.leaderMode);
-  const ranking = rankingFromResult(result, "leader");
-  const entered = calculateFromUnits("leader", false).availableUnits;
-
-  if (state.leaderMode === "published") {
-    els.leaderCaption.textContent = `${result.label || "발표 누계"} · ${result.note || ""}`;
-  } else {
-    const modeLabel = state.leaderMode === "weighted" ? "가중치 적용" : "가중치 미적용";
-    els.leaderCaption.textContent = `${modeLabel} 자동계산 · 득표수가 입력된 ${entered}개 결과 단위만 합산합니다.`;
-  }
-
-  els.leaderSummary.innerHTML = ranking.map((candidate, index) => {
-    const color = candidateColor(candidate.index);
-    const voteText = state.leaderMode === "weighted"
-      ? `${formatNumber(candidate.votes, 2)} 환산표`
-      : `${formatNumber(candidate.votes)}표`;
-    const selected = state.selectedLeaderCandidate === candidate.id;
-    return `<button type="button" class="candidate-card ${index === 0 ? "rank-1" : ""} ${selected ? "is-selected" : ""}" data-candidate-id="${escapeHtml(candidate.id)}" aria-pressed="${selected ? "true" : "false"}" style="--candidate-color:${color}">
-      ${candidateAvatar(candidate)}
-      <span class="candidate-rank">${index + 1}위</span>
-      <strong class="candidate-name">${escapeHtml(candidate.name)}</strong>
-      <span class="candidate-percent">${formatPercent(candidate.percent)}</span>
-      <span class="candidate-votes">${escapeHtml(voteText)}</span>
-      <span class="candidate-action">${selected ? "지역별 득표 닫기" : "지역별 득표 보기"}</span>
-    </button>`;
-  }).join("");
-
-  const max = Math.max(...ranking.map((item) => item.percent), 1);
-  const bars = ranking.map((candidate) => {
-    const width = Math.max(2, (candidate.percent / max) * 100);
-    const selected = state.selectedLeaderCandidate === candidate.id;
-    return `<div class="result-bar-row ${selected ? "is-selected" : ""}" style="--candidate-color:${candidateColor(candidate.index)}">
-      <span class="result-bar-name">${escapeHtml(candidate.short || candidate.name)}</span>
-      <div class="result-bar-track"><div class="result-bar-fill" style="--bar-width:${width}%"></div></div>
-      <span class="result-bar-value">${formatPercent(candidate.percent)}</span>
-    </div>`;
-  }).join("");
-  els.leaderBars.innerHTML = bars + candidateRegionalDetail("leader", state.selectedLeaderCandidate, state.leaderMode);
-}
-
-function candidateRegionalDetail(contest, candidateId, mode) {
-  if (!candidateId) return "";
-  const candidateMap = getCandidateMap(contest);
-  const candidate = candidateMap.get(candidateId);
-  if (!candidate) return "";
-  const key = contest === "leader" ? "leaderVotes" : "supremeVotes";
-  const rows = state.data.resultUnits
-    .map((unit, order) => {
-      const votes = normalizeVoteObject(unit[key], contest);
-      if (!votes || !Number.isFinite(votes[candidateId])) return null;
-      const data = getUnitVoteData(unit, contest);
-      if (!data) return null;
-      const candidateRow = data.ranking.find((row) => row.id === candidateId);
-      if (!candidateRow) return null;
-      return { unit, order, ...candidateRow };
-    })
-    .filter(Boolean)
-    .sort((a, b) => String(a.unit.date || "").localeCompare(String(b.unit.date || "")) || a.order - b.order);
-
-  if (!rows.length) return "";
-  const weightedMode = mode === "weighted";
-  const body = rows.map((row) => {
-    const multiplier = Number(row.unit.weight) || 1;
-    const weighted = multiplier > 1;
-    const voteLabel = weightedMode && weighted
-      ? `${formatNumber(row.votes * multiplier, 2)} 환산표`
-      : `${formatNumber(row.votes)}표`;
-    return `<div class="candidate-detail-row">
-      <span class="candidate-detail-region"><strong>${escapeHtml(row.unit.name)}</strong>${weighted ? `<small>전략지역 ×${multiplier.toFixed(2)}</small>` : ""}</span>
-      <span class="candidate-detail-score"><strong>${formatPercent(row.percent)}</strong><small>${escapeHtml(voteLabel)}</small></span>
-    </div>`;
-  }).join("");
-
-  return `<section class="candidate-detail" aria-live="polite">
-    <div class="candidate-detail-heading"><span><strong>${escapeHtml(candidate.name)}</strong> 지역별 득표</span><small>후보를 다시 누르면 닫힙니다</small></div>
-    <div class="candidate-detail-list">${body}</div>
-  </section>`;
-}
-
-function getSupremeResult(mode) {
-  if (mode === "published") return { ...calculatePublished("supreme"), mode };
-  return { ...calculateFromUnits("supreme", mode === "weighted"), mode };
-}
-
-function renderSupreme() {
-  const result = getSupremeResult(state.supremeMode);
-  const ranking = rankingFromResult(result, "supreme");
-  const entered = calculateFromUnits("supreme", false).availableUnits;
-
-  if (state.supremeMode === "published") {
-    els.supremeCaption.textContent = `${result.label || "발표 누계"} · ${result.note || ""}`;
-  } else {
-    const modeLabel = state.supremeMode === "weighted" ? "가중치 적용" : "가중치 미적용";
-    els.supremeCaption.textContent = `${modeLabel} 자동계산 · 득표수가 입력된 ${entered}개 지역을 합산합니다.`;
-  }
-
-  const topFive = ranking.slice(0, 5);
-  const rest = ranking.slice(5);
-  const max = Math.max(...ranking.map((item) => item.percent), 1);
-
-  const featured = topFive.map((candidate, index) => {
-    const voteText = state.supremeMode === "weighted"
-      ? `${formatNumber(candidate.votes, 2)} 환산표`
-      : `${formatNumber(candidate.votes)}표`;
-    const selected = state.selectedSupremeCandidate === candidate.id;
-    return `<button type="button" class="candidate-card supreme-featured-card ${index === 0 ? "rank-1" : ""} ${selected ? "is-selected" : ""}" data-candidate-id="${escapeHtml(candidate.id)}" aria-pressed="${selected ? "true" : "false"}" style="--candidate-color:${candidateColor(candidate.index)}">
-      ${candidateAvatar(candidate)}
-      <span class="candidate-rank">${index + 1}위</span>
-      <strong class="candidate-name">${escapeHtml(candidate.name)}</strong>
-      <span class="candidate-percent">${formatPercent(candidate.percent)}</span>
-      <span class="candidate-votes">${escapeHtml(voteText)}</span>
-      <span class="candidate-action">${selected ? "상세 닫기" : "지역별 보기"}</span>
-    </button>`;
-  }).join("");
-
-  const compact = rest.map((candidate, offset) => {
-    const index = offset + 5;
-    const width = Math.max(2, (candidate.percent / max) * 100);
-    const voteText = state.supremeMode === "weighted"
-      ? `${formatNumber(candidate.votes, 2)} 환산표`
-      : `${formatNumber(candidate.votes)}표`;
-    const selected = state.selectedSupremeCandidate === candidate.id;
-    return `<button type="button" class="supreme-row ${selected ? "is-selected" : ""}" data-candidate-id="${escapeHtml(candidate.id)}" aria-pressed="${selected ? "true" : "false"}" style="--candidate-color:${candidateColor(candidate.index)}">
-      <span class="supreme-rank">${index + 1}</span>
-      ${candidateAvatar(candidate, "supreme-avatar")}
-      <span class="supreme-info"><strong>${escapeHtml(candidate.name)}</strong><span class="supreme-mini-track"><span class="supreme-mini-fill" style="width:${width}%"></span></span></span>
-      <span class="supreme-value">${formatPercent(candidate.percent)}<small>${escapeHtml(voteText)}</small></span>
-    </button>`;
-  }).join("");
-
-  els.supremeRanking.innerHTML = `
-    <div class="supreme-featured-grid">${featured}</div>
-    <div class="supreme-cutline-divider"><span>5위까지 당선권</span></div>
-    <div class="supreme-rest-list">${compact}</div>
-    ${candidateRegionalDetail("supreme", state.selectedSupremeCandidate, state.supremeMode)}
-  `;
-}
-
-function getUnitVoteData(unit, contest) {
-  const key = contest === "leader" ? "leaderVotes" : "supremeVotes";
-  const votes = normalizeVoteObject(unit[key], contest);
-  if (!votes) return null;
-  const candidateMap = getCandidateMap(contest);
-  const knownTotal = Object.values(votes).reduce((sum, value) => sum + (Number.isFinite(value) ? value : 0), 0);
-  const suppliedTotal = contest === "supreme" && Number.isFinite(unit.supremeTotalVotes) ? unit.supremeTotalVotes : null;
-  const total = suppliedTotal || knownTotal;
-  const ranking = Object.entries(votes)
-    .filter(([, value]) => Number.isFinite(value))
-    .map(([id, value]) => ({ ...candidateMap.get(id), votes: value, percent: total > 0 ? (value / total) * 100 : 0 }))
-    .sort((a, b) => b.votes - a.votes);
-  return { total, ranking, complete: contest !== "supreme" || unit.supremeComplete !== false };
-}
-
-function renderRegions() {
+function renderRegional(analysis) {
   const contest = state.regionContest;
-  const units = state.data.resultUnits.filter((unit) => {
-    if (contest === "leader" && unit.id === "jeju-incheon-supreme") return false;
-    return true;
-  });
+  const key = contest === "leader" ? "leaderVotes" : "supremeVotes";
+  const candidates = candidateMap(contest);
+  const units = doneUnits();
+  const totals = sumCandidateVotes(contest);
+  const grand = Object.values(totals).reduce((a, b) => a + b, 0);
+
+  if (contest === "leader") {
+    els.regionalIntro.textContent = "당대표는 각 지역에서 공개된 권리당원 1순위 득표입니다. 재외국민 998명의 후보별 1순위는 포함되지 않으며, 최종 선호투표 결과와는 별도 지표입니다.";
+  } else {
+    els.regionalIntro.textContent = "최고위원은 1인 2표 원득표입니다. 김영호·임미애 후보의 사퇴 전 지역별 득표도 원자료 보존을 위해 그대로 표시합니다.";
+  }
+
+  const sortedTotals = [...candidates.values()].map((candidate) => ({ ...candidate, votes: totals[candidate.id] || 0 }))
+    .sort((a, b) => b.votes - a.votes);
+  els.regionalSummary.innerHTML = sortedTotals.map((row) => {
+    const percent = grand ? row.votes / grand * 100 : 0;
+    const withdrawn = state.final.supreme.withdrawn.some((item) => item.id === row.id);
+    return `<div class="regional-total-chip ${withdrawn ? "withdrawn" : ""}"><span>${escapeHtml(row.name)}${withdrawn ? " · 사퇴" : ""}</span><strong>${formatNumber(row.votes)}표</strong><small>${formatPercent(percent)}</small></div>`;
+  }).join("");
 
   els.regionList.innerHTML = units.map((unit) => {
-    const data = getUnitVoteData(unit, contest);
-    const top = data?.ranking?.[0];
-    const weighted = Number(unit.weight) > 1;
-    const isDone = unit.status === "done";
-    const dateLabel = formatDate(unit.date, { month: "numeric", day: "numeric" });
+    const votes = unit[key] || {};
+    const denominator = contest === "leader" ? Number(unit.voterCount) : Number(unit.voterCount) * 2;
+    const ranking = [...candidates.values()].map((candidate) => ({ ...candidate, votes: Number(votes[candidate.id]) || 0 }))
+      .sort((a, b) => b.votes - a.votes);
+    const top = ranking[0];
+    const expanded = state.expandedRegion === unit.id;
+    const detail = expanded ? `<div class="region-detail-list">${ranking.map((row) => {
+      const withdrawn = state.final.supreme.withdrawn.some((item) => item.id === row.id);
+      const pct = denominator ? row.votes / denominator * 100 : 0;
+      return `<div class="region-detail-row ${withdrawn ? "withdrawn" : ""}"><span>${escapeHtml(row.name)}${withdrawn ? " <small>사퇴</small>" : ""}</span><strong>${formatNumber(row.votes)}표</strong><em>${formatPercent(pct)}</em></div>`;
+    }).join("")}</div>` : "";
+    return `<article class="region-card ${expanded ? "expanded" : ""}">
+      <button type="button" class="region-card-button" data-region-id="${escapeHtml(unit.id)}" aria-expanded="${expanded}">
+        <span class="region-name"><strong>${escapeHtml(unit.name)}</strong><small>선거인단 ${formatNumber(unit.eligibleVoters)} · 투표 ${formatNumber(unit.voterCount)}</small></span>
+        <span class="region-turnout"><strong>${formatPercent(unit.turnoutRate)}</strong><small>투표율</small></span>
+        <span class="region-top"><strong>${escapeHtml(top.name)}</strong><small>${formatNumber(top.votes)}표</small></span>
+        <span class="region-chevron">${expanded ? "−" : "+"}</span>
+      </button>${detail}
+    </article>`;
+  }).join("");
 
-    const turnoutRate = Number(unit.turnoutRate);
-    const voterCount = Number(unit.voterCount);
-    const eligibleVoters = Number(unit.eligibleVoters);
+  els.regionList.querySelectorAll("[data-region-id]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const id = button.dataset.regionId;
+      state.expandedRegion = state.expandedRegion === id ? null : id;
+      renderRegional(analysis);
+    });
+  });
+}
 
-    const hasTurnout = Number.isFinite(turnoutRate);
-    const hasVoterCount = Number.isFinite(voterCount);
-    const hasEligible = Number.isFinite(eligibleVoters);
-    const isEstimated = unit.eligibleVotersStatus === "estimated";
+function renderMethod(analysis) {
+  els.certaintyGrid.innerHTML = `
+    <article><span class="status-chip official">공식</span><h3>그대로 인용</h3><p>최종 득표율, 전국대의원·권리당원 득표수와 투표율, 16개 지역별 원득표.</p></article>
+    <article><span class="status-chip derived">역산</span><h3>공식값의 차이로 산출</h3><p>재외국민 선거인단 ${formatNumber(analysis.overseasEligible)}명·투표자 ${formatNumber(analysis.overseasVoters)}명, 최고위원 재외국민 후보별 일부 득표 등.</p></article>
+    <article><span class="status-chip limited">비공개</span><h3>숫자를 만들지 않음</h3><p>당대표 전국 선호투표 전 3인 최종득표율, 전국대의원 송영길 1순위, 여론조사 송영길 1순위.</p></article>
+  `;
+  els.methodNote.innerHTML = `<strong>계산 원칙</strong><p>역산값은 공식 전체 수치와 공식 지역별 원자료 사이의 산술적 차이만 사용합니다. 미공개 변수 때문에 하나의 값으로 결정되지 않는 항목은 범위로 표시하거나 ‘복원 불가’로 남깁니다. 전략지역 5% 가중치는 대구·경북·경남에 적용되며, 최종 공식 득표율은 전국대의원·권리당원 70%와 국민여론조사 30%를 반영한 값입니다.</p>`;
+}
 
-    const electorateBadge = hasEligible
-      ? `<span class="electorate-status-badge ${isEstimated ? "estimated" : "confirmed"}">${isEstimated ? "선거인단 추정" : "선거인단 확정"}</span>`
-      : "";
+function renderSources() {
+  const typeLabels = { regional: "지역 결과", withdrawal: "후보 사퇴", final: "최종 결과" };
+  const sources = [...(state.final.sources || [])].sort((a, b) =>
+    String(a.publishedAt || "").localeCompare(String(b.publishedAt || ""))
+  );
 
-    const electorateText = hasEligible
-      ? `${isEstimated ? "약 " : ""}${formatNumber(eligibleVoters)}명${isEstimated ? " · 추정" : ""}`
-      : "-";
-
-    const turnoutDetail = (hasEligible || hasTurnout || hasVoterCount)
-      ? `<div class="region-turnout-panel">
-          ${hasEligible ? `<div><span>권리당원 총선거인수</span><strong>${electorateText}</strong><small>${isEstimated ? "결과 발표 전 잠정 추정치" : "공식 결과 공지 확정값"}</small></div>` : ""}
-          ${hasVoterCount ? `<div><span>투표자수</span><strong>${formatNumber(voterCount)}명</strong><small>당대표 실제 투표자 기준</small></div>` : ""}
-          ${hasTurnout ? `<div><span>최종 투표율</span><strong>${formatPercent(turnoutRate)}</strong><small>온라인 + ARS 합산</small></div>` : ""}
-        </div>`
-      : "";
-
-    const detailRows = data
-      ? data.ranking.map((candidate) => `<div class="region-result-row" style="--candidate-color:${candidateColor(candidate.index)}"><span class="region-result-name"><span class="candidate-dot"></span>${escapeHtml(candidate.name)}</span><span class="region-result-value">${formatPercent(candidate.percent)}<small>${formatNumber(candidate.votes)}표${weighted ? ` · 환산 ${formatNumber(candidate.votes * Number(unit.weight), 2)}` : ""}</small></span></div>`).join("")
-      : `<div class="region-empty">${escapeHtml(unit.memo || "아직 공식 결과가 반영되지 않았습니다. 새 공지 URL을 GitHub Actions에 추가하면 총선거인수·투표자수·최종 투표율과 후보별 득표가 함께 자동 갱신됩니다.")}</div>`;
-
-    return `<details class="region-card">
-      <summary class="region-summary">
-        <span class="region-main">
-          <span class="region-name-line">
-            <span class="region-name">${escapeHtml(unit.name)}</span>
-            ${weighted ? `<span class="weight-badge">×${Number(unit.weight).toFixed(2)}</span>` : ""}
-            <span class="status-badge ${isDone ? "done" : ""}">${isDone ? "발표" : "예정"}</span>
-            ${electorateBadge}
-            ${hasTurnout ? `<span class="turnout-badge">투표율 ${formatPercent(turnoutRate)}</span>` : ""}
-          </span>
-          <span class="region-sub">
-            ${escapeHtml(dateLabel)}
-            ${hasEligible ? ` · 선거인단 ${electorateText}` : ""}
-            ${data ? ` · ${data.complete ? "유효 입력" : "전체 기준"} ${formatNumber(data.total)}표${data.complete ? "" : " · 일부 후보 표수만 입력"}` : ""}
-          </span>
-        </span>
-        <span class="region-lead">${top ? `<strong>${escapeHtml(top.name)} ${formatPercent(top.percent)}</strong><span>현재 1위</span>` : `<strong>결과 대기</strong><span>클릭해 확인</span>`}</span>
-        <span class="region-chevron" aria-hidden="true">⌄</span>
-      </summary>
-      <div class="region-detail">${turnoutDetail}${detailRows}</div>
-    </details>`;
+  els.sourceList.innerHTML = sources.map((source) => {
+    const date = source.publishedAt ? formatSourceDate(source.publishedAt) : "";
+    const type = typeLabels[source.type] || "공식 공지";
+    return `<a class="source-item source-type-${escapeHtml(source.type || "reference")}" href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">
+      <span class="source-main">
+        <span class="source-meta"><em>${escapeHtml(type)}</em>${date ? `<time datetime="${escapeHtml(source.publishedAt)}">${escapeHtml(date)}</time>` : ""}</span>
+        <strong>${escapeHtml(source.title || source.shortLabel || "더불어민주당 공식 공지")}</strong>
+        <span>${escapeHtml(source.description || "더불어민주당 공식 공지")}</span>
+      </span>
+      <span class="source-arrow" aria-hidden="true">↗</span>
+    </a>`;
   }).join("");
 }
-function renderMethod() {
-  const { rules, electorate } = state.data;
-  const officialTotal = Number(electorate?.officialTotalEligibleVoters);
 
-  els.methodGrid.innerHTML = [
-    ["결과 발표 진행률", "발표 완료 지역의 확정 총선거인수 합계 ÷ 전국 권리당원 선거인단 총수 × 100"],
-    ["지역별 최종 투표율", "더불어민주당 공식 결과 공지의 온라인투표 + ARS투표 합산 투표율"],
-    ["결과 검산", "당대표 3명 득표 합계 = 투표자수 / 투표자수 ÷ 총선거인수 ≈ 공식 투표율"],
-    ["가중치 환산", "지역 후보 득표수 × resultUnit.weight"]
-  ].map(([title, formula]) => `<div class="method-card"><strong>${escapeHtml(title)}</strong><code>${escapeHtml(formula)}</code></div>`).join("");
-
-  const totalText = Number.isFinite(officialTotal)
-    ? `전국 권리당원 선거인단 총수는 ${formatNumber(officialTotal)}명입니다. `
-    : "";
-
-  els.methodNote.textContent = `${totalText}미발표 지역의 선거인단은 잠정 추정치를 표시하며, 결과 발표 후 공식 공지의 실제 총선거인수로 자동 대체합니다. 최종 선출 반영 비율은 당원·대의원 ${(Number(rules.partyVoteWeight) * 100).toFixed(0)}%, 국민여론조사 ${(Number(rules.publicPollWeight) * 100).toFixed(0)}%입니다. ${rules.weightRuleNote || ""}`;
-}
-function renderSources() {
-  const sources = state.data.sources || [];
-  if (!sources.length) {
-    els.sourceList.innerHTML = `<div class="source-empty">공식 결과 공지를 등록하면 출처가 자동으로 추가됩니다.</div>`;
-    return;
-  }
-  els.sourceList.innerHTML = sources.map((source) => `<a class="source-item" href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer"><span><strong>${escapeHtml(source.label)}</strong><span>${escapeHtml(source.description || "")}</span></span><span class="source-arrow" aria-hidden="true">↗</span></a>`).join("");
+function formatSourceDate(dateString) {
+  const [year, month, day] = String(dateString || "").split("-").map(Number);
+  if (!year || !month || !day) return dateString || "";
+  return `${month}월 ${day}일 게시`;
 }
 
-function bindCandidateSelection() {
-  els.leaderSummary?.addEventListener("click", (event) => {
-    const card = event.target.closest(".candidate-card[data-candidate-id]");
-    if (!card) return;
-    const id = card.dataset.candidateId;
-    state.selectedLeaderCandidate = state.selectedLeaderCandidate === id ? null : id;
-    renderLeader();
-  });
-
-  els.supremeRanking?.addEventListener("click", (event) => {
-    const row = event.target.closest("[data-candidate-id]");
-    if (!row || !els.supremeRanking.contains(row)) return;
-    const id = row.dataset.candidateId;
-    state.selectedSupremeCandidate = state.selectedSupremeCandidate === id ? null : id;
-    renderSupreme();
-  });
-}
-
-function bindControls() {
-  els.leaderTabs.querySelectorAll(".metric-tab").forEach((button) => {
-    button.addEventListener("click", () => {
-      state.leaderMode = button.dataset.mode;
-      els.leaderTabs.querySelectorAll(".metric-tab").forEach((tab) => {
-        const active = tab === button;
-        tab.classList.toggle("active", active);
-        tab.setAttribute("aria-selected", active ? "true" : "false");
-      });
-      renderLeader();
-    });
-  });
-
-  els.supremeTabs?.querySelectorAll(".metric-tab").forEach((button) => {
-    button.addEventListener("click", () => {
-      state.supremeMode = button.dataset.supremeMode;
-      els.supremeTabs.querySelectorAll(".metric-tab").forEach((tab) => {
-        const active = tab === button;
-        tab.classList.toggle("active", active);
-        tab.setAttribute("aria-selected", active ? "true" : "false");
-      });
-      renderSupreme();
-    });
-  });
-
+function bindControls(analysis) {
   document.querySelectorAll(".contest-button").forEach((button) => {
     button.addEventListener("click", () => {
       state.regionContest = button.dataset.contest;
+      state.expandedRegion = null;
       document.querySelectorAll(".contest-button").forEach((item) => item.classList.toggle("active", item === button));
-      renderRegions();
+      renderRegional(analysis);
     });
   });
 }
 
 function renderAll() {
-  renderHeader();
-  renderCalendar();
-  renderLeader();
-  renderSupreme();
-  renderRegions();
-  renderMethod();
+  const analysis = computeAnalysis();
+  renderHero(analysis);
+  renderLeaderFinal(analysis);
+  renderAnalysis(analysis);
+  renderSupremeFinal(analysis);
+  renderRegional(analysis);
+  renderMethod(analysis);
   renderSources();
-  bindControls();
-  bindCandidateSelection();
+  bindControls(analysis);
   els.status.hidden = true;
   els.app.hidden = false;
 }
 
 async function loadData() {
   try {
-    const response = await fetch(DATA_PATH, { cache: "no-cache" });
-    if (!response.ok) throw new Error(`데이터 파일을 불러오지 못했습니다. (${response.status})`);
-    state.data = await response.json();
+    const [regionalResponse, finalResponse] = await Promise.all([
+      fetch(REGIONAL_DATA_PATH, { cache: "no-cache" }),
+      fetch(FINAL_DATA_PATH, { cache: "no-cache" })
+    ]);
+    if (!regionalResponse.ok) throw new Error(`지역 원자료를 불러오지 못했습니다. (${regionalResponse.status})`);
+    if (!finalResponse.ok) throw new Error(`최종 결과 데이터를 불러오지 못했습니다. (${finalResponse.status})`);
+    state.regional = await regionalResponse.json();
+    state.final = await finalResponse.json();
     renderAll();
   } catch (error) {
     els.status.classList.add("error");
@@ -827,30 +414,17 @@ if (els.backLink) {
 }
 
 if (els.topButton) {
-  els.topButton.addEventListener("click", () => {
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
-  });
-  window.addEventListener("scroll", () => {
-    els.topButton.classList.toggle("visible", window.scrollY > 400);
-  }, { passive: true });
+  els.topButton.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+  window.addEventListener("scroll", () => els.topButton.classList.toggle("visible", window.scrollY > 500), { passive: true });
 }
 
 document.addEventListener("error", (event) => {
   const image = event.target;
   if (!(image instanceof HTMLImageElement)) return;
-  const avatar = image.closest(".candidate-avatar, .supreme-avatar");
+  const avatar = image.closest(".analysis-avatar, .winner-avatar, .supreme-final-avatar");
   if (!avatar) return;
   avatar.classList.remove("has-image");
   image.remove();
 }, true);
 
 loadData();
-
-// 페이지를 오래 열어둔 경우에도 자정이 지나면 오늘 표시와 모바일 남은 일정이 자동 갱신된다.
-window.setInterval(() => {
-  if (!state.data) return;
-  const currentKst = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Seoul" }));
-  const currentKey = dateKey(currentKst);
-  if (currentKey !== state.calendarDateKey) renderCalendar();
-}, 60 * 1000);
