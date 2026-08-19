@@ -1,0 +1,59 @@
+[
+  {
+    "event": "2018-06-13",
+    "reference": "provincial",
+    "districts": 4,
+    "seats": 4,
+    "winners": 4,
+    "coverageUnique": 22,
+    "coverageMissing": []
+  },
+  {
+    "event": "2018-06-13",
+    "reference": "city",
+    "districts": 7,
+    "seats": 15,
+    "winners": 15,
+    "uncontested": 0,
+    "coverageUnique": 22,
+    "coverageMissing": []
+  },
+  {
+    "event": "2022-06-01",
+    "reference": "provincial",
+    "districts": 4,
+    "seats": 4,
+    "winners": 4,
+    "coverageUnique": 22,
+    "coverageMissing": []
+  },
+  {
+    "event": "2022-06-01",
+    "reference": "city",
+    "districts": 7,
+    "seats": 15,
+    "winners": 15,
+    "uncontested": 2,
+    "coverageUnique": 22,
+    "coverageMissing": []
+  },
+  {
+    "event": "2026-06-03",
+    "reference": "provincial",
+    "districts": 4,
+    "seats": 4,
+    "winners": 4,
+    "coverageUnique": 22,
+    "coverageMissing": []
+  },
+  {
+    "event": "2026-06-03",
+    "reference": "city",
+    "districts": 7,
+    "seats": 15,
+    "winners": 15,
+    "uncontested": 4,
+    "coverageUnique": 22,
+    "coverageMissing": []
+  }
+]

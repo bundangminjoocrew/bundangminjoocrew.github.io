@@ -1,0 +1,154 @@
+{
+  "더불어민주당": {
+    "historical": "#004EA1",
+    "current": "#003B96",
+    "currentFromYear": 2024,
+    "text": "#FFFFFF",
+    "source": "2015~2023 #004EA2 계열 / 2024~현재 #003B96 계열 당색 자료"
+  },
+  "국민의힘": {
+    "color": "#E61E2B",
+    "text": "#FFFFFF",
+    "source": "국민의힘 공식 PI"
+  },
+  "자유한국당": {
+    "color": "#C9151E",
+    "text": "#FFFFFF",
+    "source": "정당 색채 연구자료"
+  },
+  "바른미래당": {
+    "color": "#00B4B4",
+    "text": "#062C2C",
+    "source": "당시 당색 자료"
+  },
+  "정의당": {
+    "color": "#FFCC00",
+    "text": "#292300",
+    "source": "정의당 PI/당색 자료"
+  },
+  "민중당": {
+    "color": "#F26522",
+    "text": "#FFFFFF",
+    "source": "국회도서관 정당정보"
+  },
+  "진보당": {
+    "color": "#D6001C",
+    "text": "#FFFFFF",
+    "source": "국회도서관 정당정보"
+  },
+  "개혁신당": {
+    "color": "#FF7210",
+    "text": "#FFFFFF",
+    "source": "개혁신당 공식 BI"
+  },
+  "조국혁신당": {
+    "color": "#0073CF",
+    "text": "#FFFFFF",
+    "source": "조국혁신당 공식 PI"
+  },
+  "통일한국당": {
+    "color": "#003793",
+    "text": "#FFFFFF",
+    "source": "당색 자료"
+  },
+  "깨어있는시민연대당": {
+    "color": "#000056",
+    "text": "#FFFFFF",
+    "source": "당색 자료"
+  },
+  "기본소득당": {
+    "color": "#00D2C3",
+    "text": "#052B29",
+    "source": "기본소득당 공식 PI"
+  },
+  "녹색당": {
+    "color": "#62BB46",
+    "text": "#12350B",
+    "source": "녹색당 공식 PI"
+  },
+  "민주평화당": {
+    "color": "#43B02A",
+    "text": "#FFFFFF",
+    "source": "당색 자료"
+  },
+  "새미래민주당": {
+    "color": "#51BDC5",
+    "text": "#0A3438",
+    "source": "새미래민주당 공식 PI RGB(81,189,197)"
+  },
+  "자유와혁신": {
+    "color": "#A50034",
+    "text": "#FFFFFF",
+    "source": "자유와혁신 공식 BI"
+  },
+  "무소속": {
+    "color": "#6B7280",
+    "text": "#FFFFFF",
+    "source": "중립 표시색"
+  },
+  "우리미래": {
+    "color": "#1C1F87",
+    "text": "#FFFFFF",
+    "source": "당색 자료"
+  },
+  "사회민주당": {
+    "color": "#F58400",
+    "text": "#FFFFFF",
+    "source": "당색 자료"
+  },
+  "공화당": {
+    "color": "#05354B",
+    "text": "#FFFFFF",
+    "source": "당색 자료"
+  },
+  "노동당": {
+    "color": "#FF0000",
+    "text": "#FFFFFF",
+    "source": "당색 자료"
+  },
+  "대한애국당": {
+    "color": "#009944",
+    "text": "#FFFFFF",
+    "source": "당색 자료"
+  },
+  "거지당": {
+    "color": "#038ED3",
+    "text": "#FFFFFF",
+    "source": "2026 당색 자료"
+  },
+  "국민대통합당": {
+    "color": "#002B58",
+    "text": "#FFFFFF",
+    "source": "2026 당색 자료"
+  },
+  "국민연합": {
+    "color": "#EC008B",
+    "text": "#FFFFFF",
+    "source": "2026 Main Color"
+  },
+  "기독당": {
+    "color": "#0167B7",
+    "text": "#FFFFFF",
+    "source": "2026 당색 자료"
+  },
+  "대한국민당": {
+    "color": "#51A776",
+    "text": "#FFFFFF",
+    "source": "2026 당색 자료"
+  },
+  "친미연합": {
+    "color": "#AD469F",
+    "text": "#FFFFFF",
+    "source": "2026 대표 당색"
+  },
+  "국민당": {
+    "color": "#D7000F",
+    "text": "#FFFFFF",
+    "source": "한국국민당(등록 약칭 국민당) 당색 자료"
+  },
+  "한나라당": {
+    "color": "#0000A8",
+    "text": "#FFFFFF",
+    "source": "한나라당 당색 자료"
+  }
+}
