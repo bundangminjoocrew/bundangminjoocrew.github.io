@@ -180,8 +180,8 @@ function renderLeaderFinal() {
         const a = rows[0], b = rows[1];
         const ca = candidateById("leader", a.id), cb = candidateById("leader", b.id);
         return `<div class="compare-row">
-          <div class="compare-label"><strong>${escapeHtml(label)}</strong><span>${formatPercent(a[key])} : ${formatPercent(b[key])}</span></div>
-          <div class="compare-track split">
+          <div class="compare-label"><strong>${escapeHtml(label)}</strong><i aria-hidden="true">|</i><span>${formatPercent(a[key])} : ${formatPercent(b[key])}</span></div>
+          <div class="compare-track split" aria-label="${escapeHtml(label)} 김민석 ${formatPercent(a[key])}, 정청래 ${formatPercent(b[key])}">
             <span style="--share:${a[key]};--candidate-color:${candidateColor(ca)}"></span>
             <span style="--share:${b[key]};--candidate-color:${candidateColor(cb)}"></span>
           </div>
@@ -214,39 +214,47 @@ function sankeyFlowSvg(analysis) {
   const pool = analysis.songDomestic + analysis.overseasVoters;
   return `
   <div class="preference-flow-wrap">
-    <svg class="preference-flow" viewBox="0 0 1000 360" role="img" aria-label="국내 권리당원 1순위 득표와 최종 권리당원 득표 사이의 흐름">
+    <div class="flow-titlebar">
+      <strong>권리당원 1순위 공개분 → 선호투표 적용 후 최종</strong>
+      <span>확정할 수 없는 구간은 회색으로 표시</span>
+    </div>
+    <svg class="preference-flow" viewBox="0 0 900 390" preserveAspectRatio="xMidYMid meet" role="img" aria-label="국내 권리당원 1순위 득표와 최종 권리당원 득표 사이의 흐름">
       <defs>
         <linearGradient id="poolGradient" x1="0" x2="1"><stop offset="0" stop-color="#8a92a6"/><stop offset="1" stop-color="#c3c8d3"/></linearGradient>
       </defs>
-      <path class="flow-band" d="M155 75 C420 75 585 82 845 90" stroke="${candidateColor(jung)}" stroke-width="31" opacity=".32"/>
-      <path class="flow-band" d="M155 185 C420 185 585 220 845 230" stroke="${candidateColor(kim)}" stroke-width="38" opacity=".32"/>
-      <path class="flow-band" d="M155 295 C350 295 380 178 475 178" stroke="${candidateColor(song)}" stroke-width="10" opacity=".72"/>
-      <path class="flow-band overseas-band" d="M155 335 C350 335 400 198 475 198" stroke="#9ba2b2" stroke-width="3" opacity=".75"/>
-      <path class="flow-band" d="M525 174 C650 155 710 110 845 108" stroke="${candidateColor(jung)}" stroke-width="7" opacity=".78"/>
-      <path class="flow-band" d="M525 198 C650 210 720 250 845 250" stroke="${candidateColor(kim)}" stroke-width="11" opacity=".78"/>
 
-      <rect class="flow-node" x="95" y="53" width="60" height="44" rx="10" fill="${candidateColor(jung)}"/>
-      <rect class="flow-node" x="95" y="163" width="60" height="44" rx="10" fill="${candidateColor(kim)}"/>
-      <rect class="flow-node" x="95" y="273" width="60" height="44" rx="10" fill="${candidateColor(song)}"/>
-      <rect class="flow-node muted" x="95" y="326" width="60" height="18" rx="8" fill="#9ba2b2"/>
+      <text class="flow-column-title" x="28" y="28">국내 16개 지역 1순위</text>
+      <text class="flow-column-title end" x="872" y="28">최종 권리당원</text>
 
-      <rect class="flow-node pool" x="475" y="151" width="50" height="72" rx="12" fill="url(#poolGradient)"/>
-      <rect class="flow-node" x="845" y="68" width="60" height="62" rx="11" fill="${candidateColor(jung)}"/>
-      <rect class="flow-node" x="845" y="215" width="60" height="62" rx="11" fill="${candidateColor(kim)}"/>
+      <path class="flow-band" d="M205 92 C390 92 555 92 695 102" stroke="${candidateColor(jung)}" stroke-width="34" opacity=".30"/>
+      <path class="flow-band" d="M205 202 C390 202 555 235 695 252" stroke="${candidateColor(kim)}" stroke-width="41" opacity=".30"/>
+      <path class="flow-band" d="M205 312 C355 312 400 187 444 187" stroke="${candidateColor(song)}" stroke-width="12" opacity=".82"/>
+      <path class="flow-band" d="M205 352 C365 352 414 213 444 211" stroke="#9ba2b2" stroke-width="4" opacity=".72"/>
+      <path class="flow-band" d="M496 185 C585 165 615 125 695 121" stroke="${candidateColor(jung)}" stroke-width="8" opacity=".88"/>
+      <path class="flow-band" d="M496 211 C590 222 625 271 695 273" stroke="${candidateColor(kim)}" stroke-width="13" opacity=".88"/>
 
-      <g class="flow-label left"><text x="75" y="66">정청래</text><text x="75" y="86" class="value">${formatNumber(analysis.leaderDomestic["jung-chungrae"])}표</text></g>
-      <g class="flow-label left"><text x="75" y="176">김민석</text><text x="75" y="196" class="value">${formatNumber(analysis.leaderDomestic["kim-minseok"])}표</text></g>
-      <g class="flow-label left"><text x="75" y="286">송영길</text><text x="75" y="306" class="value">${formatNumber(analysis.songDomestic)}표</text></g>
-      <g class="flow-label left small"><text x="75" y="340">기타 미공개 ${formatNumber(analysis.overseasVoters)}표</text></g>
+      <rect class="flow-node" x="165" y="70" width="40" height="44" rx="9" fill="${candidateColor(jung)}"/>
+      <rect class="flow-node" x="165" y="180" width="40" height="44" rx="9" fill="${candidateColor(kim)}"/>
+      <rect class="flow-node" x="165" y="290" width="40" height="44" rx="9" fill="${candidateColor(song)}"/>
+      <rect class="flow-node muted" x="165" y="344" width="40" height="16" rx="7" fill="#9ba2b2"/>
 
-      <g class="flow-label center"><text x="500" y="133">이전·미공개 합계</text><text x="500" y="245" class="value">${formatNumber(pool)}표</text></g>
-      <g class="flow-label right"><text x="925" y="90">정청래 최종</text><text x="925" y="110" class="value">${formatNumber(analysis.leaderFinalRights["jung-chungrae"])}표</text><text x="925" y="130" class="delta">+${formatNumber(analysis.jungIncrease)}</text></g>
-      <g class="flow-label right"><text x="925" y="237">김민석 최종</text><text x="925" y="257" class="value">${formatNumber(analysis.leaderFinalRights["kim-minseok"])}표</text><text x="925" y="277" class="delta">+${formatNumber(analysis.kimIncrease)}</text></g>
+      <rect class="flow-node pool" x="444" y="163" width="52" height="72" rx="12" fill="url(#poolGradient)"/>
+      <rect class="flow-node" x="695" y="77" width="44" height="65" rx="10" fill="${candidateColor(jung)}"/>
+      <rect class="flow-node" x="695" y="227" width="44" height="65" rx="10" fill="${candidateColor(kim)}"/>
+
+      <g class="flow-label left-start"><text x="28" y="83">정청래</text><text x="28" y="104" class="value">${formatNumber(analysis.leaderDomestic["jung-chungrae"])}표</text></g>
+      <g class="flow-label left-start"><text x="28" y="193">김민석</text><text x="28" y="214" class="value">${formatNumber(analysis.leaderDomestic["kim-minseok"])}표</text></g>
+      <g class="flow-label left-start"><text x="28" y="303">송영길</text><text x="28" y="324" class="value">${formatNumber(analysis.songDomestic)}표</text></g>
+      <g class="flow-label left-start small"><text x="28" y="356">미공개 ${formatNumber(analysis.overseasVoters)}표</text></g>
+
+      <g class="flow-label center"><text x="470" y="145">이전·미공개</text><text x="470" y="257" class="value">${formatNumber(pool)}표</text></g>
+      <g class="flow-label right-end"><text x="872" y="93">정청래 최종</text><text x="872" y="114" class="value">${formatNumber(analysis.leaderFinalRights["jung-chungrae"])}표</text><text x="872" y="135" class="delta">+${formatNumber(analysis.jungIncrease)}</text></g>
+      <g class="flow-label right-end"><text x="872" y="243">김민석 최종</text><text x="872" y="264" class="value">${formatNumber(analysis.leaderFinalRights["kim-minseok"])}표</text><text x="872" y="285" class="delta">+${formatNumber(analysis.kimIncrease)}</text></g>
     </svg>
     <div class="flow-mobile-fallback">
       <div><strong>정청래</strong><span>${formatNumber(analysis.leaderDomestic["jung-chungrae"])} → ${formatNumber(analysis.leaderFinalRights["jung-chungrae"])}표</span><em>+${formatNumber(analysis.jungIncrease)}</em></div>
       <div><strong>김민석</strong><span>${formatNumber(analysis.leaderDomestic["kim-minseok"])} → ${formatNumber(analysis.leaderFinalRights["kim-minseok"])}표</span><em>+${formatNumber(analysis.kimIncrease)}</em></div>
-      <div class="pool"><strong>이전·미공개 합계</strong><span>송영길 국내 ${formatNumber(analysis.songDomestic)} + 기타 미공개 ${formatNumber(analysis.overseasVoters)}</span><em>${formatNumber(pool)}표</em></div>
+      <div class="pool"><strong>이전·미공개</strong><span>송영길 국내 ${formatNumber(analysis.songDomestic)} + 미공개 ${formatNumber(analysis.overseasVoters)}</span><em>${formatNumber(pool)}표</em></div>
     </div>
   </div>`;
 }
