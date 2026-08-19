@@ -18,6 +18,7 @@ const els = {
   leaderPreference: document.querySelector("#leader-preference-analysis"),
   supremeWithdrawal: document.querySelector("#supreme-withdrawal-analysis"),
   supremeFinal: document.querySelector("#supreme-final"),
+  supremeIntro: document.querySelector("#supreme-intro"),
   regionalIntro: document.querySelector("#regional-intro"),
   regionalSummary: document.querySelector("#regional-summary"),
   regionList: document.querySelector("#region-list"),
@@ -103,30 +104,39 @@ function computeAnalysis() {
 
   const supremeDomestic = sumCandidateVotes("supreme");
   const supremeFinalRights = Object.fromEntries(state.final.supreme.results.map((row) => [row.id, row.rightsVotes]));
-  const supremeOverseasActive = Object.fromEntries(
-    state.final.supreme.results.map((row) => [row.id, row.rightsVotes - (supremeDomestic[row.id] || 0)])
-  );
-  const activeFinalVotes = Object.values(supremeFinalRights).reduce((a, b) => a + b, 0);
   const withdrawnIds = state.final.supreme.withdrawn.map((item) => item.id);
   const withdrawnDomesticVotes = withdrawnIds.reduce((sum, id) => sum + (supremeDomestic[id] || 0), 0);
+  const activeFinalVotes = Object.values(supremeFinalRights).reduce((a, b) => a + b, 0);
   const allRightsSelections = rights.voterCount * 2;
   const excludedSelections = allRightsSelections - activeFinalVotes;
   const overseasWithdrawnCombined = excludedSelections - withdrawnDomesticVotes;
 
   return {
-    domesticEligible, domesticVoters,
+    domesticEligible,
+    domesticVoters,
     domesticTurnout: domesticEligible ? domesticVoters / domesticEligible * 100 : 0,
-    overseasEligible, overseasVoters, overseasTurnout,
-    leaderDomestic, leaderDomesticTotal, leaderFinalRights, jungIncrease, kimIncrease, songDomestic,
-    supremeDomestic, supremeOverseasActive, activeFinalVotes, withdrawnDomesticVotes,
-    allRightsSelections, excludedSelections, overseasWithdrawnCombined
+    overseasEligible,
+    overseasVoters,
+    overseasTurnout,
+    leaderDomestic,
+    leaderDomesticTotal,
+    leaderFinalRights,
+    jungIncrease,
+    kimIncrease,
+    songDomestic,
+    supremeDomestic,
+    activeFinalVotes,
+    withdrawnDomesticVotes,
+    allRightsSelections,
+    excludedSelections,
+    overseasWithdrawnCombined
   };
 }
 
 function renderHero() {
   const turnout = state.final.turnout;
   els.title.textContent = "2026 전당대회";
-  els.meta.textContent = "8월 17일 최종 결과 확정 · 공식 결과와 지역별 원자료를 함께 봅니다.";
+  els.meta.textContent = "최종 결과와 지역별 공개 원자료를 함께 정리했습니다.";
   document.title = "2026 전당대회 결과 분석 | 분당민주크루";
 
   els.hero.innerHTML = `
@@ -135,11 +145,10 @@ function renderHero() {
       <span class="hero-updated">2026. 8. 17. 전국당원대회</span>
     </div>
     <h2 id="final-title">더불어민주당 제3차 정기전국당원대회</h2>
-    <p>당대표·최고위원 최종 결과와 순회경선에서 공개된 권리당원 지역별 원자료를 같은 디자인 체계 안에서 비교합니다.</p>
     <div class="hero-stats">
       <div class="hero-stat"><span>당대표 당선</span><strong>김민석 54.08%</strong></div>
-      <div class="hero-stat"><span>권리당원</span><strong>${formatPercent(turnout.rightsMembers.turnoutRate)}</strong><small>${formatNumber(turnout.rightsMembers.voterCount)}명 투표</small></div>
-      <div class="hero-stat"><span>전국대의원</span><strong>${formatPercent(turnout.delegates.turnoutRate)}</strong><small>${formatNumber(turnout.delegates.voterCount)}명 투표</small></div>
+      <div class="hero-stat"><span>권리당원 투표율</span><strong>${formatPercent(turnout.rightsMembers.turnoutRate)}</strong><small>${formatNumber(turnout.rightsMembers.voterCount)}명 투표</small></div>
+      <div class="hero-stat"><span>전국대의원 투표율</span><strong>${formatPercent(turnout.delegates.turnoutRate)}</strong><small>${formatNumber(turnout.delegates.voterCount)}명 투표</small></div>
     </div>`;
 }
 
@@ -184,7 +193,7 @@ function renderLeaderFinal() {
       <div><span>반영 구조</span><strong>70 : 30</strong><small>당원·대의원 : 여론조사</small></div>
       <div><span>전략지역</span><strong>+5%</strong><small>대구·경북·경남</small></div>
     </div>
-    <div class="official-note"><span class="status-chip limited">비공개</span><p>선호투표 적용 전 전국 합산 3인 1순위 결과는 공개되지 않았습니다. 아래 분석은 공개된 국내 권리당원 1순위와 최종 권리당원 결과 사이의 관계만 시각화합니다.</p></div>`;
+    <div class="official-note"><span class="status-chip limited">비공개</span><p>선호투표 적용 전 전국 3인 1순위 합산은 공개되지 않았습니다.</p></div>`;
 }
 
 function firstChoiceCard(candidate, votes, total, rank) {
@@ -194,7 +203,7 @@ function firstChoiceCard(candidate, votes, total, rank) {
     <span class="candidate-rank">국내 16개 지역 · ${rank}위</span>
     <strong class="candidate-name">${escapeHtml(candidate.name)}</strong>
     <span class="candidate-percent">${formatPercent(pct)}</span>
-    <span class="candidate-votes">${formatNumber(votes)}표 · 공개된 1순위 원자료</span>
+    <span class="candidate-votes">${formatNumber(votes)}표 · 공개 원자료</span>
   </article>`;
 }
 
@@ -230,14 +239,14 @@ function sankeyFlowSvg(analysis) {
       <g class="flow-label left"><text x="75" y="286">송영길</text><text x="75" y="306" class="value">${formatNumber(analysis.songDomestic)}표</text></g>
       <g class="flow-label left small"><text x="75" y="340">기타 미공개 ${formatNumber(analysis.overseasVoters)}표</text></g>
 
-      <g class="flow-label center"><text x="500" y="133">미분해 풀</text><text x="500" y="245" class="value">${formatNumber(pool)}표</text></g>
+      <g class="flow-label center"><text x="500" y="133">이전·미공개 합계</text><text x="500" y="245" class="value">${formatNumber(pool)}표</text></g>
       <g class="flow-label right"><text x="925" y="90">정청래 최종</text><text x="925" y="110" class="value">${formatNumber(analysis.leaderFinalRights["jung-chungrae"])}표</text><text x="925" y="130" class="delta">+${formatNumber(analysis.jungIncrease)}</text></g>
       <g class="flow-label right"><text x="925" y="237">김민석 최종</text><text x="925" y="257" class="value">${formatNumber(analysis.leaderFinalRights["kim-minseok"])}표</text><text x="925" y="277" class="delta">+${formatNumber(analysis.kimIncrease)}</text></g>
     </svg>
     <div class="flow-mobile-fallback">
       <div><strong>정청래</strong><span>${formatNumber(analysis.leaderDomestic["jung-chungrae"])} → ${formatNumber(analysis.leaderFinalRights["jung-chungrae"])}표</span><em>+${formatNumber(analysis.jungIncrease)}</em></div>
       <div><strong>김민석</strong><span>${formatNumber(analysis.leaderDomestic["kim-minseok"])} → ${formatNumber(analysis.leaderFinalRights["kim-minseok"])}표</span><em>+${formatNumber(analysis.kimIncrease)}</em></div>
-      <div class="pool"><strong>미분해 풀</strong><span>송영길 국내 ${formatNumber(analysis.songDomestic)} + 기타 미공개 ${formatNumber(analysis.overseasVoters)}</span><em>${formatNumber(pool)}표</em></div>
+      <div class="pool"><strong>이전·미공개 합계</strong><span>송영길 국내 ${formatNumber(analysis.songDomestic)} + 기타 미공개 ${formatNumber(analysis.overseasVoters)}</span><em>${formatNumber(pool)}표</em></div>
     </div>
   </div>`;
 }
@@ -249,58 +258,90 @@ function renderAnalysis(analysis) {
     .sort((a, b) => b.votes - a.votes);
 
   els.analysisGrid.innerHTML = `
-    <article class="analysis-card official"><span class="status-chip official">공식</span><h3>국내 16개 지역 공개분</h3><strong>${formatNumber(total)}표</strong><p>당대표 권리당원 1순위 원자료의 합계</p></article>
-    <article class="analysis-card official"><span class="status-chip official">공식</span><h3>1순위 선두</h3><strong>김민석 ${formatPercent((analysis.leaderDomestic["kim-minseok"] / total) * 100)}</strong><p>383,373표 · 과반에는 미달</p></article>
-    <article class="analysis-card limited"><span class="status-chip limited">비공개</span><h3>전국 1차 합산</h3><strong>정확한 복원 불가</strong><p>대의원·여론조사의 송영길 1순위가 공개되지 않음</p></article>`;
+    <article class="analysis-card official"><span class="status-chip official">공식</span><h3>국내 16개 지역 공개분</h3><strong>${formatNumber(total)}표</strong><p>당대표 권리당원 1순위 원자료 합계</p></article>
+    <article class="analysis-card official"><span class="status-chip official">공식</span><h3>1순위 선두</h3><strong>김민석 ${formatPercent((analysis.leaderDomestic["kim-minseok"] / total) * 100)}</strong><p>${formatNumber(analysis.leaderDomestic["kim-minseok"])}표 · 과반 미달</p></article>
+    <article class="analysis-card limited"><span class="status-chip limited">비공개</span><h3>직접 복원 불가</h3><strong>전국 3인 1순위</strong><p>대의원·여론조사의 송영길 1순위는 공개되지 않았습니다.</p></article>`;
 
   const firstCards = ranked.map((row, index) => firstChoiceCard(row.candidate, row.votes, total, index + 1)).join("");
-  const jMin = Math.max(0, analysis.jungIncrease - analysis.overseasVoters);
-  const jMax = analysis.jungIncrease;
-  const kMin = Math.max(0, analysis.kimIncrease - analysis.overseasVoters);
-  const kMax = analysis.kimIncrease;
 
   els.leaderPreference.innerHTML = `
-    <div class="deep-dive-heading"><span class="status-chip derived">분석</span><h3>국내 1순위 득표와 최종 권리당원 득표의 연결</h3></div>
+    <div class="deep-dive-heading"><span class="status-chip derived">분석</span><h3>송영길 표는 어디로 갔나</h3></div>
     <div class="leader-grid first-choice-grid">${firstCards}</div>
     ${sankeyFlowSvg(analysis)}
     <div class="flow-readout">
-      <div><span>정청래 증가분</span><strong>+${formatNumber(analysis.jungIncrease)}표</strong><small>가능한 송영길 이전표 ${formatNumber(jMin)}~${formatNumber(jMax)}</small></div>
-      <div><span>김민석 증가분</span><strong>+${formatNumber(analysis.kimIncrease)}표</strong><small>가능한 송영길 이전표 ${formatNumber(kMin)}~${formatNumber(kMax)}</small></div>
-      <div><span>미분해 표</span><strong>${formatNumber(analysis.songDomestic + analysis.overseasVoters)}표</strong><small>송영길 국내 1순위 + 후보별 1순위 미공개분</small></div>
+      <div><span>정청래 증가분</span><strong>+${formatNumber(analysis.jungIncrease)}표</strong><small>국내 원자료 대비 최종 권리당원 증가분</small></div>
+      <div><span>김민석 증가분</span><strong>+${formatNumber(analysis.kimIncrease)}표</strong><small>국내 원자료 대비 최종 권리당원 증가분</small></div>
+      <div><span>이전·미공개 합계</span><strong>${formatNumber(analysis.songDomestic + analysis.overseasVoters)}표</strong><small>송영길 국내 1순위 + 공개되지 않은 구간</small></div>
     </div>
-    <p class="fine-print"><strong>읽는 법.</strong> 정·김 후보의 최종 권리당원 득표 증가분 합계 ${formatNumber(analysis.jungIncrease + analysis.kimIncrease)}표는 국내 송영길 1순위 ${formatNumber(analysis.songDomestic)}표와 국내 지역 공지에 포함되지 않은 투표 ${formatNumber(analysis.overseasVoters)}표의 합과 같습니다. 다만 그 ${formatNumber(analysis.overseasVoters)}표의 최초 후보별 분포가 공개되지 않아 송영길 표의 정확한 이전 비율은 확정할 수 없습니다.</p>
-    <p class="supporting-data">보조값 · 전체 권리당원과 국내 16개 지역 공지 합계의 차이: 선거인단 ${formatNumber(analysis.overseasEligible)}명, 투표자 ${formatNumber(analysis.overseasVoters)}명, 산술상 투표율 ${formatPercent(analysis.overseasTurnout)}. 분석의 주인공이 아니라 미공개 구간을 설명하는 보조값으로만 사용합니다.</p>`;
+    <p class="fine-print">정·김 후보의 최종 권리당원 증가분 합계 ${formatNumber(analysis.jungIncrease + analysis.kimIncrease)}표는 송영길 국내 1순위 ${formatNumber(analysis.songDomestic)}표와 공개되지 않은 ${formatNumber(analysis.overseasVoters)}표의 합과 같습니다. 다만 미공개 구간의 최초 분포가 없어 정확한 이전 비율은 확정할 수 없습니다.</p>
+    <p class="supporting-data">보조값 · 전체 권리당원과 국내 16개 지역 공지 합계의 차이: 선거인단 ${formatNumber(analysis.overseasEligible)}명, 투표자 ${formatNumber(analysis.overseasVoters)}명.</p>`;
+}
+
+function supremeFeaturedCard(row, index) {
+  const candidate = candidateById("supreme", row.id);
+  const subline = `권리 ${formatPercent(row.rightsRate)} · 대의원 ${formatPercent(row.delegateRate)} · 여론 ${formatPercent(row.publicPollRate)}`;
+  return `<article class="candidate-card supreme-featured-card data-card ${index === 0 ? "rank-1" : ""}" style="--candidate-color:${candidateColor(candidate)}">
+    ${candidateAvatar(candidate)}
+    <span class="candidate-rank">${index + 1}위 · 당선</span>
+    <strong class="candidate-name">${escapeHtml(candidate.name)}</strong>
+    <span class="candidate-percent">${formatPercent(row.finalRate)}</span>
+    <span class="candidate-votes">${subline}</span>
+  </article>`;
+}
+
+function supremeCompactRow({ candidate, rankLabel, headline, detail, value, withdrawn = false }) {
+  return `<article class="supreme-row ${withdrawn ? "withdrawn" : ""}" style="--candidate-color:${candidateColor(candidate)}">
+    <span class="supreme-rank">${rankLabel}</span>
+    ${candidateAvatar(candidate, "supreme-avatar")}
+    <span class="supreme-info"><strong>${escapeHtml(headline)}</strong><small>${detail}</small></span>
+    <span class="supreme-value ${withdrawn ? "muted" : ""}">${value}</span>
+  </article>`;
 }
 
 function renderSupremeFinal(analysis) {
   const active = [...state.final.supreme.results].sort((a, b) => b.finalRate - a.finalRate);
-  const withdrawn = state.final.supreme.withdrawn.map((item) => {
-    const candidate = candidateById("supreme", item.id);
-    return { ...item, candidate, domesticVotes: analysis.supremeDomestic[item.id] || 0 };
-  });
+  const elected = active.filter((row) => row.elected).slice(0, 5);
+  const remainder = active.filter((row) => !row.elected);
+  const withdrawn = state.final.supreme.withdrawn.map((item) => ({
+    ...item,
+    candidate: candidateById("supreme", item.id),
+    domesticVotes: analysis.supremeDomestic[item.id] || 0
+  }));
 
-  const activeRows = active.map((row, index) => {
+  const featured = elected.map(supremeFeaturedCard).join("");
+  const compactActive = remainder.map((row) => {
     const candidate = candidateById("supreme", row.id);
-    return `<article class="supreme-row final ${index === 4 ? "cutline" : ""}" style="--candidate-color:${candidateColor(candidate)}">
-      <span class="supreme-rank">${index + 1}</span>
-      ${candidateAvatar(candidate, "supreme-avatar")}
-      <span class="supreme-info"><strong>${escapeHtml(candidate.name)}${row.elected ? " · 당선" : ""}</strong><span class="supreme-mini-track"><span class="supreme-mini-fill" style="width:${Math.min(100, row.finalRate / 20 * 100)}%"></span></span><small>권리 ${formatPercent(row.rightsRate)} · 대의원 ${formatPercent(row.delegateRate)} · 여론 ${formatPercent(row.publicPollRate)}</small></span>
-      <span class="supreme-value">${formatPercent(row.finalRate)}<small>최종</small></span>
-    </article>`;
+    return supremeCompactRow({
+      candidate,
+      rankLabel: "6",
+      headline: candidate.name,
+      detail: `권리 ${formatPercent(row.rightsRate)} · 대의원 ${formatPercent(row.delegateRate)} · 여론 ${formatPercent(row.publicPollRate)}`,
+      value: formatPercent(row.finalRate)
+    });
   }).join("");
+  const compactWithdrawn = withdrawn.map((row) => supremeCompactRow({
+    candidate: row.candidate,
+    rankLabel: "—",
+    headline: `${row.candidate.name} · 8/16 사퇴`,
+    detail: `국내 16개 지역 사퇴 전 원득표 ${formatNumber(row.domesticVotes)}표`,
+    value: "사퇴",
+    withdrawn: true
+  })).join("");
 
-  const withdrawnRows = withdrawn.map((row) => `<article class="supreme-row withdrawn" style="--candidate-color:${candidateColor(row.candidate)}">
-    <span class="supreme-rank">—</span>
-    ${candidateAvatar(row.candidate, "supreme-avatar")}
-    <span class="supreme-info"><strong>${escapeHtml(row.candidate.name)} · 8/16 사퇴</strong><span class="supreme-mini-track"><span class="supreme-mini-fill" style="width:${Math.min(100, row.domesticVotes / 260000 * 100)}%"></span></span><small>국내 16개 지역 사퇴 전 원득표 ${formatNumber(row.domesticVotes)}표</small></span>
-    <span class="supreme-value muted">사퇴<small>최종표 제외</small></span>
-  </article>`).join("");
+  if (els.supremeIntro) {
+    els.supremeIntro.textContent = "8월 16일 사퇴한 김영호·임미애 후보의 지역별 사퇴 전 득표는 아래 원자료에 함께 남겨 두었습니다.";
+  }
 
-  els.supremeFinal.innerHTML = `<div class="supreme-ranking">${activeRows}${withdrawnRows}</div>`;
+  els.supremeFinal.innerHTML = `
+    <div class="supreme-featured-grid">${featured}</div>
+    <div class="supreme-cutline-divider"><span>5위까지 당선</span></div>
+    <div class="supreme-rest-list">${compactActive}${compactWithdrawn}</div>`;
 
   els.supremeWithdrawal.innerHTML = `
-    <div class="deep-dive-heading"><span class="status-chip derived">보조 분석</span><h3>사퇴 후보 득표는 지역 원자료에 남겨 둡니다</h3></div>
-    <p>최고위원은 1인 2표입니다. 최종 결과표에 남은 6명의 권리당원 득표와 국내 16개 지역의 8명 원자료를 맞춰보면, 사퇴 후보 두 명에게 행사된 미공개 구간의 표가 합계 <strong>${formatNumber(analysis.overseasWithdrawnCombined)}표</strong>로 계산됩니다. 후보별 배분은 복원할 수 없으므로 화면에서는 이 값만 작은 보조 설명으로 남깁니다.</p>`;
+    <div class="support-note compact">
+      <span class="status-chip derived">보조 분석</span>
+      <p>사퇴 후보 2명에게 행사된 미공개 구간의 표는 합계 <strong>${formatNumber(analysis.overseasWithdrawnCombined)}표</strong>로 계산됩니다. 후보별 배분은 공개 자료만으로 복원할 수 없습니다.</p>
+    </div>`;
 }
 
 function renderRegional() {
@@ -312,26 +353,32 @@ function renderRegional() {
   const grand = Object.values(totals).reduce((a, b) => a + b, 0);
 
   els.regionalIntro.textContent = contest === "leader"
-    ? "각 지역 공지에서 공개된 권리당원 당대표 1순위 득표입니다. 최종 선호투표 결과와는 별도 지표입니다."
-    : "최고위원 1인 2표 원득표입니다. 김영호·임미애 후보의 사퇴 전 지역별 득표도 원자료로 보존합니다.";
+    ? ""
+    : "";
 
-  const sortedTotals = [...candidates.values()].map((candidate) => ({ ...candidate, votes: totals[candidate.id] || 0 })).sort((a, b) => b.votes - a.votes);
+  const withdrawnSet = new Set((state.final.supreme.withdrawn || []).map((item) => item.id));
+  const sortedTotals = [...candidates.values()]
+    .map((candidate) => ({ ...candidate, votes: totals[candidate.id] || 0 }))
+    .sort((a, b) => b.votes - a.votes);
+
   els.regionalSummary.innerHTML = sortedTotals.map((row) => {
     const percent = grand ? row.votes / grand * 100 : 0;
-    const withdrawn = state.final.supreme.withdrawn.some((item) => item.id === row.id);
+    const withdrawn = withdrawnSet.has(row.id);
     return `<div class="regional-total-chip ${withdrawn ? "withdrawn" : ""}" style="--candidate-color:${candidateColor(row)}"><span>${escapeHtml(row.name)}${withdrawn ? " · 사퇴" : ""}</span><strong>${formatNumber(row.votes)}표</strong><small>${formatPercent(percent)}</small></div>`;
   }).join("");
 
   els.regionList.innerHTML = units.map((unit) => {
     const votes = unit[key] || {};
     const denominator = contest === "leader" ? Number(unit.voterCount) : Number(unit.voterCount) * 2;
-    const ranking = [...candidates.values()].map((candidate) => ({ ...candidate, votes: Number(votes[candidate.id]) || 0 })).sort((a, b) => b.votes - a.votes);
+    const ranking = [...candidates.values()]
+      .map((candidate) => ({ ...candidate, votes: Number(votes[candidate.id]) || 0 }))
+      .sort((a, b) => b.votes - a.votes);
     const top = ranking[0];
     const expanded = state.expandedRegion === unit.id;
     const detail = expanded ? `<div class="region-detail-list">${ranking.map((row) => {
-      const withdrawn = state.final.supreme.withdrawn.some((item) => item.id === row.id);
+      const withdrawn = withdrawnSet.has(row.id);
       const pct = denominator ? row.votes / denominator * 100 : 0;
-      return `<div class="region-detail-row ${withdrawn ? "withdrawn" : ""}" style="--candidate-color:${candidateColor(row)}"><span><i></i>${escapeHtml(row.name)}${withdrawn ? " <small>사퇴</small>" : ""}</span><strong>${formatNumber(row.votes)}표</strong><em>${formatPercent(pct)}</em></div>`;
+      return `<div class="region-detail-row ${withdrawn ? "withdrawn" : ""}" style="--candidate-color:${candidateColor(row)}"><span class="region-detail-name"><i></i><b>${escapeHtml(row.name)}</b>${withdrawn ? " <small>사퇴</small>" : ""}</span><strong>${formatNumber(row.votes)}표</strong><em>${formatPercent(pct)}</em></div>`;
     }).join("")}</div>` : "";
     return `<article class="region-card ${expanded ? "expanded" : ""}">
       <button type="button" class="region-card-button" data-region-id="${escapeHtml(unit.id)}" aria-expanded="${expanded}">
@@ -357,7 +404,7 @@ function renderMethod(analysis) {
     <article><span class="status-chip official">공식</span><h3>그대로 인용</h3><p>최종 득표율, 전국대의원·권리당원 득표수와 투표율, 16개 지역별 원득표.</p></article>
     <article><span class="status-chip derived">역산</span><h3>보조적으로 산출</h3><p>전체 수치와 지역 공지 합계의 차이 등, 공개 숫자끼리의 산술적 차이만 사용합니다.</p></article>
     <article><span class="status-chip limited">비공개</span><h3>숫자를 만들지 않음</h3><p>전국 선호투표 전 3인 합산, 전국대의원·여론조사의 송영길 1순위 등.</p></article>`;
-  els.methodNote.innerHTML = `<strong>계산 원칙</strong><p>미공개 변수가 있어 하나의 값으로 결정되지 않는 항목은 범위로 표시하거나 ‘복원 불가’로 남깁니다. 전체−국내 차이로 얻은 선거인단 ${formatNumber(analysis.overseasEligible)}명·투표자 ${formatNumber(analysis.overseasVoters)}명은 분석 보조값이며 메인 결과로 취급하지 않습니다. 전략지역 5% 가중치는 대구·경북·경남에 적용됩니다.</p>`;
+  els.methodNote.innerHTML = `<strong>계산 원칙</strong><p>미공개 변수가 있어 하나의 값으로 결정되지 않는 항목은 범위가 아니라 ‘복원 불가’로 남겼습니다. 전체−국내 차이로 얻은 선거인단 ${formatNumber(analysis.overseasEligible)}명·투표자 ${formatNumber(analysis.overseasVoters)}명은 보조 설명이며, 전략지역 5% 가중치는 대구·경북·경남에 적용됩니다.</p>`;
 }
 
 function renderSources() {
