@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#172a88">
   <meta property="og:type" content="website">
   <meta property="og:title" content="2026 전당대회 결과 분석 | 분당민주크루">
-  <meta property="og:description" content="당대표·최고위원 최종 결과, 권리당원 16개 지역 원자료, 선호투표·재외국민 역산 분석을 한 화면에서 확인하세요.">
+  <meta property="og:description" content="당대표·최고위원 최종 결과, 권리당원 16개 지역 원자료, 선호투표 흐름을 한 화면에서 확인하세요.">
   <meta property="og:image" content="./assets/images/profile.png">
   <link rel="icon" href="./assets/images/favicon.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="./assets/images/apple-touch-icon.png" sizes="180x180">
@@ -23,8 +23,8 @@
       <a class="back-link" href="./index.html" id="back-link" aria-label="메인 페이지로 돌아가기">
         <span aria-hidden="true">←</span><span>돌아가기</span>
       </a>
-      <p class="eyebrow">Bundang Minjoo Crew · Data Archive</p>
-      <h1 id="document-title">2026 전당대회 결과 분석</h1>
+      <p class="eyebrow">Bundang Minjoo Crew</p>
+      <h1 id="document-title">2026 전당대회</h1>
       <p class="document-meta" id="document-meta" aria-live="polite">최종 결과 데이터를 불러오고 있습니다.</p>
     </div>
   </header>
@@ -34,49 +34,51 @@
       <div class="viewer-status" id="convention-status" role="status" aria-live="polite">전당대회 데이터를 불러오는 중입니다.</div>
 
       <div id="convention-app" hidden>
-        <section class="final-hero" id="final-hero" aria-labelledby="final-title"></section>
+        <section class="convention-hero" id="final-hero" aria-labelledby="final-title"></section>
 
-        <nav class="section-jump analysis-jump" aria-label="결과 분석 바로가기">
-          <a href="#leader-final-section">당대표</a>
-          <a href="#analysis-section">핵심 분석</a>
+        <nav class="section-jump" aria-label="결과 분석 바로가기">
+          <a href="#leader-final-section">당대표 최종</a>
+          <a href="#analysis-section">선호투표 분석</a>
           <a href="#supreme-final-section">최고위원</a>
-          <a href="#regional-section">지역 원자료</a>
-          <a href="#method-section">해석 기준</a>
+          <a href="#regional-section">지역별 결과</a>
+          <a href="#source-section">출처</a>
         </nav>
 
         <section class="dashboard-section" id="leader-final-section">
           <div class="section-heading">
             <div>
-              <p class="section-kicker">Final Result · Party Leader</p>
+              <p class="section-kicker">Party Leader · Final</p>
               <h2>당대표 최종 결과</h2>
             </div>
             <span class="status-chip official">공식 최종</span>
           </div>
+          <p class="section-intro">선호투표 적용 후 최종 결과입니다. 후보별 고유 색상과 기존 카드 스타일을 그대로 유지합니다.</p>
           <div id="leader-final"></div>
         </section>
 
         <section class="dashboard-section analysis-section" id="analysis-section">
           <div class="section-heading">
             <div>
-              <p class="section-kicker">Data Analysis</p>
-              <h2>공개 데이터로 어디까지 읽을 수 있나</h2>
+              <p class="section-kicker">Preference Vote Analysis</p>
+              <h2>권리당원 1순위에서 최종 결과까지</h2>
             </div>
           </div>
+          <p class="section-intro">국내 16개 지역에서 공개된 1순위 원자료와 최종 권리당원 득표를 연결해 봅니다. 공개되지 않은 값은 별도 보조값으로만 사용합니다.</p>
           <div class="analysis-grid" id="analysis-grid"></div>
           <div class="analysis-deep-dive" id="leader-preference-analysis"></div>
-          <div class="analysis-deep-dive" id="supreme-withdrawal-analysis"></div>
         </section>
 
         <section class="dashboard-section" id="supreme-final-section">
           <div class="section-heading">
             <div>
-              <p class="section-kicker">Final Result · Supreme Council</p>
+              <p class="section-kicker">Supreme Council · Final</p>
               <h2>최고위원 최종 결과</h2>
             </div>
             <span class="status-chip official">공식 최종</span>
           </div>
-          <p class="section-intro">8월 16일 김영호·임미애 후보가 사퇴해 최종 결과표에는 6명의 후보만 집계되었습니다. 지역별 원자료에서는 사퇴 전 득표를 그대로 보존합니다.</p>
+          <p class="section-intro">8월 16일 김영호·임미애 후보가 사퇴했습니다. 최종 결과 6명과 사퇴 전 지역 득표를 같은 후보 색상 체계로 함께 보존합니다.</p>
           <div class="supreme-final-grid" id="supreme-final"></div>
+          <div class="analysis-deep-dive compact" id="supreme-withdrawal-analysis"></div>
         </section>
 
         <section class="dashboard-section" id="regional-section">
