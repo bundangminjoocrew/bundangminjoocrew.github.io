@@ -191,11 +191,12 @@ async function loadAll() {
     ['미확인', s.pending], ['O 확인', s.verified], ['X 확인', s.rejected], ['대기-1', s.wait1], ['대기-2', s.wait2]
   ].map((x) => '<div class="metric"><span class="muted">' + x[0] + '</span><b>' + x[1] + '</b></div>').join('');
 
-  const denominator = s.rosterSourceTotal || 0;
-  const pct = denominator ? Math.round(s.rosterReverified * 1000 / denominator) / 10 : 0;
+  // 재확인 진행률은 '원본 CSV 행 수'가 아니라 현재 활성 기존 참여자를 기준으로 계산한다.
+  const denominator = s.rosterActive || 0;
+  const pct = denominator ? Math.min(100, Math.round(s.rosterReverified * 1000 / denominator) / 10) : 0;
   $('#progressText').textContent = s.rosterReverified + ' / ' + denominator + '명 완료';
   $('#progressPct').textContent = pct + '%';
-  $('#progressBar').style.width = Math.min(100, pct) + '%';
+  $('#progressBar').style.width = pct + '%';
 
   $('#rosterSourceTotal').textContent = s.rosterSourceTotal;
   $('#rosterIdentified').textContent = s.rosterIdentified;
@@ -721,9 +722,18 @@ async function stats(request, env) {
     env.MEMBERS_DB.prepare("SELECT COUNT(*) n FROM admitted_members").first(),
   ]);
 
-  const sourceTotal = sourceStat.total || ((activeStat.active || 0) + (issuePending.n || 0));
-  const identified = sourceStat.total ? (sourceStat.identified || 0) : (activeStat.active || 0);
-  const pending = sourceStat.total ? (sourceStat.pending || 0) : (issuePending.n || 0);
+  // roster_import_entries는 CSV 전체를 다시 가져오기 전에도 개별 연결/수정 과정에서
+  // 일부 행만 생길 수 있다. 1행이라도 존재한다는 이유만으로 전체 원본 명부로 간주하면
+  // 45 / 1 = 4500% 같은 잘못된 진행률/통계가 발생한다.
+  const active = activeStat.active || 0;
+  const issueCount = issuePending.n || 0;
+  const fallbackTotal = active + issueCount;
+  const rawSourceTotal = sourceStat.total || 0;
+  const sourceIsComplete = rawSourceTotal >= fallbackTotal && rawSourceTotal > 0;
+
+  const sourceTotal = sourceIsComplete ? rawSourceTotal : fallbackTotal;
+  const identified = sourceIsComplete ? (sourceStat.identified || 0) : active;
+  const pending = sourceIsComplete ? (sourceStat.pending || 0) : issueCount;
 
   return json({
     pending: a.n || 0,
