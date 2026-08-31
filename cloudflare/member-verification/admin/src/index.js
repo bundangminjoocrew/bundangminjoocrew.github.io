@@ -57,10 +57,10 @@ function page() {
     <div style="display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap"><div><b>기존 참여자 재확인</b><div class="muted" id="progressText"></div></div><b id="progressPct">0%</b></div>
     <div class="progress" style="margin-top:12px"><i id="progressBar" style="width:0%"></i></div>
     <div class="rosterStats">
-      <div class="rosterStat"><span class="muted">원본 명부</span><b id="rosterSourceTotal">0</b></div>
-      <div class="rosterStat"><span class="muted">식별·연결 완료</span><b id="rosterIdentified">0</b></div>
-      <div class="rosterStat"><span class="muted">확인 필요</span><b id="rosterPending">0</b></div>
-      <div class="rosterStat"><span class="muted">활성 인물</span><b id="rosterActive">0</b></div>
+      <div class="rosterStat"><span class="muted">현재 참여 인원</span><b id="currentMemberTotal">0</b></div>
+      <div class="rosterStat"><span class="muted">기존 식별 완료</span><b id="existingIdentified">0</b></div>
+      <div class="rosterStat"><span class="muted">기존 식별 필요</span><b id="existingPending">0</b></div>
+      <div class="rosterStat"><span class="muted">신규 입장 완료</span><b id="newAdmitted">0</b></div>
     </div>
   </section>
 
@@ -191,17 +191,17 @@ async function loadAll() {
     ['미확인', s.pending], ['O 확인', s.verified], ['X 확인', s.rejected], ['대기-1', s.wait1], ['대기-2', s.wait2]
   ].map((x) => '<div class="metric"><span class="muted">' + x[0] + '</span><b>' + x[1] + '</b></div>').join('');
 
-  // 재확인 진행률은 '원본 CSV 행 수'가 아니라 현재 활성 기존 참여자를 기준으로 계산한다.
-  const denominator = s.rosterActive || 0;
+  // 재확인 대상 = 식별 완료된 기존 참여자 + 아직 식별하지 못한 기존 참여자.
+  const denominator = s.existingTargetTotal || 0;
   const pct = denominator ? Math.min(100, Math.round(s.rosterReverified * 1000 / denominator) / 10) : 0;
   $('#progressText').textContent = s.rosterReverified + ' / ' + denominator + '명 완료';
   $('#progressPct').textContent = pct + '%';
   $('#progressBar').style.width = pct + '%';
 
-  $('#rosterSourceTotal').textContent = s.rosterSourceTotal;
-  $('#rosterIdentified').textContent = s.rosterIdentified;
-  $('#rosterPending').textContent = s.rosterPending;
-  $('#rosterActive').textContent = s.rosterActive;
+  $('#currentMemberTotal').textContent = s.currentMemberTotal;
+  $('#existingIdentified').textContent = s.existingIdentified;
+  $('#existingPending').textContent = s.existingPending;
+  $('#newAdmitted').textContent = s.newAdmitted;
 
   $('#wait1Count').textContent = w1.items.length;
   $('#wait2Count').textContent = w2.items.length;
@@ -709,46 +709,40 @@ async function listSubmissions(url, env) {
 }
 
 async function stats(request, env) {
-  const [a, b, c, d, activeStat, issuePending, sourceStat, f, g, h] = await Promise.all([
+  const [a, b, c, d, activeStat, issuePending, f, g, h] = await Promise.all([
     env.DB.prepare("SELECT COUNT(*) n FROM submissions WHERE review_status='pending'").first(),
     env.DB.prepare("SELECT COUNT(*) n FROM submissions WHERE review_status='verified'").first(),
     env.DB.prepare("SELECT COUNT(*) n FROM submissions WHERE review_status='rejected'").first(),
     env.DB.prepare("SELECT COUNT(*) n FROM submissions WHERE proof_key IS NOT NULL").first(),
     env.MEMBERS_DB.prepare("SELECT SUM(CASE WHEN active=1 THEN 1 ELSE 0 END) active, SUM(CASE WHEN active=1 AND reverified_at IS NOT NULL THEN 1 ELSE 0 END) done, SUM(CASE WHEN active=0 THEN 1 ELSE 0 END) inactive FROM existing_members").first(),
     env.MEMBERS_DB.prepare("SELECT COUNT(*) n FROM roster_import_issues WHERE status='pending'").first(),
-    env.MEMBERS_DB.prepare("SELECT COUNT(*) total, SUM(CASE WHEN status='identified' THEN 1 ELSE 0 END) identified, SUM(CASE WHEN status='pending' THEN 1 ELSE 0 END) pending FROM roster_import_entries").first(),
     env.DB.prepare("SELECT COUNT(*) n FROM submissions WHERE request_type='new' AND review_status='verified' AND onboarding_stage='wait1'").first(),
     env.DB.prepare("SELECT COUNT(*) n FROM submissions WHERE request_type='new' AND review_status='verified' AND onboarding_stage='wait2'").first(),
     env.MEMBERS_DB.prepare("SELECT COUNT(*) n FROM admitted_members").first(),
   ]);
 
-  // roster_import_entries는 CSV 전체를 다시 가져오기 전에도 개별 연결/수정 과정에서
-  // 일부 행만 생길 수 있다. 1행이라도 존재한다는 이유만으로 전체 원본 명부로 간주하면
-  // 45 / 1 = 4500% 같은 잘못된 진행률/통계가 발생한다.
+  // 실시간 운영 통계는 현재 관리 상태를 기준으로 계산한다.
   const active = activeStat.active || 0;
   const issueCount = issuePending.n || 0;
-  const fallbackTotal = active + issueCount;
-  const rawSourceTotal = sourceStat.total || 0;
-  const sourceIsComplete = rawSourceTotal >= fallbackTotal && rawSourceTotal > 0;
-
-  const sourceTotal = sourceIsComplete ? rawSourceTotal : fallbackTotal;
-  const identified = sourceIsComplete ? (sourceStat.identified || 0) : active;
-  const pending = sourceIsComplete ? (sourceStat.pending || 0) : issueCount;
+  const admitted = h.n || 0;
+  const existingTargetTotal = active + issueCount;
+  const currentMemberTotal = existingTargetTotal + admitted;
 
   return json({
     pending: a.n || 0,
     verified: b.n || 0,
     rejected: c.n || 0,
     proofsRemaining: d.n || 0,
-    rosterSourceTotal: sourceTotal,
-    rosterIdentified: identified,
-    rosterPending: pending,
-    rosterActive: activeStat.active || 0,
+    currentMemberTotal,
+    existingIdentified: active,
+    existingPending: issueCount,
+    existingTargetTotal,
+    rosterActive: active,
     rosterInactive: activeStat.inactive || 0,
     rosterReverified: activeStat.done || 0,
     wait1: f.n || 0,
     wait2: g.n || 0,
-    newAdmitted: h.n || 0,
+    newAdmitted: admitted,
     reviewer: reviewer(request),
   });
 }
