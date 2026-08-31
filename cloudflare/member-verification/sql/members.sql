@@ -8,7 +8,10 @@ CREATE TABLE IF NOT EXISTS existing_members (
   active INTEGER NOT NULL DEFAULT 1,
   imported_at TEXT NOT NULL,
   reverified_at TEXT,
-  reverified_submission_id TEXT
+  reverified_submission_id TEXT,
+  left_at TEXT,
+  left_by TEXT,
+  left_reason TEXT
 );
 CREATE INDEX IF NOT EXISTS idx_existing_members_active ON existing_members(active);
 CREATE INDEX IF NOT EXISTS idx_existing_members_reverified ON existing_members(reverified_at);
@@ -20,7 +23,11 @@ CREATE TABLE IF NOT EXISTS admitted_members (
   name TEXT NOT NULL,
   district TEXT NOT NULL,
   admitted_at TEXT NOT NULL,
-  admitted_by TEXT NOT NULL
+  admitted_by TEXT NOT NULL,
+  active INTEGER NOT NULL DEFAULT 1,
+  left_at TEXT,
+  left_by TEXT,
+  left_reason TEXT
 );
 CREATE INDEX IF NOT EXISTS idx_admitted_members_date ON admitted_members(admitted_at DESC);
 
@@ -32,7 +39,11 @@ CREATE TABLE IF NOT EXISTS roster_import_issues (
   created_at TEXT NOT NULL,
   resolved_at TEXT,
   resolved_by TEXT,
-  resolved_member_id TEXT
+  resolved_member_id TEXT,
+  active INTEGER NOT NULL DEFAULT 1,
+  left_at TEXT,
+  left_by TEXT,
+  left_reason TEXT
 );
 CREATE INDEX IF NOT EXISTS idx_roster_import_issues_status ON roster_import_issues(status, created_at);
 
@@ -60,3 +71,23 @@ CREATE TABLE IF NOT EXISTS roster_import_entries (
 );
 CREATE INDEX IF NOT EXISTS idx_roster_import_entries_status ON roster_import_entries(status);
 CREATE INDEX IF NOT EXISTS idx_roster_import_entries_member ON roster_import_entries(member_id);
+
+CREATE TABLE IF NOT EXISTS admin_settings (
+  key TEXT PRIMARY KEY,
+  value TEXT,
+  updated_at TEXT NOT NULL,
+  updated_by TEXT
+);
+
+CREATE TABLE IF NOT EXISTS admin_events (
+  id TEXT PRIMARY KEY,
+  action TEXT NOT NULL,
+  target_type TEXT NOT NULL,
+  target_id TEXT,
+  detail TEXT,
+  created_at TEXT NOT NULL,
+  created_by TEXT
+);
+CREATE INDEX IF NOT EXISTS idx_admin_events_date ON admin_events(created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_admitted_members_active ON admitted_members(active, admitted_at DESC);
+CREATE INDEX IF NOT EXISTS idx_roster_import_issues_active ON roster_import_issues(status, active, created_at);

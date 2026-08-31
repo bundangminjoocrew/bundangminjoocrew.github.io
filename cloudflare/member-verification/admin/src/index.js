@@ -43,14 +43,14 @@ function reviewer(request) {
 
 const CSS = `
 :root{--bg:#f6f7f9;--card:#fff;--ink:#17191d;--muted:#737984;--line:#e6e8ec;--blue:#1f5eff;--blue2:#eaf0ff;--ok:#137a43;--bad:#b42318;--amber:#8a5a00;--shadow:0 10px 30px rgba(18,24,40,.06)}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,Pretendard,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}main{max-width:1280px;margin:0 auto;padding:36px 20px 80px}.eyebrow{font-size:13px;font-weight:800;color:var(--blue);letter-spacing:.04em}.top{display:flex;justify-content:space-between;gap:20px;align-items:flex-end;margin:8px 0 20px}.top h1{font-size:30px;margin:0}.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.metric,.card{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow)}.metric{padding:18px}.metric b{display:block;font-size:28px;margin-top:6px}.card{margin-top:16px;padding:18px}.progress{height:10px;background:#edf0f4;border-radius:999px;overflow:hidden}.progress>i{display:block;height:100%;background:var(--blue)}table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;padding:12px 8px;border-bottom:1px solid var(--line);vertical-align:middle}th{color:var(--muted);font-size:12px;white-space:nowrap}.pill{display:inline-block;padding:5px 9px;border-radius:999px;font-size:12px;font-weight:750;background:#eef0f3}.pill.pending{background:#fff4dc;color:#805b00}.pill.verified{background:#e8f7ef;color:var(--ok)}.pill.rejected{background:#ffefed;color:var(--bad)}.pill.wait1,.pill.wait2{background:#eef3ff;color:#2456c7}.pill.admitted{background:#e8f7ef;color:var(--ok)}button,.btn{border:0;border-radius:10px;padding:9px 12px;font-weight:800;cursor:pointer;text-decoration:none;display:inline-block;font:inherit}.ok{background:#e8f7ef;color:var(--ok)}.bad{background:#ffefed;color:var(--bad)}.view{background:var(--blue2);color:var(--blue)}.secondary{background:#f1f2f4;color:#333}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;align-items:center}.danger-note{font-size:12px;color:var(--muted)}dialog{border:0;border-radius:18px;max-width:min(920px,94vw);width:100%;padding:0;box-shadow:0 30px 90px rgba(0,0,0,.25)}dialog::backdrop{background:rgba(0,0,0,.45)}.dlg{padding:18px}.proof{width:100%;max-height:70vh;object-fit:contain;background:#111;border-radius:12px}.import{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0}.tabs button{background:#e9ebef;color:#4d535c}.tabs button.active{background:var(--ink);color:#fff}.sectionHead{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:12px}.sectionHead h2{font-size:18px;margin:0}.hidden{display:none!important}.flow{font-size:13px;color:var(--muted);margin-top:6px}.countBadge{font-size:12px;background:#eef0f3;border-radius:999px;padding:4px 8px;margin-left:6px}.subgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}.box{border:1px solid var(--line);border-radius:14px;padding:16px;background:#fbfcfd}.box h3{margin:0 0 6px;font-size:16px}.formrow{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field{display:flex;flex-direction:column;gap:6px;margin-top:10px}.field label{font-size:12px;font-weight:800;color:#555}.field input,.field select,.toolbar input{border:1px solid var(--line);border-radius:10px;padding:10px 11px;font:inherit;background:#fff}.issue{border-top:1px solid var(--line);padding:14px 0}.issue:first-child{border-top:0}.issueRaw{font-weight:800;word-break:break-all}.issueForm{display:grid;grid-template-columns:1fr 1fr auto auto;gap:8px;align-items:end;margin-top:8px}.summary{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.summary span{background:#f1f3f6;border-radius:999px;padding:7px 10px;font-size:13px;font-weight:750}.summary .warn{background:#fff4dc;color:#805b00}.summary .oksum{background:#e8f7ef;color:var(--ok)}.successText{color:var(--ok);font-weight:800}.errorText{color:var(--bad);font-weight:800}.rosterStats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}.rosterStat{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff}.rosterStat b{display:block;font-size:22px;margin-top:4px}.memberList{max-height:360px;overflow:auto;border:1px solid var(--line);border-radius:12px}.memberPick{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:10px 12px;border-bottom:1px solid var(--line)}.memberPick:last-child{border-bottom:0}.aliasText{font-size:12px;color:var(--muted);margin-top:3px}.actions{display:flex;gap:6px;flex-wrap:wrap}.compact{padding:6px 9px;font-size:12px}
-@media(max-width:900px){.grid{grid-template-columns:1fr 1fr}.top{align-items:flex-start;flex-direction:column}.card{overflow:auto}.subgrid{grid-template-columns:1fr}.issueForm,.formrow{grid-template-columns:1fr}.rosterStats{grid-template-columns:1fr 1fr}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,Pretendard,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}main{max-width:1280px;margin:0 auto;padding:36px 20px 80px}.eyebrow{font-size:13px;font-weight:800;color:var(--blue);letter-spacing:.04em}.top{display:flex;justify-content:space-between;gap:20px;align-items:flex-end;margin:8px 0 20px}.top h1{font-size:30px;margin:0}.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.metric,.card{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow)}.metric{padding:18px}.metric b{display:block;font-size:28px;margin-top:6px}.card{margin-top:16px;padding:18px}.progress{height:10px;background:#edf0f4;border-radius:999px;overflow:hidden}.progress>i{display:block;height:100%;background:var(--blue)}table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;padding:12px 8px;border-bottom:1px solid var(--line);vertical-align:middle}th{color:var(--muted);font-size:12px;white-space:nowrap}.pill{display:inline-block;padding:5px 9px;border-radius:999px;font-size:12px;font-weight:750;background:#eef0f3}.pill.pending{background:#fff4dc;color:#805b00}.pill.verified{background:#e8f7ef;color:var(--ok)}.pill.rejected{background:#ffefed;color:var(--bad)}.pill.wait1,.pill.wait2{background:#eef3ff;color:#2456c7}.pill.admitted{background:#e8f7ef;color:var(--ok)}button,.btn{border:0;border-radius:10px;padding:9px 12px;font-weight:800;cursor:pointer;text-decoration:none;display:inline-block;font:inherit}.ok{background:#e8f7ef;color:var(--ok)}.bad{background:#ffefed;color:var(--bad)}.view{background:var(--blue2);color:var(--blue)}.secondary{background:#f1f2f4;color:#333}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;align-items:center}.danger-note{font-size:12px;color:var(--muted)}dialog{border:0;border-radius:18px;max-width:min(920px,94vw);width:100%;padding:0;box-shadow:0 30px 90px rgba(0,0,0,.25)}dialog::backdrop{background:rgba(0,0,0,.45)}.dlg{padding:18px}.proof{width:100%;max-height:70vh;object-fit:contain;background:#111;border-radius:12px}.import{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0}.tabs button{background:#e9ebef;color:#4d535c}.tabs button.active{background:var(--ink);color:#fff}.sectionHead{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:12px}.sectionHead h2{font-size:18px;margin:0}.hidden{display:none!important}.flow{font-size:13px;color:var(--muted);margin-top:6px}.countBadge{font-size:12px;background:#eef0f3;border-radius:999px;padding:4px 8px;margin-left:6px}.subgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}.box{border:1px solid var(--line);border-radius:14px;padding:16px;background:#fbfcfd}.box h3{margin:0 0 6px;font-size:16px}.formrow{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field{display:flex;flex-direction:column;gap:6px;margin-top:10px}.field label{font-size:12px;font-weight:800;color:#555}.field input,.field select,.toolbar input{border:1px solid var(--line);border-radius:10px;padding:10px 11px;font:inherit;background:#fff}.issue{border-top:1px solid var(--line);padding:14px 0}.issue:first-child{border-top:0}.issueRaw{font-weight:800;word-break:break-all}.issueForm{display:grid;grid-template-columns:1fr 1fr auto auto;gap:8px;align-items:end;margin-top:8px}.summary{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.summary span{background:#f1f3f6;border-radius:999px;padding:7px 10px;font-size:13px;font-weight:750}.summary .warn{background:#fff4dc;color:#805b00}.summary .oksum{background:#e8f7ef;color:var(--ok)}.successText{color:var(--ok);font-weight:800}.errorText{color:var(--bad);font-weight:800}.rosterStats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}.rosterStat{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff}.rosterStat b{display:block;font-size:22px;margin-top:4px}.memberList{max-height:360px;overflow:auto;border:1px solid var(--line);border-radius:12px}.memberPick{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:10px 12px;border-bottom:1px solid var(--line)}.memberPick:last-child{border-bottom:0}.aliasText{font-size:12px;color:var(--muted);margin-top:3px}.actions{display:flex;gap:6px;flex-wrap:wrap}.compact{padding:6px 9px;font-size:12px}.opsGrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}.opsGrid .card{margin-top:16px}.roomLine{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:end;margin-top:14px}.roomLine input{width:120px;border:1px solid var(--line);border-radius:10px;padding:10px 11px;font:inherit}.reconcile{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px}.reconcile b{font-size:22px}.goodBox{background:#eefaf3;border-color:#ccebd8}.warnBox{background:#fff8e8;border-color:#f2dfaa}.taskList{display:grid;gap:8px;margin-top:12px}.taskItem{display:flex;justify-content:space-between;gap:12px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:#fff}.peopleToolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.peopleToolbar input{min-width:280px;flex:1;border:1px solid var(--line);border-radius:10px;padding:10px 11px;font:inherit}.peopleToolbar select{border:1px solid var(--line);border-radius:10px;padding:10px 11px;background:#fff;font:inherit}.stateDot{display:inline-block;width:8px;height:8px;border-radius:999px;background:#98a2b3;margin-right:6px}.stateDot.current{background:#12b76a}.stateDot.waiting{background:#2e63d4}.stateDot.problem{background:#f79009}.stateDot.left{background:#d92d20}.rowWarn{background:#fffaf0}.miniNote{font-size:12px;color:var(--muted);margin-top:3px}.danger{background:#fff0ee;color:var(--bad)}
+@media(max-width:900px){.grid{grid-template-columns:1fr 1fr}.top{align-items:flex-start;flex-direction:column}.card{overflow:auto}.subgrid,.opsGrid{grid-template-columns:1fr}.issueForm,.formrow{grid-template-columns:1fr}.rosterStats{grid-template-columns:1fr 1fr}.roomLine{grid-template-columns:1fr auto}.roomLine .roomHint{grid-column:1/-1}.peopleToolbar input{min-width:180px}}
 `;
 
 function page() {
   return `<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>분민크 인증 관리</title><style>${CSS}</style><script defer src="/admin.js"></script></head><body><main>
   <div class="eyebrow">분민크 · MEMBER VERIFICATION</div>
-  <div class="top"><div><h1>당원 인증 및 입장 관리</h1><div class="muted">O 확인 즉시 인증 원본 삭제 · 신규 참여자는 입장 대기-1 → 대기-2 → 입장 명부 순으로 관리합니다.</div></div><div id="who" class="muted"></div></div>
+  <div class="top"><div><h1>분민크 관리센터</h1><div class="muted">인증·입장·재확인·퇴장·중복 정리를 한 화면에서 처리합니다.</div></div><div id="who" class="muted"></div></div>
   <section class="grid" id="metrics"></section>
 
   <section class="card">
@@ -64,14 +64,51 @@ function page() {
     </div>
   </section>
 
+  <section class="opsGrid">
+    <div class="card" id="roomCard">
+      <div class="sectionHead"><div><h2>방 인원 대조</h2><div class="flow">카카오톡에서 보이는 실제 참여 인원을 입력해두면 DB 예상 인원과 바로 비교합니다.</div></div></div>
+      <div class="roomLine">
+        <div class="field" style="margin:0"><label for="actualRoomCount">카카오 실제 인원</label><input id="actualRoomCount" type="number" min="0" step="1" placeholder="예: 115"></div>
+        <button class="view" id="saveRoomCount">저장</button>
+        <span class="roomHint muted" id="roomSavedAt"></span>
+      </div>
+      <div class="reconcile">
+        <div><span class="muted">DB 예상</span><br><b id="dbRoomCount">0</b></div>
+        <div><span class="muted">카카오 실제</span><br><b id="actualRoomCountText">-</b></div>
+        <div><span class="muted">차이</span><br><b id="roomDiff">-</b></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="sectionHead"><div><h2>처리할 일</h2><div class="flow">숫자가 있는 항목부터 확인하면 됩니다.</div></div></div>
+      <div id="taskList" class="taskList"></div>
+    </div>
+  </section>
+
   <div class="tabs">
-    <button data-tab="review" class="active">인증 검토</button>
+    <button data-tab="people" class="active">전체 참여자 <span class="countBadge" id="peopleCount">0</span></button>
+    <button data-tab="review">인증 검토</button>
     <button data-tab="wait1">입장 대기-1 <span class="countBadge" id="wait1Count">0</span></button>
     <button data-tab="wait2">입장 대기-2 <span class="countBadge" id="wait2Count">0</span></button>
     <button data-tab="members">입장 명부 <span class="countBadge" id="memberCount">0</span></button>
   </div>
 
-  <section class="card tabPanel" id="tab-review">
+  <section class="card tabPanel" id="tab-people">
+    <div class="sectionHead"><div><h2>전체 참여자 관리</h2><div class="flow">기존·신규·입장대기·미식별·퇴장자를 한 번에 검색하고 처리합니다.</div></div></div>
+    <div class="peopleToolbar">
+      <input id="peopleSearch" autocomplete="off" placeholder="이름 · 닉네임 · 거주동 · 별칭 검색">
+      <select id="peopleFilter">
+        <option value="all">전체</option>
+        <option value="current">현재 참여</option>
+        <option value="needs_reverify">재확인 필요</option>
+        <option value="waiting">신규 입장 대기</option>
+        <option value="problem">확인 필요 / 중복</option>
+        <option value="left">퇴장 / 제외</option>
+      </select>
+    </div>
+    <div id="peopleTable" style="margin-top:12px"></div>
+  </section>
+
+  <section class="card tabPanel hidden" id="tab-review">
     <div class="sectionHead"><div><h2>인증 검토</h2><div class="flow">자동 일치 실패 재확인은 기존 참여자와 직접 연결할 수 있습니다. 이미 O 처리된 건도 사후 연결하면 재확인 완료에 반영됩니다.</div></div></div>
     <div class="toolbar"><select id="status"><option value="all">전체 상태</option><option value="pending">미확인</option><option value="verified">O 확인</option><option value="rejected">X 확인</option></select><select id="type"><option value="all">전체 유형</option><option value="reverify">기존 참여자 재확인</option><option value="new">신규 참여</option></select><button class="view" id="refreshBtn">새로고침</button></div><div id="reviewTable"></div>
   </section>
@@ -92,7 +129,7 @@ function page() {
   </section>
 
   <section class="card">
-    <div class="sectionHead"><div><h2>기존 참여자 명부 관리</h2><div class="flow">표준 식별값은 <code>이름/거주동</code>입니다. 직책·후보자명·예전 닉네임은 별칭으로 별도 보존합니다.</div></div><span class="countBadge" id="issueCount">확인 필요 0</span></div>
+    <div class="sectionHead"><div><h2>기존 명부 고급 관리</h2><div class="flow">CSV 가져오기, 식별 연결, 표준 식별값과 별칭을 직접 관리할 때 사용합니다.</div></div><span class="countBadge" id="issueCount">확인 필요 0</span></div>
     <div class="box">
       <h3>CSV 가져오기</h3>
       <p class="muted">원본 CSV를 다시 가져오면 원본 명부 건수를 기록합니다. 정확한 <code>이름/거주동</code>만 자동 등록하며, 직책·별명 등 형식이 다른 항목은 확인 필요에 남깁니다.</p>
@@ -141,6 +178,7 @@ const $ = (s) => document.querySelector(s);
 let reviewRows = [];
 let rosterMembers = [];
 let editableNewRows = [];
+let peopleRows = [];
 let linkContext = null;
 
 async function api(path, opt) {
@@ -167,47 +205,72 @@ function stageName(s) { return ({ wait1: '대기-1', wait2: '대기-2', admitted
 
 async function loadAll() {
   const q = new URLSearchParams({ status: $('#status').value, type: $('#type').value });
-  const [s, l, w1, w2, m, issues, roster] = await Promise.all([
+  const [s, l, w1, w2, m, issues, roster, people] = await Promise.all([
     api('/api/stats'),
     api('/api/submissions?' + q),
     api('/api/onboarding?stage=wait1'),
     api('/api/onboarding?stage=wait2'),
     api('/api/members'),
     api('/api/roster/issues'),
-    api('/api/roster/members')
+    api('/api/roster/members'),
+    api('/api/people')
   ]);
 
   reviewRows = l.items || [];
   rosterMembers = roster.items || [];
+  peopleRows = people.items || [];
   const editableMap = new Map();
-  [...(w1.items || []), ...(w2.items || []), ...reviewRows].forEach((r) => {
+  [...(w1.items || []), ...(w2.items || []), ...reviewRows, ...peopleRows.filter((r) => r.kind === 'submission')].forEach((r) => {
     if (!r || !r.id) return;
     editableMap.set(r.id, { ...(editableMap.get(r.id) || {}), ...r });
   });
   editableNewRows = Array.from(editableMap.values());
 
   $('#who').textContent = s.reviewer;
+  const reverifyRemaining = Math.max(0, (s.existingTargetTotal || 0) - (s.rosterReverified || 0));
   $('#metrics').innerHTML = [
-    ['미확인', s.pending], ['O 확인', s.verified], ['X 확인', s.rejected], ['대기-1', s.wait1], ['대기-2', s.wait2]
+    ['현재 참여', s.currentMemberTotal], ['재확인 필요', reverifyRemaining], ['인증 미확인', s.pending], ['대기-1', s.wait1], ['대기-2', s.wait2]
   ].map((x) => '<div class="metric"><span class="muted">' + x[0] + '</span><b>' + x[1] + '</b></div>').join('');
 
-  // 재확인 대상 = 식별 완료된 기존 참여자 + 아직 식별하지 못한 기존 참여자.
   const denominator = s.existingTargetTotal || 0;
   const pct = denominator ? Math.min(100, Math.round(s.rosterReverified * 1000 / denominator) / 10) : 0;
   $('#progressText').textContent = s.rosterReverified + ' / ' + denominator + '명 완료';
   $('#progressPct').textContent = pct + '%';
   $('#progressBar').style.width = pct + '%';
-
   $('#currentMemberTotal').textContent = s.currentMemberTotal;
   $('#existingIdentified').textContent = s.existingIdentified;
   $('#existingPending').textContent = s.existingPending;
   $('#newAdmitted').textContent = s.newAdmitted;
 
+  $('#dbRoomCount').textContent = s.currentMemberTotal;
+  $('#actualRoomCountText').textContent = s.actualRoomCount == null ? '-' : s.actualRoomCount;
+  if (s.actualRoomCount != null && document.activeElement !== $('#actualRoomCount')) $('#actualRoomCount').value = s.actualRoomCount;
+  const diff = s.roomDifference;
+  $('#roomDiff').textContent = diff == null ? '-' : ((diff > 0 ? '+' : '') + diff);
+  $('#roomCard').classList.toggle('goodBox', diff === 0);
+  $('#roomCard').classList.toggle('warnBox', diff != null && diff !== 0);
+  $('#roomSavedAt').textContent = s.actualRoomUpdatedAt ? '마지막 갱신 ' + fmt(s.actualRoomUpdatedAt) : '';
+
+  const tasks = [
+    ['인증 미확인', s.pending, 'review'],
+    ['연락 전(대기-1)', s.wait1, 'wait1'],
+    ['7일 이상 대기-2', s.overdueWait2, 'wait2'],
+    ['중복 신청 의심', s.duplicateSuspects, 'people-problem'],
+    ['기존 식별 필요', s.existingPending, 'people-problem']
+  ];
+  if (diff != null && diff !== 0) tasks.push(['카카오↔DB 인원 차이', Math.abs(diff), 'people-current']);
+  $('#taskList').innerHTML = tasks.map((t) =>
+    '<div class="taskItem"><div><span class="muted">' + e(t[0]) + '</span><br><strong>' + t[1] + '건</strong></div>' +
+    '<button class="' + (t[1] ? 'view' : 'secondary') + ' compact" data-action="task-go" data-target="' + e(t[2]) + '">' + (t[1] ? '확인' : '없음') + '</button></div>'
+  ).join('');
+
   $('#wait1Count').textContent = w1.items.length;
   $('#wait2Count').textContent = w2.items.length;
   $('#memberCount').textContent = m.items.length;
+  $('#peopleCount').textContent = peopleRows.length;
   $('#issueCount').textContent = '확인 필요 ' + issues.items.length;
 
+  renderPeople();
   renderReview();
   renderWait1(w1.items);
   renderWait2(w2.items);
@@ -257,6 +320,63 @@ async function copyPhone(id) {
     ta.remove();
   }
   alert('전화번호를 복사했습니다.');
+}
+
+function renderPeople() {
+  const q = ($('#peopleSearch').value || '').trim().toLowerCase();
+  const filter = $('#peopleFilter').value || 'all';
+  const rows = peopleRows.filter((r) => {
+    const hay = [r.nickname, r.name, r.district, r.aliases, r.note].join(' ').toLowerCase();
+    if (q && !hay.includes(q)) return false;
+    if (filter === 'all') return true;
+    if (filter === 'current') return r.state === 'current';
+    if (filter === 'needs_reverify') return r.needs_reverify;
+    if (filter === 'waiting') return ['review', 'wait1', 'wait2'].includes(r.state);
+    if (filter === 'problem') return r.problem || r.duplicate;
+    if (filter === 'left') return ['left', 'voided'].includes(r.state);
+    return true;
+  });
+  if (!rows.length) { $('#peopleTable').innerHTML = '<p class="muted">조건에 맞는 참여자가 없습니다.</p>'; return; }
+
+  const stateLabel = (r) => {
+    if (r.state === 'current') return r.kind === 'existing' && r.reverified_at ? '참여중 · 재확인 완료' : '참여중';
+    if (r.state === 'review') return '인증 검토';
+    if (r.state === 'wait1') return '입장 대기-1';
+    if (r.state === 'wait2') return '입장 대기-2';
+    if (r.state === 'left') return '퇴장/제외';
+    if (r.state === 'voided') return '무효 신청';
+    if (r.state === 'problem') return '식별 필요';
+    return r.state || '-';
+  };
+  const kindLabel = (r) => ({ existing:'기존', issue:'기존(미식별)', submission:'신규 신청', admitted:'신규 입장' })[r.kind] || r.kind;
+  const actions = (r) => {
+    const id = e(r.target_id || r.id);
+    if (r.kind === 'existing') {
+      if (r.state === 'left') return '<button class="ok compact" data-action="restore-existing" data-id="' + id + '">복구</button>';
+      return '<button class="secondary compact" data-action="edit-member" data-id="' + id + '">수정</button> ' +
+        (r.reverified_at ? '<button class="secondary compact" data-action="reset-reverify" data-id="' + id + '">재확인 초기화</button> ' : '') +
+        '<button class="danger compact" data-action="leave-existing" data-id="' + id + '">퇴장 처리</button>';
+    }
+    if (r.kind === 'issue') {
+      if (r.state === 'left') return '<button class="ok compact" data-action="restore-issue" data-id="' + id + '">복구</button>';
+      return '<button class="view compact" data-action="link-issue" data-id="' + id + '">기존 참여자 연결</button> <button class="danger compact" data-action="leave-issue" data-id="' + id + '">퇴장/제외</button>';
+    }
+    if (r.kind === 'submission') {
+      if (r.state === 'voided') return '<span class="muted">이력 보존 중</span>';
+      if (r.state === 'review') return '<button class="view compact" data-action="task-go" data-target="review">인증 검토로</button> <button class="danger compact" data-action="void-submission" data-id="' + id + '">무효 처리</button>';
+      if (r.state === 'wait1') return '<button class="secondary compact" data-action="edit-submission" data-id="' + id + '">정보 수정</button> <button class="view compact" data-action="contacted" data-id="' + id + '">연락 완료</button> <button class="danger compact" data-action="void-submission" data-id="' + id + '">무효 처리</button>';
+      if (r.state === 'wait2') return '<button class="secondary compact" data-action="edit-submission" data-id="' + id + '">정보 수정</button> <button class="secondary compact" data-action="rollback-wait2" data-id="' + id + '">연락 전으로</button> <button class="ok compact" data-action="admit" data-id="' + id + '">입장 확인</button> <button class="danger compact" data-action="void-submission" data-id="' + id + '">중복/무효</button>';
+    }
+    if (r.kind === 'admitted') return r.state === 'left' ? '<button class="ok compact" data-action="restore-admitted" data-id="' + id + '">복구</button>' : '<button class="danger compact" data-action="leave-admitted" data-id="' + id + '">퇴장 처리</button>';
+    return '-';
+  };
+
+  $('#peopleTable').innerHTML = '<table><thead><tr><th>상태</th><th>구분</th><th>닉네임/이름</th><th>거주동</th><th>참고</th><th>관리</th></tr></thead><tbody>' +
+    rows.map((r) => {
+      const dot = r.state === 'current' ? 'current' : (['review','wait1','wait2'].includes(r.state) ? 'waiting' : (r.problem || r.duplicate ? 'problem' : 'left'));
+      const note = [r.reverified_at ? '재확인 ' + fmt(r.reverified_at) : '', r.duplicate ? '⚠ 중복 신청 의심' : '', r.left_at ? '퇴장 ' + fmt(r.left_at) : '', r.note || ''].filter(Boolean).join(' · ');
+      return '<tr class="' + (r.duplicate || r.problem ? 'rowWarn' : '') + '"><td><span class="stateDot ' + dot + '"></span>' + e(stateLabel(r)) + '</td><td>' + e(kindLabel(r)) + '</td><td><b>' + e(r.nickname || r.name || '-') + '</b>' + (r.aliases ? '<div class="miniNote">' + e(r.aliases) + '</div>' : '') + '</td><td>' + e(r.district || '-') + '</td><td>' + e(note || '-') + '</td><td><div class="actions">' + actions(r) + '</div></td></tr>';
+    }).join('') + '</tbody></table>';
 }
 
 function renderReview() {
@@ -467,7 +587,8 @@ function openLink(kind, id) {
     subtitle = r ? (r.chat_nickname + ' · ' + (r.review_status === 'verified' ? 'O 처리됨' : '미확인')) : '';
   } else {
     const issue = document.querySelector('[data-action="link-issue"][data-id="' + CSS.escape(id) + '"]');
-    subtitle = issue ? issue.closest('.issue').querySelector('.issueRaw').textContent : '';
+    const person = peopleRows.find((x) => x.kind === 'issue' && (x.target_id || x.id) === id);
+    subtitle = issue && issue.closest('.issue') ? issue.closest('.issue').querySelector('.issueRaw').textContent : (person ? person.nickname : '');
   }
   $('#linkSubtitle').textContent = subtitle;
   $('#linkSearch').value = subtitle.split('/')[0] || '';
@@ -572,6 +693,50 @@ async function saveSubmissionEdit(ev) {
   }
 }
 
+async function saveRoomCount() {
+  const raw = $('#actualRoomCount').value.trim();
+  if (!raw) { alert('카카오톡 실제 참여 인원을 입력해주세요.'); return; }
+  const count = Number(raw);
+  if (!Number.isInteger(count) || count < 0) { alert('0 이상의 정수를 입력해주세요.'); return; }
+  await api('/api/settings/room-count', { method:'POST', headers:{'content-type':'application/json'}, body:JSON.stringify({ count }) });
+  await loadAll();
+}
+async function leaveExisting(id) {
+  const row = peopleRows.find((x) => x.kind === 'existing' && x.target_id === id);
+  if (!confirm((row?.nickname || '이 참여자') + '를 퇴장 처리할까요? 데이터는 삭제하지 않습니다.')) return;
+  const reason = prompt('퇴장 사유 (선택)') || '';
+  await api('/api/roster/members/' + id + '/leave', { method:'POST', headers:{'content-type':'application/json'}, body:JSON.stringify({ reason }) });
+  await loadAll();
+}
+async function restoreExisting(id) { if (confirm('현재 참여 상태로 복구할까요?')) { await api('/api/roster/members/' + id + '/restore',{method:'POST'}); await loadAll(); } }
+async function resetReverify(id) { if (confirm('재확인 완료 표시를 초기화할까요? 기존 접수 이력은 보존됩니다.')) { await api('/api/roster/members/' + id + '/reset-reverify',{method:'POST'}); await loadAll(); } }
+async function leaveAdmitted(id) {
+  const row = peopleRows.find((x) => x.kind === 'admitted' && x.target_id === id);
+  if (!confirm((row?.nickname || '이 신규 입장자') + '를 퇴장 처리할까요?')) return;
+  const reason = prompt('퇴장 사유 (선택)') || '';
+  await api('/api/admitted/' + id + '/leave',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({reason})}); await loadAll();
+}
+async function restoreAdmitted(id) { if (confirm('현재 참여 상태로 복구할까요?')) { await api('/api/admitted/' + id + '/restore',{method:'POST'}); await loadAll(); } }
+async function leaveIssue(id) {
+  if (!confirm('이 미식별 기존 명부 항목을 퇴장/제외 처리할까요?')) return;
+  const reason = prompt('사유 (선택)') || '';
+  await api('/api/roster/issues/' + id + '/leave',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({reason})}); await loadAll();
+}
+async function restoreIssue(id) { if (confirm('다시 현재 참여 대상으로 복구할까요?')) { await api('/api/roster/issues/' + id + '/restore',{method:'POST'}); await loadAll(); } }
+async function voidSubmission(id) {
+  const row = peopleRows.find((x) => x.kind === 'submission' && (x.target_id || x.id) === id);
+  if (!confirm((row?.nickname || '이 신청') + '을 중복/무효 처리할까요? 행은 보존하고 남은 전화번호·인증원본은 삭제합니다.')) return;
+  const reason = prompt('사유를 입력하세요.', row?.duplicate ? '중복 신청' : '무효 신청');
+  if (reason === null) return;
+  await api('/api/submissions/' + id + '/void',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({reason:reason || '무효 신청'})}); await loadAll();
+}
+async function rollbackWait2(id) { if (confirm('입장 대기-1(연락 전)로 되돌릴까요?')) { await api('/api/onboarding/' + id + '/rollback',{method:'POST'}); await loadAll(); switchTab('wait1'); } }
+function taskGo(target) {
+  if (target === 'review' || target === 'wait1' || target === 'wait2') return switchTab(target);
+  if (target === 'people-problem') { $('#peopleFilter').value='problem'; renderPeople(); return switchTab('people'); }
+  if (target === 'people-current') { $('#peopleFilter').value='current'; renderPeople(); return switchTab('people'); }
+}
+
 async function handleAction(target) {
   const action = target.dataset.action;
   const id = target.dataset.id;
@@ -587,6 +752,16 @@ async function handleAction(target) {
   if (action === 'edit-submission') return openEditSubmission(id);
   if (action === 'show-phone') return showPhone(id);
   if (action === 'copy-phone') return copyPhone(id);
+  if (action === 'leave-existing') return leaveExisting(id);
+  if (action === 'restore-existing') return restoreExisting(id);
+  if (action === 'reset-reverify') return resetReverify(id);
+  if (action === 'leave-admitted') return leaveAdmitted(id);
+  if (action === 'restore-admitted') return restoreAdmitted(id);
+  if (action === 'leave-issue') return leaveIssue(id);
+  if (action === 'restore-issue') return restoreIssue(id);
+  if (action === 'void-submission') return voidSubmission(id);
+  if (action === 'rollback-wait2') return rollbackWait2(id);
+  if (action === 'task-go') return taskGo(target.dataset.target);
 }
 
 document.addEventListener('click', (ev) => {
@@ -601,6 +776,9 @@ $('#refreshBtn').addEventListener('click', loadAll);
 $('#importBtn').addEventListener('click', importCSV);
 $('#manualForm').addEventListener('submit', manualAdd);
 $('#memberSearch').addEventListener('input', () => renderRosterMembers(rosterMembers));
+$('#peopleSearch').addEventListener('input', renderPeople);
+$('#peopleFilter').addEventListener('change', renderPeople);
+$('#saveRoomCount').addEventListener('click', () => saveRoomCount().catch((err) => alert(err.message || '저장에 실패했습니다.')));
 $('#linkSearch').addEventListener('input', renderLinkMembers);
 $('#editMemberForm').addEventListener('submit', saveMemberEdit);
 $('#submissionEditForm').addEventListener('submit', saveSubmissionEdit);
@@ -700,50 +878,44 @@ async function createExistingMember(env, { name, district, legacyNickname = null
 async function listSubmissions(url, env) {
   const status = url.searchParams.get("status") || "all";
   const type = url.searchParams.get("type") || "all";
-  const where = [], bind = [];
+  const where = ["voided_at IS NULL"], bind = [];
   if (status !== "all") { where.push("review_status=?"); bind.push(status); }
   if (type !== "all") { where.push("request_type=?"); bind.push(type); }
-  const sql = `SELECT * FROM submissions ${where.length ? "WHERE " + where.join(" AND ") : ""} ORDER BY submitted_at DESC LIMIT 500`;
+  const sql = `SELECT * FROM submissions WHERE ${where.join(" AND ")} ORDER BY submitted_at DESC LIMIT 500`;
   const r = await env.DB.prepare(sql).bind(...bind).all();
   return json({ items: r.results || [] });
 }
 
 async function stats(request, env) {
-  const [a, b, c, d, activeStat, issuePending, f, g, h] = await Promise.all([
-    env.DB.prepare("SELECT COUNT(*) n FROM submissions WHERE review_status='pending'").first(),
-    env.DB.prepare("SELECT COUNT(*) n FROM submissions WHERE review_status='verified'").first(),
-    env.DB.prepare("SELECT COUNT(*) n FROM submissions WHERE review_status='rejected'").first(),
-    env.DB.prepare("SELECT COUNT(*) n FROM submissions WHERE proof_key IS NOT NULL").first(),
+  const [a,b,c,d,activeStat,issuePending,f,g,h,setting,duplicateStat,overdueStat] = await Promise.all([
+    env.DB.prepare("SELECT COUNT(*) n FROM submissions WHERE voided_at IS NULL AND review_status='pending'").first(),
+    env.DB.prepare("SELECT COUNT(*) n FROM submissions WHERE voided_at IS NULL AND review_status='verified'").first(),
+    env.DB.prepare("SELECT COUNT(*) n FROM submissions WHERE voided_at IS NULL AND review_status='rejected'").first(),
+    env.DB.prepare("SELECT COUNT(*) n FROM submissions WHERE voided_at IS NULL AND proof_key IS NOT NULL").first(),
     env.MEMBERS_DB.prepare("SELECT SUM(CASE WHEN active=1 THEN 1 ELSE 0 END) active, SUM(CASE WHEN active=1 AND reverified_at IS NOT NULL THEN 1 ELSE 0 END) done, SUM(CASE WHEN active=0 THEN 1 ELSE 0 END) inactive FROM existing_members").first(),
-    env.MEMBERS_DB.prepare("SELECT COUNT(*) n FROM roster_import_issues WHERE status='pending'").first(),
-    env.DB.prepare("SELECT COUNT(*) n FROM submissions WHERE request_type='new' AND review_status='verified' AND onboarding_stage='wait1'").first(),
-    env.DB.prepare("SELECT COUNT(*) n FROM submissions WHERE request_type='new' AND review_status='verified' AND onboarding_stage='wait2'").first(),
-    env.MEMBERS_DB.prepare("SELECT COUNT(*) n FROM admitted_members").first(),
+    env.MEMBERS_DB.prepare("SELECT COUNT(*) n FROM roster_import_issues WHERE status='pending' AND active=1").first(),
+    env.DB.prepare("SELECT COUNT(*) n FROM submissions WHERE voided_at IS NULL AND request_type='new' AND review_status='verified' AND onboarding_stage='wait1'").first(),
+    env.DB.prepare("SELECT COUNT(*) n FROM submissions WHERE voided_at IS NULL AND request_type='new' AND review_status='verified' AND onboarding_stage='wait2'").first(),
+    env.MEMBERS_DB.prepare("SELECT COUNT(*) n FROM admitted_members WHERE active=1").first(),
+    env.MEMBERS_DB.prepare("SELECT value,updated_at FROM admin_settings WHERE key='actual_room_count' LIMIT 1").first(),
+    env.DB.prepare(`SELECT COUNT(*) n FROM (SELECT lower(trim(name)),lower(trim(district)) FROM submissions WHERE request_type='new' AND voided_at IS NULL AND review_status<>'rejected' AND COALESCE(onboarding_stage,'')<>'admitted' GROUP BY lower(trim(name)),lower(trim(district)) HAVING COUNT(*)>1)`).first(),
+    env.DB.prepare("SELECT COUNT(*) n FROM submissions WHERE voided_at IS NULL AND request_type='new' AND review_status='verified' AND onboarding_stage='wait2' AND datetime(contacted_at)<=datetime('now','-7 days')").first(),
   ]);
-
-  // 실시간 운영 통계는 현재 관리 상태를 기준으로 계산한다.
   const active = activeStat.active || 0;
   const issueCount = issuePending.n || 0;
   const admitted = h.n || 0;
   const existingTargetTotal = active + issueCount;
   const currentMemberTotal = existingTargetTotal + admitted;
-
+  const actualRoomCount = setting && setting.value != null ? Number(setting.value) : null;
   return json({
-    pending: a.n || 0,
-    verified: b.n || 0,
-    rejected: c.n || 0,
-    proofsRemaining: d.n || 0,
-    currentMemberTotal,
-    existingIdentified: active,
-    existingPending: issueCount,
-    existingTargetTotal,
-    rosterActive: active,
-    rosterInactive: activeStat.inactive || 0,
-    rosterReverified: activeStat.done || 0,
-    wait1: f.n || 0,
-    wait2: g.n || 0,
-    newAdmitted: admitted,
-    reviewer: reviewer(request),
+    pending:a.n||0, verified:b.n||0, rejected:c.n||0, proofsRemaining:d.n||0,
+    currentMemberTotal, existingIdentified:active, existingPending:issueCount, existingTargetTotal,
+    rosterActive:active, rosterInactive:activeStat.inactive||0, rosterReverified:activeStat.done||0,
+    wait1:f.n||0, wait2:g.n||0, newAdmitted:admitted,
+    duplicateSuspects:duplicateStat.n||0, overdueWait2:overdueStat.n||0,
+    actualRoomCount, actualRoomUpdatedAt:setting?.updated_at||null,
+    roomDifference:actualRoomCount==null?null:actualRoomCount-currentMemberTotal,
+    reviewer:reviewer(request),
   });
 }
 
@@ -753,6 +925,7 @@ async function reviewSubmission(request, env, id) {
   if (!["verified", "rejected"].includes(decision)) return json({ message: "잘못된 판정입니다." }, 400);
   const row = await env.DB.prepare("SELECT * FROM submissions WHERE id=? LIMIT 1").bind(id).first();
   if (!row) return json({ message: "접수 내역이 없습니다." }, 404);
+  if (row.voided_at) return json({ message: "무효 처리된 접수입니다." }, 409);
   if (row.review_status !== "pending") return json({ message: "이미 처리된 접수입니다." }, 409);
   const now = new Date().toISOString();
   const who = reviewer(request);
@@ -784,6 +957,7 @@ async function reviewSubmission(request, env, id) {
 async function updateNewSubmission(request, env, id) {
   const row = await env.DB.prepare("SELECT * FROM submissions WHERE id=? LIMIT 1").bind(id).first();
   if (!row) return json({ message: "접수 내역이 없습니다." }, 404);
+  if (row.voided_at) return json({ message: "무효 처리된 신청은 수정할 수 없습니다." }, 409);
   if (row.request_type !== "new") return json({ message: "신규 입장 신청만 수정할 수 있습니다." }, 400);
   if (row.review_status === "rejected") return json({ message: "이미 X 처리된 신청은 수정할 수 없습니다." }, 409);
   if (row.onboarding_stage === "admitted") return json({ message: "이미 입장 완료된 신청은 수정할 수 없습니다." }, 409);
@@ -886,8 +1060,8 @@ async function importRoster(request, env) {
       if (!member) {
         const inactive = await findAnyMemberByKey(env, key);
         if (inactive) {
-          await env.MEMBERS_DB.prepare("UPDATE existing_members SET active=1,imported_at=? WHERE id=?").bind(now, inactive.id).run();
-          member = { ...inactive, active: 1 };
+          // 과거 CSV 재가져오기로 퇴장/비활성 상태를 자동 복구하지 않는다.
+          member = inactive;
         } else {
           member = await createExistingMember(env, { name: parsed.name, district: parsed.district, importedAt: now, who: reviewer(request) });
         }
@@ -926,8 +1100,8 @@ async function importRoster(request, env) {
 }
 
 async function rosterIssues(env) {
-  const r = await env.MEMBERS_DB.prepare("SELECT id,original_nickname,created_at FROM roster_import_issues WHERE status='pending' ORDER BY created_at ASC, original_nickname ASC").all();
-  return json({ items: r.results || [] });
+  const r = await env.MEMBERS_DB.prepare("SELECT id,original_nickname,created_at FROM roster_import_issues WHERE status='pending' AND active=1 ORDER BY created_at ASC,original_nickname ASC").all();
+  return json({ items:r.results||[] });
 }
 
 async function resolveRosterIssue(request, env, id) {
@@ -1034,15 +1208,16 @@ async function updateRosterMember(request, env, id) {
 }
 
 async function onboardingList(url, env) {
-  const stage = url.searchParams.get("stage");
-  if (!["wait1", "wait2"].includes(stage)) return json({ message: "잘못된 단계입니다." }, 400);
-  const r = await env.DB.prepare(`SELECT id,name,phone,district,member_type,reviewed_at,contacted_at,onboarding_stage FROM submissions WHERE request_type='new' AND review_status='verified' AND onboarding_stage=? ORDER BY COALESCE(contacted_at,reviewed_at) ASC`).bind(stage).all();
-  return json({ items: r.results || [] });
+  const stage=url.searchParams.get("stage");
+  if (!["wait1","wait2"].includes(stage)) return json({message:"잘못된 단계입니다."},400);
+  const r=await env.DB.prepare(`SELECT id,name,phone,district,member_type,chat_nickname,reviewed_at,contacted_at,onboarding_stage FROM submissions WHERE voided_at IS NULL AND request_type='new' AND review_status='verified' AND onboarding_stage=? ORDER BY COALESCE(contacted_at,reviewed_at) ASC`).bind(stage).all();
+  return json({items:r.results||[]});
 }
 
 async function markContacted(request, env, id) {
-  const row = await env.DB.prepare("SELECT id,onboarding_stage,review_status,request_type FROM submissions WHERE id=? LIMIT 1").bind(id).first();
+  const row = await env.DB.prepare("SELECT id,onboarding_stage,review_status,request_type,voided_at FROM submissions WHERE id=? LIMIT 1").bind(id).first();
   if (!row) return json({ message: "대상이 없습니다." }, 404);
+  if (row.voided_at) return json({ message: "무효 처리된 신청입니다." }, 409);
   if (row.request_type !== "new" || row.review_status !== "verified" || row.onboarding_stage !== "wait1") return json({ message: "입장 대기-1 대상만 처리할 수 있습니다." }, 409);
   const now = new Date().toISOString(), who = reviewer(request);
   await env.DB.prepare("UPDATE submissions SET onboarding_stage='wait2',contacted_at=?,contacted_by=? WHERE id=? AND onboarding_stage='wait1'").bind(now, who, id).run();
@@ -1052,6 +1227,7 @@ async function markContacted(request, env, id) {
 async function admit(request, env, id) {
   const row = await env.DB.prepare("SELECT * FROM submissions WHERE id=? LIMIT 1").bind(id).first();
   if (!row) return json({ message: "대상이 없습니다." }, 404);
+  if (row.voided_at) return json({ message: "무효 처리된 신청입니다." }, 409);
   if (row.request_type !== "new" || row.review_status !== "verified" || row.onboarding_stage !== "wait2") return json({ message: "입장 대기-2 대상만 입장 완료 처리할 수 있습니다." }, 409);
   const now = new Date().toISOString(), who = reviewer(request);
   await env.MEMBERS_DB.prepare(`INSERT INTO admitted_members(id,submission_id,display_nickname,name,district,admitted_at,admitted_by) VALUES(?,?,?,?,?,?,?) ON CONFLICT(submission_id) DO NOTHING`)
@@ -1067,25 +1243,72 @@ function csvCell(v) {
 }
 
 async function wait1CSV(env) {
-  const r = await env.DB.prepare("SELECT name,phone FROM submissions WHERE request_type='new' AND review_status='verified' AND onboarding_stage='wait1' ORDER BY reviewed_at ASC").all();
-  const lines = ["이름,전화번호", ...(r.results || []).map((x) => csvCell(x.name) + "," + csvCell(x.phone || ""))];
-  const body = "\uFEFF" + lines.join("\r\n");
-  return new Response(body, { headers: { "content-type": "text/csv; charset=utf-8", "content-disposition": 'attachment; filename="bunmink-wait1.csv"', "cache-control": "no-store" } });
+  const r=await env.DB.prepare("SELECT name,phone FROM submissions WHERE voided_at IS NULL AND request_type='new' AND review_status='verified' AND onboarding_stage='wait1' ORDER BY reviewed_at ASC").all();
+  const lines=["이름,전화번호",...(r.results||[]).map((x)=>csvCell(x.name)+","+csvCell(x.phone||""))];
+  const body="\uFEFF"+lines.join("\r\n");
+  return new Response(body,{headers:{"content-type":"text/csv; charset=utf-8","content-disposition":'attachment; filename="bunmink-wait1.csv"',"cache-control":"no-store"}});
 }
 
 async function members(env) {
-  const [existing, newcomers] = await Promise.all([
-    env.MEMBERS_DB.prepare(`
-      SELECT 'existing' source,e.name,e.district,e.display_nickname nickname,e.legacy_nickname,e.reverified_at completed_at,
-        COALESCE((SELECT GROUP_CONCAT(a.nickname, ' · ') FROM member_aliases a WHERE a.member_id=e.id), '') aliases
-      FROM existing_members e
-      WHERE e.active=1 AND e.reverified_at IS NOT NULL
-    `).all(),
-    env.MEMBERS_DB.prepare("SELECT 'new' source,name,district,display_nickname nickname,NULL legacy_nickname,admitted_at completed_at,'' aliases FROM admitted_members").all(),
+  const [existing,newcomers]=await Promise.all([
+    env.MEMBERS_DB.prepare(`SELECT 'existing' source,e.name,e.district,e.display_nickname nickname,e.legacy_nickname,e.reverified_at completed_at,COALESCE((SELECT GROUP_CONCAT(a.nickname,' · ') FROM member_aliases a WHERE a.member_id=e.id),'') aliases FROM existing_members e WHERE e.active=1 AND e.reverified_at IS NOT NULL`).all(),
+    env.MEMBERS_DB.prepare("SELECT 'new' source,name,district,display_nickname nickname,NULL legacy_nickname,admitted_at completed_at,'' aliases FROM admitted_members WHERE active=1").all(),
   ]);
-  const items = [...(existing.results || []), ...(newcomers.results || [])].sort((a, b) => String(b.completed_at).localeCompare(String(a.completed_at)));
-  return json({ items });
+  const items=[...(existing.results||[]),...(newcomers.results||[])].sort((a,b)=>String(b.completed_at).localeCompare(String(a.completed_at)));
+  return json({items});
 }
+
+async function logEvent(env,request,action,targetType,targetId,detail="") {
+  try { await env.MEMBERS_DB.prepare("INSERT INTO admin_events(id,action,target_type,target_id,detail,created_at,created_by) VALUES(?,?,?,?,?,?,?)").bind(crypto.randomUUID(),action,targetType,targetId||null,detail||null,new Date().toISOString(),reviewer(request)).run(); } catch(err) { console.error("admin event log failed",err); }
+}
+
+async function people(env) {
+  const [existingR,issuesR,admittedR,subsR]=await Promise.all([
+    env.MEMBERS_DB.prepare(`SELECT e.*,COALESCE((SELECT GROUP_CONCAT(a.nickname,' · ') FROM member_aliases a WHERE a.member_id=e.id),'') aliases FROM existing_members e ORDER BY e.name,e.district`).all(),
+    env.MEMBERS_DB.prepare("SELECT * FROM roster_import_issues WHERE status='pending' ORDER BY created_at ASC").all(),
+    env.MEMBERS_DB.prepare("SELECT * FROM admitted_members ORDER BY admitted_at DESC").all(),
+    env.DB.prepare(`SELECT id,name,district,chat_nickname,phone,member_type,review_status,onboarding_stage,reviewed_at,contacted_at,submitted_at,voided_at,void_reason FROM submissions WHERE request_type='new' AND COALESCE(onboarding_stage,'')<>'admitted' ORDER BY submitted_at DESC`).all(),
+  ]);
+  const subs=subsR.results||[], admitted=admittedR.results||[];
+  const keyOf=(x)=>normalizeText(x.name).toLowerCase()+"/"+normalizeText(x.district).toLowerCase();
+  const dup=new Map();
+  for(const x of [...subs.filter((x)=>!x.voided_at&&x.review_status!=="rejected"),...admitted.filter((x)=>x.active===1)]) { const k=keyOf(x); if(k!=="/") dup.set(k,(dup.get(k)||0)+1); }
+  const items=[];
+  for(const x of (existingR.results||[])) items.push({id:"existing:"+x.id,target_id:x.id,kind:"existing",state:x.active===1?"current":"left",nickname:x.display_nickname,name:x.name,district:x.district,aliases:x.aliases||x.legacy_nickname||"",reverified_at:x.reverified_at,needs_reverify:x.active===1&&!x.reverified_at,left_at:x.left_at,note:x.left_reason||"",problem:false,duplicate:false});
+  for(const x of (issuesR.results||[])) items.push({id:"issue:"+x.id,target_id:x.id,kind:"issue",state:x.active===1?"problem":"left",nickname:x.original_nickname,name:"",district:"",aliases:"",needs_reverify:x.active===1,left_at:x.left_at,note:x.left_reason||"닉네임 식별 필요",problem:x.active===1,duplicate:false});
+  for(const x of subs) {
+    if(x.review_status==="rejected"&&!x.voided_at) continue;
+    const duplicate=!x.voided_at&&x.review_status!=="rejected"&&(dup.get(keyOf(x))||0)>1;
+    const state=x.voided_at?"voided":(x.review_status==="pending"?"review":(x.onboarding_stage||"review"));
+    items.push({id:x.id,target_id:x.id,kind:"submission",state,nickname:x.chat_nickname,name:x.name,district:x.district,aliases:"",phone:x.phone,member_type:x.member_type,reviewed_at:x.reviewed_at,contacted_at:x.contacted_at,duplicate,problem:duplicate,note:x.void_reason||"",needs_reverify:false});
+  }
+  for(const x of admitted) { const duplicate=x.active===1&&(dup.get(keyOf(x))||0)>1; items.push({id:"admitted:"+x.id,target_id:x.id,submission_id:x.submission_id,kind:"admitted",state:x.active===1?"current":"left",nickname:x.display_nickname,name:x.name,district:x.district,aliases:"",left_at:x.left_at,note:x.left_reason||"",duplicate,problem:duplicate,needs_reverify:false}); }
+  const rank={problem:0,review:1,wait1:2,wait2:3,current:4,left:5,voided:6};
+  items.sort((a,b)=>(rank[a.state]??9)-(rank[b.state]??9)||String(a.nickname||"").localeCompare(String(b.nickname||""),"ko"));
+  return json({items});
+}
+
+async function saveRoomCount(request,env) {
+  const body=await request.json(), count=Number(body.count);
+  if(!Number.isInteger(count)||count<0||count>10000) return json({message:"0~10000 사이의 정수를 입력해주세요."},400);
+  const now=new Date().toISOString(),who=reviewer(request);
+  await env.MEMBERS_DB.prepare(`INSERT INTO admin_settings(key,value,updated_at,updated_by) VALUES('actual_room_count',?,?,?) ON CONFLICT(key) DO UPDATE SET value=excluded.value,updated_at=excluded.updated_at,updated_by=excluded.updated_by`).bind(String(count),now,who).run();
+  await logEvent(env,request,"room_count","setting","actual_room_count",String(count));
+  return json({ok:true,count});
+}
+
+async function setExistingActive(request,env,id,active) {
+  const row=await env.MEMBERS_DB.prepare("SELECT * FROM existing_members WHERE id=? LIMIT 1").bind(id).first(); if(!row) return json({message:"기존 참여자를 찾을 수 없습니다."},404);
+  const now=new Date().toISOString(),who=reviewer(request);
+  if(active){ await env.MEMBERS_DB.prepare("UPDATE existing_members SET active=1,left_at=NULL,left_by=NULL,left_reason=NULL WHERE id=?").bind(id).run(); await logEvent(env,request,"restore","existing_member",id,row.display_nickname); }
+  else { const body=await request.json().catch(()=>({})); await env.MEMBERS_DB.prepare("UPDATE existing_members SET active=0,left_at=?,left_by=?,left_reason=? WHERE id=?").bind(now,who,normalizeText(body.reason)||null,id).run(); await logEvent(env,request,"leave","existing_member",id,row.display_nickname+(body.reason?" · "+body.reason:"")); }
+  return json({ok:true});
+}
+async function resetReverify(request,env,id) { const row=await env.MEMBERS_DB.prepare("SELECT id,display_nickname FROM existing_members WHERE id=? AND active=1 LIMIT 1").bind(id).first(); if(!row) return json({message:"활성 기존 참여자를 찾을 수 없습니다."},404); await env.MEMBERS_DB.prepare("UPDATE existing_members SET reverified_at=NULL,reverified_submission_id=NULL WHERE id=?").bind(id).run(); await logEvent(env,request,"reset_reverify","existing_member",id,row.display_nickname); return json({ok:true}); }
+async function setAdmittedActive(request,env,id,active) { const row=await env.MEMBERS_DB.prepare("SELECT * FROM admitted_members WHERE id=? LIMIT 1").bind(id).first(); if(!row) return json({message:"신규 입장자를 찾을 수 없습니다."},404); const now=new Date().toISOString(),who=reviewer(request); if(active){await env.MEMBERS_DB.prepare("UPDATE admitted_members SET active=1,left_at=NULL,left_by=NULL,left_reason=NULL WHERE id=?").bind(id).run();await logEvent(env,request,"restore","admitted_member",id,row.display_nickname);}else{const body=await request.json().catch(()=>({}));await env.MEMBERS_DB.prepare("UPDATE admitted_members SET active=0,left_at=?,left_by=?,left_reason=? WHERE id=?").bind(now,who,normalizeText(body.reason)||null,id).run();await logEvent(env,request,"leave","admitted_member",id,row.display_nickname+(body.reason?" · "+body.reason:""));} return json({ok:true}); }
+async function setIssueActive(request,env,id,active) { const row=await env.MEMBERS_DB.prepare("SELECT * FROM roster_import_issues WHERE id=? AND status='pending' LIMIT 1").bind(id).first(); if(!row) return json({message:"미식별 기존 명부 항목을 찾을 수 없습니다."},404); const now=new Date().toISOString(),who=reviewer(request); if(active){await env.MEMBERS_DB.prepare("UPDATE roster_import_issues SET active=1,left_at=NULL,left_by=NULL,left_reason=NULL WHERE id=?").bind(id).run();await logEvent(env,request,"restore","roster_issue",id,row.original_nickname);}else{const body=await request.json().catch(()=>({}));await env.MEMBERS_DB.prepare("UPDATE roster_import_issues SET active=0,left_at=?,left_by=?,left_reason=? WHERE id=?").bind(now,who,normalizeText(body.reason)||null,id).run();await logEvent(env,request,"leave","roster_issue",id,row.original_nickname+(body.reason?" · "+body.reason:""));} return json({ok:true}); }
+async function voidSubmission(request,env,id) { const row=await env.DB.prepare("SELECT * FROM submissions WHERE id=? LIMIT 1").bind(id).first(); if(!row)return json({message:"신청을 찾을 수 없습니다."},404); if(row.request_type!=="new")return json({message:"신규 신청만 무효 처리할 수 있습니다."},400); if(row.onboarding_stage==="admitted")return json({message:"이미 입장 완료된 신청은 퇴장 처리 기능을 사용해주세요."},409); if(row.voided_at)return json({message:"이미 무효 처리된 신청입니다."},409); const body=await request.json().catch(()=>({})); const now=new Date().toISOString(),who=reviewer(request); if(row.proof_key)await env.PROOFS.delete(row.proof_key); await env.DB.prepare(`UPDATE submissions SET voided_at=?,voided_by=?,void_reason=?,phone=NULL,proof_key=NULL,proof_original_name=NULL,proof_mime=NULL,proof_size=NULL,proof_deleted_at=COALESCE(proof_deleted_at,?),proof_delete_reason=COALESCE(proof_delete_reason,'voided') WHERE id=? AND voided_at IS NULL`).bind(now,who,normalizeText(body.reason)||"무효 신청",now,id).run(); await logEvent(env,request,"void","submission",id,(row.chat_nickname||row.name)+" · "+(body.reason||"무효 신청")); return json({ok:true}); }
+async function rollbackWait2(request,env,id) { const row=await env.DB.prepare("SELECT id,chat_nickname,onboarding_stage,voided_at FROM submissions WHERE id=? LIMIT 1").bind(id).first(); if(!row)return json({message:"신청을 찾을 수 없습니다."},404); if(row.voided_at||row.onboarding_stage!=="wait2")return json({message:"입장 대기-2 신청만 되돌릴 수 있습니다."},409); await env.DB.prepare("UPDATE submissions SET onboarding_stage='wait1',contacted_at=NULL,contacted_by=NULL WHERE id=?").bind(id).run(); await logEvent(env,request,"rollback_wait2","submission",id,row.chat_nickname||""); return json({ok:true}); }
 
 export default {
   async fetch(request, env) {
@@ -1102,6 +1325,8 @@ export default {
       if (request.method === "GET" && p === "/api/members") return members(env);
       if (request.method === "GET" && p === "/api/roster/issues") return rosterIssues(env);
       if (request.method === "GET" && p === "/api/roster/members") return rosterMembers(env);
+      if (request.method === "GET" && p === "/api/people") return people(env);
+      if (request.method === "POST" && p === "/api/settings/room-count") return saveRoomCount(request, env);
 
       let m = p.match(/^\/api\/submissions\/([^/]+)\/review$/);
       if (request.method === "POST" && m) return reviewSubmission(request, env, m[1]);
@@ -1121,6 +1346,12 @@ export default {
       m = p.match(/^\/api\/onboarding\/([^/]+)\/admit$/);
       if (request.method === "POST" && m) return admit(request, env, m[1]);
 
+      m = p.match(/^\/api\/onboarding\/([^/]+)\/rollback$/);
+      if (request.method === "POST" && m) return rollbackWait2(request, env, m[1]);
+
+      m = p.match(/^\/api\/submissions\/([^/]+)\/void$/);
+      if (request.method === "POST" && m) return voidSubmission(request, env, m[1]);
+
       m = p.match(/^\/api\/roster\/issues\/([^/]+)\/resolve$/);
       if (request.method === "POST" && m) return resolveRosterIssue(request, env, m[1]);
 
@@ -1129,6 +1360,23 @@ export default {
 
       m = p.match(/^\/api\/roster\/members\/([^/]+)\/update$/);
       if (request.method === "POST" && m) return updateRosterMember(request, env, m[1]);
+
+      m = p.match(/^\/api\/roster\/members\/([^/]+)\/leave$/);
+      if (request.method === "POST" && m) return setExistingActive(request, env, m[1], false);
+      m = p.match(/^\/api\/roster\/members\/([^/]+)\/restore$/);
+      if (request.method === "POST" && m) return setExistingActive(request, env, m[1], true);
+      m = p.match(/^\/api\/roster\/members\/([^/]+)\/reset-reverify$/);
+      if (request.method === "POST" && m) return resetReverify(request, env, m[1]);
+
+      m = p.match(/^\/api\/admitted\/([^/]+)\/leave$/);
+      if (request.method === "POST" && m) return setAdmittedActive(request, env, m[1], false);
+      m = p.match(/^\/api\/admitted\/([^/]+)\/restore$/);
+      if (request.method === "POST" && m) return setAdmittedActive(request, env, m[1], true);
+
+      m = p.match(/^\/api\/roster\/issues\/([^/]+)\/leave$/);
+      if (request.method === "POST" && m) return setIssueActive(request, env, m[1], false);
+      m = p.match(/^\/api\/roster\/issues\/([^/]+)\/restore$/);
+      if (request.method === "POST" && m) return setIssueActive(request, env, m[1], true);
 
       if (request.method === "POST" && p === "/api/roster/import") return importRoster(request, env);
       if (request.method === "POST" && p === "/api/roster/manual") return manualRosterAdd(request, env);

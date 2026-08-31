@@ -23,6 +23,9 @@ CREATE TABLE IF NOT EXISTS submissions (
   contacted_by TEXT,
   admitted_at TEXT,
   admitted_by TEXT,
+  voided_at TEXT,
+  voided_by TEXT,
+  void_reason TEXT,
   consent_at TEXT NOT NULL,
   privacy_consent_at TEXT NOT NULL,
   sensitive_consent_at TEXT NOT NULL,
@@ -36,3 +39,5 @@ CREATE INDEX IF NOT EXISTS idx_submissions_onboarding ON submissions(request_typ
 CREATE INDEX IF NOT EXISTS idx_submissions_proof_cleanup ON submissions(proof_delete_after, proof_key);
 CREATE INDEX IF NOT EXISTS idx_submissions_roster_member ON submissions(roster_member_id);
 CREATE INDEX IF NOT EXISTS idx_submissions_expires ON submissions(expires_at);
+
+CREATE INDEX IF NOT EXISTS idx_submissions_voided ON submissions(voided_at, request_type, submitted_at DESC);
