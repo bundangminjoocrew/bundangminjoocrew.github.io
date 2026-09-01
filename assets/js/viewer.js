@@ -2,6 +2,14 @@ const documents = {
   "operating-rules": {
     title: "운영규칙",
     path: "./content/operating-rules.md"
+  },
+
+   "bundang-gap-controversy": {
+    title: "분민크 전환 이전 권리당원방 운영 관련에 대하여",
+    path: "https://raw.githubusercontent.com/luncliff/luncliff/main/posts/2026-09-01%20%EB%B6%84%EB%8B%B9%EA%B0%91%EB%85%BC%EB%9E%80.md",
+    meta: "외부 기고 · 전 운영진 박동하 작성",
+    sourceUrl: "https://github.com/luncliff/luncliff/blob/main/posts/2026-09-01%20%EB%B6%84%EB%8B%B9%EA%B0%91%EB%85%BC%EB%9E%80.md",
+    external: true
   }
 };
 
@@ -204,7 +212,10 @@ async function renderDocument() {
 
     contentEl.innerHTML = cleanHtml;
     enhanceMarkdown(contentEl, selectedDocument.path);
-    metaEl.textContent = formatDocumentMeta(metadata);
+    metaEl.textContent =
+      formatDocumentMeta(metadata) ||
+      selectedDocument.meta ||
+      "";
     showContent();
   } catch (error) {
     metaEl.textContent = "";
