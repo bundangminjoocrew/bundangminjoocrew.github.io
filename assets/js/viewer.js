@@ -14,7 +14,9 @@ const documents = {
 };
 
 const params = new URLSearchParams(window.location.search);
-const docKey = params.get("doc");
+const docKey =
+  document.body?.dataset.documentKey ||
+  params.get("doc");
 const selectedDocument = documents[docKey];
 const titleEl = document.querySelector("#document-title");
 const metaEl = document.querySelector("#document-meta");
